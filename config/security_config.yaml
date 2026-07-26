@@ -1,0 +1,52 @@
+# CAIS Security Configuration
+
+sovereign_vault:
+  # Authentication
+  password_length: 17
+  max_attempts: 3
+  lockout_duration_seconds: 900  # 15 minutes
+  session_duration_seconds: 3600 # 1 hour
+
+  # Storage
+  auth_file: "config/security/sovereign_auth.json"
+  log_file: "config/security/sovereign_access.log"
+  session_file: "config/security/sovereign_session.json"
+
+  # Encryption
+  encryption_algorithm: "Fernet"
+  key_rotation_days: 90
+
+  # Notifications
+  alert_on_lockout: true
+  alert_on_successful_login: true
+  alert_on_password_change: true
+
+security_logs:
+  max_size_mb: 50
+  retention_days: 365
+  encryption: true
+
+  events:
+    - authentication_attempt
+    - authentication_success
+    - authentication_failure
+    - account_lockout
+    - password_change
+    - session_created
+    - session_revoked
+    - kill_switch_activation
+    - kill_switch_deactivation
+    - worm_access
+    - forensic_audit
+    - rule_approved
+    - rule_rejected
+
+kill_switch:
+  auto_activate_on_corruption: true
+  propagation_channels:
+    - api_gateway
+    - workers
+    - addins
+    - cdn
+  timeout_seconds: 5
+  require_second_approver: true

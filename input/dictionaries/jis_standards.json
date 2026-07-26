@@ -1,0 +1,513 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="ja" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Script-Type" content="text/javascript">
+        <meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="GENERATOR" content="JustSystems Homepage Builder Version 22.0.1.0 for Windows">
+        <link rel="stylesheet" href="css/top-base.css" type="text/css" media="screen,print">
+        <link rel="stylesheet" href="css/sp-style.css" type="text/css" media="screen,print">
+        <link rel="canonical" href="http://www.jisc.go.jp/index.html">
+        <script type="text/javascript" src="css/top-css.js"></script>
+        <script type="text/javascript" src="lib/com_JISP1.js"></script>
+        <script type="text/javascript" src="lib/JPS.js"></script>
+        <script type="text/javascript" src="lib/jquery-2.1.4.min.js"></script>
+        <script type="text/javascript" src="js/sp.js"></script>
+        <script type="text/javascript" src="js/commonGeneral.js"></script>
+        <!-- jquery cdn -->
+        <script type="text/javascript">
+            <!--
+            //マウスオーバー
+            function swImg(iName,str)
+            {
+            	document.images[iName].src = str;
+            }
+            -->
+        </script>
+        <title>JISC 日本産業標準調査会</title>
+        <style type="text/css">
+<!--
+            .style1{
+            				font-family: "ＭＳ Ｐゴシック", Arial, sans-serif;
+            }
+            .auto-style3{
+            	color: #FF0000;
+            }
+            .auto-style4{
+              font-size: small;
+            }
+        -->
+</style>
+    </head>
+    <body id="page_start">
+        <noscript>
+            <br>
+            <p class="txt-m-h">このページは、JavaScriptを使用しています。
+                <br>JavaScriptの使用を有効にしなければ、一部のコンテンツをご覧いただくことができません。 
+            </p>
+            <br>
+        </noscript>
+        <div id="layout">
+            <div id="header" style="width: 770; height: 136">
+                <h1>
+                    <img src="top-images/top_logo.gif" alt="JISC 日本産業標準調査会" id="headerlogo" width="320" height="83">
+                </h1>
+                <!-- <a name="page_start" id="page_start">
+                    <img src="common/_.gif" alt="このページの先頭です。" width="1" height="1">
+                </a> -->
+                <!--<p class="hide"><a href="#honbun"> [本文へジャンプ]</a></p>-->
+                <hr class="hidden">
+                <ul id="headerEnglish">
+                    <li lang="en">
+                        <a href="eng/index.html">English</a>
+                    </li>
+                </ul>
+                <ul id="headerlink">
+                    <li>
+                        <a href="index.html" class="hederLinkstart">ホーム</a>
+                    </li>
+                    <li>
+                        <a href="newstopics/index.html">ニュースとお知らせ</a>
+                    </li>
+                    <li>
+                        <a href="link/index.html">関連リンク</a>
+                    </li>
+                    <li>
+                        <a href="sitemap/index.html">サイトマップ</a>
+                    </li>
+                    <li>
+                        <a href="dictionary/index.html">用語と略語</a>
+                    </li>
+                </ul>
+            </div>
+            
+            
+            <div id="menu-waku" class="l-sm">
+                <div id="database">
+                    <ul>
+                        <li>
+                            <a href="javascript:JumpTo('JPSH0010D');">データベース検索</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="mainmanu">
+                    <!--グローバルナビ始め-->
+                    <ul>
+                        <li>
+                            <span class="midashi">標準化：</span>
+                            <ul>
+                                <!--カテゴリBオフ始め-->
+                                <li>
+                                    <a href="jis-act/index.html" class="mainmenu-jis-act-current">産業標準化とJIS</a>
+                                </li>
+                                <!--カテゴリCオン終わり-->
+                                <li>
+                                    <a href="javascript:JumpTo('JPDH0010D');" class="mainmenu-committee1">意見受付公告（JIS）</a>
+                                </li>
+                                <!--カテゴリDオフ始め-->
+                                <li>
+                                    <a class="mainmenu-international" href="international/index.html">国際標準化(ISO/IEC)</a>
+                                </li>
+                                <!--カテゴリDオフ終わり-->
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="midashi">認証：</span>
+                            <ul>
+                                <!--カテゴリUオフ始め-->
+                                <li>
+                                    <a class="mainmenu-newjis" href="newjis/cap_index.html">JISマーク表示制度</a>
+                                </li>
+                                <!--カテゴリUオフ終わり-->
+                                <!--カテゴリFオフ始め-->
+                                <li>
+                                    <a href="mss/index.html" class="mainmenu-mss">マネジメントシステム(ISO 9001/14001他)</a>
+                                </li>
+                                <!--カテゴリFオフ終わり-->
+                            </ul>
+                        </li>
+                        <li>
+                            <span class="midashi">一般・共通：</span>
+                            <ul>
+                                <!--カテゴリGオフ始め-->
+                                <li>
+                                    <a href="jisc/index.html" class="mainmenu-jisc">JISCの紹介</a>
+                                </li>
+                                <!--カテゴリGオフ終わり-->
+                                <!--カテゴリHオフ始め-->
+                                <li>
+                                    <a href="policy/chitekizaisan.html" class="mainmenu-policy">標準化と知的財産</a>
+                                </li>
+                                <!--カテゴリHオフ終わり-->
+                                <!--カテゴリJオフ始め-->
+                                <li>
+                                    <a href="cooperation/index.html" class="mainmenu-cooperation">国際協議・協力</a>
+                                </li>
+                                <!--カテゴリJオフ終わり-->
+                                <!--カテゴリLオフ始め-->
+                                <li>
+                                    <a href="KIDS-HP/kids.html" class="mainmenu-KIDS-HP">キッズページ</a>
+                                </li>
+                                <!--カテゴリLオフ終わり-->
+                                <!--カテゴリKオフ始め-->
+                                <li>
+                                    <a href="qa/index.html" class="mainmenu-qa">FAQ（よくある質問）</a>
+                                </li>
+                                <!--カテゴリKオフ終わり-->
+                            </ul>
+                        </li>
+                    </ul>
+                    <!--グローバルナビ終わり-->
+                </div>
+                
+            </div>
+            
+            <!--■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■-->
+            <div id="mainleft">
+            <!--     <div class="imp-news">
+                    <p class="imp-news-title"></p>
+                      <div class="imp-news-content"></div> 
+                </div>-->
+                <div class="l-sm">
+                    <div class="pickup">
+                        <h3>データベース検索</h3>
+                        <ul>
+                            <li class="database-jis">
+                                <a href="javascript:JumpToJps('JPSO0020');">ＪＩＳ検索</a>
+                            </li>
+                            <li class="database-jis">
+                                <a href="javascript:JumpToJps('RPAO0000');">登録認証機関検索</a>
+                            </li>
+                            <li class="database-jis">
+                                <a href="site/pdf/sousa-manual.pdf">利用者登録操作マニュアル</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="pickup next">
+                        <h2>ピックアップ</h2>
+        <h3>JIS</h3>
+        <ul>
+          <li><a href="jis-act/reading.html">JISの入手閲覧方法</a>
+                            </li>
+          <li><a href="jis-act/plan-ref.html">作業計画・作成状況の公開</a>
+                            </li>
+          <li><a href="jis-act/proposal.html">産業標準原案の申出</a>
+                            </li>
+        </ul>
+        <h3>ISO/IEC</h3>
+        <ul>
+          <li><a href="https://webdesk.jsa.or.jp/common/W10K0500/index/dev/std_list/">ISO/IEC　TC一覧及び国内審議団体連絡先情報（外部サイトへ）</a>
+                            </li>
+          <li><a href="international/isoiec-ref.html">ISO/IECの国内審議団体の標準的な事務処理・各種手続きについて</a>
+                            </li>
+          <li><a href="international/１/iso-comment_renew.html">ISO照会中の案件</a>
+                            </li>
+        </ul>
+        <h3>一般・共通</h3>
+        <ul>
+          <li><a href="https://wwws.meti.go.jp/interface/honsho/committee/index.cgi/committee">JISC開催通知（経済産業省HP）</a>
+                            </li>
+          <li><a href="javascript:JumpToJps('JPDO0030');">JISC資料・議事要旨・議事録</a>
+                            </li>
+          <li><a href="cooperation/wto-tbt.html">WTO/TBT</a>
+                            </li>
+          <li><a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/katsuyo/shinshijo/index.html">新市場創造型標準化制度（経済産業省HP）</a>
+                            </li>
+        </ul>
+      </div>
+                </div>
+                
+                <div class="mainmenu">
+                    <h2>標準化・認証</h2>
+                    <ul>
+                        <li class="mainmenu-jis-act">
+                            <a href="jis-act/index.html">産業標準化とJIS</a>
+                        </li>
+                        <li class="mainmenu-jis-act">
+                            <a href="javascript:JumpTo('JPDH0010D');">意見受付公告（JIS）</a>
+                        </li>
+                        <li class="mainmenu-international">
+                            <a href="international/index.html">国際標準化(ISO/IEC)</a>
+                        </li>
+                        <li class="mainmenu-accmark">
+                            <a href="newjis/cap_index.html">JISマーク表示制度</a>
+                        </li>
+                        <li class="mainmenu-mss">
+                            <a href="mss/index.html">マネジメントシステム(ISO 9001/14001/50001他)</a>
+                        </li>
+                        <li class="mainmenu-service">
+                            <a href="service/index.html">サービス規格</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="mainmenu">
+                    <h2>一般・共通</h2>
+                    <ul>
+                        <li class="mainmenu-jisc">
+                            <a href="jisc/index.html">JISCの紹介</a>
+                        </li>
+                        <li class="mainmenu-policy">
+                            <a href="policy/chitekizaisan.html">標準化と知的財産</a>
+                        </li>
+                        <li class="mainmenu-cooperation">
+                            <a href="cooperation/index.html">国際協議・協力</a>
+                        </li>
+                        <li class="mainmenu-qa">
+                            <a href="qa/index.html">FAQ(よくある質問)</a>
+                        </li>
+                        <li class="mainmenu-KIDS-HP">
+                            <a href="KIDS-HP/kids.html">キッズページ</a>
+                        </li>
+                    </ul>
+                </div>
+                <!--	<div class="mainmenu">
+                <h2>経済産業省の基準認証政策 （経済産業省ウェブサイト）</h2>
+                <ul>
+                <li class="mainmenu-committee1"><a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/index.html">標準化・認証トップページ：基準認証政策の新着情報</a></li>
+                <li class="mainmenu-committee1"><a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/jisho/jis.html">JIS法改正（令和元年７月１日～　※工業標準化法→産業標準化法）</a></li>
+                <li class="mainmenu-committee1"><a href="https://www.meti.go.jp/policy/economy/hyojun/techno_infra/index.html">知的基盤：計量標準、微生物遺伝資源、地質情報等</a></li>
+                </ul>
+                	
+                	</div>-->
+                <div class="mainmenu">
+                    <h2>経済産業省の基準認証政策（経済産業省HPへ）</h2>
+                    <ul>
+                        <li class="mainmenu-committee1">
+                            <a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/index.html">標準化・認証</a>
+                        </li>
+                        <li class="mainmenu-committee1">
+                            <a href="https://www.meti.go.jp/policy/economy/hyojun/techno_infra/index.html">知的基盤</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="database" style="width: 508; height: 143">
+                    <h2>データベース検索</h2>
+                    <ul>
+                        <li class="database-jis">
+                            <a href="javascript:JumpToJps('JPSO0020');">JIS検索</a>
+                        </li>
+                        <li class="database-tstr">
+                            <a href="javascript:JumpToJps('TPSO0020');">TS/TR検索</a>
+                        </li>
+                        <li class="database-fac">
+                            <span style="font-size: 80%">JISマーク表示制度（</span>
+                            <a href="javascript:JumpToJps('NPAO0000');">認証取得者検索</a>、
+                            <a href="javascript:JumpToJps('RPAO0000');">登録認証機関検索</a>
+                            <span style="font-size: 80%">）</span>
+                        </li>
+                        <li class="database-all">
+                            <a href="javascript:JumpTo('JPSH0010D');">全ての検索項目</a>
+                        </li>
+                    </ul>
+                    <div style="float:left; font-size: 80%">
+                        <p>※本サイトでは、JISの閲覧は可能ですが、印刷・購入はできません。</p>
+                        <p>ＪＩＳの購入については
+                            <font size="3">
+                                <a href="jis-act/reading.html">ＪＩＳの入手閲覧方法</a>
+                            </font>をご覧下さい。
+                        </p>
+                        <p>
+                            <font color="#FF0000">※データベース検索においては、アクセスが集中した際に正しく表示されない場合が</font>
+                        </p>
+                        <p>
+                            <span class="auto-style3"></span>
+                            <font color="#FF0000">ございます。その場合は、暫く経過したのち再度アクセスをお願いいたします。</font>
+                        </p>
+                    </div>
+                </div>
+                <div class="wish" style="width: 507; height: 363">
+                    <h2>利用者の皆様へのお願い</h2>
+                     <font size="2"></font>
+                    <ul>
+                        <li><a href="newstopics/2024/JISview_notice.pdf"> JIS の閲覧・入手に関するお願い</a></li>
+                    </ul>
+                </div>
+                <div class="wish" style="width: 507; height: 363">
+                    <h2>ご案内</h2>
+                     <font size="2"></font>
+                    <ul>
+                        <li><a href="newstopics/2025/jis-citationinthereferencelist.pdf">JIS規格文書には、参考文献として学術論文を記載することが可能です</a></li>
+                    </ul>
+                </div>
+                <div class="news" style="width: 507; height: 363">
+                    <h2>ニュースとお知らせ</h2>
+                      <font size="2">
+                       <div style="text-align:center">
+                       ★★★★★★下記の日時にシステムメンテナンスを行います。★★★★★★<br>
+                       <font color="#FF0000">2026/6/29（月）21：00 ～ 2026/6/30（火）9：30</font><br>
+                       メンテナンス中はサービスがご利用できない可能性があります。<br>
+                       ご不便をおかけいたしますが、ご理解のほど宜しくお願い申し上げます。<br>
+                       ※メンテナンス日時は変更になる場合がございます。<br>
+                       ★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★</div></font>
+                    <ul>
+                     <ul>
+                        <li><a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/jiskouji/20260622001.html" target="_blank" rel="noopener">日本産業規格(JIS)を制定・改正しました（2026年6月分）（経済産業省サイトへ）</a><b><font color="red" size="2">NEW!</font></b></li>
+                        <li><a href="jis-act/202605minaoshichosa.htm" target="_blank" rel="noopener">令和８年度 JISの見直し調査について</a><b><font color="red" size="2">NEW!</font></b></li>
+                        <li><a href="https://www.meti.go.jp/press/2025/11/20251127007/20251127007.html" target="_blank" rel="noopener">「JIS規格の総ざらいレビュー」を実施します（経済産業省サイトへ）</a></li>
+                        <li><a href="jis-act/cap_process-pd.html"> 産業標準予備原案(PD)制度の利用に関するページを新設しました</a></li>
+                        <li><a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/jisho/seisaku.html" target="_blank" rel="noopener">日本産業標準調査会基本政策部会「取りまとめ」（日本型標準加速化モデル）を公表しました</a></li>
+                        <li><a href="newstopics/2020/202004covid19.htm">ISO/IECにおける新型コロナウィルス危機への対応</a></li>
+                     </ul>
+      <p class="backnum"><font size="1"><a href="newstopics/index.html">バックナンバーはこちら</a></font></p>
+      <ul>
+      </ul>
+    </div>
+            </div>
+            <hr class="hidden">
+            <div class="l-lg" style="float:right; width:234px;">
+                <hr class="hidden">
+                <div id="mainfontcont">
+                    <p>
+                        <a href="font/index.html">文字を大きくするには</a>
+                    </p>
+                </div>
+                <hr class="hidden">
+                <div style="padding:6px; background:#D4E6F4; margin-bottom:10px;">
+                    <form id ="topform" action="/app/jis/general/GnrViewerLogin" method="post">
+                    <div class="pickup" style="width: 209; height: 91">
+                        <h3>
+                            <font color="#000">データベース検索</font>
+                        </h3>
+                        <ul>
+                            <li class="database-jis">
+                                <strong>
+                                    <a href="javascript:JumpToJps('JPSO0020');">
+                                        <span style="font-size: 160%; color: #0000ff; font-family: sans-serif;">ＪＩＳ検索</span>
+                                    </a>
+                                </strong>
+                            </li>
+                            <li class="database-jis">
+                                <strong>
+                                    <a href="javascript:JumpToJps('RPAO0000');">
+                                        <span style="font-size: 160%; color: #0000ff; font-family: sans-serif;">登録認証機関検索</span>
+                                    </a>
+                                </strong>
+                            </li>
+                            <li class="database-jis">
+                                <strong>
+                                    <a href="site/pdf/sousa-manual.pdf">
+                                        <span style="font-size: 120%; color: #0000ff; font-family: sans-serif;">利用者登録操作マニュアル</span>
+                                    </a>
+                                </strong>
+          <div style="text-align:center" ;><input id="loginout" type="button" value="ログイン" style="width:106px;font-size:18px;" onclick="doSubmitGnr('fromTop', 'topform');">
+                                <input id="newUser" type="button" value="新規登録" style="width:106px;font-size:18px;" onclick="doSubmitGnr('newUser', 'topform');">
+                            </div>
+          <script type="text/javascript">
+                                // 「ログイン／ログアウト」表記の変更
+                                var label = "ログイン";
+                                $.ajax({
+                                    // urlを加工し、キャッシュされないurlにする
+                                    url: '/app/jis/general/GnrViewerLogin' + '?ver=' + new Date().getTime(),
+                                    type: 'POST',
+                                    dataType: 'text',
+                                    data: 'loginStatus',
+                                }).then(
+                                    function(data, status, xhr) {
+                                        console.log("success");
+                                        console.log(xhr.readyState);
+                                        if (data != "") {
+                                            label = "ログアウト";
+                                            $("#newUser").hide();
+                                        }
+                                        $("#loginout").val(label);
+                                    },
+                                    function(xhr, status, error) {
+                                        console.log("error");
+                                    }
+                                );
+                            </script></li>
+          <!--        <li><strong><a href="site/setting.html"><span style="font-size: 135%; color: #ff3333; font-family: sans-serif;">ＪＩＳ規格の閲覧等がうまくできない場合</span></a></strong></li>-->
+                        </ul>
+                    </div>
+                    </form>
+                    <br>
+                    <h2 style="font-size: 80%;margin: 0;padding: 2px;">
+                        <font color="#000">ピックアップ</font>
+                    </h2>
+                    <div class="pickup">
+                        <h3>
+                            <font color="#000">JIS</font>
+                        </h3>
+                        <ul>
+                            <li>
+                                <a href="jis-act/reading.html">JISの入手閲覧方法</a>
+                            </li>
+                            <li>
+                                <a href="jis-act/plan-ref.html">作業計画・作成状況の公開</a>
+                            </li>
+                            <li>
+                                <a href="jis-act/proposal.html">産業標準原案の申出</a>
+                            </li>
+                        </ul>
+                        <h3>
+                            <font color="#000">ISO/IEC</font>
+                        </h3>
+                        <ul>
+                            <li>
+                                <a href="https://webdesk.jsa.or.jp/common/W10K0500/index/dev/std_list/">ISO/IEC　TC一覧及び国内審議団体連絡先情報（外部サイトへ）</a>
+                            </li>
+                            <li>
+                                <a href="international/isoiec-ref.html">ISO/IECの国内審議団体の標準的な事務処理・各種手続きについて</a>
+                            </li>
+                            <li>
+                                <a href="international/１/iso-comment_renew.html">ISO照会中の案件</a>
+                            </li>
+                        </ul>
+                        <h3>
+                            <font color="#000">一般・共通</font>
+                        </h3>
+                        <ul>
+                            <li>
+                                <a href="https://wwws.meti.go.jp/interface/honsho/committee/index.cgi/committee">JISC開催通知（経済産業省HP）</a>
+                            </li>
+                            <li>
+                                <a href="javascript:JumpToJps('JPDO0030');">JISC資料・議事要旨・議事録</a>
+                            </li>
+                            <li>
+                                <a href="cooperation/wto-tbt.html">WTO/TBT</a>
+                            </li>
+                            <li>
+                                <a href="https://www.meti.go.jp/policy/economy/hyojun-kijun/katsuyo/shinshijo/index.html">新市場創造型標準化制度（経済産業省HP）</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr class="hidden">
+            <div class="to-top">
+                <a href="#page_start">▲このページの先頭へ</a>
+            </div>
+            <hr class="hidden">
+            <div id="footermenu">
+                <ul>
+                    <li>
+                        <a href="contactus/index.html" class="fotterLinkstart">お問い合わせ</a>
+                    </li>
+                    <li>
+                        <a href="site/index.html">利用規約</a>
+                    </li>
+                    <li>
+                        <a href="site/policy.html">プライバシーポリシー</a>
+                    </li>
+                </ul>
+            </div>
+            <hr class="hidden">
+            <div id="copyright">
+                <p>Copyright (c) 2017 Japanese Industrial <br class="l-sm">Standards Committee. All Rights Reserved.</p>
+            </div>
+        </div>
+        <form action="/app/pager" method="post" name="FORM_NAVI">
+            <input type="hidden" name=" ">
+        </form>
+        <form action="/intr/pager" method="post" name="FORM_NAVI2">
+            <input type="hidden" name=" ">
+        </form>
+        <form method="post" name="JPS_FORM" action="">
+            <input type="hidden" name="">
+        </form>
+    </body>
+</html>

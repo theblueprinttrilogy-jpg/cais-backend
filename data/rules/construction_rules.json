@@ -1,0 +1,52 @@
+{
+  "version": "2.0",
+  "source": "IBC 2021, ASTM E631, Florida Building Code 2023",
+  "last_updated": "2026-07-01",
+  "categories": {
+    "residential": {
+      "min_lot_size": 5000,
+      "max_height": 35.0,
+      "max_coverage": 0.35,
+      "setbacks": {"front": 20, "side": 8, "rear": 15},
+      "parking_spaces": 2,
+      "flood_zone_restrictions": true,
+      "references": ["IBC 2021 Section 503", "FBC 2023 Chapter 4"]
+    },
+    "commercial": {
+      "min_lot_size": 10000,
+      "max_height": 75.0,
+      "max_coverage": 0.50,
+      "setbacks": {"front": 25, "side": 12, "rear": 20},
+      "parking_spaces": 4,
+      "flood_zone_restrictions": true,
+      "references": ["IBC 2021 Section 504", "FBC 2023 Chapter 5"]
+    },
+    "industrial": {
+      "min_lot_size": 20000,
+      "max_height": 50.0,
+      "max_coverage": 0.60,
+      "setbacks": {"front": 30, "side": 15, "rear": 25},
+      "parking_spaces": 5,
+      "flood_zone_restrictions": true,
+      "references": ["IBC 2021 Section 505", "FBC 2023 Chapter 6"]
+    },
+    "church": {
+      "min_lot_size": 15000,
+      "max_height": 45.0,
+      "max_coverage": 0.40,
+      "setbacks": {"front": 25, "side": 15, "rear": 20},
+      "parking_spaces": 4,
+      "flood_zone_restrictions": true,
+      "references": ["IBC 2021 Section 508", "FBC 2023 Chapter 3"]
+    },
+    "warehouse": {
+      "min_lot_size": 25000,
+      "max_height": 40.0,
+      "max_coverage": 0.65,
+      "setbacks": {"front": 30, "side": 20, "rear": 30},
+      "parking_spaces": 5,
+      "flood_zone_restrictions": false,
+      "references": ["IBC 2021 Section 507", "FBC 2023 Chapter 4"]
+    }
+  }
+}

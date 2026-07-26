@@ -1,0 +1,43 @@
+{
+  "rules": [
+    {
+      "name": "CODE_IMMUTABILITY",
+      "description": "Never modify source code automatically",
+      "enforcement": "hard",
+      "source_file": "CAIS_WM.pdf",
+      "page_number": 1,
+      "hash": ""
+    }
+  ],
+  "architecture": {
+    "agents": [
+      {
+        "name": "definitions",
+        "description": "Workflow definitions",
+        "source": "CAISOFFICIALWORKPLAN.pdf",
+        "details": "- Module definitions \n        - Integration definitions \n        \"\"\" \n        # Parse agents \n        agent_sections = re.findall( \n            r'Agente\\s+([A-Za-z_]+)\\s*[-\u2013]\\s*([^\\n]+)([\\s\\S]*?)(?=\\n\\n|\\n[A-Z]|$)', \n            text, \n            re.IGNORECASE \n        ) \n         \n        for agent_name, description, details in agent_sections: \n            agent_info = { \n76 \n                'name': agent_name.strip(), \n                'description': description.strip(), \n                'sour"
+      },
+      {
+        "name": "Compiler",
+        "description": "Generates complete agent code from parsed instructions.",
+        "source": "CAISOFFICIALWORKPLAN.pdf",
+        "details": "\"\"\" \n133"
+      },
+      {
+        "name": "classes",
+        "description": "[ ] Generated code is syntactically valid",
+        "source": "CAISOFFICIALWORKPLAN.pdf",
+        "details": "## Phase 6: WORM Ledger \n- [ ] WORM ledger initialized \n- [ ] Entries can be appended \n- [ ] Entries can be queried \n- [ ] Integrity verification works \n- [ ] Chain breaks are detected \n \n## Phase 7: System Validation \n- [ ] Constitution validator passes \n- [ ] Generated agents can be imported \n- [ ] Orchestrator loads without errors \n- [ ] API server starts without errors \n \n164 \n## Phase 8: Documentation \n- [ ] Quick start guide complete \n- [ ] API documentation generated \n- [ ] Log format doc"
+      }
+    ],
+    "workflows": [],
+    "modules": [],
+    "integrations": []
+  },
+  "source_hashes": {
+    "CONSTRUCTIONAISYSTEM.pdf": "a05f0498c57a6c155a76cec69b1020185bb77cfb966c582ff78691e5a69e0939",
+    "CONSTRUCTIONAIPLANDETRABAJO.pdf": "4ec86d094177ef9cff5c9d96365bcbe35870a524d2370d54d6b1ab64564b94fc",
+    "CAIS_WM.pdf": "721ff06137fd1469234b2a35e4a304fa25d6e641336b6f1a17cd3349d683dd22",
+    "CAISOFFICIALWORKPLAN.pdf": "79e2073c6dbf412e8e0f2a1ee18b08911cee03ccd32c494235e1ea01a86bbe2a"
+  }
+}

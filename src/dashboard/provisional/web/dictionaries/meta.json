@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "generated_at": "2026-06-30T17:34:14.592188",
+  "source": "ASTM E631 - Standard Terminology for Building Constructions",
+  "total_languages": 20,
+  "terms_per_language": 303,
+  "languages": {
+    "en": "English",
+    "zh": "中文",
+    "hi": "हिन्दी",
+    "es": "Español",
+    "ar": "العربية",
+    "fr": "Français",
+    "pt": "Português",
+    "ru": "Русский",
+    "ur": "اردو",
+    "id": "Bahasa Indonesia",
+    "de": "Deutsch",
+    "ja": "日本語",
+    "sw": "Kiswahili",
+    "ta": "தமிழ்",
+    "te": "తెలుగు",
+    "vi": "Tiếng Việt",
+    "ko": "한국어",
+    "it": "Italiano",
+    "th": "ภาษาไทย",
+    "pl": "Polski"
+  }
+}

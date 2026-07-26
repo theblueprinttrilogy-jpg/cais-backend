@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIS Sovereign Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="header-left">
+            <div class="logo">
+                <i class="fas fa-crown" style="color: #D4A84A;"></i>
+                <span>CAIS</span>
+            </div>
+            <h1>Sovereign Dashboard</h1>
+        </div>
+        <div class="header-right">
+            <div class="notification-badge">
+                <i class="fas fa-bell"></i>
+                <span class="badge">12</span>
+            </div>
+            <div class="settings-btn">
+                <i class="fas fa-sliders-h"></i>
+            </div>
+            <div class="user-profile">
+                <img src="https://ui-avatars.com/api/?name=CAIS&background=1A2A4A&color=fff" alt="User">
+                <span>Admin</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- KPI Row -->
+        <section class="kpi-row">
+            <div class="kpi-card">
+                <div class="kpi-icon">💰</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Total Value</span>
+                    <span class="kpi-value">$12.4B</span>
+                    <span class="kpi-change positive">+12.3%</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">📈</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Compliance Rate</span>
+                    <span class="kpi-value">98.7%</span>
+                    <span class="kpi-change positive">+2.1%</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">📄</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">Documents</span>
+                    <span class="kpi-value">2.4K</span>
+                    <span class="kpi-change">+184</span>
+                </div>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-icon">⏱️</div>
+                <div class="kpi-content">
+                    <span class="kpi-label">System Uptime</span>
+                    <span class="kpi-value">99.99%</span>
+                    <span class="kpi-change positive">● Live</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Charts Row -->
+        <section class="charts-row">
+            <div class="chart-card main-chart">
+                <div class="card-header">
+                    <h3>Compliance & Revenue Trend</h3>
+                    <div class="card-actions">
+                        <button class="time-btn active">7D</button>
+                        <button class="time-btn">30D</button>
+                        <button class="time-btn">90D</button>
+                        <button class="time-btn">1Y</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card worm-status">
+                <div class="card-header">
+                    <h3>WORM Chain Integrity</h3>
+                    <span class="status-badge verified"><i class="fas fa-check-circle"></i> Verified</span>
+                </div>
+                <div class="worm-container">
+                    <div class="worm-chain">
+                        <div class="block active"><span>#1</span></div>
+                        <div class="block-link">→</div>
+                        <div class="block active"><span>#2</span></div>
+                        <div class="block-link">→</div>
+                        <div class="block active"><span>#3</span></div>
+                        <div class="block-link">→</div>
+                        <div class="block active"><span>#4</span></div>
+                        <div class="block-link">→</div>
+                        <div class="block"><span>#5</span></div>
+                    </div>
+                    <div class="worm-stats">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Blocks</span>
+                            <span class="stat-value">4</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Integrity</span>
+                            <span class="stat-value" style="color: #00D4AA;">✅ Valid</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Chain Breaks</span>
+                            <span class="stat-value" style="color: #00D4AA;">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Row -->
+        <section class="bottom-row">
+            <div class="document-queue">
+                <div class="card-header">
+                    <h3>Document Processing Queue</h3>
+                    <span class="queue-count">12 pending</span>
+                </div>
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th>File</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Building_Plan_2026.pdf</td>
+                            <td><span class="status-badge processing">⏳ Processing</span></td>
+                            <td><span class="priority-high">High</span></td>
+                            <td><button class="action-btn"><i class="fas fa-play"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Structural_Specs.pdf</td>
+                            <td><span class="status-badge completed">✅ Completed</span></td>
+                            <td><span class="priority-medium">Medium</span></td>
+                            <td><button class="action-btn"><i class="fas fa-download"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Fire_Safety_Report.pdf</td>
+                            <td><span class="status-badge failed">❌ Failed</span></td>
+                            <td><span class="priority-critical">Critical</span></td>
+                            <td><button class="action-btn"><i class="fas fa-redo"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>Energy_Compliance.pdf</td>
+                            <td><span class="status-badge queued">⏸️ Queued</span></td>
+                            <td><span class="priority-low">Low</span></td>
+                            <td><button class="action-btn"><i class="fas fa-play"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="activity-feed">
+                <div class="card-header">
+                    <h3>Recent Activity</h3>
+                    <button class="view-all">View All</button>
+                </div>
+                <div class="feed-items">
+                    <div class="feed-item">
+                        <div class="feed-icon blue"><i class="fas fa-upload"></i></div>
+                        <div class="feed-content">
+                            <span class="feed-text">User <strong>architect@firm.com</strong> uploaded <strong>Building_Plan_2026.pdf</strong></span>
+                            <span class="feed-time">2 min ago</span>
+                        </div>
+                    </div>
+                    <div class="feed-item">
+                        <div class="feed-icon gold"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div class="feed-content">
+                            <span class="feed-text">Violation detected in <strong>Fire_Safety_Report.pdf</strong> - Section 4.2.1</span>
+                            <span class="feed-time">15 min ago</span>
+                        </div>
+                    </div>
+                    <div class="feed-item">
+                        <div class="feed-icon green"><i class="fas fa-check-circle"></i></div>
+                        <div class="feed-content">
+                            <span class="feed-text">Report generated for <strong>Structural_Specs.pdf</strong> - Compliance: 98.7%</span>
+                            <span class="feed-time">42 min ago</span>
+                        </div>
+                    </div>
+                    <div class="feed-item">
+                        <div class="feed-icon purple"><i class="fas fa-robot"></i></div>
+                        <div class="feed-content">
+                            <span class="feed-text">Agent <strong>CodeMatcher</strong> completed analysis of 12 documents</span>
+                            <span class="feed-time">1 hour ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent Performance -->
+        <section class="agent-performance">
+            <div class="card-header">
+                <h3>Agent Performance</h3>
+                <span class="performance-total">4 Agents Active</span>
+            </div>
+            <div class="agent-cards">
+                <div class="agent-card">
+                    <div class="agent-icon">🧠</div>
+                    <div class="agent-info">
+                        <span class="agent-name">PlanInspector</span>
+                        <span class="agent-status active">● Active</span>
+                    </div>
+                    <div class="agent-metrics">
+                        <span class="metric">92% Accuracy</span>
+                        <div class="progress-bar"><div class="progress" style="width:92%;"></div></div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-icon">🔍</div>
+                    <div class="agent-info">
+                        <span class="agent-name">CodeMatcher</span>
+                        <span class="agent-status active">● Active</span>
+                    </div>
+                    <div class="agent-metrics">
+                        <span class="metric">87% Accuracy</span>
+                        <div class="progress-bar"><div class="progress" style="width:87%;"></div></div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-icon">📊</div>
+                    <div class="agent-info">
+                        <span class="agent-name">ComparatorEngine</span>
+                        <span class="agent-status active">● Active</span>
+                    </div>
+                    <div class="agent-metrics">
+                        <span class="metric">94% Accuracy</span>
+                        <div class="progress-bar"><div class="progress" style="width:94%;"></div></div>
+                    </div>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-icon">🎨</div>
+                    <div class="agent-info">
+                        <span class="agent-name">DesignerAgent</span>
+                        <span class="agent-status idle">● Idle</span>
+                    </div>
+                    <div class="agent-metrics">
+                        <span class="metric">Ready</span>
+                        <div class="progress-bar"><div class="progress" style="width:100%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

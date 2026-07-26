@@ -1,0 +1,29 @@
+{
+  "tasks": [],
+  "agents": [
+    {
+      "name": "definitions",
+      "description": "Workflow definitions",
+      "inputs": [],
+      "outputs": [],
+      "code": "",
+      "source_file": "CAISOFFICIALWORKPLAN.pdf"
+    },
+    {
+      "name": "Compiler",
+      "description": "Generates complete agent code from parsed instructions.",
+      "inputs": [],
+      "outputs": [],
+      "code": "",
+      "source_file": "CAISOFFICIALWORKPLAN.pdf"
+    },
+    {
+      "name": "classes",
+      "description": "[ ] Generated code is syntactically valid",
+      "inputs": [],
+      "outputs": [],
+      "code": "",
+      "source_file": "CAISOFFICIALWORKPLAN.pdf"
+    }
+  ]
+}

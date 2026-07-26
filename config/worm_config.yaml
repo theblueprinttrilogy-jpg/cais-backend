@@ -1,0 +1,43 @@
+# WORM Ledger Configuration
+
+worm:
+  # Storage
+  storage_path: "~/PROMETHEUS/config/worm"
+  ledger_file: "worm_ledger.jsonl"
+  
+  # Security
+  secret_key_env: "WORM_SECRET_KEY"
+  algorithm: "SHA256"
+  hmac_algorithm: "HMAC-SHA256"
+  
+  # Integrity
+  enable_integrity_checks: true
+  enable_signature_verification: true
+  
+  # Events to log
+  events:
+    - CONSTITUTION_INGESTED
+    - LAWS_INGESTED
+    - SYSTEM_GENERATED
+    - SOVEREIGN_VAULT_ACCESS
+    - MASTER_PASSWORD_CHANGED
+    - WORM_INTEGRITY_FAILURE
+    - WORM_EXPORTED
+    - KILL_SWITCH_ACTIVATED
+    - KILL_SWITCH_DEACTIVATED
+    - RULE_APPROVED
+    - RULE_REJECTED
+    - SESSION_REVOKED
+    - ALL_SESSIONS_REVOKED
+    - SOVEREIGN_VAULT_LOGOUT
+    - FORENSIC_AUDIT
+    - DOWNLOAD_COMPLETED
+    - COMPRESSION_COMPLETED
+    - SYSTEM_BUILT
+
+# Audit Settings
+audit:
+  enabled: true
+  log_all_events: true
+  require_signature: true
+

@@ -1,0 +1,10 @@
+{
+  "ingested_at": "2026-06-30T10:21:21.911250",
+  "total_laws": 5,
+  "jurisdictions": [
+    "IBC"
+  ],
+  "jurisdiction_counts": {
+    "IBC": 5
+  }
+}

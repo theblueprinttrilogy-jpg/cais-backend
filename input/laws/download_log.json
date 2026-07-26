@@ -1,0 +1,96 @@
+{
+  "downloaded": [
+    {
+      "source": "CBC Title 24 Energy",
+      "filename": "California_CBC_Title_24_Energy_2022.pdf",
+      "filepath": "/home/maxlo/PROMETHEUS/input/laws/California_CBC_Title_24_Energy_2022.pdf",
+      "size": 9623920,
+      "hash": "f7babd139fb5f708df8e8ad51d551eebcabbd54da3b3333d4cecd17605964c27",
+      "url": "https://www.energy.ca.gov/sites/default/files/2024-12/2025_Energy_Code_Summary_ADA.pdf",
+      "jurisdiction": "California",
+      "category": "seismic",
+      "version": "2022"
+    },
+    {
+      "source": "CBC Title 24 Energy",
+      "filename": "California_CBC_Title_24_Energy_2022.pdf",
+      "filepath": "/home/maxlo/PROMETHEUS/input/laws/California_CBC_Title_24_Energy_2022.pdf",
+      "size": 9623920,
+      "hash": "f7babd139fb5f708df8e8ad51d551eebcabbd54da3b3333d4cecd17605964c27",
+      "already_downloaded": true
+    },
+    {
+      "source": "IBC 2021",
+      "filename": "International_IBC_2021_2021.pdf",
+      "filepath": "/home/maxlo/PROMETHEUS/input/laws/International_IBC_2021_2021.pdf",
+      "size": 6364831,
+      "hash": "3268be69bf5f25408350f33888930ead439051fccfd5fccbf421ebc1940d178f",
+      "url": "https://www.iccsafe.org/wp-content/uploads/26-25940_CORP_2025_Annual_Report_RPT_FINAL.pdf",
+      "jurisdiction": "International",
+      "category": "general",
+      "version": "2021"
+    }
+  ],
+  "failed": [
+    {
+      "source": "Miami-Dade Amendments 2023",
+      "error": "Could not find PDF URL for Miami-Dade Amendments 2023"
+    },
+    {
+      "source": "FBC Building 2023",
+      "error": "Could not find PDF URL for FBC Building 2023"
+    },
+    {
+      "source": "FBC HVHZ 2023",
+      "error": "Could not find PDF URL for FBC HVHZ 2023"
+    },
+    {
+      "source": "ASCE 7-22 Wind Loads",
+      "error": "Could not find PDF URL for ASCE 7-22 Wind Loads"
+    },
+    {
+      "source": "CBC Seismic Design",
+      "error": "Could not find PDF URL for CBC Seismic Design"
+    },
+    {
+      "source": "CBC Building 2022",
+      "error": "Could not find PDF URL for CBC Building 2022"
+    },
+    {
+      "source": "ASCE 7-22 Seismic Loads",
+      "error": "Could not find PDF URL for ASCE 7-22 Seismic Loads"
+    },
+    {
+      "source": "Miami-Dade Amendments 2023",
+      "error": "Could not find PDF URL for Miami-Dade Amendments 2023"
+    },
+    {
+      "source": "FBC Building 2023",
+      "error": "Could not find PDF URL for FBC Building 2023"
+    },
+    {
+      "source": "FBC HVHZ 2023",
+      "error": "Could not find PDF URL for FBC HVHZ 2023"
+    },
+    {
+      "source": "ASCE 7-22 Wind Loads",
+      "error": "Could not find PDF URL for ASCE 7-22 Wind Loads"
+    },
+    {
+      "source": "CBC Seismic Design",
+      "error": "Could not find PDF URL for CBC Seismic Design"
+    },
+    {
+      "source": "CBC Building 2022",
+      "error": "Could not find PDF URL for CBC Building 2022"
+    },
+    {
+      "source": "ASCE 7-22 Seismic Loads",
+      "error": "Could not find PDF URL for ASCE 7-22 Seismic Loads"
+    },
+    {
+      "source": "NFPA 101 2021",
+      "error": "Could not find PDF URL for NFPA 101 2021"
+    }
+  ]
+}

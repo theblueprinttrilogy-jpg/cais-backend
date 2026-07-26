@@ -1,0 +1,66 @@
+{
+  "florida": {
+    "zoning_by_city": {
+      "Miami": {
+        "zone_type": "Mixed Use",
+        "allowed_uses": [
+          "retail",
+          "office",
+          "restaurant",
+          "church",
+          "residential"
+        ],
+        "max_height": 75.0,
+        "max_density": 3.0,
+        "parking_requirements": 4
+      },
+      "Orlando": {
+        "zone_type": "Industrial",
+        "allowed_uses": [
+          "warehouse",
+          "manufacturing",
+          "commercial",
+          "church"
+        ],
+        "max_height": 50.0,
+        "max_density": 2.0,
+        "parking_requirements": 5
+      },
+      "Tampa": {
+        "zone_type": "Mixed Use",
+        "allowed_uses": [
+          "retail",
+          "office",
+          "residential",
+          "church"
+        ],
+        "max_height": 60.0,
+        "max_density": 2.5,
+        "parking_requirements": 3
+      },
+      "Jacksonville": {
+        "zone_type": "Industrial",
+        "allowed_uses": [
+          "warehouse",
+          "manufacturing",
+          "commercial"
+        ],
+        "max_height": 45.0,
+        "max_density": 1.5,
+        "parking_requirements": 6
+      },
+      "Fort Lauderdale": {
+        "zone_type": "Commercial",
+        "allowed_uses": [
+          "retail",
+          "office",
+          "restaurant",
+          "residential"
+        ],
+        "max_height": 65.0,
+        "max_density": 2.5,
+        "parking_requirements": 4
+      }
+    }
+  }
+}

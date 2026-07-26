@@ -1,0 +1,90 @@
+{
+  "entries": [
+    {
+      "id": "5c5e2f16",
+      "source": "compressed/CAIS_Data_20260630_070849.zip",
+      "processed_at": "2026-06-30T07:08:50.086699",
+      "files_count": 787,
+      "keywords": [
+        "specification",
+        "plan",
+        "schedule",
+        "concrete",
+        "cais",
+        "material",
+        "labor",
+        "code",
+        "architect",
+        "steel",
+        "structural",
+        "project",
+        "construction",
+        "compliance"
+      ],
+      "patterns": [],
+      "total_keywords": 14,
+      "total_patterns": 0
+    },
+    {
+      "id": "b0609892",
+      "processed_at": "2026-06-30T08:50:16.095982",
+      "files": 1780,
+      "keywords": [
+        "construction",
+        "building",
+        "structural",
+        "project",
+        "cais"
+      ]
+    },
+    {
+      "id": "5b255533",
+      "processed_at": "2026-06-30T09:11:19.817067",
+      "files": 1831,
+      "keywords": [
+        "construction",
+        "building",
+        "structural",
+        "project",
+        "cais"
+      ]
+    },
+    {
+      "id": "0f4e47af",
+      "processed_at": "2026-06-30T14:46:27.214639",
+      "files": 1832,
+      "keywords": [
+        "construction",
+        "building",
+        "structural",
+        "project",
+        "cais"
+      ]
+    }
+  ],
+  "keywords": [
+    "schedule",
+    "concrete",
+    "architect",
+    "documentation",
+    "project",
+    "steel",
+    "material",
+    "building",
+    "management",
+    "analysis",
+    "labor",
+    "engineering",
+    "design",
+    "construction",
+    "specification",
+    "code",
+    "plan",
+    "structural",
+    "cais",
+    "compliance"
+  ],
+  "patterns": [],
+  "total_files_processed": 6230,
+  "last_update": "2026-06-30T07:08:50.086711"
+}

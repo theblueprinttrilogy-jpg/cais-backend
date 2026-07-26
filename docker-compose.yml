@@ -1,0 +1,95 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: cais_db
+    environment:
+      POSTGRES_USER: cais
+      POSTGRES_PASSWORD: cais123
+      POSTGRES_DB: cais_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cais -d cais_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: cais_redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: cais_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ./cais_backend
+      dockerfile: Dockerfile
+    container_name: cais_api
+    environment:
+      POSTGRES_DSN: postgresql+asyncpg://cais:cais123@db:5432/cais_db
+      RABBITMQ_URI: amqp://guest:guest@rabbitmq:5672/
+      REDIS_URL: redis://redis:6379/0
+      GCP_PROJECT: dummy-project
+      GCS_BUCKET_PLANS: dummy-bucket
+      GCP_CREDENTIALS_JSON: ""
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+  worker:
+    build:
+      context: ./cais_backend
+      dockerfile: Dockerfile
+    container_name: cais_worker
+    command: python -m app.worker.plan_inspector
+    environment:
+      POSTGRES_DSN: postgresql+asyncpg://cais:cais123@db:5432/cais_db
+      RABBITMQ_URI: amqp://guest:guest@rabbitmq:5672/
+      REDIS_URL: redis://redis:6379/0
+      GCP_PROJECT: dummy-project
+      GCS_BUCKET_PLANS: dummy-bucket
+      GCP_CREDENTIALS_JSON: ""
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_data:

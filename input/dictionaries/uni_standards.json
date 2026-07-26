@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html class="no-js" lang="it-IT" prefix="og: https://ogp.me/ns#">
+<head><style>img.lazy{min-height:1px}</style><link href="https://www.uni.com/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js" as="script">
+<meta charset="utf-8">
+<title>UNI - Ente Italiano di Normazione</title>
+			<script type="text/javascript" class="_iub_cs_skip">
+				var _iub = _iub || {};
+				_iub.csConfiguration = _iub.csConfiguration || {};
+				_iub.csConfiguration.siteId = "3051672";
+				_iub.csConfiguration.cookiePolicyId = "76621606";
+			</script>
+			<script class="_iub_cs_skip" src="https://cs.iubenda.com/sync/3051672.js"></script>
+			<meta http-equiv="x-ua-compatible" content="IE=edge">
+<meta name="HandheldFriendly" content="true">
+<meta name="MobileOptimized" content="320">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=2, user-scalable=1, viewport-fit=cover">
+<meta name="theme-color" content="#26547b">
+<meta name="msapplication-TileColor" content="#26547b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="UNI - Ente Italiano di Normazione">
+<meta name="msapplication-TileImage" content="https://www.uni.com/wp-content/uploads/thumbs/2023/01/favicon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.uni.com/wp-content/uploads/thumbs/2023/01/favicon-144x144.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.uni.com/wp-content/uploads/thumbs/2023/01/favicon-114x114.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.uni.com/wp-content/uploads/thumbs/2023/01/favicon-72x72.png">
+<link rel="apple-touch-icon-precomposed" href="https://www.uni.com/wp-content/uploads/thumbs/2023/01/favicon-57x57.png">
+<link rel="shortcut icon" href="https://www.uni.com/wp-content/uploads/2023/01/favicon.ico?v=20201109" type="image/x-icon">
+<link rel="icon" href="https://www.uni.com/wp-content/uploads/2023/01/favicon.ico?v=20201109" type="image/x-icon">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer',"GTM-5K5FWB8");</script>
+<!-- End Google Tag Manager -->
+<link rel="alternate" hreflang="en" href="https://www.uni.com/en/" />
+<link rel="alternate" hreflang="it" href="https://www.uni.com/" />
+<link rel="alternate" hreflang="x-default" href="https://www.uni.com/" />
+
+<!-- Ottimizzazione per i motori di ricerca di Rank Math - https://rankmath.com/ -->
+<meta name="description" content="Da 100 anni, con le nostre norme, costruiamo un mondo dove anche la cosa più piccola è fatta bene. UNI - Un mondo fatto bene."/>
+<meta name="robots" content="follow, index, max-snippet:-1, max-video-preview:-1, max-image-preview:large"/>
+<link rel="canonical" href="https://www.uni.com/" />
+<meta property="og:locale" content="it_IT" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UNI - Ente Italiano di Normazione" />
+<meta property="og:description" content="Da 100 anni, con le nostre norme, costruiamo un mondo dove anche la cosa più piccola è fatta bene. UNI - Un mondo fatto bene." />
+<meta property="og:url" content="https://www.uni.com/" />
+<meta property="og:site_name" content="UNI - Ente Italiano di Normazione" />
+<meta property="og:updated_time" content="2026-05-13T14:14:06+02:00" />
+<meta property="og:image" content="https://www.uni.com/wp-content/uploads/UNI-ente-di-normazione-un-mondo-fatto-bene.jpg" />
+<meta property="og:image:secure_url" content="https://www.uni.com/wp-content/uploads/UNI-ente-di-normazione-un-mondo-fatto-bene.jpg" />
+<meta property="og:image:width" content="1600" />
+<meta property="og:image:height" content="1067" />
+<meta property="og:image:alt" content="Uni" />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="article:published_time" content="2022-10-03T14:53:12+02:00" />
+<meta property="article:modified_time" content="2026-05-13T14:14:06+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="UNI - Ente Italiano di Normazione" />
+<meta name="twitter:description" content="Da 100 anni, con le nostre norme, costruiamo un mondo dove anche la cosa più piccola è fatta bene. UNI - Un mondo fatto bene." />
+<meta name="twitter:image" content="https://www.uni.com/wp-content/uploads/UNI-ente-di-normazione-un-mondo-fatto-bene.jpg" />
+<meta name="twitter:label1" content="Scritto da" />
+<meta name="twitter:data1" content="gestione-wp-uni" />
+<meta name="twitter:label2" content="Tempo di lettura" />
+<meta name="twitter:data2" content="5 minuti" />
+<script type="application/ld+json" class="rank-math-schema">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://www.uni.com/#organization","name":"UNI - Ente Italiano di Normazione","url":"https://www.uni.com","logo":{"@type":"ImageObject","@id":"https://www.uni.com/#logo","url":"https://www.uni.com/wp-content/uploads/2023/01/favicon.png","contentUrl":"https://www.uni.com/wp-content/uploads/2023/01/favicon.png","caption":"UNI - Ente Italiano di Normazione","inLanguage":"it-IT","width":"288","height":"288"},"contactPoint":[{"@type":"ContactPoint","telephone":"+39 0270024200","contactType":"customer support"}]},{"@type":"WebSite","@id":"https://www.uni.com/#website","url":"https://www.uni.com","name":"UNI - Ente Italiano di Normazione","publisher":{"@id":"https://www.uni.com/#organization"},"inLanguage":"it-IT","potentialAction":{"@type":"SearchAction","target":"https://www.uni.com/?s={search_term_string}","query-input":"required name=search_term_string"}},{"@type":"ImageObject","@id":"https://www.uni.com/wp-content/uploads/piattaforme-obiettivo-1.png","url":"https://www.uni.com/wp-content/uploads/piattaforme-obiettivo-1.png","width":"1600","height":"1068","inLanguage":"it-IT"},{"@type":"WebPage","@id":"https://www.uni.com/#webpage","url":"https://www.uni.com/","name":"UNI - Ente Italiano di Normazione","datePublished":"2022-10-03T14:53:12+02:00","dateModified":"2026-05-13T14:14:06+02:00","about":{"@id":"https://www.uni.com/#organization"},"isPartOf":{"@id":"https://www.uni.com/#website"},"primaryImageOfPage":{"@id":"https://www.uni.com/wp-content/uploads/piattaforme-obiettivo-1.png"},"inLanguage":"it-IT"},{"@type":"Person","@id":"https://www.uni.com/author/gestione-wp-uni/","name":"gestione-wp-uni","url":"https://www.uni.com/author/gestione-wp-uni/","image":{"@type":"ImageObject","@id":"https://secure.gravatar.com/avatar/307db50e1f5f7c90ac541748ce0676d4005f76f34b9fa149c3b6a931ccde08a9?s=96&amp;d=mm&amp;r=g","url":"https://secure.gravatar.com/avatar/307db50e1f5f7c90ac541748ce0676d4005f76f34b9fa149c3b6a931ccde08a9?s=96&amp;d=mm&amp;r=g","caption":"gestione-wp-uni","inLanguage":"it-IT"},"worksFor":{"@id":"https://www.uni.com/#organization"}},{"@type":"Article","headline":"UNI - Ente Italiano di Normazione","keywords":"Uni,Normazione,Norme,Ente","datePublished":"2022-10-03T14:53:12+02:00","dateModified":"2026-05-13T14:14:06+02:00","author":{"@id":"https://www.uni.com/author/gestione-wp-uni/","name":"gestione-wp-uni"},"publisher":{"@id":"https://www.uni.com/#organization"},"description":"Da 100 anni, con le nostre norme, costruiamo un mondo dove anche la cosa pi\u00f9 piccola \u00e8 fatta bene. UNI - Un mondo fatto bene.","name":"UNI - Ente Italiano di Normazione","@id":"https://www.uni.com/#richSnippet","isPartOf":{"@id":"https://www.uni.com/#webpage"},"image":{"@id":"https://www.uni.com/wp-content/uploads/piattaforme-obiettivo-1.png"},"inLanguage":"it-IT","mainEntityOfPage":{"@id":"https://www.uni.com/#webpage"}}]}</script>
+<!-- /Rank Math WordPress SEO plugin -->
+
+<link rel='dns-prefetch' href='//cdn.iubenda.com' />
+<link rel='dns-prefetch' href='//www.uni.com' />
+<link rel="alternate" title="oEmbed (JSON)" type="application/json+oembed" href="https://www.uni.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.uni.com%2F" />
+<link rel="alternate" title="oEmbed (XML)" type="text/xml+oembed" href="https://www.uni.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.uni.com%2F&#038;format=xml" />
+<style id="wp-img-auto-sizes-contain-inline-css">
+img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
+/*# sourceURL=wp-img-auto-sizes-contain-inline-css */
+</style>
+<style id="iubenda-inline-styles-from-embed-inline-css">
+
+#iubenda-cs-banner {
+  --text-color: #060d19;
+  --primary-color: #26547b;
+  --secondary-color: #F2F5F7;
+  --border-color: #D4DDE5;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+  position: fixed;
+  z-index: 99999998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  will-change: opacity, visibility;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+#iubenda-cs-banner button {
+  border: none;
+  border-radius: 25px;
+}
+#iubenda-cs-banner.iubenda-cs-visible {
+  opacity: 1;
+  visibility: visible;
+}
+#iubenda-cs-banner.iubenda-cs-visible .iubenda-cs-container {
+  pointer-events: auto;
+}
+#iubenda-cs-banner.iubenda-cs-slidein .iubenda-cs-container {
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+}
+#iubenda-cs-banner.iubenda-cs-slidein.iubenda-cs-bottom .iubenda-cs-container {
+  transform: translateY(48px);
+}
+#iubenda-cs-banner.iubenda-cs-slidein.iubenda-cs-visible .iubenda-cs-container {
+  transform: translateY(0);
+}
+#iubenda-cs-banner .iubenda-cs-container {
+  position: relative;
+  z-index: 2;
+}
+#iubenda-cs-banner .iubenda-cs-content {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  transition: transform 0.4s ease;
+  transition: transform 0.4s ease, -webkit-transform 0.4s ease;
+  background-color: white;
+  color: var(--text-color)
+}
+#iubenda-cs-banner .iubenda-banner-content {
+  margin: 16px;
+  margin-bottom: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding-bottom: 16px;
+  outline: none;
+}
+#iubenda-cs-banner .iubenda-banner-content a {
+  cursor: pointer;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+#iubenda-cs-banner .iubenda-banner-content a:hover {
+  opacity: 0.7;
+}
+#iubenda-cs-banner #iubenda-cs-title {
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+#iubenda-cs-banner .iubenda-cs-opt-group {
+  margin: 16px;
+  z-index: 1;
+  display: flex;
+  flex-shrink: 0;
+}
+@media (min-width: 640px) {
+  #iubenda-cs-banner .iubenda-cs-opt-group {
+    align-items: center;
+    justify-content: space-between;
+  }
+  #iubenda-cs-banner .iubenda-cs-opt-group-custom {
+    margin-right: auto;
+    align-self: start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  #iubenda-cs-banner .iubenda-cs-opt-group-consent {
+    margin-left: auto;
+    align-self: end;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+@media (max-width: 639px) {
+  #iubenda-cs-banner .iubenda-cs-opt-group {
+    flex-direction: column;
+  }
+  #iubenda-cs-banner .iubenda-cs-opt-group-custom {
+    order: 2;
+  }
+  #iubenda-cs-banner .iubenda-cs-opt-group-consent {
+    order: 1;
+  }
+}
+#iubenda-cs-banner .iubenda-cs-opt-group button {
+  padding: 11px 32px;
+  border-radius: 25px;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  text-align: center;
+  transition: opacity 0.7s ease-in-out;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+#iubenda-cs-banner .iubenda-cs-opt-group button.iubenda-cs-reject-btn.iubenda-cs-btn-primary {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+}
+#iubenda-cs-banner .iubenda-cs-opt-group button:focus {
+  opacity: 0.8;
+}
+#iubenda-cs-banner .iubenda-cs-opt-group button:hover {
+  opacity: 0.8;
+}
+@media (max-width: 639px) {
+  #iubenda-cs-banner .iubenda-cs-opt-group button {
+    padding: 8px 24px;
+    width: 100%;
+    display: block;
+    text-align: center;
+  }
+}
+#iubenda-cs-banner.iubenda-cs-default .iubenda-cs-container {
+  width: 100%;
+}
+@media (max-width: 991px) {
+  #iubenda-cs-banner.iubenda-cs-default .iubenda-cs-content {
+    padding: 8px;
+  }
+}
+@media (min-width: 992px) {
+  #iubenda-cs-banner.iubenda-cs-default-floating .iubenda-cs-container {
+    width: 992px;
+  }
+}
+@media (max-width: 991px) {
+  #iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center.iubenda-cs-bottom .iubenda-cs-container,
+  #iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center.iubenda-cs-top .iubenda-cs-container {
+    width: 100%;
+  }
+}
+@media (min-width: 640px) {
+  #iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+    .iubenda-cs-container,
+  #iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center) .iubenda-cs-container,
+  #iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center) .iubenda-cs-container {
+    width: 480px;
+  }
+}
+#iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+  .iubenda-cs-opt-group,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center) .iubenda-cs-opt-group,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center) .iubenda-cs-opt-group {
+  flex-direction: column;
+}
+#iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+  .iubenda-cs-opt-group
+  > div,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group
+  > div,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group
+  > div {
+  width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+}
+#iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+  .iubenda-cs-opt-group
+  button,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group
+  button,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group
+  button {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+#iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+  .iubenda-cs-opt-group-custom,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group-custom,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group-custom {
+  order: 2;
+}
+#iubenda-cs-banner.iubenda-cs-default-floating.iubenda-cs-center:not(.iubenda-cs-top):not(.iubenda-cs-bottom)
+  .iubenda-cs-opt-group-consent,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-bottom):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group-consent,
+#iubenda-cs-banner.iubenda-cs-default-floating:not(.iubenda-cs-top):not(.iubenda-cs-center)
+  .iubenda-cs-opt-group-consent {
+  order: 1;
+}
+#iubenda-cs-banner.iubenda-cs-default-floating .iubenda-cs-content {
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+}
+@media (min-width: 992px) {
+  #iubenda-cs-banner.iubenda-cs-default-floating .iubenda-cs-content {
+    border-radius: 8px;
+    margin: 16px;
+  }
+}
+#iubenda-cs-banner.iubenda-cs-fix-height .iubenda-cs-container,
+#iubenda-cs-banner.iubenda-cs-fix-height .iubenda-cs-content,
+#iubenda-cs-banner.iubenda-cs-fix-height .iubenda-cs-rationale {
+  height: 100%;
+}
+#iubenda-cs-banner.iubenda-cs-fix-height.iubenda-cs-default-floating .iubenda-cs-content {
+  height: calc(100% - 32px);
+}
+#iubenda-cs-banner .iubenda-cs-content p.iub-p {
+  max-width: 100%;
+  font-size: 13px;
+  line-height: 1.4;
+}
+#iubenda-cs-banner .iubenda-cs-content p + p {
+  margin-top: 6px;
+}
+#iubenda-cs-banner .iubenda-cs-opt-group {
+  color: #000;
+}
+#iubenda-cs-banner .iubenda-cs-opt-group button {
+  background-color: var(--secondary-color) !important;
+  color: var(--primary-color) !important;
+  font-weight: 600;
+  letter-spacing: 0.05rem;
+}
+#iubenda-cs-banner button.iubenda-cs-btn-primary {
+  background-color: var(--primary-color) !important;
+  color: white !important;
+}
+.iubenda-tp-btn[data-tp-icon] {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath fill='%2326547b' fill-rule='evenodd' d='M16 7a4 4 0 0 1 2.627 7.016L19.5 25h-7l.873-10.984A4 4 0 0 1 16 7z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 32px 32px;
+}
+.iubenda-tp-btn[data-tp-circle] {
+  border-radius: 32px;
+}
+.iubenda-tp-btn[data-tp-label]:after {
+  content: attr(data-tp-label);
+  padding: 0 16px;
+  white-space: nowrap;
+}
+.iubenda-tp-btn[data-tp-label][data-tp-icon]:after {
+  padding-left: calc(16px + 8px + 8px);
+}
+.iubenda-tp-btn[data-tp-float] {
+  position: fixed;
+  z-index: 2147483647;
+}
+.iubenda-tp-btn[data-tp-float]:not([data-tp-anchored]) {
+  margin: 16px;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-anchored] {
+  margin: 0 16px;
+  border-radius: 6px;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-left"],
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-right"] {
+  bottom: 0;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-left"][data-tp-anchored],
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-right"][data-tp-anchored] {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: 0;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-left"],
+.iubenda-tp-btn[data-tp-float][data-tp-float="top-left"] {
+  left: 0;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-right"],
+.iubenda-tp-btn[data-tp-float][data-tp-float="top-right"] {
+  right: 0;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-hover][data-tp-label]:after {
+  max-width: 0;
+  overflow: hidden;
+  display: block;
+  padding: 0;
+  opacity: 0;
+  transition: max-width 0.6s ease, padding 0.6s ease, opacity 0.6s ease;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-hover][data-tp-label]:hover:after {
+  max-width: 192px;
+  padding-left: calc(16px + 8px + 8px);
+  padding-right: 10px;
+  opacity: 1;
+}
+.iubenda-cs-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 16px;
+  cursor: pointer;
+  background-color: white;
+  font-size: 16px;
+  color: #555;
+  width: 32px;
+  height: 32px;
+}
+.iubenda-tp-btn[data-tp-float][data-tp-float="bottom-right"],
+.iubenda-tp-btn[data-tp-float][data-tp-float="top-right"] {
+  width: 34px;
+  height: 34px;
+  background-color: white;
+  border: 1px solid #D4DDE5;
+  border-radius: 4px;
+}
+
+#iubenda-cs-banner .iubenda-granular-controls-container {
+  --iub-granular-background: rgba(0, 0, 0, 0.02);
+  --iub-granular-border: rgba(0, 0, 0, 0.08);
+  --iub-granular-toggle-background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 16px !important;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+#iubenda-cs-banner .iubenda-granular-controls-container .granular-control-checkbox {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0 !important;
+  padding: 16px 0;
+}
+
+#iubenda-cs-banner .iubenda-granular-controls-container .granular-control-checkbox span {
+  margin-left: 8px;
+}
+
+#iubenda-cs-banner .iubenda-granular-controls-container .granular-control-checkbox input.style1{
+  background-color: var(--border-color) !important;
+}
+
+#iubenda-cs-banner .iubenda-granular-controls-container .granular-control-checkbox--disabled {
+  display: none !important;
+}
+
+#iubenda-iframe .purposes-header-right .iub-iframe-brand-button {
+  display: none!important;
+}
+
+#iubenda-iframe .iubenda-iframe-footer #iubFooterBtnContainer button {
+  background-color: #26547b !important;
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+#purposes-content-container .purposes-content .purposes-header .purposes-header-title {
+  line-height: 1.2 !important;
+  font-family: "Nunito Sans", sans-serif !important;
+  font-size: 36px !important;
+  font-weight: 800 !important;
+}
+
+#purposes-content-container .purposes-content .purposes-header .purposes-header-text {
+  font-size: 14px !important;
+}
+
+#purposes-content-container .purposes-section .purposes-section-header-title {
+  line-height: 1.2 !important;
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+#purposes-content-container .purposes-section .purposes-section-header-text {
+  font-size: 14px !important;
+}
+
+#purposes-content-container .purposes-section .purposes-item .purposes-item-title label {
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+#iubenda-iframe .iub-btn {
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+#iubenda-iframe * {
+  font-family: "Nunito Sans", sans-serif !important;
+}
+
+/*# sourceURL=iubenda-inline-styles-from-embed-inline-css */
+</style>
+<style id="classic-theme-styles-inline-css">
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+/*# sourceURL=/wp-includes/css/classic-themes.min.css */
+</style>
+
+<style id="global-styles-inline-css">
+:root{--wp--preset--aspect-ratio--square: 1;--wp--preset--aspect-ratio--4-3: 4/3;--wp--preset--aspect-ratio--3-4: 3/4;--wp--preset--aspect-ratio--3-2: 3/2;--wp--preset--aspect-ratio--2-3: 2/3;--wp--preset--aspect-ratio--16-9: 16/9;--wp--preset--aspect-ratio--9-16: 9/16;--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgb(6,147,227) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgb(252,185,0) 0%,rgb(255,105,0) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgb(255,105,0) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgb(255, 255, 255), 6px 6px rgb(0, 0, 0);--wp--preset--shadow--crisp: 6px 6px 0px rgb(0, 0, 0);}:where(body) { margin: 0; }:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flex{display: flex;}.is-layout-flex{flex-wrap: wrap;align-items: center;}.is-layout-flex > :is(*, div){margin: 0;}body .is-layout-grid{display: grid;}.is-layout-grid > :is(*, div){margin: 0;}body{padding-top: 0px;padding-right: 0px;padding-bottom: 0px;padding-left: 0px;}:root :where(.wp-element-button, .wp-block-button__link){background-color: #32373c;border-width: 0;color: #fff;font-family: inherit;font-size: inherit;font-style: inherit;font-weight: inherit;letter-spacing: inherit;line-height: inherit;padding-top: calc(0.667em + 2px);padding-right: calc(1.333em + 2px);padding-bottom: calc(0.667em + 2px);padding-left: calc(1.333em + 2px);text-decoration: none;text-transform: inherit;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+/*# sourceURL=global-styles-inline-css */
+</style>
+
+<link rel='stylesheet' id='gn-frontend-gnfollow-style-css' href='https://www.uni.com/wp-content/plugins/gn-publisher/assets/css/gn-frontend-gnfollow.min.css?ver=1.5.28' media='all' />
+<link rel='stylesheet' id='datatables-css' href='https://www.uni.com/wp-content/themes/uni/library/datatables.min.css?ver=7.0' media='all' />
+<link rel='stylesheet' id='app-css' href='https://www.uni.com/wp-content/themes/uni/assets/css/app.72c3c0a8.css?ver=7.0' media='all' />
+
+<script  type="text/javascript" class=" _iub_cs_skip" id="iubenda-head-inline-scripts-0">
+var _iub = _iub || [];
+_iub.csConfiguration = {"askConsentAtCookiePolicyUpdate":true,"cookiePolicyInOtherWindow":true,"enableLgpd":true,"enableRemoteConsent":true,"localConsentDomain":"uni.com","perPurposeConsent":true,"purposes":"1,4,5","siteId":3051672,"whitelabel":false,"cookiePolicyId":76621606,"lang":"it","cookiePolicyUrl":"https://www.privacylab.it/informativa.php?24041498580", "callback":{ "onPreferenceExpressedOrNotNeeded":function(preference) {if (!preference) {dataLayer.push({event: 'iubenda_preference_not_needed'});} else {if (preference.consent === true) {dataLayer.push({event: 'iubenda_consent_given'});} else if (preference.consent === false) {dataLayer.push({event: 'iubenda_consent_rejected'});} else if (preference.purposes) {for (var purposeId in preference.purposes) {if (preference.purposes[purposeId]) {dataLayer.push({event: 'iubenda_consent_given_purpose_' + purposeId});}}}}} }, "banner":{ "acceptButtonCaptionColor":"#FFFFFF","acceptButtonColor":"#0073CE","acceptButtonDisplay":true,"applyStyles":false,"backgroundColor":"#FFFFFF","closeButtonDisplay":false,"customizeButtonCaptionColor":"#4D4D4D","customizeButtonColor":"#DADADA","customizeButtonDisplay":true,"explicitWithdrawal":true,"listPurposes":true,"position":"float-bottom-right","prependOnBody":true,"rejectButtonCaptionColor":"#FFFFFF","rejectButtonColor":"#0073CE","rejectButtonDisplay":true,"showPurposesToggles":true,"textColor":"#000000" }};
+
+//# sourceURL=iubenda-head-inline-scripts-0
+</script>
+<script  type="text/javascript" charset="UTF-8" async="" class=" _iub_cs_skip" id="iubenda-head-scripts-1-js" src="//cdn.iubenda.com/cs/iubenda_cs.js?ver=3.13.1"></script>
+<script id="wpml-cookie-js-extra">
+var wpml_cookies = {"wp-wpml_current_language":{"value":"it","expires":1,"path":"/"}};
+var wpml_cookies = {"wp-wpml_current_language":{"value":"it","expires":1,"path":"/"}};
+//# sourceURL=wpml-cookie-js-extra
+</script>
+<script data-wp-strategy="defer" defer id="wpml-cookie-js" src="https://www.uni.com/wp-content/plugins/sitepress-multilingual-cms/res/js/cookies/language-cookie.js?ver=494000"></script>
+<script id="jquery-core-js" src="https://www.uni.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"></script>
+<link rel="https://api.w.org/" href="https://www.uni.com/wp-json/" /><link rel="alternate" title="JSON" type="application/json" href="https://www.uni.com/wp-json/wp/v2/pages/2" /><link rel="icon" href="https://www.uni.com/wp-content/uploads/favicon-150x150.png" sizes="32x32" />
+<link rel="icon" href="https://www.uni.com/wp-content/uploads/favicon-300x300.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.uni.com/wp-content/uploads/favicon-300x300.png" />
+<meta name="msapplication-TileImage" content="https://www.uni.com/wp-content/uploads/favicon-300x300.png" />
+</head>
+<body class="home wp-singular page-template-default page page-id-2 wp-theme-uni">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5K5FWB8" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<div id="app" data-v-cloak="true">
+    <global-header
+        data-config="{&quot;is_logged&quot;:false,&quot;skip_link&quot;:{&quot;href&quot;:&quot;#main-content&quot;,&quot;label&quot;:&quot;Salta al contenuto principale&quot;},&quot;logo&quot;:{&quot;title&quot;:&quot;UNI - Ente Italiano di Normazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/&quot;},&quot;mobile_menu&quot;:{&quot;open_label&quot;:&quot;Apri menu&quot;,&quot;close_label&quot;:&quot;Chiudi menu&quot;},&quot;languages&quot;:{&quot;title&quot;:&quot;Seleziona lingua&quot;,&quot;list&quot;:[{&quot;code&quot;:&quot;en&quot;,&quot;native_name&quot;:&quot;English&quot;,&quot;default_locale&quot;:&quot;en_US&quot;,&quot;translated_name&quot;:&quot;English&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/en\/&quot;,&quot;active&quot;:false},{&quot;code&quot;:&quot;it&quot;,&quot;native_name&quot;:&quot;Italiano&quot;,&quot;default_locale&quot;:&quot;it_IT&quot;,&quot;translated_name&quot;:&quot;Italiano&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/&quot;,&quot;active&quot;:true}]},&quot;search&quot;:{&quot;placeholder&quot;:&quot;Cerca nel sito per norme, news ...&quot;,&quot;label&quot;:&quot;Cerca nel sito per norme, news ...&quot;,&quot;button&quot;:&quot;Cerca&quot;,&quot;autocomplete_api&quot;:&quot;https:\/\/www.uni.com\/wp-json\/uni\/v1\/search\/?lang=it&quot;,&quot;action&quot;:&quot;https:\/\/www.uni.com\/&quot;},&quot;links&quot;:{&quot;title&quot;:&quot;UNI Store&quot;,&quot;favorites&quot;:{&quot;title&quot;:&quot;Preferiti&quot;,&quot;title_not_empty&quot;:&quot;Preferiti, {{count}} elementi&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/wishlist&quot;},&quot;cart&quot;:{&quot;title&quot;:&quot;Carrello&quot;,&quot;title_not_empty&quot;:&quot;Carrello, {{count}} elementi&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/cart&quot;},&quot;account&quot;:{&quot;title&quot;:&quot;Area personale&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/my-account&quot;}},&quot;logout_link&quot;:&quot;https:\/\/store.uni.com\/?logout=true&quot;,&quot;logout_label&quot;:&quot;Logout&quot;,&quot;primary_menu_title&quot;:&quot;Menu principale&quot;,&quot;primary_menu&quot;:[{&quot;ID&quot;:473,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Chi siamo&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:137,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/2022\/10\/chi_siamo_3-640x480.jpeg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;},&quot;title&quot;:&quot;Chi siamo&quot;,&quot;subtitle&quot;:&quot; UNI - Ente Italiano di Normazione&quot;,&quot;intro&quot;:&quot;Siamo un\u2019associazione privata senza scopo di lucro che da oltre 100 anni elabora, pubblica e diffonde gli standard della nostra vita: le norme tecniche volontarie.&lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;Chi siamo&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Mission e Valori&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/mission-e-valori\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;In tutto quello che facciamo, ci guida sempre un obiettivo:  costruire, attraverso gli standard, \u201cun mondo fatto bene\u201d.&quot;},{&quot;title&quot;:&quot;Governance&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/governance\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Assemblea, comitati, collegi, consigli, giunta, Presidente. Per svolgere la propria attivit\u00e0,  UNI si avvale di 8 specifici organi di governance.&quot;},{&quot;title&quot;:&quot;UNI in Europa e nel mondo&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/uni-in-europa-e-nel-mondo\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Siamo presenti ai tavoli di normazione internazionali (ISO) ed europei (CEN), portando il nostro contributo grazie al lavoro di migliaia di esperte\/i e svolgendo un ruolo proattivo nel definire le migliori soluzioni per il mercato, per le imprese, per la societ\u00e0.&quot;}],&quot;featured&quot;:null},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Storia&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/storia\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Siamo al lavoro da 100 anni. Ripercorri le tappe pi\u00f9 importanti  di un mondo in continuo cambiamento.&quot;},{&quot;title&quot;:&quot;Documenti&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/documenti\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Scopri tutte le informazioni e i documenti che illustrano in dettaglio  l\u2019organizzazione e la gestione di UNI.&quot;},{&quot;title&quot;:&quot;Linee Strategiche&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/linee-strategiche\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Le Linee Strategiche sono la conferma della capacit\u00e0 progettuale della normazione cos\u00ec come si \u00e8 evoluta negli ultimi anni: scopri il documento 2025-2028&quot;}],&quot;featured&quot;:null},&quot;overview_title&quot;:&quot;Chi siamo Overview&quot;},&quot;depth&quot;:1},{&quot;ID&quot;:764,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Normazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:163,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/2022\/10\/normazione_1-640x480.jpg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;},&quot;title&quot;:&quot;Normazione&quot;,&quot;subtitle&quot;:&quot;&quot;,&quot;intro&quot;:&quot;Le norme tecniche volontarie, gli standard, sono la pi\u00f9 grande fonte del sapere tecnico collettivo.&lt;br \/&gt;\r\nCi aiutano ogni giorno a vivere in un mondo pi\u00f9 sicuro, giusto e sostenibile.&lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;Normazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Fare una norma&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/fare-una-norma\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Elaborare una norma significa scrivere un documento che spiega \&quot;come fare bene le cose\&quot;, garantendo sicurezza, prestazioni e rispetto per l&#039;ambiente.&quot;},{&quot;title&quot;:&quot;I benefici della normazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/benefici-della-normazione\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Crescita economica, progresso sociale, tutela dell\u2019ambiente, miglioramento della sicurezza e valorizzazione dell\u2019innovazione.&quot;},{&quot;title&quot;:&quot;Gli organi tecnici&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/organi-tecnici\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Commissioni, sottocommissioni e gruppi di lavoro: in UNI esistono 1.100 organi tecnici con cui collaborano pi\u00f9 di 8.000 esperti ed esperte.&quot;}],&quot;featured&quot;:null},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Infrastruttura per la Qualit\u00e0 Italia&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/infrastruttura-qualita-italia\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;UNI \u00e8 parte integrante di IQ, Infrastruttura per la Qualit\u00e0 Italia. Obiettivo? Migliorare la qualit\u00e0 di prodotti, servizi e processi \u201cMade in Italy\u201d.&quot;},{&quot;title&quot;:&quot;Innovazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/innovazione\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Prassi di Riferimento, progetti europei e CWA: scopri le attivit\u00e0 e le iniziative di UNI a livello nazionale e internazionale&quot;}],&quot;featured&quot;:{&quot;title&quot;:&quot;Di interesse&quot;,&quot;links&quot;:[{&quot;title&quot;:&quot;Consultazione norme Salute e Sicurezza sul lavoro&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/norme-sicurezza-lavoro\/&quot;,&quot;target&quot;:&quot;&quot;}]}},&quot;overview_title&quot;:&quot;Normazione Overview&quot;},&quot;depth&quot;:1},{&quot;ID&quot;:1010,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Partecipare&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:167,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;partecipare_1&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/2022\/10\/partecipare_1-640x480.jpeg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;},&quot;title&quot;:&quot;Partecipare&quot;,&quot;subtitle&quot;:&quot;&quot;,&quot;intro&quot;:&quot;Le norme UNI non vengono calate dall\u2019alto. &lt;br \/&gt;\r\nSono frutto di un lavoro collettivo di pensiero, condivisione e ideazione.&lt;br \/&gt;\r\nPartecipare significa contribuire alla nascita di una nuova conoscenza. &lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;Partecipare&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Associarsi&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/association&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Contribuisci in prima persona alla nascita delle norme e definisci con noi le regole del tuo settore.&quot;}],&quot;featured&quot;:null},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Inchieste pubbliche&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/inchieste\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Il processo di normazione \u00e8 trasparente dall\u2019inizio alla fine grazie a due  inchieste pubbliche: preliminare e finale.&quot;},{&quot;title&quot;:&quot;Appendici nazionali in consultazione pubblica&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/appendici-nazionali-in-consultazione-pubblica\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Consulta le bozze delle Appendici nazionali e invia i tuoi commenti&quot;},{&quot;title&quot;:&quot;Prassi di riferimento in consultazione pubblica&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/prassi-di-riferimento-in-consultazione-pubblica\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Le Prassi di Riferimento disponibili in bozza: consulta i documenti e invia i tuoi commenti.&quot;}],&quot;featured&quot;:null},&quot;overview_title&quot;:&quot;Partecipare Overview&quot;},&quot;depth&quot;:1},{&quot;ID&quot;:1069,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;UNI per te&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:169,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;Girl doing homework or online education.&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/2022\/10\/soluzioni_1-640x480.jpg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;Back to school. Child is sitting at desk. Girl doing homework or online education.&quot;},&quot;title&quot;:&quot;UNI per te&quot;,&quot;subtitle&quot;:&quot;&quot;,&quot;intro&quot;:&quot;Che l\u2019azienda, o l\u2019istituzione per cui lavori, sia piccola o grande; che tu sia insegnante, professionista o consumatore, abbiamo sempre la soluzione che fa PER TE&lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;Soluzioni&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Grandi aziende&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/grandi-aziende\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Come la normazione pu\u00f2 aiutare i grandi gruppi  a migliorare la qualit\u00e0 della produzione, ridurre i costi e aumentare l\u2019efficienza.&quot;},{&quot;title&quot;:&quot;PMI e start-up&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/pmi-e-startup\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Per le piccole medie imprese le norme sono un grande universo di vantaggi. Scoprili tutti.&quot;},{&quot;title&quot;:&quot;Libera professione e partite IVA&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/libera-professione-e-partite-iva\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Aggiornare le conoscenze, qualificarsi, migliorare le competenze. La normazione supporta la crescita di ogni professionista.&quot;},{&quot;title&quot;:&quot;UNICADesk&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/unicadesk\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Uno sportello per condividere informazioni, materiali e iniziative sulla normazione tecnica volontaria ad uso delle Camere di Commercio.&quot;},{&quot;title&quot;:&quot;Guide e Brochure&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/guide-e-brochure-uni\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Vuoi conoscere in dettaglio norme e prassi di riferimento? Sfoglia e consulta gli approfondimenti tematici.&quot;}],&quot;featured&quot;:null},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Mondo accademico&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/mondo-accademico\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Gli standard sono un eccezionale motore di cambiamento,  e uno strumento di aggiornamento, per chi fa ricerca o formazione.&quot;},{&quot;title&quot;:&quot;Istituzioni&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/istituzioni\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;A livello locale o nazionale, la normazione \u00e8 un prezioso  alleato delle Istituzioni.&quot;},{&quot;title&quot;:&quot;Consumatori&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/consumatori\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;I consumatori finali, le persone, i cittadini. Siamo sempre noi, essenzialmente, a beneficiare delle norme.&quot;}],&quot;featured&quot;:{&quot;title&quot;:&quot;Di interesse&quot;,&quot;links&quot;:[{&quot;title&quot;:&quot;Professioni&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/professionisti-e-partite-iva\/professioni-non-regolamentate\/&quot;,&quot;target&quot;:&quot;&quot;}]}},&quot;overview_title&quot;:&quot;UNI per te Overview&quot;},&quot;depth&quot;:1},{&quot;ID&quot;:1103,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Formazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:171,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;Applauding to coach&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/2022\/10\/formazione_1-640x480.jpg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;Young managers clapping hands after speech of coach&quot;},&quot;title&quot;:&quot;Formazione&quot;,&quot;subtitle&quot;:&quot;Il grande viaggio della formazione UNI&quot;,&quot;intro&quot;:&quot;UNITRAIN \u00e8 il Centro di Formazione UNI per conoscere e applicare gli standard.&lt;br \/&gt;\r\n&lt;br \/&gt;\r\nSi rivolge a chi vuole essere sempre aggiornato su norme, prassi, tecniche e leggi alla base della propria attivit\u00e0.&lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;Formazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Faculty&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/faculty\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;In UNITRAIN non ci sono insegnanti qualsiasi: la maggior parte di loro sono anche le persone esperte che elaborano gli standard.&quot;},{&quot;title&quot;:&quot;I corsi del mese&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/unitrain-i-corsi-del-mese\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Corsi attivi ogni giorno con le nuove proposte del mese: sfoglia il calendario e iscriviti!&quot;}],&quot;featured&quot;:{&quot;title&quot;:&quot;Di interesse&quot;,&quot;links&quot;:[{&quot;title&quot;:&quot;Corsi di formazione&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/courses&quot;,&quot;target&quot;:&quot;&quot;}]}},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;UNITRAIN in house&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/unitrain-in-house\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Corsi su misura per la tua azienda, realizzati assieme a te: scopri come funziona&quot;},{&quot;title&quot;:&quot;UNITRAIN e-learning&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/unitrain-e-learning\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;La formazione sempre con te: 24 ore su 24, 7 giorni su 7&quot;}],&quot;featured&quot;:{&quot;title&quot;:&quot;Novit\u00e0&quot;,&quot;links&quot;:[{&quot;title&quot;:&quot;SUITE 125&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/suite125\/&quot;,&quot;target&quot;:&quot;&quot;}]}},&quot;overview_title&quot;:&quot;Formazione Overview&quot;},&quot;depth&quot;:1},{&quot;ID&quot;:100,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;custom&quot;,&quot;title&quot;:&quot;UNI store&quot;,&quot;url&quot;:&quot;#&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-custom&quot;,&quot;menu-item-object-custom&quot;],&quot;mega_menu&quot;:{&quot;ID&quot;:173,&quot;card&quot;:{&quot;image&quot;:{&quot;title&quot;:&quot;unistore-intro&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/thumbs\/unistore-intro-640x480.jpg&quot;,&quot;alt&quot;:&quot;&quot;,&quot;description&quot;:&quot;&quot;,&quot;caption&quot;:&quot;&quot;},&quot;title&quot;:&quot;UNI Store&quot;,&quot;subtitle&quot;:&quot;&quot;,&quot;intro&quot;:&quot;UNI Store, il grande shopping on line della normazione.&lt;br \/&gt;\r\nQui potete cercare, acquistare, consultare e scaricare le norme, le prassi, le pubblicazioni, scegliere la formula di abbonamento pi\u00f9 adatta a voi e iscrivervi ai nostri corsi di formazione.&lt;br \/&gt;\r\n&quot;,&quot;link&quot;:{&quot;title&quot;:&quot;UNI Store&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com&quot;,&quot;target&quot;:&quot;&quot;}},&quot;col_1&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Norme tecniche&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/advanced-search\/new&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Un patrimonio sconfinato di standard che riguardano tutti i settori della nostra vita, da consultare e acquistare.&quot;},{&quot;title&quot;:&quot;Prassi di riferimento&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/search-new\/PDR\/1&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Consulta e scopri la Prassi di Riferimento (PdR) del settore che ti interessa.&quot;},{&quot;title&quot;:&quot;Corsi di formazione&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/courses&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Se vuoi fare un grande viaggio nella conoscenza questa \u00e8 la stazione da cui partire: Consulta il catalogo dei corsi di formazione UNITRAIN in programma e iscriviti a quello che fa per te.&quot;}],&quot;featured&quot;:null},&quot;col_2&quot;:{&quot;links&quot;:[{&quot;title&quot;:&quot;Prodotti editoriali&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/search-new\/PUB\/1&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Anche la normazione ha la sua biblioteca. Consulta l\u2019elenco delle pubblicazioni editoriali UNI disponibili, che si arricchisce ogni anno di nuovi titoli.&quot;},{&quot;title&quot;:&quot;Abbonamenti&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/subscriptions&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Abbiamo pensato differenti formule di abbonamento per andare incontro alle esigenze di ognuno. Scopri la tua.&quot;},{&quot;title&quot;:&quot;Convenzioni&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/convenzioni\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;text&quot;:&quot;Scopri tutte le Convenzioni stipulate a livello nazionale per l&#039;accesso al patrimonio normativo di imprese e professioni&quot;}],&quot;featured&quot;:null},&quot;overview_title&quot;:&quot;UNI store Overview&quot;},&quot;depth&quot;:1}],&quot;secondary_menu_title&quot;:&quot;Menu secondario&quot;,&quot;secondary_menu&quot;:[{&quot;ID&quot;:40969,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;OBIETTIVO PLUS&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/?page_id=40966&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;,&quot;menu-item-has-children&quot;],&quot;depth&quot;:1,&quot;children&quot;:[{&quot;ID&quot;:26220,&quot;menu_item_parent&quot;:40969,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;OBIETTIVO 9001&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/lp_obiettivo-9001\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:2},{&quot;ID&quot;:32813,&quot;menu_item_parent&quot;:40969,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;OBIETTIVO 45001&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/obiettivo-45001\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:2}]},{&quot;ID&quot;:1209,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;News&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/news\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:23641,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Eventi&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/eventi\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:1173,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Contatti&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/contatti\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:1125,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;FAQ&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/faq\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1}]}"
+        data-inverted="false"
+        data-favorites-count="0"
+        data-cart-count="0"
+    >
+        <div>
+            <a href="https://www.uni.com/">
+                <span class="visually-hidden">UNI - Ente Italiano di Normazione</span>
+            </a>
+        </div>
+        <nav>
+            <h4>Seleziona lingua</h4>
+            <ul>
+                <li><a href="https://www.uni.com/en/">English</a></li>
+                <li><a href="https://www.uni.com/">Italiano</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <h4>UNI Store</h4>
+            <ul>
+                <li><a href="https://store.uni.com/wishlist">Preferiti</a></li>
+                <li><a href="https://store.uni.com/cart">Carrello</a></li>
+                <li><a href="https://store.uni.com/my-account">Area personale</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <h4>Menu principale</h4>
+            <ul>
+                <li>
+                    <a href="https://www.uni.com/chi-siamo/">Chi siamo</a>
+                    <ul>
+                        <li><a href="https://www.uni.com/chi-siamo/mission-e-valori/">Mission e Valori</a></li>
+                        <li><a href="https://www.uni.com/chi-siamo/governance/">Governance</a></li>
+                        <li><a href="https://www.uni.com/chi-siamo/uni-in-europa-e-nel-mondo/">UNI in Europa e nel mondo</a></li>
+                        <li><a href="https://www.uni.com/chi-siamo/storia/">Storia</a></li>
+                        <li><a href="https://www.uni.com/chi-siamo/documenti/">Documenti</a></li>
+                        <li><a href="https://www.uni.com/linee-strategiche/">Linee Strategiche</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/normazione/">Normazione</a>
+                    <ul>
+                        <li><a href="https://www.uni.com/normazione/fare-una-norma/">Fare una norma</a></li>
+                        <li><a href="https://www.uni.com/normazione/benefici-della-normazione/">I benefici della normazione</a></li>
+                        <li><a href="https://www.uni.com/normazione/organi-tecnici/">Gli organi tecnici</a></li>
+                        <li><a href="https://www.uni.com/normazione/infrastruttura-qualita-italia/">Infrastruttura per la Qualità Italia</a></li>
+                        <li><a href="https://www.uni.com/normazione/innovazione/">Innovazione</a></li>
+                        <li><a href="https://www.uni.com/normazione/norme-sicurezza-lavoro/">Consultazione norme Salute e Sicurezza sul lavoro</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/partecipare/">Partecipare</a>
+                    <ul>
+                        <li><a href="https://store.uni.com/association">Associarsi</a></li>
+                        <li><a href="https://www.uni.com/partecipare/inchieste/">Inchieste pubbliche</a></li>
+                        <li><a href="https://www.uni.com/partecipare/appendici-nazionali-in-consultazione-pubblica/">Appendici nazionali in consultazione pubblica</a></li>
+                        <li><a href="https://www.uni.com/partecipare/prassi-di-riferimento-in-consultazione-pubblica/">Prassi di riferimento in consultazione pubblica</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/uni-per-te/">UNI per te</a>
+                    <ul>
+                        <li><a href="https://www.uni.com/uni-per-te/grandi-aziende/">Grandi aziende</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/pmi-e-startup/">PMI e start-up</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/libera-professione-e-partite-iva/">Libera professione e partite IVA</a></li>
+                        <li><a href="https://www.uni.com/unicadesk/">UNICADesk</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/guide-e-brochure-uni/">Guide e Brochure</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/mondo-accademico/">Mondo accademico</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/istituzioni/">Istituzioni</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/consumatori/">Consumatori</a></li>
+                        <li><a href="https://www.uni.com/uni-per-te/professionisti-e-partite-iva/professioni-non-regolamentate/">Professioni</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/formazione/">Formazione</a>
+                    <ul>
+                        <li><a href="https://www.uni.com/formazione/faculty/">Faculty</a></li>
+                        <li><a href="https://www.uni.com/unitrain-i-corsi-del-mese/">I corsi del mese</a></li>
+                        <li><a href="https://store.uni.com/courses">Corsi di formazione</a></li>
+                        <li><a href="https://www.uni.com/unitrain-in-house/">UNITRAIN in house</a></li>
+                        <li><a href="https://www.uni.com/formazione/unitrain-e-learning/">UNITRAIN e-learning</a></li>
+                        <li><a href="https://www.uni.com/formazione/suite125/">SUITE 125</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">UNI store</a>
+                    <ul>
+                        <li><a href="https://store.uni.com/advanced-search/new">Norme tecniche</a></li>
+                        <li><a href="https://store.uni.com/search-new/PDR/1">Prassi di riferimento</a></li>
+                        <li><a href="https://store.uni.com/courses">Corsi di formazione</a></li>
+                        <li><a href="https://store.uni.com/search-new/PUB/1">Prodotti editoriali</a></li>
+                        <li><a href="https://store.uni.com/subscriptions">Abbonamenti</a></li>
+                        <li><a href="https://www.uni.com/convenzioni/">Convenzioni</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav>
+            <h4>Menu secondario</h4>
+            <ul>
+                <li>
+                    <a href="https://www.uni.com/?page_id=40966">OBIETTIVO PLUS</a>
+                    <ul>
+                        <li>
+                            <a href="https://www.uni.com/lp_obiettivo-9001/">OBIETTIVO 9001</a>
+                        </li>
+                        <li>
+                            <a href="https://www.uni.com/obiettivo-45001/">OBIETTIVO 45001</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/news/">News</a>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/eventi/">Eventi</a>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/contatti/">Contatti</a>
+                </li>
+                <li>
+                    <a href="https://www.uni.com/faq/">FAQ</a>
+                </li>
+            </ul>
+        </nav>
+    </global-header>
+    <div class="overflow-hidden">
+        <main id="main-content" class="main-content">
+<div class="page-composer">
+<hero-video-slider data-config="{&quot;count&quot;:2}">
+    <div data-v-slot="slide-1">
+<hero-video data-config="{&quot;video&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/TRAILER-spot-v2.mp4&quot;,&quot;loop&quot;:false,&quot;play_button_label&quot;:&quot;Riproduci il video di sfondo&quot;,&quot;pause_button_label&quot;:&quot;Metti in pausa il video di sfondo&quot;,&quot;show_video_cta&quot;:&quot;Guarda video&quot;,&quot;video_embed&quot;:&quot;&lt;iframe width=\&quot;560\&quot; height=\&quot;315\&quot; src=\&quot;https:\/\/www.youtube.com\/embed\/e_kZnxtvyD4\&quot; title=\&quot;YouTube video player\&quot; frameborder=\&quot;0\&quot; allow=\&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\&quot; allowfullscreen&gt;&lt;\/iframe&gt;&quot;,&quot;close_video_label&quot;:&quot;Chiudi&quot;,&quot;slider_speed&quot;:1000,&quot;slider_delay&quot;:4000}">
+    <div data-v-slot="before">
+<div class="visually-hidden">Una giornata NORMAle...</div><p class="visually-hidden">Le norme sono ovunque nella nostra vita, scoprile tutte nel nuovo spot UNI</p>    </div><!-- data-v-slot -->
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">Le norme sono ovunque<br />
+<strong>nella nostra vita</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">Scoprile tutte <br />
+<strong>nel nuovo spot</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true"><strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.9 24" class="IconCmp LogoCmp color-white" aria-hidden="true" style="--icon-rotation:0deg; --icon-ratio:2.57917; height:1.2em; margin-bottom:8px;"><!----><use xlink:href="#icon-logo" data-v-78860a2f=""></use></svg></strong><br />
+Un mondo fatto bene</div>    </swiper-slide>
+</hero-video>
+    </div><!-- data-v-slot -->
+    <div data-v-slot="slide-2">
+<hero-video data-config="{&quot;video&quot;:&quot;https:\/\/www.uni.com\/wp-content\/uploads\/TRAILER-homepage-v2.mp4&quot;,&quot;loop&quot;:false,&quot;play_button_label&quot;:&quot;Riproduci il video di sfondo&quot;,&quot;pause_button_label&quot;:&quot;Metti in pausa il video di sfondo&quot;,&quot;show_video_cta&quot;:&quot;Guarda video&quot;,&quot;video_embed&quot;:&quot;&lt;iframe width=\&quot;560\&quot; height=\&quot;315\&quot; src=\&quot;https:\/\/www.youtube.com\/embed\/YabvbiTXWvo\&quot; title=\&quot;YouTube video player\&quot; frameborder=\&quot;0\&quot; allow=\&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\&quot; allowfullscreen&gt;&lt;\/iframe&gt;&quot;,&quot;close_video_label&quot;:&quot;Chiudi&quot;,&quot;slider_speed&quot;:1000,&quot;slider_delay&quot;:3000}">
+    <div data-v-slot="before">
+<h1 class="visually-hidden">UNI - Un mondo fatto bene</h1><p class="visually-hidden">Da 100 anni, con le nostre norme, costruiamo un mondo dove anche la cosa più piccola è fatta bene. UNI - Un mondo fatto bene.</p>    </div><!-- data-v-slot -->
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">Da 100 anni <br />
+<strong>con le nostre norme</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">costruiamo <strong>un mondo</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">dove anche la cosa<br />
+<strong>più piccola</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true">è fatta <strong>bene</strong></div>    </swiper-slide>
+    <swiper-slide>
+<div class="title font-size-heading-1 py-2" aria-hidden="true"><strong><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61.9 24" class="IconCmp LogoCmp color-white" aria-hidden="true" style="--icon-rotation:0deg; --icon-ratio:2.57917; height:1.2em; margin-bottom:8px;"><!----><use xlink:href="#icon-logo" data-v-78860a2f=""></use></svg></strong><br />
+Un mondo fatto bene</div>    </swiper-slide>
+</hero-video>
+    </div><!-- data-v-slot -->
+</hero-video-slider>
+<cards-slider data-config="{&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-insight&quot;,&quot;title_tag&quot;:&quot;h2&quot;,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri tutte le news&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/news\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;theme&quot;:&quot;light&quot;,&quot;background&quot;:&quot;background-ultra-light-gray&quot;,&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;,&quot;swiper&quot;:{&quot;slidesPerView&quot;:1,&quot;breakpoints&quot;:{&quot;md&quot;:{&quot;slidesPerView&quot;:2}}},&quot;centered_intro&quot;:false}" >
+<div data-v-slot="subtitle">In primo piano</div><!-- data-v-slot -->
+<h2 data-v-slot="title">Le ultime novità </h2><!-- data-v-slot -->
+    <a href="https://www.uni.com/news/" >Scopri tutte le news</a>
+    <div data-v-slot="after-title">
+        <featured-posts class="gutter-b-lg">
+            <div data-v-slot="cards">
+                <div class="col-md-6 col-lg-4">
+                    <card-featured-post data-config="{&quot;icon&quot;:false}">
+                        <figure data-v-slot="image">
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20240%20240'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Sicurezza-sul-lavoro-2-240x240.jpg" alt="" />
+                        </figure><!-- data-v-slot -->
+                        <h3 data-v-slot="title">Salute e sicurezza sul lavoro: nuovi strumenti per una maggiore conoscenza</h3><!-- data-v-slot -->
+                        <p data-v-slot="subtitle">Notizie | 28 Aprile 2026</p><!-- data-v-slot -->
+                        <div data-v-slot="link">
+                            <a href="https://www.uni.com/salute-e-sicurezza-sul-lavoro-nuovi-strumenti-per-una-maggiore-conoscenza/" class="link" aria-label="Leggi di più su Salute e sicurezza sul lavoro: nuovi strumenti per una maggiore conoscenza">
+                                <span class="visually-hidden">Leggi tutto</span>
+                            </a>
+                        </div><!-- data-v-slot -->
+                    </card-featured-post>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <card-featured-post data-config="{&quot;icon&quot;:false}">
+                        <figure data-v-slot="image">
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20240%20240'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Gestione-ambientale-1-240x240.jpg" alt="" />
+                        </figure><!-- data-v-slot -->
+                        <h3 data-v-slot="title">Ecco la nuova UNI EN ISO 14001</h3><!-- data-v-slot -->
+                        <p data-v-slot="subtitle">Notizie | 15 Aprile 2026</p><!-- data-v-slot -->
+                        <div data-v-slot="link">
+                            <a href="https://www.uni.com/ecco-la-nuova-uni-en-iso-14001/" class="link" aria-label="Leggi di più su Ecco la nuova UNI EN ISO 14001">
+                                <span class="visually-hidden">Leggi tutto</span>
+                            </a>
+                        </div><!-- data-v-slot -->
+                    </card-featured-post>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <card-featured-post data-config="{&quot;icon&quot;:false}">
+                        <figure data-v-slot="image">
+                            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20240%20240'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Suite-125-hero-image-1-240x240.jpg" alt="" />
+                        </figure><!-- data-v-slot -->
+                        <h3 data-v-slot="title">SUITE 125: la parità di genere, in pratica</h3><!-- data-v-slot -->
+                        <p data-v-slot="subtitle">Notizie | 31 Marzo 2026</p><!-- data-v-slot -->
+                        <div data-v-slot="link">
+                            <a href="https://www.uni.com/suite-125-la-parita-di-genere-in-pratica/" class="link" aria-label="Leggi di più su SUITE 125: la parità di genere, in pratica">
+                                <span class="visually-hidden">Leggi tutto</span>
+                            </a>
+                        </div><!-- data-v-slot -->
+                    </card-featured-post>
+                </div>
+            </div><!-- data-v-slot -->
+        </featured-posts>
+    </div><!-- data-v-slot -->
+    <div data-v-slot="cards">
+        <swiper-slide class="h-auto d-flex flex-column">
+<card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+    <figure data-v-slot="image">
+        <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/inchiesta-preliminare-738x480.jpg" alt="" />
+    </figure><!-- data-v-slot -->
+    <div data-v-slot="tags">
+        <div class="col-auto">
+            <p class="tag">Energia e impianti</p>
+        </div>
+        <div class="col-auto">
+            <p class="tag">Servizi e professioni</p>
+        </div>
+        <div class="col-auto">
+            <p class="tag">Sicurezza</p>
+        </div>
+    </div><!-- data-v-slot -->
+    <h3 data-v-slot="title">Sei progetti in inchiesta pubblica preliminare – 14 luglio 2026</h3><!-- data-v-slot -->
+    <p data-v-slot="overline">Notizie | 30 Giugno 2026</p><!-- data-v-slot -->
+    <div data-v-slot="link">
+        <a href="https://www.uni.com/sei-progetti-in-inchiesta-pubblica-preliminare-14-luglio-2026/" class="link" aria-label="Leggi di più su Sei progetti in inchiesta pubblica preliminare – 14 luglio 2026">
+            <span class="visually-hidden">Leggi tutto</span>
+        </a>
+    </div><!-- data-v-slot -->
+</card-image-full>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+<card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+    <figure data-v-slot="image">
+        <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/qualita-iso-9001_bis-738x480.jpg" alt="" />
+    </figure><!-- data-v-slot -->
+    <div data-v-slot="tags">
+        <div class="col-auto">
+            <p class="tag">Qualità e valutazione di conformità</p>
+        </div>
+    </div><!-- data-v-slot -->
+    <h3 data-v-slot="title">Corso – ISO/FDIS 9001: verso una qualità più strategica</h3><!-- data-v-slot -->
+    <p data-v-slot="overline">Notizie | 29 Giugno 2026</p><!-- data-v-slot -->
+    <div data-v-slot="link">
+        <a href="https://www.uni.com/corso-iso-fdis-9001-verso-una-qualita-piu-strategica/" class="link" aria-label="Leggi di più su Corso – ISO/FDIS 9001: verso una qualità più strategica">
+            <span class="visually-hidden">Leggi tutto</span>
+        </a>
+    </div><!-- data-v-slot -->
+</card-image-full>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+<card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+    <figure data-v-slot="image">
+        <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/inchiesta-preliminare-738x480.jpg" alt="" />
+    </figure><!-- data-v-slot -->
+    <div data-v-slot="tags">
+        <div class="col-auto">
+            <p class="tag">Trasporti</p>
+        </div>
+    </div><!-- data-v-slot -->
+    <h3 data-v-slot="title">Ventotto progetti in inchiesta pubblica preliminare – 7 luglio 2026</h3><!-- data-v-slot -->
+    <p data-v-slot="overline">Notizie | 24 Giugno 2026</p><!-- data-v-slot -->
+    <div data-v-slot="link">
+        <a href="https://www.uni.com/ventotto-progetti-in-inchiesta-pubblica-preliminare-7-luglio-2026/" class="link" aria-label="Leggi di più su Ventotto progetti in inchiesta pubblica preliminare – 7 luglio 2026">
+            <span class="visually-hidden">Leggi tutto</span>
+        </a>
+    </div><!-- data-v-slot -->
+</card-image-full>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+<card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+    <figure data-v-slot="image">
+        <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/data-protection-2-738x480.jpg" alt="" />
+    </figure><!-- data-v-slot -->
+    <div data-v-slot="tags">
+        <div class="col-auto">
+            <p class="tag">Nuove tecnologie e trasformazione digitale</p>
+        </div>
+        <div class="col-auto">
+            <p class="tag">Sicurezza</p>
+        </div>
+    </div><!-- data-v-slot -->
+    <h3 data-v-slot="title">Corso – Proteggere i dati personali con la UNI CEI EN 17799</h3><!-- data-v-slot -->
+    <p data-v-slot="overline">Notizie | 23 Giugno 2026</p><!-- data-v-slot -->
+    <div data-v-slot="link">
+        <a href="https://www.uni.com/corso-proteggere-i-dati-personali-con-la-uni-cei-en-17799/" class="link" aria-label="Leggi di più su Corso – Proteggere i dati personali con la UNI CEI EN 17799">
+            <span class="visually-hidden">Leggi tutto</span>
+        </a>
+    </div><!-- data-v-slot -->
+</card-image-full>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+<card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+    <figure data-v-slot="image">
+        <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/obiettivo_9001_evidenza-738x480.jpg" alt="" />
+    </figure><!-- data-v-slot -->
+    <div data-v-slot="tags">
+        <div class="col-auto">
+            <p class="tag">Qualità e valutazione di conformità</p>
+        </div>
+    </div><!-- data-v-slot -->
+    <h3 data-v-slot="title">La svolta etica della nuova ISO 9001</h3><!-- data-v-slot -->
+    <p data-v-slot="overline">Notizie | 23 Giugno 2026</p><!-- data-v-slot -->
+    <div data-v-slot="link">
+        <a href="https://www.uni.com/la-svolta-etica-della-nuova-iso-9001/" class="link" aria-label="Leggi di più su La svolta etica della nuova ISO 9001">
+            <span class="visually-hidden">Leggi tutto</span>
+        </a>
+    </div><!-- data-v-slot -->
+</card-image-full>
+        </swiper-slide>
+    </div><!-- data-v-slot -->
+</cards-slider>
+<image-text data-config="{&quot;image_left&quot;:false,&quot;full_image&quot;:false,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-magazine&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;background&quot;:&quot;background-gradient-blue-shade&quot;,&quot;mobile_image_full&quot;:true,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri il magazine&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/standard\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;xl&quot;,&quot;gutter_bottom&quot;:&quot;xl&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201000%20666'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/A4-Magazine-Mockup.png" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">Standard</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>Il magazine per un mondo fatto bene</h2>
+<p class="font-weight-semibold font-size-subtitle-2">STANDARD è la nuova rivista di UNI dedicata al mondo delle norme tecniche che migliorano la nostra vita.</p>
+<p>Un nuovo punto di riferimento per capire come si costruisce, giorno dopo giorno, un mondo fatto bene. Con un obiettivo: testimoniare il valore della normazione.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://www.uni.com/standard/" >Scopri il magazine</a>
+</image-text>
+<cards-slider data-config="{&quot;title_tag&quot;:&quot;h2&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;background&quot;:&quot;background-darker-blue-80&quot;,&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;,&quot;swiper&quot;:{&quot;slidesPerView&quot;:&quot;auto&quot;,&quot;pagination&quot;:false}}" data-intro-classes="col-md-10 col-lg-8 col-xl-6 text-center">
+<h2 data-v-slot="title">I grandi temi di UNI</h2><!-- data-v-slot -->
+    <p data-v-slot="text">La normazione spazia in tutti i campi della nostra vita, aiutandoci a migliorare prodotti, servizi e professioni.<br />
+</p><!-- data-v-slot -->
+    <div data-v-slot="cards">
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/responsabilita-sociale-e-inclusione-UNI-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Responsabilità sociale e inclusione</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/responsabilita-sociale-e-inclusione/" class="link" aria-label="Leggi di più su Responsabilità sociale e inclusione">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/sicurezza-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Sicurezza</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/sicurezza/" class="link" aria-label="Leggi di più su Sicurezza">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Energia-e-impianti-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Energia e impianti</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/energia-e-impianti/" class="link" aria-label="Leggi di più su Energia e impianti">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/trasporti-small-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Trasporti</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/trasporti/" class="link" aria-label="Leggi di più su Trasporti">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2022/11/robotica_digit-360x480.jpeg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Nuove tecnologie e trasformazione digitale</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/nuove-tecnologie-e-trasformazione-digitale/" class="link" aria-label="Leggi di più su Nuove tecnologie e trasformazione digitale">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/qualita-e-valutazione-di-conformita-uni-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Qualità e valutazione di conformità</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/qualita-e-valutazione-di-conformita/" class="link" aria-label="Leggi di più su Qualità e valutazione di conformità">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Edilizia-normazione-UNI-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Edilizia e costruzioni</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/edilizia-e-costruzioni/" class="link" aria-label="Leggi di più su Edilizia e costruzioni">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Beni-di-consumo-e-materiali-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Beni di consumo e materiali</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/beni-di-consumo-e-materiali/" class="link" aria-label="Leggi di più su Beni di consumo e materiali">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2022/11/professioni-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Servizi e professioni</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/servizi-e-professioni/" class="link" aria-label="Leggi di più su Servizi e professioni">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2022/11/industria_4.0-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Meccanica e macchinari</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/meccanica-e-macchinari/" class="link" aria-label="Leggi di più su Meccanica e macchinari">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Ambiente-sostenibilita-ed-economia-circolare-small-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Ambiente, sostenibilità ed economia circolare</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/sostenibilita-ambiente-ed-economia-circolare/" class="link" aria-label="Leggi di più su Ambiente, sostenibilità ed economia circolare">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Agroalimentare-normazione-uni-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Agroalimentare</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/agroalimentare/" class="link" aria-label="Leggi di più su Agroalimentare">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide class="w-auto">
+            <card-image-full data-config="{&quot;variant&quot;:&quot;theme&quot;,&quot;v_align&quot;:&quot;start&quot;,&quot;icon&quot;:false,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}" data-title-classes="font-size-body-1 font-weight-bold">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20360%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/salute-e-benessere-small-360x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Salute e benessere</h3><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/tag/salute-e-benessere/" class="link" aria-label="Leggi di più su Salute e benessere">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+    </div><!-- data-v-slot -->
+</cards-slider>
+<image-text data-config="{&quot;image_left&quot;:false,&quot;full_image&quot;:false,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-uni&quot;,&quot;theme&quot;:&quot;light&quot;,&quot;background&quot;:&quot;background-gradient-light-blue&quot;,&quot;mobile_image_full&quot;:false,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri chi siamo&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/chi-siamo\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20800%20711'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/2022/10/chi_siamo_3.jpeg" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">Chi siamo</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>UNI &#8211; Ente Italiano di Normazione</h2>
+<p class="font-weight-semibold font-size-subtitle-2">Siamo un’associazione privata senza scopo di lucro che da oltre 100 anni studia, elabora, pubblica e diffonde gli standard: le norme tecniche volontarie.</p>
+<p>UNI è un polo partecipativo in cui migliaia di esperte ed esperti di ogni settore lavorano in sinergia con professioni, aziende e consumatori per creare un grande patrimonio condiviso di conoscenza.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://www.uni.com/chi-siamo/" >Scopri chi siamo</a>
+</image-text>
+<image-text data-config="{&quot;image_left&quot;:false,&quot;full_image&quot;:true,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-standard&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;background&quot;:&quot;background-white&quot;,&quot;mobile_image_full&quot;:false,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri di pi\u00f9&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/normazione\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201600%201068'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/2022/10/normazione_1.jpg" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">Normazione</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>Le norme sono ovunque nella nostra vita</h2>
+<p class="font-weight-semibold font-size-subtitle-2">Il legno del parquet, il seggiolino dei bambini, la lezione all’università, la caffettiera. Gli standard migliorano la qualità della nostra giornata: al lavoro, a scuola, a casa, nel tempo libero.</p>
+<p>In 100 anni abbiamo reso disponibili oltre 48.000 norme.<br />
+Ogni giorno ci hanno aiutato a contare su prodotti migliori, servizi più efficaci, persone più competenti, organizzazioni più efficienti. E continueranno a farlo sempre di più in futuro.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://www.uni.com/normazione/" >Scopri di più</a>
+</image-text>
+<cards-slider data-config="{&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-solutions&quot;,&quot;title_tag&quot;:&quot;h2&quot;,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri le soluzioni per te&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/uni-per-te\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;theme&quot;:&quot;light&quot;,&quot;background&quot;:&quot;background-ultra-light-gray&quot;,&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;,&quot;swiper&quot;:{&quot;slidesPerView&quot;:1,&quot;breakpoints&quot;:{&quot;md&quot;:{&quot;slidesPerView&quot;:2}}}}">
+<div data-v-slot="subtitle">UNI per te</div><!-- data-v-slot -->
+<h2 data-v-slot="title">Abbiamo la soluzione che stavi cercando</h2><!-- data-v-slot -->
+    <a href="https://www.uni.com/uni-per-te/" >Scopri le soluzioni per te</a>
+    <div data-v-slot="cards">
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-pmi&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/PMI_Hero-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">PMI e start-up</h3><!-- data-v-slot -->
+                <p data-v-slot="text">Per le piccole medie imprese le norme sono un grande vantaggio. 
+Per questo è importante conoscerle, offrire il proprio parere e adottarle.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/pmi-e-startup/" class="link" aria-label="Leggi di più su PMI e start-up">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-industry&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/grandi-aziende_hero-1-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Grandi aziende</h3><!-- data-v-slot -->
+                <p data-v-slot="text">Per i grandi gruppi adottare le norme e contribuire a elaborarle migliora la qualità della produzione, riduce i costi ed aumenta l’efficienza.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/grandi-aziende/" class="link" aria-label="Leggi di più su Grandi aziende">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-professional&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/professionisti_hero-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Libera professione e partite IVA</h3><!-- data-v-slot -->
+                <p data-v-slot="text">Le norme sono straordinari strumenti di supporto, permettono di aggiornare le conoscenze e qualificare la professione.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/libera-professione-e-partite-iva/" class="link" aria-label="Leggi di più su Libera professione e partite IVA">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-institution&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/istituzioni_hero-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Istituzioni</h3><!-- data-v-slot -->
+                <p data-v-slot="text">La normazione è un prezioso alleato delle Istituzioni.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/istituzioni/" class="link" aria-label="Leggi di più su Istituzioni">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-education&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/mondo_accademico_hero-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Mondo accademico</h3><!-- data-v-slot -->
+                <p data-v-slot="text">Gli standard sono un eccezionale propulsore  della ricerca e della formazione.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/mondo-accademico/" class="link" aria-label="Leggi di più su Mondo accademico">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+        <swiper-slide>
+            <card-image-full data-config="{&quot;variant&quot;:&quot;default&quot;,&quot;v_align&quot;:&quot;end&quot;,&quot;icon&quot;:&quot;icon-users&quot;,&quot;cta&quot;:false,&quot;secondary_cta&quot;:false,&quot;details&quot;:false,&quot;close_details_label&quot;:&quot;Chiudi&quot;}">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20738%20480'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/2023/02/Consumatori-hero-738x480.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="title">Consumatori</h3><!-- data-v-slot -->
+                <p data-v-slot="text">I consumatori finali, le persone, i cittadini.
+Siamo noi, essenzialmente, a beneficiare delle norme.</p><!-- data-v-slot -->
+                <div data-v-slot="link">
+                    <a href="https://www.uni.com/uni-per-te/consumatori/" class="link" aria-label="Leggi di più su Consumatori">
+                        <span class="visually-hidden">Leggi tutto</span>
+                    </a>
+                </div><!-- data-v-slot -->
+            </card-image-full>
+        </swiper-slide>
+    </div><!-- data-v-slot -->
+</cards-slider>
+<div class="anchor-parent"><div id="partecipare" class="anchor"></div><image-text data-config="{&quot;image_left&quot;:false,&quot;full_image&quot;:true,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-taking-part&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;background&quot;:&quot;background-white&quot;,&quot;mobile_image_full&quot;:false,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Associati&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/partecipare\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201600%20773'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/2022/10/partecipare_1.jpeg" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">Partecipare</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>Gli standard del futuro?<br />
+Scrivili insieme a noi</h2>
+<p class="font-weight-semibold font-size-subtitle-2">Chi è socio UNI ha una visione privilegiata sul mondo della normazione. È sempre aggiornato in anteprima sulle novità, ma soprattutto può contribuire in prima persona alla nascita delle norme facendo sentire la propria voce.</p>
+<p>Associarsi a UNI offre moltissimi vantaggi. Il più importante è quello di potersi sedere al tavolo di chi elabora gli standard. E partecipare in prima persona alla definizione delle regole del proprio settore, senza mai subire le scelte altrui.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://www.uni.com/partecipare/" >Associati</a>
+</image-text>
+</div><image-text data-config="{&quot;image_left&quot;:false,&quot;full_image&quot;:false,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-training&quot;,&quot;theme&quot;:&quot;light&quot;,&quot;background&quot;:&quot;background-gradient-light-blue&quot;,&quot;mobile_image_full&quot;:false,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri la nostra offerta&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/formazione\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20906%20928'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/2022/11/formazione-e1667470564673.jpg" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">Formazione</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>UNITRAIN &#8211; Conoscere e applicare gli standard</h2>
+<p class="font-weight-semibold font-size-subtitle-2">Apprendere, comprendere, aprire la mente. È questo l’unico modo per progredire e migliorarsi. Una formazione “fatta bene” arricchisce il nostro bagaglio di conoscenze: un viaggio che allarga i nostri orizzonti, e può portarci lontano.</p>
+<p>UNITRAIN è Il Centro di formazione UNI per conoscere e applicare gli standard. Si rivolge a chi vuole essere sempre aggiornato su norme, prassi, tecniche e leggi alla base della propria attività, qualsiasi essa sia.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://www.uni.com/formazione/" >Scopri la nostra offerta</a>
+</image-text>
+<image-text data-config="{&quot;image_left&quot;:true,&quot;full_image&quot;:false,&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-store&quot;,&quot;theme&quot;:&quot;dark&quot;,&quot;background&quot;:&quot;background-gradient-blue-shade&quot;,&quot;mobile_image_full&quot;:true,&quot;links&quot;:false,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri i prodotti&quot;,&quot;url&quot;:&quot;https:\/\/store.uni.com\/&quot;,&quot;target&quot;:&quot;&quot;},&quot;gutter_top&quot;:&quot;&quot;,&quot;gutter_bottom&quot;:&quot;&quot;}">
+    <figure data-v-slot="image">
+        <picture>
+            <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20900%20691'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/2023/01/unistore-screen.png" alt="" />
+        </picture>
+    </figure><!-- data-v-slot -->
+<div data-v-slot="subtitle">UNI Store</div><!-- data-v-slot -->
+    <div data-v-slot="text">
+<h2>Norme, prassi, corsi, abbonamenti.<br />
+Lo shopping della normazione è online.</h2>
+<p>Vuoi consultare il catalogo degli standard esistenti? Vuoi acquistare una norma o una prassi per il tuo settore? Vuoi abbonarti a un servizio? Ti aspettiamo su UNIstore, il nostro nuovo shop, aperto per te 24 ore al giorno, 365 giorni l’anno.</p>
+    </div><!-- data-v-slot -->
+    <a href="https://store.uni.com/" >Scopri i prodotti</a>
+</image-text>
+<div class="anchor-parent"><div id="testimonianze" class="anchor"></div><testimonials-slider data-config="{&quot;subtitle_tag&quot;:&quot;div&quot;,&quot;subtitle_icon&quot;:&quot;icon-stories&quot;,&quot;cta&quot;:{&quot;icon&quot;:&quot;icon-arrow-right&quot;,&quot;icon_right&quot;:true,&quot;title&quot;:&quot;Scopri le storie&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/news\/?c=storie&quot;,&quot;target&quot;:&quot;&quot;}}">
+<div data-v-slot="subtitle">Testimonianze</div><!-- data-v-slot -->
+    <div data-v-slot="text"><h2>Storie di persone<br />
+e di standard</h2>
+<p class="font-size-subtitle-2 font-weight-semibold">La normazione può migliorare la nostra vita, stimolare nuove idee e creare innovazione.<br />
+Diamo la parola di chi lo ha sperimentato.</p>
+<p>Scopri la testimonianza diretta di donne e di uomini e di come la normazione ha cambiato loro la vita.</p>
+</div><!-- data-v-slot -->
+    <a href="https://www.uni.com/news/?c=storie" >Scopri le storie</a>
+    <div data-v-slot="cards">
+        <swiper-slide class="h-auto d-flex flex-column">
+            <card-testimonial class="flex-fill w-100">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/Paola-Blasi-02-400x400.jpg" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="name">
+                    <a href="https://www.uni.com/il-lungo-e-complesso-cammino-normativo-della-pietra-naturale/">Paola Blasi</a>
+                </h3><!-- data-v-slot -->
+                <p data-v-slot="role">Presidente CEN/TC 246 Natural stones </p><!-- data-v-slot -->
+                <div data-v-slot="text">Mi occupo di Normazione Tecnica per le Pietre Naturali dal 1994. Ricordo bene la mia prima riunione del Comitato Europeo di Normazione CEN TC 246 – Pietre Naturali a Würzburg in Germania in qualità di rappresentante dell’Ente Italiano di Normazione UNI...</div><!-- data-v-slot -->
+            </card-testimonial>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+            <card-testimonial class="flex-fill w-100">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/image_2023_02_10T15_59_07_200Z-e1676044869379-400x400.png" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="name">
+                    <a href="https://www.uni.com/marianna-villani-ancora-di-salvezza/">Marianna Villani</a>
+                </h3><!-- data-v-slot -->
+                <p data-v-slot="role">Analista di Laboratorio di Tortora Vittorio S.r.l.</p><!-- data-v-slot -->
+                <div data-v-slot="text">Partecipare al Panel dedicato agli Young Professionals in occasione della scorsa 57a Assemblea Generale CEN/CENELEC, grazie a UNI, mi ha dato un’ulteriore possibilità di crescita, di ambizione e di ammirazione verso tutti coloro che erano lì ad ascoltarmi e pronti a credere nelle idee dei giovani che si avvicinano al mondo della standardizzazione...</div><!-- data-v-slot -->
+            </card-testimonial>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+            <card-testimonial class="flex-fill w-100">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/ALESSANDRA-CHIARCOS-e1675951946805-400x400.png" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="name">
+                    <a href="https://www.uni.com/storie-di-persone-alessandra-chiarcos-processi-capaci-di-costruire-cambiamento/">Alessandra Chiarcos</a>
+                </h3><!-- data-v-slot -->
+                <p data-v-slot="role">Presidente dell’Associazione Istruttori Educatori Cinofili Italiani AIECI</p><!-- data-v-slot -->
+                <div data-v-slot="text">In questo percorso per l’elaborazione di nuove norme tecniche per i professionisti cinofili, come coordinatrice ho fatto sintesi delle mie diverse esperienze professionali, soprattutto per quanto riguarda la necessità di analisi, confronto e ricerca di soluzioni comuni.</div><!-- data-v-slot -->
+            </card-testimonial>
+        </swiper-slide>
+        <swiper-slide class="h-auto d-flex flex-column">
+            <card-testimonial class="flex-fill w-100 last">
+                <figure data-v-slot="image">
+                    <img class="lazy" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20400%20400'%3E%3C/svg%3E" data-src="https://www.uni.com/wp-content/uploads/thumbs/ORNELLA-CILONA-e1675951285704-400x400.png" alt="" />
+                </figure><!-- data-v-slot -->
+                <h3 data-v-slot="name">
+                    <a href="https://www.uni.com/storie-di-persone-ornella-cilona-le-norme-e-la-mia-storia/">Ornella Cilona</a>
+                </h3><!-- data-v-slot -->
+                <p data-v-slot="role">Responsabile CGIL per le Politiche per la Responsabilità Sociale d’Impresa e l’etica economica</p><!-- data-v-slot -->
+                <div data-v-slot="text">Il mio incontro con le norme è stato inaspettato. Le avevo sempre considerate una materia un po’ astrusa – per ingegneri o informatici – non certo per sindacalisti. Quando, però, si sono rivolte alla società e all’ambiente la mia prospettiva è cambiata. Allora anche le norme possono contribuire a migliorare la qualità della vita e del lavoro, mi sono detta.</div><!-- data-v-slot -->
+            </card-testimonial>
+        </swiper-slide>
+    </div><!-- data-v-slot -->
+</testimonials-slider>
+</div></div>
+        </main>
+        <global-footer data-config="{&quot;menu_1&quot;:{&quot;title&quot;:&quot;Informazioni&quot;,&quot;items&quot;:[{&quot;ID&quot;:1359,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Fornitori&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/fornitori\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:2543,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Soci di rappresentanza&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/soci-di-rappresentanza\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:2542,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Tutela e responsabilit\u00e0&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/tutela-e-responsabilita\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:2528,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Privacy Policy&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/privacy-policy\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;,&quot;menu-item-privacy-policy&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:1292,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Lavora con noi&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/lavora-con-noi\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:19477,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Accessibilit\u00e0 del sito www.uni.com&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/accessibilita-del-sito-www-uni-com\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:19170,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;custom&quot;,&quot;title&quot;:&quot;Le tue preferenze relative alla privacy&quot;,&quot;url&quot;:&quot;#&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;iubenda-cs-preferences-link&quot;,&quot;menu-item-type-custom&quot;,&quot;menu-item-object-custom&quot;],&quot;depth&quot;:1}]},&quot;menu_2&quot;:{&quot;title&quot;:&quot;Assistenza&quot;,&quot;items&quot;:[{&quot;ID&quot;:2544,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Politica attivit\u00e0 di formazione&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/politica-attivita-di-formazione\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:2545,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Informazioni per l\u2019acquisto&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/informazioni-per-lacquisto\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:2992,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Suggerimenti e reclami&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/suggerimenti-e-reclami\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1},{&quot;ID&quot;:3026,&quot;menu_item_parent&quot;:0,&quot;type&quot;:&quot;post_type&quot;,&quot;title&quot;:&quot;Copyright&quot;,&quot;url&quot;:&quot;https:\/\/www.uni.com\/copyright\/&quot;,&quot;target&quot;:&quot;&quot;,&quot;attr_title&quot;:&quot;&quot;,&quot;is_current&quot;:false,&quot;classes&quot;:[&quot;menu-item-type-post_type&quot;,&quot;menu-item-object-page&quot;],&quot;depth&quot;:1}],&quot;iso_alt&quot;:&quot;ISO&quot;,&quot;cen_alt&quot;:&quot;CEN&quot;},&quot;payments&quot;:{&quot;title&quot;:&quot;Pagamenti Sicuri&quot;,&quot;payments_image_alt&quot;:&quot;Visa, MasterCard, Maestro, America Express&quot;,&quot;fileopen_alt&quot;:&quot;FileOpen System&quot;,&quot;text&quot;:&quot;&lt;p&gt;Le norme PDF scaricabili da UNI Store sono protette da Digital Rights Management (DRM).\u00a0Leggere attentamente le\u00a0&lt;a href=\&quot;https:\/\/www.uni.com\/fileopen\/\&quot;&gt;istruzioni&lt;\/a&gt;\u00a0prima di effettuare il download.&lt;\/p&gt;\n&quot;},&quot;social&quot;:{&quot;title&quot;:&quot;Social network&quot;,&quot;list&quot;:[{&quot;icon&quot;:&quot;linkedin&quot;,&quot;label&quot;:&quot;normeUNI&quot;,&quot;link&quot;:&quot;https:\/\/it.linkedin.com\/company\/normeuni&quot;,&quot;aria_label&quot;:&quot;normeUNI on LinkedIn&quot;},{&quot;icon&quot;:&quot;twitter&quot;,&quot;label&quot;:&quot;@normeUNI&quot;,&quot;link&quot;:&quot;https:\/\/x.com\/normeUNI&quot;,&quot;aria_label&quot;:&quot;@normeUNI on Twitter&quot;},{&quot;icon&quot;:&quot;spotify&quot;,&quot;label&quot;:&quot;Podcast &quot;,&quot;link&quot;:&quot;https:\/\/open.spotify.com\/show\/2X3lLbGIqemIqrBDnzvYin?si=3ea63f61f4f045b1&quot;,&quot;aria_label&quot;:&quot;Un mondo fatto bene on Spotify&quot;},{&quot;icon&quot;:&quot;youtube&quot;,&quot;label&quot;:&quot;normeUNI&quot;,&quot;link&quot;:&quot;https:\/\/www.youtube.com\/channel\/UCcejM-wqoKWptivQnjgmyuQ&quot;,&quot;aria_label&quot;:&quot;normeUNI on YouTube&quot;}]},&quot;copyright&quot;:{&quot;text&quot;:&quot;\u00a9 Tutti i diritti riservati - P.IVA 06786300159&quot;}}">
+            <div>
+                <p>Informazioni</p>
+                <ul>
+                    <li><a href="https://www.uni.com/fornitori/" >Fornitori</a></li>
+                    <li><a href="https://www.uni.com/soci-di-rappresentanza/" >Soci di rappresentanza</a></li>
+                    <li><a href="https://www.uni.com/tutela-e-responsabilita/" >Tutela e responsabilità</a></li>
+                    <li><a href="https://www.uni.com/privacy-policy/" >Privacy Policy</a></li>
+                    <li><a href="https://www.uni.com/lavora-con-noi/" >Lavora con noi</a></li>
+                    <li><a href="https://www.uni.com/accessibilita-del-sito-www-uni-com/" >Accessibilità del sito www.uni.com</a></li>
+                    <li><a href="#" >Le tue preferenze relative alla privacy</a></li>
+                </ul>
+            </div>
+            <div>
+                <p>Assistenza</p>
+                <ul>
+                    <li><a href="https://www.uni.com/politica-attivita-di-formazione/" >Politica attività di formazione</a></li>
+                    <li><a href="https://www.uni.com/informazioni-per-lacquisto/" >Informazioni per l’acquisto</a></li>
+                    <li><a href="https://www.uni.com/suggerimenti-e-reclami/" >Suggerimenti e reclami</a></li>
+                    <li><a href="https://www.uni.com/copyright/" >Copyright</a></li>
+                </ul>
+            </div>
+            <p>Pagamenti Sicuri</p>
+            <p>Visa, MasterCard, Maestro, America Express</p>
+            <p>FileOpen System</p>
+            <div><p>Le norme PDF scaricabili da UNI Store sono protette da Digital Rights Management (DRM). Leggere attentamente le <a href="https://www.uni.com/fileopen/">istruzioni</a> prima di effettuare il download.</p>
+</div>
+            <div>
+                <p>Social network</p>
+                <ul>
+                    <li>
+                        <a href="http://normeUNI" target="_blank" rel="nofollow">normeUNI</a>
+                    </li>
+                    <li>
+                        <a href="http://@normeUNI" target="_blank" rel="nofollow">@normeUNI</a>
+                    </li>
+                    <li>
+                        <a href="http://Podcast%20" target="_blank" rel="nofollow">Podcast </a>
+                    </li>
+                    <li>
+                        <a href="http://normeUNI" target="_blank" rel="nofollow">normeUNI</a>
+                    </li>
+                </ul>
+            </div>
+            <p>© Tutti i diritti riservati - P.IVA 06786300159</p>
+        </global-footer>
+    </div>
+    <global-icons></global-icons>
+    <modals-container></modals-container>
+</div><!-- #app -->
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"href_matches":["/wp-*.php","/wp-admin/*","/wp-content/uploads/*","/wp-content/*","/wp-content/plugins/*","/wp-content/themes/uni/*","/*\\?(.+)"]}},{"not":{"selector_matches":"a[rel~=\"nofollow\"]"}},{"not":{"selector_matches":".no-prefetch, .no-prefetch a"}}]},"eagerness":"conservative"}]}
+</script>
+<script id="wpb_missed_scheduled_posts_publisher-js-after">
+	(function( request ){
+		if ( ! window.fetch ) {
+			return;
+		}
+		request.args.body = new URLSearchParams( request.args.body );
+		fetch( request.url, request.args );
+	}( {"url":"https:\/\/www.uni.com\/wp-admin\/admin-ajax.php?action=wpb_missed_scheduled_posts_publisher","args":{"method":"POST","body":"wpb_missed_scheduled_posts_publisher_nonce=34a2907b05"}} ));
+	
+//# sourceURL=wpb_missed_scheduled_posts_publisher-js-after
+</script>
+<script id="datatables-js" src="https://www.uni.com/wp-content/themes/uni/library/datatables.min.js?ver=7.0"></script>
+<script id="chunk-vendors-js-extra">
+var _gTheme_ = {"google_maps_api_key":"","ajax_url":"https://www.uni.com/wp-admin/admin-ajax.php","rest_url":"https://www.uni.com/wp-json/uni/v1","language":"it","new_window_text":"Apre una nuova finestra"};
+//# sourceURL=chunk-vendors-js-extra
+</script>
+<script id="chunk-vendors-js" src="https://www.uni.com/wp-content/themes/uni/assets/js/chunk-vendors.6686a75d.js?ver=7.0"></script>
+<script id="app-js" src="https://www.uni.com/wp-content/themes/uni/assets/js/app.f48e596d.js?ver=7.0"></script>
+<script>function w3tc_ll_observe(ll){if(!ll||!ll.update)return;var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){ll.update();},200);}).observe(document.documentElement,{childList:true,subtree:true});}window.addEventListener("LazyLoad::Initialized",function(e){setTimeout(function(){window.w3tc_lazyload=e.detail.instance;w3tc_ll_observe(window.w3tc_lazyload);},1);});window.w3tc_lazyload=1,window.lazyLoadOptions={elements_selector:".lazy",callback_loaded:function(t){var e;try{e=new CustomEvent("w3tc_lazyload_loaded",{detail:{e:t}})}catch(a){(e=document.createEvent("CustomEvent")).initCustomEvent("w3tc_lazyload_loaded",!1,!1,{e:t})}window.dispatchEvent(e)}}</script><script async src="https://www.uni.com/wp-content/plugins/w3-total-cache/pub/js/lazyload.min.js"></script></body>
+</html>
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.boldgrid.com/w3-total-cache/?utm_source=w3tc&utm_medium=footer_comment&utm_campaign=free_plugin
+
+Lazy Loading
+Database Caching 72/411 queries in 0.157 seconds using Disk (Request-wide modification query)
+
+Served from: _ @ 2026-06-30 23:44:12 by W3 Total Cache
+-->

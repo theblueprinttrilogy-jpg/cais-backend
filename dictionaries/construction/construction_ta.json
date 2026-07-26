@@ -1,0 +1,73 @@
+{
+  "meta": {
+    "language": "ta",
+    "name": "\u0ba4\u0bae\u0bbf\u0bb4\u0bcd",
+    "source": "ASTM E631 + Traducci\u00f3n sem\u00e1ntica",
+    "version": "1.0.0",
+    "total_terms": 45,
+    "created_at": "2026-06-30T17:48:56.082495"
+  },
+  "categories": {
+    "structural": {
+      "beam": "[TRADUCCI\u00d3N: beam]",
+      "column": "[TRADUCCI\u00d3N: column]",
+      "foundation": "[TRADUCCI\u00d3N: foundation]",
+      "slab": "[TRADUCCI\u00d3N: slab]",
+      "wall": "[TRADUCCI\u00d3N: wall]",
+      "frame": "[TRADUCCI\u00d3N: frame]",
+      "truss": "[TRADUCCI\u00d3N: truss]",
+      "girder": "[TRADUCCI\u00d3N: girder]"
+    },
+    "materials": {
+      "concrete": "[TRADUCCI\u00d3N: concrete]",
+      "steel": "[TRADUCCI\u00d3N: steel]",
+      "wood": "[TRADUCCI\u00d3N: wood]",
+      "brick": "[TRADUCCI\u00d3N: brick]",
+      "glass": "[TRADUCCI\u00d3N: glass]",
+      "stone": "[TRADUCCI\u00d3N: stone]",
+      "asphalt": "[TRADUCCI\u00d3N: asphalt]"
+    },
+    "construction": {
+      "excavation": "[TRADUCCI\u00d3N: excavation]",
+      "scaffolding": "[TRADUCCI\u00d3N: scaffolding]",
+      "crane": "[TRADUCCI\u00d3N: crane]",
+      "formwork": "[TRADUCCI\u00d3N: formwork]",
+      "waterproofing": "[TRADUCCI\u00d3N: waterproofing]"
+    },
+    "systems": {
+      "hvac": "[TRADUCCI\u00d3N: hvac]",
+      "plumbing": "[TRADUCCI\u00d3N: plumbing]",
+      "electrical": "[TRADUCCI\u00d3N: electrical]",
+      "fire_suppression": "[TRADUCCI\u00d3N: fire_suppression]",
+      "security": "[TRADUCCI\u00d3N: security]"
+    },
+    "safety": {
+      "ppe": "[TRADUCCI\u00d3N: ppe]",
+      "fall_protection": "[TRADUCCI\u00d3N: fall_protection]",
+      "guardrail": "[TRADUCCI\u00d3N: guardrail]",
+      "safety_net": "[TRADUCCI\u00d3N: safety_net]",
+      "hard_hat": "[TRADUCCI\u00d3N: hard_hat]"
+    },
+    "architecture": {
+      "facade": "[TRADUCCI\u00d3N: facade]",
+      "elevation": "[TRADUCCI\u00d3N: elevation]",
+      "section": "[TRADUCCI\u00d3N: section]",
+      "plan": "[TRADUCCI\u00d3N: plan]",
+      "detail": "[TRADUCCI\u00d3N: detail]"
+    },
+    "engineering": {
+      "load": "[TRADUCCI\u00d3N: load]",
+      "stress": "[TRADUCCI\u00d3N: stress]",
+      "compression": "[TRADUCCI\u00d3N: compression]",
+      "tension": "[TRADUCCI\u00d3N: tension]",
+      "shear": "[TRADUCCI\u00d3N: shear]"
+    },
+    "legal": {
+      "permit": "[TRADUCCI\u00d3N: permit]",
+      "inspection": "[TRADUCCI\u00d3N: inspection]",
+      "code": "[TRADUCCI\u00d3N: code]",
+      "zoning": "[TRADUCCI\u00d3N: zoning]",
+      "easement": "[TRADUCCI\u00d3N: easement]"
+    }
+  }
+}

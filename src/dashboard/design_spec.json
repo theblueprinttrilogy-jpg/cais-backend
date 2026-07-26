@@ -1,0 +1,78 @@
+{
+  "name": "CAIS Sovereign Dashboard",
+  "version": "1.0",
+  "generated_at": "2026-06-30T14:06:54.376472",
+  "inspirations": [
+    {
+      "name": "Bloomberg Terminal",
+      "url": "https://www.bloomberg.com/professional/",
+      "traffic": "500M+ monthly",
+      "style": "Dark, data-dense, professional financial"
+    },
+    {
+      "name": "Tableau Public",
+      "url": "https://public.tableau.com/",
+      "traffic": "100M+ monthly",
+      "style": "Clean, whitespace, interactive visualizations"
+    },
+    {
+      "name": "Microsoft Power BI",
+      "url": "https://powerbi.microsoft.com/",
+      "traffic": "80M+ monthly",
+      "style": "Modern, card-based KPI, enterprise"
+    }
+  ],
+  "color_scheme": {
+    "bg_primary": "#0A1628",
+    "bg_secondary": "#1A2A4A",
+    "bg_card": "rgba(26, 42, 74, 0.8)",
+    "bg_hover": "rgba(74, 138, 212, 0.1)",
+    "text_primary": "#F0F4F8",
+    "text_secondary": "#8A9AB0",
+    "text_dark": "#1A2A4A",
+    "text_inverse": "#FFFFFF",
+    "accent_gold": "#D4A84A",
+    "accent_gold_light": "#F5D06A",
+    "accent_blue": "#4A8AD4",
+    "accent_teal": "#00D4AA",
+    "accent_orange": "#F5A623",
+    "accent_red": "#FF6B6B",
+    "accent_purple": "#8B5CF6",
+    "gradient_header": "linear-gradient(135deg, #0A1628 0%, #1A2A4A 100%)",
+    "gradient_card": "linear-gradient(180deg, rgba(26, 42, 74, 0.9) 0%, rgba(10, 22, 40, 0.6) 100%)",
+    "gradient_gold": "linear-gradient(135deg, #D4A84A 0%, #F5D06A 100%)",
+    "gradient_blue": "linear-gradient(135deg, #1A2A4A 0%, #4A8AD4 100%)"
+  },
+  "components": [
+    {
+      "name": "KPI Cards",
+      "type": "metrics",
+      "count": 4
+    },
+    {
+      "name": "Trend Chart",
+      "type": "chart",
+      "data_points": 7
+    },
+    {
+      "name": "WORM Status",
+      "type": "visualization",
+      "blocks": 5
+    },
+    {
+      "name": "Document Queue",
+      "type": "table",
+      "items": 12
+    },
+    {
+      "name": "Activity Feed",
+      "type": "feed",
+      "items": 4
+    },
+    {
+      "name": "Agent Cards",
+      "type": "cards",
+      "agents": 4
+    }
+  ]
+}

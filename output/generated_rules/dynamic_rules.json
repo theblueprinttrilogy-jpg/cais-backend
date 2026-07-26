@@ -1,0 +1,50 @@
+{
+  "trade_keywords": {
+    "definitions": [
+      "agent_definitions"
+    ],
+    "workflow": [
+      "agent_definitions"
+    ],
+    "compiler": [
+      "agent_compiler"
+    ],
+    "generates": [
+      "agent_compiler"
+    ],
+    "complete": [
+      "agent_compiler"
+    ],
+    "agent": [
+      "agent_compiler"
+    ],
+    "code": [
+      "agent_compiler",
+      "agent_classes"
+    ],
+    "from": [
+      "agent_compiler"
+    ],
+    "parsed": [
+      "agent_compiler"
+    ],
+    "instructions.": [
+      "agent_compiler"
+    ],
+    "classes": [
+      "agent_classes"
+    ],
+    "generated": [
+      "agent_classes"
+    ],
+    "syntactically": [
+      "agent_classes"
+    ],
+    "valid": [
+      "agent_classes"
+    ]
+  },
+  "descriptor_rules": {},
+  "custom_stopwords": [],
+  "manual_overrides": {}
+}

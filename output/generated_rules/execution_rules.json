@@ -1,0 +1,26 @@
+[
+  {
+    "id": "AGENT_DEFINITIONS_EXEC",
+    "type": "execution",
+    "description": "Execute agent: definitions",
+    "condition": "agent == 'definitions'",
+    "action": "execute_agent_definitions",
+    "source": "CAISOFFICIALWORKPLAN.pdf"
+  },
+  {
+    "id": "AGENT_COMPILER_EXEC",
+    "type": "execution",
+    "description": "Execute agent: Compiler",
+    "condition": "agent == 'Compiler'",
+    "action": "execute_agent_compiler",
+    "source": "CAISOFFICIALWORKPLAN.pdf"
+  },
+  {
+    "id": "AGENT_CLASSES_EXEC",
+    "type": "execution",
+    "description": "Execute agent: classes",
+    "condition": "agent == 'classes'",
+    "action": "execute_agent_classes",
+    "source": "CAISOFFICIALWORKPLAN.pdf"
+  }
+]

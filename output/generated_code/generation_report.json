@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-06-30T15:35:38.087014",
+  "generated_files": [
+    "/home/maxlo/PROMETHEUS/output/generated_code/orchestrator.py",
+    "/home/maxlo/PROMETHEUS/output/generated_code/api.py"
+  ],
+  "errors": [
+    "Failed to generate agent definitions: 'CodeGenerator' object has no attribute 'name'",
+    "Failed to generate agent Compiler: 'CodeGenerator' object has no attribute 'name'",
+    "Failed to generate agent classes: 'CodeGenerator' object has no attribute 'name'"
+  ]
+}

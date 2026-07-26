@@ -1,0 +1,37 @@
+[
+  {
+    "id": "RULE_001",
+    "keyword": "schedule",
+    "description": "Regla para 'schedule'",
+    "priority": "high",
+    "cycle": 170
+  },
+  {
+    "id": "RULE_002",
+    "keyword": "concrete",
+    "description": "Regla para 'concrete'",
+    "priority": "high",
+    "cycle": 170
+  },
+  {
+    "id": "RULE_003",
+    "keyword": "architect",
+    "description": "Regla para 'architect'",
+    "priority": "high",
+    "cycle": 170
+  },
+  {
+    "id": "RULE_004",
+    "keyword": "documentation",
+    "description": "Regla para 'documentation'",
+    "priority": "high",
+    "cycle": 170
+  },
+  {
+    "id": "RULE_005",
+    "keyword": "project",
+    "description": "Regla para 'project'",
+    "priority": "high",
+    "cycle": 170
+  }
+]

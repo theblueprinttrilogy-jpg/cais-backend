@@ -1,0 +1,54 @@
+{
+  "timestamp": "2026-06-30T14:30:00",
+  "status": "COMPLETED",
+  "constitution": {
+    "files": [
+      "CAISOFFICIALWORKPLAN.pdf",
+      "CAIS_WM.pdf",
+      "CONSTRUCTIONAIPLANDETRABAJO.pdf",
+      "CONSTRUCTIONAISYSTEM.pdf"
+    ],
+    "total_size_mb": 6.2,
+    "rules_extracted": 0,
+    "agents_found": 0
+  },
+  "laws": {
+    "files": [
+      "CBC_Title_24_Energy.pdf",
+      "California_CBC_Title_24_Energy_2022.pdf",
+      "FBC_HVHZ_2023.pdf",
+      "IBC_2021.pdf",
+      "Miami-Dade_Amendments_2023.pdf"
+    ],
+    "total_size_mb": 25.8,
+    "sections_extracted": 0,
+    "jurisdictions": ["IBC", "Florida", "California"]
+  },
+  "codes": {
+    "html_files": [
+      "California_Building_Code.html",
+      "Florida_Building_Code.html",
+      "IBC_2021.html",
+      "NFPA_Codes.html",
+      "OSHA_Regulations.html"
+    ],
+    "pdf_files": [
+      "California_Building_Code_1782843240.pdf",
+      "California_Building_Code_1782843241.pdf"
+    ],
+    "total_pdfs": 2
+  },
+  "modules": {
+    "parsers": [
+      "constitution_parser.py",
+      "laws_ingestor.py",
+      "semantic_indexer.py",
+      "code_sources.py",
+      "code_downloader.py",
+      "smart_code_aggregator.py"
+    ],
+    "validators": [
+      "constitution_validator.py"
+    ]
+  }
+}

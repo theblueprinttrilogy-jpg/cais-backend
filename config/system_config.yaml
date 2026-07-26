@@ -1,0 +1,50 @@
+# CAIS Autopoietic System - System Configuration
+
+# System Metadata
+system:
+  name: "CAIS Autopoietic System"
+  version: "1.0.0"
+  environment: "development"
+
+# Google Drive Configuration
+gdrive:
+  credentials_path: "~/PROMETHEUS/config/security/gdrive-credentials.json"
+  scopes:
+    - "https://www.googleapis.com/auth/drive.readonly"
+  read_only: true
+
+# Directory Paths
+paths:
+  downloads: "~/PROMETHEUS/downloads"
+  compressed: "~/PROMETHEUS/compressed"
+  processed: "~/PROMETHEUS/processed"
+  output: "~/PROMETHEUS/output"
+  config: "~/PROMETHEUS/config"
+  logs: "~/PROMETHEUS/logs"
+  data: "~/PROMETHEUS/data"
+
+# Processing Settings
+processing:
+  max_concurrent_downloads: 5
+  max_retries: 3
+  retry_delay_seconds: 2
+  max_file_size_mb: 100
+
+# Compression Settings
+compression:
+  max_file_size_mb: 10
+  image_quality: 75
+  zip_compression_level: 9
+
+# Logging
+logging:
+  max_size_mb: 100
+  retention_days: 30
+  log_level: "INFO"
+
+# Security
+security:
+  kill_switch_enabled: true
+  max_auth_attempts: 3
+  lockout_duration_seconds: 900
+  session_duration_seconds: 3600

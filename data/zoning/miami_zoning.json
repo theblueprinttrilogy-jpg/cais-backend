@@ -1,0 +1,124 @@
+{
+  "miami_dade": {
+    "zoning_districts": {
+      "T6-8": {
+        "name": "Urban Core Transit Oriented",
+        "zone_type": "Mixed Use",
+        "allowed_uses": [
+          "residential",
+          "retail",
+          "office",
+          "restaurant",
+          "church"
+        ],
+        "max_height": 75.0,
+        "max_density": 3.0,
+        "parking_requirements": 4,
+        "setbacks": {
+          "front": 15.0,
+          "side": 8.0,
+          "rear": 10.0
+        },
+        "flood_zone": true,
+        "environmental_restrictions": [
+          "coastal_zone"
+        ]
+      },
+      "T5": {
+        "name": "Urban Center",
+        "zone_type": "Mixed Use",
+        "allowed_uses": [
+          "retail",
+          "office",
+          "residential",
+          "restaurant"
+        ],
+        "max_height": 45.0,
+        "max_density": 2.5,
+        "parking_requirements": 3,
+        "setbacks": {
+          "front": 10.0,
+          "side": 6.0,
+          "rear": 8.0
+        },
+        "flood_zone": false,
+        "environmental_restrictions": []
+      },
+      "I-1": {
+        "name": "Industrial Limited",
+        "zone_type": "Industrial",
+        "allowed_uses": [
+          "warehouse",
+          "manufacturing",
+          "commercial"
+        ],
+        "max_height": 50.0,
+        "max_density": 2.0,
+        "parking_requirements": 5,
+        "setbacks": {
+          "front": 20.0,
+          "side": 10.0,
+          "rear": 15.0
+        },
+        "flood_zone": false,
+        "environmental_restrictions": []
+      },
+      "C-1": {
+        "name": "Commercial",
+        "zone_type": "Commercial",
+        "allowed_uses": [
+          "retail",
+          "office",
+          "restaurant",
+          "church"
+        ],
+        "max_height": 35.0,
+        "max_density": 2.5,
+        "parking_requirements": 4,
+        "setbacks": {
+          "front": 12.0,
+          "side": 6.0,
+          "rear": 8.0
+        },
+        "flood_zone": false,
+        "environmental_restrictions": []
+      },
+      "RU-1": {
+        "name": "Single Family Residential",
+        "zone_type": "Residential",
+        "allowed_uses": [
+          "residential",
+          "church"
+        ],
+        "max_height": 30.0,
+        "max_density": 1.0,
+        "parking_requirements": 2,
+        "setbacks": {
+          "front": 20.0,
+          "side": 8.0,
+          "rear": 15.0
+        },
+        "flood_zone": false,
+        "environmental_restrictions": []
+      },
+      "RU-5": {
+        "name": "Multi-Family Residential",
+        "zone_type": "Residential",
+        "allowed_uses": [
+          "residential",
+          "church"
+        ],
+        "max_height": 45.0,
+        "max_density": 2.0,
+        "parking_requirements": 3,
+        "setbacks": {
+          "front": 15.0,
+          "side": 8.0,
+          "rear": 12.0
+        },
+        "flood_zone": false,
+        "environmental_restrictions": []
+      }
+    }
+  }
+}

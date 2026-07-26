@@ -1,0 +1,14 @@
+venv_prometheus/
+__pycache__/
+*.pyc
+.env
+.venv/
+dist/
+build/
+.DS_Store
+downloads/
+compressed/
+*.pdf
+*.zip
+*.jsonl
+config/security/

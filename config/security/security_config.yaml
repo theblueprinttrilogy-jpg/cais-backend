@@ -1,0 +1,56 @@
+# config/security/security_config.yaml
+# Configuración de Seguridad del Sistema
+
+sovereign_vault:
+  # Configuración del Área Segura
+  password_length: 17
+  max_attempts: 3
+  lockout_duration_seconds: 900  # 15 minutos
+  session_duration_seconds: 3600  # 1 hora
+  
+  # Almacenamiento
+  auth_file: "config/security/sovereign_auth.json"
+  log_file: "config/security/sovereign_access.log"
+  session_file: "config/security/sovereign_session.json"
+  
+  # Encriptación
+  encryption_algorithm: "Fernet"
+  key_rotation_days: 90
+  
+  # Notificaciones
+  alert_on_lockout: true
+  alert_on_successful_login: true
+  alert_on_password_change: true
+
+security_logs:
+  # Rotación de logs
+  max_size_mb: 50
+  retention_days: 365
+  encryption: true
+  
+  # Tipos de eventos a loggear
+  events:
+    - authentication_attempt
+    - authentication_success
+    - authentication_failure
+    - account_lockout
+    - password_change
+    - session_created
+    - session_revoked
+    - kill_switch_activation
+    - kill_switch_deactivation
+    - worm_access
+    - forensic_audit
+    - rule_approved
+    - rule_rejected
+
+kill_switch:
+  # Configuración del Kill Switch
+  auto_activate_on_corruption: true
+  propagation_channels:
+    - api_gateway
+    - workers
+    - addins
+    - cdn
+  timeout_seconds: 5
+  require_second_approver: true

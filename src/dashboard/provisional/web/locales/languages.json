@@ -1,0 +1,22 @@
+{
+  "en": {"name": "English", "flag": "🇬🇧", "native": "English", "speakers": "1.5B"},
+  "zh": {"name": "中文", "flag": "🇨🇳", "native": "中文", "speakers": "1.1B"},
+  "hi": {"name": "हिन्दी", "flag": "🇮🇳", "native": "हिन्दी", "speakers": "600M"},
+  "es": {"name": "Español", "flag": "🇪🇸", "native": "Español", "speakers": "550M"},
+  "ar": {"name": "العربية", "flag": "🇸🇦", "native": "العربية", "speakers": "420M"},
+  "fr": {"name": "Français", "flag": "🇫🇷", "native": "Français", "speakers": "320M"},
+  "pt": {"name": "Português", "flag": "🇵🇹", "native": "Português", "speakers": "260M"},
+  "ru": {"name": "Русский", "flag": "🇷🇺", "native": "Русский", "speakers": "258M"},
+  "ur": {"name": "اردو", "flag": "🇵🇰", "native": "اردو", "speakers": "230M"},
+  "id": {"name": "Bahasa Indonesia", "flag": "🇮🇩", "native": "Bahasa Indonesia", "speakers": "200M"},
+  "de": {"name": "Deutsch", "flag": "🇩🇪", "native": "Deutsch", "speakers": "200M"},
+  "ja": {"name": "日本語", "flag": "🇯🇵", "native": "日本語", "speakers": "125M"},
+  "sw": {"name": "Kiswahili", "flag": "🇹🇿", "native": "Kiswahili", "speakers": "120M"},
+  "ta": {"name": "தமிழ்", "flag": "🇮🇳", "native": "தமிழ்", "speakers": "85M"},
+  "te": {"name": "తెలుగు", "flag": "🇮🇳", "native": "తెలుగు", "speakers": "83M"},
+  "vi": {"name": "Tiếng Việt", "flag": "🇻🇳", "native": "Tiếng Việt", "speakers": "82M"},
+  "ko": {"name": "한국어", "flag": "🇰🇷", "native": "한국어", "speakers": "77M"},
+  "it": {"name": "Italiano", "flag": "🇮🇹", "native": "Italiano", "speakers": "67M"},
+  "th": {"name": "ภาษาไทย", "flag": "🇹🇭", "native": "ภาษาไทย", "speakers": "66M"},
+  "pl": {"name": "Polski", "flag": "🇵🇱", "native": "Polski", "speakers": "45M"}
+}

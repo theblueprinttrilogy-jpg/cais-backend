@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</meta></meta><script src="/cms_files/default/script/jslib/jquery.js"></script>
+ <script src="/cms_files/default/script/jslib/jquery.cookie.js"></script>
+ <script src="/cms_files/default/script/layui/layui.all.js"></script>
+ <script src="/cms_files/default/script/layui/layer/layer.js"></script>
+ <script src="/script/webglobal.js"></script>
+ <script src="/plugins/libs/require.js"></script>
+ <script src="/plugins/libs/load.js"></script>
+ <script src="/script/webgray.js"></script>
+ <link rel="stylesheet" href="/cms_files/default/css/iconfont.css" />
+<link rel="stylesheet" href="/cms_files/default/script/layui/css/layui.css" />
+<title>国家标准化管理委员会</title>
+<meta name="ColId" content="cf3f7858b6604748bb0e8e6f394da7ff">
+<meta name="SiteName" content="国家标准化管理委员会">
+<meta name="SiteDomain" content="www.sac.gov.cn">
+<meta name="SiteIDCode" content="bm31370001">
+<meta name="server" content="www.sac.gov.cn/index.html">
+<meta name="MakeTime" content="2026-06-30 16:19:51">
+
+<meta id="pagetype" content="0">
+</meta></meta></meta></meta></meta></meta></meta></head>
+<body><div id='barrierfree_container'>
+	
+    <script src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/swiper4.js"></script>
+    <script src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/bootstrap.min.js"></script>
+    <script src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/indexcs.js"></script>
+  <link rel="stylesheet" type="text/css" href="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/gjbzhglwyh_index.css">
+	<link rel="stylesheet" href="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/common.css">
+    <link rel="stylesheet" href="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/swiper.min.css">
+    <link rel="stylesheet" href="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/bootstrap.min.css">
+	
+    <link rel="stylesheet" href="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/css.css">
+	
+<script src="/cms_files/filemanager/1907776593/script/20219/cf063a5b87b64592b5c23797ab83d353.js" type="text/javascript" charset="utf-8"></script>  
+<div class="swiper-container banner13" style="width:1200px;margin:0 auto;margin-top:10px;margin-bottom:10px;height:110px;">  <ul class="swiper-wrapper">
+    <li class="swiper-slide">
+      <a href="https://www.samr.gov.cn/zt/ndzt/2026n/slhjxzqzjgxxjy/index.html" target="_blank">
+        <img src="/cms_files/filemanager/1907776593/picture/20264/a3e53032fc534ee19efb543b876642ca.png" width="1200" style="border-width: 0px;" height="110" />
+      </a>
+    </li>
+    <li class="swiper-slide">
+      <a href="https://www.samr.gov.cn/zt/ndzt/2025n/srxxxcgcddesjszqhjs/index.html" target="_blank">
+        <img src="/cms_files/filemanager/1907776593/picture/202511/74b14c14e85d46b4bb28c5cd5406a0b5.png" width="1200" style="border-width: 0px;" height="110" />
+      </a>
+    </li>
+    <li class="swiper-slide">
+      <a href="https://www.samr.gov.cn/zt/ndzt/2022n/srxxgcddesdjs/index.html" target="_blank">
+        <img src="/cms_files/filemanager/1907776593/picture/20233/9754e64227f94939a46db739cf65a34c.png" width="1200" style="border-width: 0px;" height="110" />
+      </a>
+    </li>
+  </ul>                   
+</div>
+<script type="text/javascript">
+  var swiper_top = new Swiper('.banner13', {
+    direction:'vertical',
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false,
+    }
+    ,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    }
+    ,
+    autoplay: {
+      disableOnInteraction: false,
+    }
+    ,
+    loop: true                      
+  }
+                             )
+</script>
+<div style="margin:0 auto;width:1200px;height:110px;padding:0px 0px 10px 0px;margin-bottom:10px;" class="tjzt01">
+  <a href="https://www.sac.gov.cn/zt/gjbzhfzgyzt/index.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20233/d711a7fe7e1e44a59ff329b3ee278349.png" width="1200" height="110">
+  </img></a>
+</div>
+
+    <div class="news_trends wrap">
+        <!-- 新闻动态标题 -->
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:15px;">
+            <!-- 新闻动态轮播图 -->
+            <div class="swiper-container indexImg">
+              <div class="swiper-wrapper" style="height:400px;">
+<div class="swiper-slide" title="习近平会见孟加拉国总理塔里克">
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073359.htm" target="_blank" title="习近平会见孟加拉国总理塔里克">
+    <img src="/cms_files/filemanager/1907776593/picture/20266/e1b89189f3ca424f9ff28a7deade3737.jpg" width="585" height="400" alt="" class="img-block">
+  </img></a>
+  <div>
+    <p>习近平会见孟加拉国总理塔里克</p>
+  </div>
+</div>
+<div class="swiper-slide" title="习近平会见柬埔寨人民党主席、参议院主席洪森">
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073363.htm" target="_blank" title="习近平会见柬埔寨人民党主席、参议院主席洪森">
+    <img src="/cms_files/filemanager/1907776593/picture/20266/b2dc98bc8c3346b5924caa263a492c60.jpg" width="585" height="400" alt="" class="img-block">
+  </img></a>
+  <div>
+    <p>习近平会见柬埔寨人民党主席、参议院主席洪森</p>
+  </div>
+</div>
+<div class="swiper-slide" title="习近平同缅甸总统敏昂莱会谈">
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7072296.htm" target="_blank" title="习近平同缅甸总统敏昂莱会谈">
+    <img src="/cms_files/filemanager/1907776593/picture/20266/9f658446a15d4fc4bd120112a2a9a7c3.jpg" width="585" height="400" alt="" class="img-block">
+  </img></a>
+  <div>
+    <p>习近平同缅甸总统敏昂莱会谈</p>
+  </div>
+</div>
+<div class="swiper-slide" title="大规模设备更新和消费品以旧换新标准提升行动">
+  <a href="https://www.sac.gov.cn/zt/dgmsbgxhxfpyjhxbztsxd/index.html" target="_blank" title="大规模设备更新和消费品以旧换新标准提升行动">
+    <img src="/cms_files/filemanager/1907776593/picture/20246/ec5e19ce8abe46e6b4d0d2f3d7a4b9aa.png" width="585" height="400" alt="" class="img-block">
+  </img></a>
+  <div>
+    <p>大规模设备更新和消费品以旧换新标准提升行动</p>
+  </div>
+</div>
+              </div>
+              <div class="swiper-pagination"></div>
+              <!-- 如果需要导航按钮 -->
+              <!-- <div class="swiper-button-prev swiper-button-white"></div>
+              <div class="swiper-button-next swiper-button-white"></div> -->
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 index_listbox" style="padding:0 0 0 20px;">
+            <div class="btn_left clearfix ">
+              <ul class="clearfix activityTab">
+                <li class="js_btn" id="news_img"><a style="cursor:pointer" href="/xw/szyw/index.html" target="_blank" class="tab-list" data-index="1">时政要闻
+</a>
+</li>                <li class="js_btn" id="all_activities"><a style="cursor:pointer" href="/xw/scjgyw/index.html" target="_blank" class="tab-list" data-index="1">市场监管要闻
+</a>
+</li>                <li class="selected js_btn" id="zxdts"><a style="cursor:pointer" href="/xw/bzhyw/index.html" target="_blank" class="tab-list current" data-index="1">标准化要闻
+</a>
+</li>                <li class="js_btn" id="yydts"><a style="cursor:pointer" href="/xw/bzhdt/index.html" target="_blank" class="tab-list" data-index="1">标准化动态
+</a>
+</li>            </ul>
+            </div>
+            
+            <div class="news_list list_content">               
+              <ul style="display: none;">
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073766.htm" title="《求是》杂志发表习近平总书记重要文章《做焦裕禄式的县委书记》">《求是》杂志发表习近平总书记重要文章《做焦裕禄式的县委书记》
+  </a>
+  <span class="date12" style="float:right;">(06-30)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073768.htm" title="习近平同塞舌尔总统赫米尼耶就中塞建交50周年互致贺电">习近平同塞舌尔总统赫米尼耶就中塞建交50周年互致贺电
+  </a>
+  <span class="date12" style="float:right;">(06-30)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073773.htm" title="中共中央政治局召开会议 研究部署防汛抗旱工作 中共中央总书记习近平主持会议">中共中央政治局召开会议 研究部署防汛抗旱工作 中共中央总书记习近平主持会议
+  </a>
+  <span class="date12" style="float:right;">(06-30)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073700.htm" title="庆祝中国共产党成立105周年音乐会《人民至上》在京举行 习近平李强赵乐际王沪宁蔡奇丁薛祥李希韩正出席观看">庆祝中国共产党成立105周年音乐会《人民至上》在京举行 习近平李强赵乐际王沪宁蔡奇丁薛祥李希韩正出席...
+  </a>
+  <span class="date12" style="float:right;">(06-30)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073660.htm" title="庆祝中国共产党成立105周年大会7月1日上午在京隆重举行 习近平将向“七一勋章”获得者颁授勋章并发表重要讲话">庆祝中国共产党成立105周年大会7月1日上午在京隆重举行 习近平将向“七一勋章”获得者颁授勋章并发表...
+  </a>
+  <span class="date12" style="float:right;">(06-29)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073611.htm" title="习近平会见白俄罗斯总统卢卡申科">习近平会见白俄罗斯总统卢卡申科
+  </a>
+  <span class="date12" style="float:right;">(06-29)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073528.htm" title="张国清在浙江调研时强调 强化科技创新和产业创新深度融合 全面加强质量管理增加高质量供给">张国清在浙江调研时强调 强化科技创新和产业创新深度融合 全面加强质量管理增加高质量供给
+  </a>
+  <span class="date12" style="float:right;">(06-27)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073359.htm" title="习近平会见孟加拉国总理塔里克">习近平会见孟加拉国总理塔里克
+  </a>
+  <span class="date12" style="float:right;">(06-26)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073363.htm" title="习近平会见柬埔寨人民党主席、参议院主席洪森">习近平会见柬埔寨人民党主席、参议院主席洪森
+  </a>
+  <span class="date12" style="float:right;">(06-26)
+  </span>
+</li>
+<li>
+  <a href="https://www.gov.cn/yaowen/liebiao/202606/content_7073301.htm" title="习近平总书记在山东德州考察纪实">习近平总书记在山东德州考察纪实
+  </a>
+  <span class="date12" style="float:right;">(06-26)
+  </span>
+</li>
+              </ul>
+              
+              <ul style="display: none;">
+<li>
+  <a href="/xw/scjgyw/art/2026/art_74ea6723f09442e09ef8149a6f45b906.html" title="市场监管总局召开党组（扩大）会议传达学习全国党建工作座谈会精神">市场监管总局召开党组（扩大）会议传达学习全国党建工作座谈会精神
+  </a>
+  <span class="date12" style="float:right;">(06-16)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_cf5b9abc2621495c81315d1a2864881b.html" title="罗文会见蒙古国副总理诺木泰巴亚尔">罗文会见蒙古国副总理诺木泰巴亚尔
+  </a>
+  <span class="date12" style="float:right;">(06-15)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_215c6f998d694c9a9e70076961961ba9.html" title="市场监管总局党组召开树立和践行正确政绩观学习教育党性分析交流会暨理论学习中心组2026年第6次集体（扩大）学习">市场监管总局党组召开树立和践行正确政绩观学习教育党性分析交流会暨理论学习中心组2026年第6次集体（...
+  </a>
+  <span class="date12" style="float:right;">(06-09)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_bd1d71d4822743ec8659e394b96b4137.html" title="罗文在福建调研市场监管领域深化群众身边不正之风和腐败问题集中整治工作">罗文在福建调研市场监管领域深化群众身边不正之风和腐败问题集中整治工作
+  </a>
+  <span class="date12" style="float:right;">(06-01)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_21f8433345374c429ae1b2961787d070.html" title="全国质量强县（区、镇）经验交流现场推进会在福建晋江召开">全国质量强县（区、镇）经验交流现场推进会在福建晋江召开
+  </a>
+  <span class="date12" style="float:right;">(05-28)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_0a0081059bc54454ba999ae842082032.html" title="一体推进学查改 以担当作为践行监管为民使命
+——市场监管总局持续深化树立和践行正确政绩观学习教育">一体推进学查改 以担当作为践行监管为民使命
+——市场监管总局持续深化树立和践行正确政绩观学习教育
+  </a>
+  <span class="date12" style="float:right;">(05-27)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_b871f5a64f3441ecbd6b99911234f20c.html" title="市场监管总局党组理论学习中心组开展2026年第五次集体（扩大）学习">市场监管总局党组理论学习中心组开展2026年第五次集体（扩大）学习
+  </a>
+  <span class="date12" style="float:right;">(05-26)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_055516981b064b15a9db473e5a050e00.html" title="罗文率团访问西班牙">罗文率团访问西班牙
+  </a>
+  <span class="date12" style="float:right;">(05-21)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_b387dee78aa146e98c93d81a8587d28a.html" title="国务院食安委专家委员会专家座谈交流会
+在北京召开">国务院食安委专家委员会专家座谈交流会
+在北京召开
+  </a>
+  <span class="date12" style="float:right;">(05-22)
+  </span>
+</li>
+<li>
+  <a href="/xw/scjgyw/art/2026/art_91d0e6faa01e4a5b8aa80c424d32d9c7.html" title="市场监管总局召开党组（扩大）会议深入学习贯彻中央政治局会议精神">市场监管总局召开党组（扩大）会议深入学习贯彻中央政治局会议精神
+  </a>
+  <span class="date12" style="float:right;">(05-06)
+  </span>
+</li>
+              </ul>
+            
+              <ul style="display: block;">
+<li>
+  <a href="/xw/bzhyw/art/2026/art_59f6094aea5e4cf9be40c003c406f80a.html" title="“标准中国”新媒体矩阵正式上线运行">“标准中国”新媒体矩阵正式上线运行
+  </a>
+  <span class="date12" style="float:right;">(06-25)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_96c6685a1b7d425f935de33cc93fbd5a.html" title="市场监管总局2026年二季度例行新闻发布会实录">市场监管总局2026年二季度例行新闻发布会实录
+  </a>
+  <span class="date12" style="float:right;">(06-16)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_e4f42b25489f4d879168aba9e2f9a75a.html" title="罗文会见蒙古国副总理诺木泰巴亚尔">罗文会见蒙古国副总理诺木泰巴亚尔
+  </a>
+  <span class="date12" style="float:right;">(06-15)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_c046b5733bb24309a1ec499f3db8b200.html" title="国际标准化组织消费者政策委员会第47次全体会议在海口举行">国际标准化组织消费者政策委员会第47次全体会议在海口举行
+  </a>
+  <span class="date12" style="float:right;">(05-27)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_85687024ee504588ab6defb30780f1a7.html" title="市场监管总局建材、机械和石化等重点领域标准升级新闻发布会实录">市场监管总局建材、机械和石化等重点领域标准升级新闻发布会实录
+  </a>
+  <span class="date12" style="float:right;">(05-26)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_18d8128430904f1ea4fd83a8c3353864.html" title="罗文率团访问西班牙">罗文率团访问西班牙
+  </a>
+  <span class="date12" style="float:right;">(05-21)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_34392fbc3d0d4db88a066eb6a0b63dc6.html" title="市场监管总局“以市场化法治化国际化营商环境 助力民营经济高质量发展”专题新闻发布会实录">市场监管总局“以市场化法治化国际化营商环境 助力民营经济高质量发展”专题新闻发布会实录
+  </a>
+  <span class="date12" style="float:right;">(05-19)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_c06805fef9dc469caad7f03b5aed16cd.html" title="“破除妨碍统一市场和公平竞争卡点堵点专项行动”专题新闻发布会实录">“破除妨碍统一市场和公平竞争卡点堵点专项行动”专题新闻发布会实录
+  </a>
+  <span class="date12" style="float:right;">(05-13)
+  </span>
+</li>
+<li>
+  <a href="https://mp.weixin.qq.com/s/MqgO2aUpE1qRr0fXW5i3EQ" title="国新办举行国务院政策例行吹风会 介绍《关于推进服务业扩能提质的意见》有关情况">国新办举行国务院政策例行吹风会 介绍《关于推进服务业扩能提质的意见》有关情况
+  </a>
+  <span class="date12" style="float:right;">(04-28)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhyw/art/2026/art_0671398a5e3047f390308725620994be.html" title="中国与莫桑比克签署农业标准化领域
+合作谅解备忘录">中国与莫桑比克签署农业标准化领域
+合作谅解备忘录
+  </a>
+  <span class="date12" style="float:right;">(04-23)
+  </span>
+</li>
+              </ul>
+              
+              <ul style="display: none;">
+<li>
+  <a href="/xw/bzhdt/art/2026/art_8013145da9f14213b794b44145603878.html" title="“标准中国”新媒体矩阵正式上线运行">“标准中国”新媒体矩阵正式上线运行
+  </a>
+  <span class="date12" style="float:right;">(06-25)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_26ef18e68fac4367843c83788a008e60.html" title="科技社团推动团体标准高质量发展行动倡议座谈会在北京召开">科技社团推动团体标准高质量发展行动倡议座谈会在北京召开
+  </a>
+  <span class="date12" style="float:right;">(06-23)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_d0a86bb95e7e4f37b8f1af7fd152e0b3.html" title="我国一项依托团体标准成果成功转化为国际标准">我国一项依托团体标准成果成功转化为国际标准
+  </a>
+  <span class="date12" style="float:right;">(06-23)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_3e19056a3fea460d9f0b59562b77b044.html" title="我国牵头制定的液化天然气船货物围护系统蒸发率测量方法国际标准发布">我国牵头制定的液化天然气船货物围护系统蒸发率测量方法国际标准发布
+  </a>
+  <span class="date12" style="float:right;">(06-22)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_bca42fd465004f4abf91b36508d2dc3f.html" title="市场监管总局修订发布三项自行车国家标准">市场监管总局修订发布三项自行车国家标准
+  </a>
+  <span class="date12" style="float:right;">(06-17)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_2b54f5af6328479aa926fe663cf0c8e2.html" title="我国将制定统一的航空医疗救护标准">我国将制定统一的航空医疗救护标准
+  </a>
+  <span class="date12" style="float:right;">(06-17)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_4018aea6461c45c9a45c376965fa6c63.html" title="国际标准化组织化学气相沉积涂层分委员会秘书处落户中国">国际标准化组织化学气相沉积涂层分委员会秘书处落户中国
+  </a>
+  <span class="date12" style="float:right;">(06-16)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_e30a12b1850341728b2a53b7034f04d7.html" title="我国首次牵头制定的印刷业绿色化国际标准发布">我国首次牵头制定的印刷业绿色化国际标准发布
+  </a>
+  <span class="date12" style="float:right;">(06-12)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_c02b73a573154f6facba9a1d7f132739.html" title="涉及人工智能、电动汽车充电、儿童友好设施等 一批重要国家标准发布">涉及人工智能、电动汽车充电、儿童友好设施等 一批重要国家标准发布
+  </a>
+  <span class="date12" style="float:right;">(06-12)
+  </span>
+</li>
+<li>
+  <a href="/xw/bzhdt/art/2026/art_5fe6b39d409b42b3bd2bf4d971d093cf.html" title="市场监管总局批准发布一批重要国家标准">市场监管总局批准发布一批重要国家标准
+  </a>
+  <span class="date12" style="float:right;">(06-11)
+  </span>
+</li>
+              </ul>              
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <div class="wrap fw_title">
+        <p>服务</p>
+    </div>
+    <div class="wrap fuwu">
+  <a href="http://cc.sacinfo.org.cn/" target="_blank" title="标准云课">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/0add60b8d91945efbe287f8aaa0bc342.png" width="282" height="144" alt="">
+  </img></a> 
+  <a href="http://openstd.samr.gov.cn/bzgk/gb/index" target="_blank" title="国家标准全文公开">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/050c3a10f7d24fd9856edd04dc93fc64.png" width="282" height="144" alt="">
+  </img></a> 
+  <a href="http://std.samr.gov.cn/" target="_blank" title="全国标准信息公共服务平台">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/b4bc3844c1a249fca9f6772401bb0399.png" width="282" height="144" alt="">
+  </img></a> 
+  <a href="http://std.samr.gov.cn/coordination" target="_blank" title="标准化业务协调系统">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/c44ca3f99a684f16aa8c9f99b579337c.png" width="282" height="144" alt="">
+  </img></a> 
+    </div>
+
+    <div class="wrap fw_title">
+        <p>政务</p>
+    </div>
+
+    <div class="wrap">
+        <div class="row" style="margin-bottom: 20px!important;">
+           <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 index_listbox" style="background: #fff;border: 1px solid #ccc;min-height: 338px;margin-right: 10px;padding-bottom:0">
+              <div class="btn_left1 clearfix">
+               
+                <ul class="clearfix">
+                  <li data-i="0" class="selected js_btn" id="xzcfs"><a href="/xw/tzgg/index.html" target="_blank">通知公告
+</a>
+</li><span>|</span>                  <li data-i="1" class="js_btn" id="jzjys"><a href="https://std.samr.gov.cn/noc" target="_blank">国家标准公告</a>
+</li><span>|</span>                  <li data-i="2" class="js_btn" id="lyxzs"><a href="https://std.samr.gov.cn/noc" target="_blank">行业和地方标准备案月报</a></li><span>|</span>                  <li data-i="3" class="js_btn" id="gpjzs"><a href="/xw/zqyj/index.html" target="_blank">征求意见
+</a>
+</li>             
+                  
+              </ul>
+              </div>              
+              <div class="list_content">              
+                <ul style="display: block;">
+<li>
+  <a href="/xw/tzgg/art/2026/art_1c6b1809af084ad28852da3533855c00.html" title="市场监管总局标准创新司关于对申请承担国际标准化组织（ISO）技术机构秘书处和国内技术对口单位有关情况进行公示的通知" target="_blank">市场监管总局标准创新司关于对申请承担国际标准化组织（ISO）技术机构秘书处和国内技术对口单位有关情况...
+  </a>
+  <span class="date12" style="float:right;">(2026-06-23)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_21362d8cfabf410f8e16f304f0e18b9e.html" title="国家标准委关于开展第二届全国标准化知识竞赛的通知" target="_blank">国家标准委关于开展第二届全国标准化知识竞赛的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-06-11)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_dcc46423d829473190341c49414076d8.html" title="国家标准委关于批准4个ISO技术机构秘书处承担单位的公告" target="_blank">国家标准委关于批准4个ISO技术机构秘书处承担单位的公告
+  </a>
+  <span class="date12" style="float:right;">(2026-06-03)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_575a083b5d07467eada7243b42a0812d.html" title="国家标准委关于批准一批ISO、IEC技术机构国内技术对口单位的公告" target="_blank">国家标准委关于批准一批ISO、IEC技术机构国内技术对口单位的公告
+  </a>
+  <span class="date12" style="float:right;">(2026-06-03)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_c0072962b9334e01a26a2786998de1aa.html" title="关于征求《岩心分析仪器通用技术规范》等201项拟立项国家标准项目意见的通知" target="_blank">关于征求《岩心分析仪器通用技术规范》等201项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-06-02)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_33e0c8a449a54ed2a29b0961c24b88e5.html" title="关于征求《罐藏食品工业术语》等7项推荐性国家标准（报批稿）意见的通知" target="_blank">关于征求《罐藏食品工业术语》等7项推荐性国家标准（报批稿）意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-05-29)
+  </span>
+</li>
+<li>
+  <a href="/xw/tzgg/art/2026/art_e9c77b8391d2497f9415b5d701aa4c15.html" title="关于征求《绿色矿山建设规范 第6部分：非金属矿山》等10项拟立项国家标准项目意见的通知" target="_blank">关于征求《绿色矿山建设规范 第6部分：非金属矿山》等10项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-05-29)
+  </span>
+</li>
+                </ul>
+            		<ul></ul>
+                <ul style="display: none;">                    
+<div style="width:520px;height:200px;overflow:hidden;border:0px">  <div style="width:520px;height:200px;margin:0px 0px 0px -10px;">
+    <iframe width="520px" height="600px" src="https://std.sacinfo.org.cn/bzwgg" scrolling="no" frameborder="0" id="ariabxi2lo12g2">
+    </iframe>
+  </div>
+</div>
+                </ul>
+                <ul></ul>
+                <ul style="display: none;">                  
+<div style="width:260px;height:200px;overflow:hidden;border:0px;float: left;">  <div style="width:250px;height:200px;">
+    <p class="bayb_p">
+      <a href="https://hbba.sacinfo.org.cn/rnList" target="_blank">行业标准备案月报
+      </a>
+    </p>
+    <iframe width="260px" height="165px" src="https://std.sacinfo.org.cn/bzwgg-hbindex" scrolling="no" frameborder="0">
+    </iframe>
+  </div>
+</div>
+<style>
+  .clearfix::before{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden}
+  .clearfix:after{
+    content:"";
+    display:block;
+    height:0;
+    clear:both;
+    visibility:hidden}
+  .clearfix{
+    display:block}
+  .bayb_p{
+    line-height: 30px;
+    height: 30px;
+    background-color: #0566ab;
+    text-align:center;
+    margin-bottom:8px;
+  }
+  .bayb_p a{
+    color: #fff;
+    font-size: 16px;
+    text-align-last: left;
+  }
+  body{
+    font-family: Arial, SimSun, "Microsoft YaHei"!important;
+  }
+  .tab-group .list3 .list{
+    background-position: left center;
+    font-size: 14px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 26px;
+    line-height: 26px;
+    background-repeat: no-repeat;
+    padding-left: 12px;
+    white-space: nowrap;
+    background-image: url(/cms_files/filemanager/1907776593/picture/20219/bf2aa2bc7f47451ebc4f83f46d966e04.jpg);
+    float:left;
+    width:238px;
+  }
+  .tab-group .list3 .list a{
+    color: #444444;
+    text-decoration: none;
+    font-family: initial;
+  }
+  .list3 .list a:hover {
+    color: #005c81;
+  }
+  .bayb_p a:hover{
+    color: #fff !important;
+  }
+</style>
+<div style="width:260px;height:200px;overflow:hidden;border:0px;float: left;">
+  <div style="width:257px;height:200px;">
+    <p class="bayb_p">
+      <a href="http://dbba.sacinfo.org.cn/rnList">地方标准备案月报
+      </a>
+    </p>
+    <iframe width="260px" height="165px" src="https://std.sacinfo.org.cn/bzwgg-dbindex" scrolling="no" frameborder="0">
+    </iframe>
+  </div>
+</div>
+
+                </ul>
+                <ul></ul>
+                <ul style="display: none;">                    
+<li>
+  <a href="/xw/zqyj/art/2026/art_5d31ce37c1574af79b00f320496bb433.html" title="关于征求《船舶和海洋技术 船舶的阴极保护》等126项拟立项国家标准项目意见的通知" target="_blank">关于征求《船舶和海洋技术 船舶的阴极保护》等126项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-06-15)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_81dfb5e69c214b6db68bf553504c03b2.html" title="《团体标准化 良好行为规范》国家标准公开征求意见" target="_blank">《团体标准化 良好行为规范》国家标准公开征求意见
+  </a>
+  <span class="date12" style="float:right;">(2026-06-10)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_027205def41f44e8bd04c68f22aa2ac7.html" title="关于征求《岩心分析仪器通用技术规范》等201项拟立项国家标准项目意见的通知" target="_blank">关于征求《岩心分析仪器通用技术规范》等201项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-06-02)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_3316dafb24f9478bae72993ec276c70a.html" title="关于征求《罐藏食品工业术语》等7项推荐性国家标准（报批稿）意见的通知" target="_blank">关于征求《罐藏食品工业术语》等7项推荐性国家标准（报批稿）意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-05-29)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_0c14f44bc18243c0b3ad34be7b2271ac.html" title="关于征求《应急避难场所防灾防空功能兼用要求》等57项拟立项国家标准项目意见的通知" target="_blank">关于征求《应急避难场所防灾防空功能兼用要求》等57项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-05-22)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_3c77ebdb54fa4756aadecba7660f8a80.html" title="关于征求《教学仪器设备安全要求 总则》等4项拟立项强制性国家标准项目意见的通知" target="_blank">关于征求《教学仪器设备安全要求 总则》等4项拟立项强制性国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-05-20)
+  </span>
+</li>
+<li>
+  <a href="/xw/zqyj/art/2026/art_a7ebaadbcc744b08acf7a056311f1c1d.html" title="关于征求《松毛虫防控技术规程》等263项拟立项国家标准项目意见的通知" target="_blank">关于征求《松毛虫防控技术规程》等263项拟立项国家标准项目意见的通知
+  </a>
+  <span class="date12" style="float:right;">(2026-04-20)
+  </span>
+</li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background: #fff;border: 1px solid #ccc;min-height: 338px;padding: 10px;">
+                <div class="btn_left1 clearfix">               
+                    <ul class="clearfix">
+                      <li data-i="0" class="selected js_btn" id="xzcfs"><a href="">政府信息公开</a></li>
+                  </ul>
+                  <div class="info" style="border:none;">
+<a href="/xxgk/zcwj/index.html" target="_blank" tabindex="0">  <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/pubtplobject/defaultSet/c2eb7082a91e4d9da99b9d34efc9e461/images/8f8acf1cb5ee4ad7b8fb8397ac75bc72.png" width="49" height="49" alt="" tabindex="0">
+  <div class="text text-tag" tabindex="0">政策文件
+  </div>
+</img></a>
+<a href="/xxgk/zcjd/index.html" target="_blank" tabindex="0">
+  <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/pubtplobject/defaultSet/c2eb7082a91e4d9da99b9d34efc9e461/images/514943fbc4384cc190a6c0e150506a79.png" width="49" height="49" alt="" tabindex="0">
+  <div class="text text-tag" tabindex="0">政策解读
+  </div>
+</img></a>
+                    <a href="https://www.samr.gov.cn/zw/zfxxgk/zfxxgkzn/index.html" target="_blank" tabindex="0">
+                        <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/9f9fd96618a24bf98e90a94a8e2305d6.png" width="49" height="49" alt="" tabindex="0">
+                        <div class="text text-tag" tabindex="0">公开指南</div>
+                    </img></a>
+                    <a href="https://www.samr.gov.cn/zw/zfxxgk/zfxxgkzd/index.html" target="_blank" tabindex="0">
+                        <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/4259bff4edb84a7baf75429b94184258.png" width="49" height="49" alt="" tabindex="0">
+                        <div class="text text-tag" tabindex="0">公开制度</div>
+                    </img></a>
+                    <a href="https://www.samr.gov.cn/zw/zfxxgk/fdzdgknr/index.html" target="_blank" tabindex="0">
+                        <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/9c00cc48be8a4adfa434a645edbc7731.png" width="49" height="49" alt="" tabindex="0">
+                        <div class="text text-tag" tabindex="0">公开内容</div>
+                    </img></a>
+                    <a href="https://www.samr.gov.cn/zw/zfxxgk/gkgzndbg/2022n/index.html" target="_blank" tabindex="0">
+                        <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/3b49e4a3861641d48520cedb24cd8725.png" width="49" height="49" alt="" tabindex="0">
+                        <div class="text text-tag" tabindex="0">公开年报</div>
+                    </img></a>                    </div>
+                  </div>
+            </div>
+          </div>
+          </div>
+          <div class="wrap">
+            <div class="row">
+               <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 index_listbox" style="background: #fff;border: 1px solid #ccc;margin-right: 10px;height:353px">
+                  <div class="btn_left1 clearfix">
+                   
+                    <ul class="clearfix">
+                      <li data-i="0" class="selected js_btn" id="xzcfs"><a href="/xw/tpxw/index.html" target="_blank">图片</a></li><span>|</span><li data-i="1" class="js_btn" id="jzjys"><a href="/sp/index.html" target="_blank">视频
+</a>
+</li>                  </ul>
+                  </div>                  
+                  <div class="list_content1" style="height:255px;overflow:hidden">                  
+                    <ul style="display: flex;justify-content: space-between;">                                       <li>
+  <a href="https://www.sac.gov.cn/zt/dgmsbgxhxfpyjhxbztsxd/index.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20246/ec5e19ce8abe46e6b4d0d2f3d7a4b9aa.png" width="260" height="185" alt="">
+    <p style="margin-top:10px;">大规模设备更新和消费品以旧换新标准提升行动
+    </p>
+  </img></a>
+</li> 
+<li>
+  <a href="/xw/tpxw/art/2024/art_b02e8b5ba57149769fc50971d6f86faa.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/6d78626289a94de585d1fd0b81b49c30.png" width="260" height="185" alt="">
+    <p style="margin-top:10px;">一图读懂 | 全国数据标准化技术委员会（SAC/TC609）获批成立
+    </p>
+  </img></a>
+</li> 
+<li>
+  <a href="/xw/tpxw/art/2024/art_2b968c93eb784e76ba55b309e9567422.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20248/a831f42fcba84fa4bf3509dff8b61731.png" width="260" height="185" alt="">
+    <p style="margin-top:10px;">我国产品碳足迹核算通则国家标准
+《温室气体 产品碳足迹 量化要求和指南》发布（附一图读懂）
+    </p>
+  </img></a>
+</li> 
+                    </ul>
+                    <ul></ul>
+                    <ul style="justify-content: space-between;display: flex;">                                       <li>
+  <a href="/sp/art/2026/art_9e3aae6b48dd454788bff21025618feb.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20262/d8b3cf47e3164787be9ab9c8df30783e.png" width="260" height="185" alt="">
+    <p style="margin-top:10px;">539项国家标准明日起实施
+    </p>
+  </img></a>
+</li> 
+<li>
+  <a href="/sp/art/2026/art_5bf6fcabdb1449779345919ad748f833.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/20261/2b8b166e8c024b29b9593bf89cc271e4.png" width="260" height="185" alt="">
+    <p style="margin-top:10px;">2025年我国国际标准提案数量进一步增长
+    </p>
+  </img></a>
+</li> 
+<li>
+  <a href="/sp/art/2025/art_7f5e4deb48cd4293b91cd72bfa3fecaf.html" target="_blank">
+    <img src="/cms_files/filemanager/1907776593/picture/202511/2934677b650a47c2ab268adc7429ca43.jpg" width="260" height="185" alt="">
+    <p style="margin-top:10px;">《养老服务标准体系建设指南（2025版）》发布
+    </p>
+  </img></a>
+</li> 
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="background: #fff;border: 1px solid #ccc;padding: 10px;;height:353px">
+                    <div class="btn_left1 clearfix">                   
+                        <ul class="clearfix">
+                          <li data-i="0" class="selected js_btn" id="xzcfs"><a href="">互动交流</a></li>
+                      </ul>
+                      <div class="infos" style="border:none;">
+                                <a href="https://liuyan.www.gov.cn/2025wwzfgzbgtjy/bmdf.html?q=gjbzw" target="_blank">
+                                    <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/960b33c3a34b46cabb86b79d02d3b824.jpg" alt="" width="250">
+                                </img></a>
+                        <!--a href="https://liuyan.www.gov.cn/2025wwzfgzbgtjy/bmdf.html?q=gjbzw" target="_blank">
+                                    <img src="/cms_files/filemanager/1907776593/picture/202412/f3ae12ca03e84a12af66a1fbf0b0162a.png" alt=""  width="250">
+                                </a-->
+                                <a href="https://xgzlyhd.samr.gov.cn/gjjly/" target="_blank">
+                                    <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/4de6d6830a584edaa107a815bbf68a22.png" alt="" width="250">
+                                </img></a>
+                                <a href="https://www.sac.gov.cn/hdjl/lygk/index.html" target="_blank">
+                                    <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/86dc01ee70e647b48dd8e3afe2978cd8.png" alt="" width="250">
+                                </img></a>
+                                <a href="https://www.sac.gov.cn/hdjl/zxcy/index.html" target="_blank">
+                                    <img src="/cms_files/webguojiabiaozhunhuaguanliweiyuanhui/tplobject/defaultSet/3c8519bac43b4d15b710938e7d32a441/images/e8ce31bd435c417a8aff3c8582e5793f.png" alt="" width="250">
+                                </img></a>
+                    
+                    </div>
+                      </div>
+                </div>
+              </div>
+              </div>
+<div class="flow2 flow4" style="width:200px;height:100px;right:5px;">	<p>
+		<a href="https://www.sac.gov.cn/zt/dgmsbgxhxfpyjhxbztsxd/index.html" target="_blank">
+            <img src="/cms_files/filemanager/1907776593/picture/20246/ae0d18569fbf4e91b8f714f405b38c60.jpg">
+        </img></a>
+        <a class="flow4btn" style="cursor:pointer"><img src="/cms_files/filemanager/1907776593/picture/20219/c6a55cb71a444788a7d7dd7c915e5749.jpg" width="40" height="18" alt="" /></a>
+	</p>
+	<p>
+		<a href="https://std.samr.gov.cn/qbprop/introduce" target="_blank">
+            <img src="/cms_files/filemanager/1907776593/picture/20257/aaf0536fbf6e472f99f240234f50ae07.jpg">
+        </img></a>
+        <a class="flow4btn" style="cursor:pointer"><img src="/cms_files/filemanager/1907776593/picture/20219/c6a55cb71a444788a7d7dd7c915e5749.jpg" width="40" height="18" alt="" /></a>
+	</p>
+	<p>
+		<a href="https://std.samr.gov.cn/html/app/index.html" target="_blank">
+            <img src="/cms_files/filemanager/1907776593/picture/20239/b50a6d24e6af4e749ccd1c2da352ee8e.jpg">
+        </img></a>
+        <a class="flow4btn" style="cursor:pointer"><img src="/cms_files/filemanager/1907776593/picture/20219/c6a55cb71a444788a7d7dd7c915e5749.jpg" width="40" height="18" alt="" /></a>
+	</p>
+	<p>
+		<a href="http://org.sacinfo.org.cn/tcrm/liuyan/edit" target="_blank">
+            <img src="/cms_files/filemanager/1907776593/picture/20261/64870afb148a4924b0d2c631930748d0.jpg">
+        </img></a>
+        <a class="flow4btn" style="cursor:pointer"><img src="/cms_files/filemanager/1907776593/picture/20219/c6a55cb71a444788a7d7dd7c915e5749.jpg" width="40" height="18" alt="" /></a>
+	</p>
+</div>
+<style>
+.flow4 img{max-width:100%;}
+.flow4 p{text-align:center;}
+.flow4btn{padding-bottom:2px;display: inline-block;}
+</style>
+<script>
+$(".flow4btn").click(function(){
+	$(this).parents("p").hide();
+})
+</script><script src="/cms_files/filemanager/1907776593/script/20219/3b843396d2694509bb04339ff68a5b11.js" type="text/javascript" charset="utf-8"></script><style>
+/**.bottom.content *{font-size:0;}**/
+.bottom.content img{vertical-align:top;}
+.bottom a:hover{color: #03436d;}
+.fun_button_list.double_btn .close{ width: 80px;font-size: 12px;opacity: 1;font-weight: 100;
+  }</style></link></link></link></link></link><script src="/cms_files/filemanager/1907776593/script/juba/jubascript.js?v=4.2.10.39-samr-U2"></script>
+ </div></body>
+<script>
+    var mySwiper = new Swiper(".indexImg", {
+      loop: true, // 循环模式选项
+      autoplay:true,
+      // 如果需要分页器
+      pagination :{
+	el: '.swiper-pagination',
+	clickable :true,
+  },
+  
+      // 如果需要前进后退按钮
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+    });
+  </script>
+  
+</html>

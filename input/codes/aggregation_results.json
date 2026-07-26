@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-06-30 14:14:06",
+  "results": {
+    "downloaded": [
+      "IBC 2021",
+      "Florida Building Code",
+      "California Building Code",
+      "NFPA Codes",
+      "OSHA Regulations"
+    ],
+    "failed": [
+      "International Building Code"
+    ],
+    "found": [],
+    "total": 5
+  },
+  "downloaded_files": [
+    "/home/maxlo/PROMETHEUS/input/codes/California_Building_Code_1782843240.pdf",
+    "/home/maxlo/PROMETHEUS/input/codes/California_Building_Code_1782843241.pdf"
+  ],
+  "failed_downloads": [],
+  "total_downloaded": 2
+}
