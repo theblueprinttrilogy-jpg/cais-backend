@@ -1,9 +1,9 @@
 # agents/legal_search_agent.py - LegalSearchAgent for CAIS v2.0
 # Production-ready specialized agent for building laws, zoning regulations,
-# statutory references, and legal compliance clauses.
-# One of 10 agents focused on legal frameworks.
-# Integrates with SemanticEngine for JIT multilingual dictionary loading and language detection.
-# Includes domain-specific document generation, Pydantic validation, and comprehensive logging.
+# statutory references, and legal compliance clauses. One of 10 legal agents.
+# Integrates anti-bot evasion (proxy rotation, realistic headers, human-like delays),
+# Cookie Management & Persistence Engine, automated 30-day trial subscription handling,
+# and feedback hooks for JanitorAgent verification cycles.
 
 import asyncio
 import logging
@@ -13,11 +13,15 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field
 
-# Import SemanticEngine (optional; will be injected)
-try:
-    from app.core.semantic.engine import SemanticEngine
-except ImportError:
-    SemanticEngine = None
+# Import shared components from captains module (assumed to exist)
+from agents.captains import (
+    ProxyManager,
+    HeaderManager,
+    CookieManager,
+    SubscriptionHandler,
+    SUBSCRIPTION_CREDENTIALS,
+    Jurisdiction,
+)
 
 # ------------------------------------------------------------------------------
 # Logging Configuration
@@ -28,14 +32,6 @@ logger.setLevel(logging.INFO)
 # ------------------------------------------------------------------------------
 # Pydantic Models
 # ------------------------------------------------------------------------------
-class Jurisdiction(BaseModel):
-    """Model representing a jurisdiction to be scanned."""
-    name: str = Field(..., description="Full name of the jurisdiction")
-    code: str = Field(..., description="Two-letter code or abbreviation")
-    type: str = Field(..., description="State, Territory, Federal, International, etc.")
-    scope: str = Field(default="domestic", description="domestic or international")
-    language: Optional[str] = Field(None, description="Primary language code (ISO 639-1)")
-
 class LegalSearchResult(BaseModel):
     """
     Search result specific to building and zoning laws.
@@ -49,6 +45,7 @@ class LegalSearchResult(BaseModel):
     legal_clauses: List[str] = Field(default_factory=list)
     statutory_references: List[str] = Field(default_factory=list)
     documents_found: List[str] = Field(default_factory=list)
+    missing_items: List[str] = Field(default_factory=list)  # for Janitor feedback
 
 # ------------------------------------------------------------------------------
 # LegalSearchAgent Class
@@ -58,7 +55,8 @@ class LegalSearchAgent:
     Specialized search agent for building laws, zoning regulations,
     statutory references, and legal compliance clauses.
     Designed to be one of 10 such agents.
-    Integrates with SemanticEngine for language detection and dictionary loading.
+    Integrates anti-bot evasion, cookie persistence, subscription handling,
+    and Janitor feedback hooks.
     """
 
     def __init__(self, agent_id: int, captain_id: int):
@@ -72,75 +70,85 @@ class LegalSearchAgent:
         self.agent_id = agent_id
         self.captain_id = captain_id
         self.logger = logger.getChild(f"LegalAgent-{captain_id}-{agent_id}")
+
+        # Initialize shared components
+        self.proxy_manager = ProxyManager()
+        self.cookie_manager = CookieManager()
+        self.subscription_handler = SubscriptionHandler(
+            SUBSCRIPTION_CREDENTIALS,
+            self.cookie_manager
+        )
+        self._session = None
         self.logger.debug(f"LegalSearchAgent initialized (ID: {agent_id})")
 
-    async def search(self, jurisdiction: Jurisdiction, semantic_engine: 'SemanticEngine') -> LegalSearchResult:
+    async def _ensure_subscription(self) -> bool:
+        """Ensure a valid subscription is active; subscribe if not."""
+        if not self.subscription_handler._subscribed:
+            return await self.subscription_handler.subscribe_trial()
+        return True
+
+    async def search(self, jurisdiction: Jurisdiction) -> LegalSearchResult:
         """
         Perform search for building laws and zoning regulations for a jurisdiction.
-        Uses the semantic engine for language detection and JIT dictionary loading.
+        Uses anti-bot evasion, cookie persistence, and subscription authentication.
 
         Args:
             jurisdiction: The jurisdiction to search.
-            semantic_engine: An instance of SemanticEngine for multilingual support.
 
         Returns:
             LegalSearchResult containing legal clauses, statutory references, and documents.
         """
         self.logger.info(f"Searching legal frameworks for: {jurisdiction.name} ({jurisdiction.code})")
 
-        # 1. Detect language
-        lang = self._detect_language(jurisdiction)
-        self.logger.debug(f"Detected language for {jurisdiction.code}: {lang}")
-
-        # 2. Load semantic dictionary (Just-in-Time)
-        try:
-            dictionary = semantic_engine.get_language_dictionary(lang)
-            # Extract relevant terms for legal domain
-            legal_terms = dictionary.get("legal", {})
-            self.logger.debug(f"Loaded legal terms: {list(legal_terms.keys())[:5]}")
-        except Exception as e:
-            error_msg = f"Failed to load semantic dictionary for {lang}: {e}"
-            self.logger.error(error_msg)
+        # 1. Ensure active subscription for legal repositories
+        if not await self._ensure_subscription():
             return LegalSearchResult(
                 jurisdiction=jurisdiction,
                 status="failed",
-                errors=[error_msg],
-                detected_language=lang,
-                legal_clauses=[],
-                statutory_references=[],
-                documents_found=[]
+                errors=["Subscription activation failed"],
+                detected_language="en"
             )
 
-        # 3. Simulate domain-specific legal document discovery
-        await asyncio.sleep(0.1)  # simulate I/O
+        # 2. Detect language
+        lang = self._detect_language(jurisdiction)
+        self.logger.debug(f"Detected language for {jurisdiction.code}: {lang}")
 
-        # Generate legal clauses
-        legal_clauses = self._generate_legal_clauses(jurisdiction)
+        # 3. Generate target URLs (legal-specific)
+        target_urls = self._generate_legal_urls(jurisdiction)
 
-        # Generate statutory references
-        statutory_refs = self._generate_statutory_references(jurisdiction)
+        # 4. Fetch and parse legal content
+        legal_clauses = []
+        statutory_refs = []
+        documents = []
+        errors = []
+        missing_items = []
 
-        # Generate document list
-        docs = self._generate_documents(jurisdiction)
+        for url in target_urls:
+            try:
+                status, content, headers = await self._fetch_url(url)
+                if status == 200:
+                    # In production, parse HTML/PDF to extract legal clauses and statutes.
+                    # For simulation, generate realistic legal content.
+                    clauses, statutes, docs = self._simulate_legal_extraction(jurisdiction, url)
+                    legal_clauses.extend(clauses)
+                    statutory_refs.extend(statutes)
+                    documents.extend(docs)
+                else:
+                    errors.append(f"URL {url} returned status {status}")
+                    missing_items.append(url)
+            except Exception as e:
+                errors.append(f"Error fetching {url}: {e}")
+                missing_items.append(url)
 
-        # Simulate partial failures
-        if random.random() < 0.1:
+        # 5. Determine status
+        if not legal_clauses and not statutory_refs:
             status = "failed"
-            errors = ["Simulated Legal search failure"]
-            docs = []
-            legal_clauses = []
-            statutory_refs = []
-        elif random.random() < 0.2:
+        elif len(legal_clauses) < 2 or len(statutory_refs) < 2:
             status = "partial"
-            errors = []
-            docs = docs[:1]
-            legal_clauses = legal_clauses[:1]
-            statutory_refs = statutory_refs[:1]
         else:
             status = "success"
-            errors = []
 
-        # Build result
+        # 6. Build result
         result = LegalSearchResult(
             jurisdiction=jurisdiction,
             status=status,
@@ -148,7 +156,8 @@ class LegalSearchAgent:
             detected_language=lang,
             legal_clauses=legal_clauses,
             statutory_references=statutory_refs,
-            documents_found=docs,
+            documents_found=documents,
+            missing_items=missing_items,
             timestamp=datetime.utcnow()
         )
 
@@ -159,10 +168,7 @@ class LegalSearchAgent:
     # Helper Methods
     # --------------------------------------------------------------------------
     def _detect_language(self, jurisdiction: Jurisdiction) -> str:
-        """
-        Determine language for the jurisdiction.
-        If language is already set, use it; otherwise infer from country code.
-        """
+        """Determine language for the jurisdiction."""
         if jurisdiction.language:
             return jurisdiction.language
         return self._infer_language(jurisdiction.code)
@@ -180,73 +186,123 @@ class LegalSearchAgent:
         }
         return mapping.get(code.upper(), 'en')
 
-    def _generate_legal_clauses(self, jurisdiction: Jurisdiction) -> List[str]:
+    def _generate_legal_urls(self, jurisdiction: Jurisdiction) -> List[str]:
+        """Generate legal-specific URLs for the jurisdiction."""
+        base = [
+            f"https://www.iccsafe.org/codes/{jurisdiction.code.lower()}/legal",
+            f"https://codes.iccsafe.org/content/{jurisdiction.code.upper()}/legal",
+            f"https://www.{jurisdiction.name.lower().replace(' ', '')}.gov/laws/building",
+            f"https://www.legiscan.com/{jurisdiction.code.lower()}/building_laws",
+        ]
+        # Add zipcode-based legal URLs if available
+        if jurisdiction.zipcodes:
+            for zipcode in jurisdiction.zipcodes[:2]:
+                base.append(f"https://www.municode.com/library/zip/{zipcode}/legal")
+        random.shuffle(base)
+        return base
+
+    def _simulate_legal_extraction(self, jurisdiction: Jurisdiction, url: str) -> tuple:
         """
-        Generate realistic legal clauses based on jurisdiction type.
+        Simulate extraction of legal clauses, statutes, and documents from a URL.
+        Returns (clauses, statutes, documents).
         """
         clauses = [
             f"Section {random.randint(100, 999)}: Zoning regulations for {jurisdiction.type}",
             f"Article {random.randint(1, 20)}: Building permit requirements",
             f"Chapter {random.randint(10, 99)}: Land use and development standards",
         ]
-        # Add jurisdiction-specific clauses
-        if jurisdiction.type == "International":
-            clauses.append(f"International Building Code adoption clause – Article {random.randint(1, 50)}")
-        elif jurisdiction.type == "Territory":
-            clauses.append(f"Federal territory compliance section {random.randint(1, 100)}")
-        elif jurisdiction.type == "Federal District":
-            clauses.append(f"National Capital Region Planning Act – Section {random.randint(1, 50)}")
-        else:  # State
-            clauses.append(f"{jurisdiction.code} State Building Law – Title {random.randint(10, 99)}")
-        # Add random additional clauses
-        if random.random() < 0.3:
-            clauses.append(f"Historic preservation overlay – Ordinance {random.randint(1000, 9999)}")
-        if random.random() < 0.2:
-            clauses.append(f"Affordable housing inclusionary zoning – Section {random.randint(1, 100)}")
-        return clauses
-
-    def _generate_statutory_references(self, jurisdiction: Jurisdiction) -> List[str]:
-        """
-        Generate a list of statutory references relevant to the jurisdiction.
-        """
-        refs = [
+        statutes = [
             f"{jurisdiction.code.upper()} Rev. Stat. § {random.randint(1000, 9999)}",
             f"Public Law {random.randint(100, 999)}-{random.randint(1, 99)}",
             f"City Ordinance {random.randint(1000, 9999)}",
         ]
-        # Add jurisdiction-specific refs
-        if jurisdiction.type == "International":
-            refs.append(f"International Code Council – {random.randint(100, 999)}-{random.randint(1, 99)}")
-        elif jurisdiction.type == "Territory":
-            refs.append(f"US Code Title {random.randint(1, 50)} – Section {random.randint(100, 999)}")
-        # Add some random extra refs
-        if random.random() < 0.3:
-            refs.append(f"Administrative Code – Rule {random.randint(100, 999)}")
-        if random.random() < 0.2:
-            refs.append(f"Case Law – {random.choice(['Doe v. City', 'Smith v. State', 'ABC Corp. v. County'])}")
-        return refs
-
-    def _generate_documents(self, jurisdiction: Jurisdiction) -> List[str]:
-        """
-        Generate a list of document filenames based on the jurisdiction.
-        """
         docs = [
             f"zoning_laws_{jurisdiction.code}.pdf",
             f"building_permits_{jurisdiction.code}.json",
             f"land_use_{jurisdiction.code}.xml",
             f"statutory_references_{jurisdiction.code}.txt",
         ]
-        # Add domain-specific documents
-        if jurisdiction.type in ("State", "Territory"):
-            docs.append(f"state_building_law_{jurisdiction.code}.pdf")
-        elif jurisdiction.type == "International":
-            docs.append(f"international_building_law_{jurisdiction.code}.pdf")
-        # Randomly add extra documents
-        if random.random() < 0.3:
-            docs.append(f"environmental_regulations_{jurisdiction.code}.pdf")
+        # Add some randomness
         if random.random() < 0.2:
-            docs.append(f"historic_preservation_{jurisdiction.code}.pdf")
-        return docs
+            clauses = clauses[:1]
+            statutes = statutes[:1]
+        if random.random() < 0.3:
+            docs = docs[:2]
+        return clauses, statutes, docs
+
+    # --------------------------------------------------------------------------
+    # HTTP Fetch with Anti-Bot and Cookie Persistence
+    # --------------------------------------------------------------------------
+    async def _fetch_url(self, url: str) -> tuple:
+        """
+        Fetch a URL with anti-bot evasion: proxy rotation, realistic headers,
+        human-like delays, and cookie persistence.
+        Returns (status, content, headers).
+        """
+        # Get a proxy
+        proxy = await self.proxy_manager.get_random_proxy()
+        # Prepare session (lazy initialization)
+        if self._session is None:
+            import aiohttp
+            from aiohttp import ClientSession, ClientTimeout, TCPConnector
+            connector = TCPConnector()
+            self._session = ClientSession(
+                headers=HeaderManager.get_random_headers(),
+                connector=connector,
+                timeout=ClientTimeout(total=30),
+                cookie_jar=self.cookie_manager.get_cookie_jar()
+            )
+            # Inject existing cookies
+            await self.cookie_manager.inject_cookies_into_session(self._session)
+
+        # Human-like delay
+        delay = random.uniform(1.5, 4.5)
+        await asyncio.sleep(delay)
+
+        # Get cookie header
+        cookie_header = await self.cookie_manager.get_cookie_header(url)
+        headers = HeaderManager.get_random_headers()
+        if cookie_header.get("Cookie"):
+            headers["Cookie"] = cookie_header["Cookie"]
+
+        # Make request
+        async with self._session.get(url, headers=headers, proxy=proxy) as response:
+            content = await response.read()
+            # Extract cookies from response
+            await self.cookie_manager.extract_cookies_from_response(response)
+            return response.status, content, dict(response.headers)
+
+    async def close(self) -> None:
+        """Close the session and cancel subscription if active."""
+        if self._session:
+            await self._session.close()
+            self._session = None
+        await self.subscription_handler.close()
+
+    async def cancel_subscription(self) -> bool:
+        """Cancel the subscription."""
+        return await self.subscription_handler.cancel_subscription()
+
+    # --------------------------------------------------------------------------
+    # Janitor Feedback Hook
+    # --------------------------------------------------------------------------
+    async def report_missing(self, missing_items: List[str]) -> None:
+        """Report missing items to JanitorAgent for retry."""
+        if missing_items:
+            self.logger.info(f"Reporting {len(missing_items)} missing legal items for retry.")
+            # In production, this could send a message to a queue or update a database.
+            # For now, we just log.
+        else:
+            self.logger.debug("No missing items to report.")
+
+    async def report_batch_missing(self, results: List[LegalSearchResult]) -> None:
+        """Aggregate and report missing items from a batch of results."""
+        all_missing = []
+        for result in results:
+            if result.missing_items:
+                all_missing.extend(result.missing_items)
+        if all_missing:
+            await self.report_missing(all_missing)
 
 # ------------------------------------------------------------------------------
 # Factory Function
@@ -272,28 +328,14 @@ if __name__ == "__main__":
     import sys
     logging.basicConfig(level=logging.INFO)
 
-    # Dummy semantic engine if not available
-    if SemanticEngine is None:
-        class DummyEngine:
-            def get_language_dictionary(self, lang):
-                return {"legal": {"test": {"en": "test"}}}
-            def shutdown(self):
-                pass
-        semantic_engine = DummyEngine()
-    else:
-        semantic_engine = SemanticEngine(dict_dir="./semantic_dictionaries", block_on_missing=False)
-
-    # Create a single agent
-    agent = LegalSearchAgent(agent_id=0, captain_id=2)
-
-    # Test with a jurisdiction
-    jur = Jurisdiction(name="New York", code="NY", type="State")
-
     async def test():
-        result = await agent.search(jur, semantic_engine)
+        agent = LegalSearchAgent(agent_id=0, captain_id=1)
+        jur = Jurisdiction(name="California", code="CA", type="State", zipcodes=["90210"])
+        result = await agent.search(jur)
         print(f"Status: {result.status}")
-        print(f"Legal clauses: {result.legal_clauses}")
-        print(f"Statutory references: {result.statutory_references}")
+        print(f"Clauses: {result.legal_clauses}")
+        print(f"Statutes: {result.statutory_references}")
         print(f"Documents: {result.documents_found}")
+        await agent.close()
 
     asyncio.run(test())
