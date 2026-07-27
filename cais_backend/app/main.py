@@ -1,8 +1,8 @@
 """
-FastAPI application entry point for the CAIS Backend.
+FastAPI application entry point for the CAIS Code Compliance backend.
 
 Initialises the API, configures CORS, registers routers,
-and manages graceful shutdown of asynchronous resources.
+and manages lifecycle events for database and WORM ledger.
 """
 
 import logging
@@ -13,10 +13,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app.api.endpoints import dashboard
 from app.core.config import settings
+from app.db.session import engine
 from app.services.evidence_processor import evidence_processor
+from app.services.worm_ledger import WORMService
+from app.db.session import AsyncSessionLocal
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
@@ -25,12 +26,18 @@ async def lifespan(app: FastAPI):
     """
     Lifespan context manager for startup and shutdown events.
     """
-    # Startup: nothing special needed yet
     logger.info("CAIS Backend starting up...")
+
+    # Initialize WORM service (optional: pre-warm connections)
+    worm_service = WORMService(AsyncSessionLocal)
+    logger.info("WORM service ready")
+
     yield
-    # Shutdown: gracefully close RabbitMQ connection
+
+    # Shutdown: gracefully close RabbitMQ connection and database engine
     logger.info("CAIS Backend shutting down...")
     await evidence_processor.close()
+    await engine.dispose()
     logger.info("Shutdown complete.")
 
 
@@ -43,14 +50,12 @@ app = FastAPI(
 )
 
 # Configure CORS
-# Allow local development origins and optionally a list from environment
 allowed_origins = [
     "http://localhost:3000",
     "http://localhost:8000",
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8000",
 ]
-# If a CORS_ORIGINS environment variable is set, parse and override
 if hasattr(settings, "CORS_ORIGINS") and settings.CORS_ORIGINS:
     allowed_origins = settings.CORS_ORIGINS.split(",")
 
@@ -63,9 +68,16 @@ app.add_middleware(
 )
 
 # Register routers
-app.include_router(dashboard.router)
+app.include_router(dashboard.router, prefix="/api/v1/dashboard", tags=["dashboard"])
+
 
 # Health check endpoint
-@app.get("/health")
+@app.get("/api/v1/health")
 async def health_check():
     return {"status": "ok", "service": "cais-backend"}
+
+
+# Root endpoint – simple redirect
+@app.get("/")
+async def root():
+    return {"message": "CAIS Backend API is running", "docs": "/docs"}

@@ -1,19 +1,12 @@
 """
-Configuration module for the CAIS backend.
-
-All settings are loaded from environment variables using pydantic-settings.
-No hardcoded fallbacks or local file dependencies are allowed.
+Application configuration and settings management for CAIS backend.
 """
 
 from typing import Optional
-
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
-    """
-    Application settings.
-    """
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8",
@@ -21,26 +14,20 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # GCP configuration
-    GCP_PROJECT: str
-    GCP_CREDENTIALS_JSON: Optional[str] = None  # Path to service account JSON file
-
-    # PostgreSQL (asyncpg)
-    POSTGRES_DSN: str  # e.g., postgresql+asyncpg://user:pass@host:5432/db
-
-    # RabbitMQ (aio-pika)
-    RABBITMQ_URI: str  # e.g., amqp://user:pass@host:5672/
-
-    # Redis (for WebSocket state / pub/sub)
-    REDIS_URL: str  # e.g., redis://host:6379/0
-
-    # GCS bucket name for uploaded plans
-    GCS_BUCKET_PLANS: str
-
-    # RabbitMQ exchange and routing keys
+    GCP_PROJECT: str = "cais-uploader-production-2026"
+    GCP_CREDENTIALS_JSON: str = "app/credentials/service-account.json"
+    GCS_BUCKET_PLANS: str = "cais-plans-storage-2026"
+    ROOT_FOLDER_ID: str = "1BIDavBaxBScLnjJfFTvnfLaOEPw0msPp"
+    POSTGRES_DSN: str = "postgresql+asyncpg://postgres:postgres@localhost:5432/cais_db"
+    RABBITMQ_URI: str = "amqp://guest:guest@localhost:5672/"
     RABBITMQ_EXCHANGE: str = "plan_processing"
     RABBITMQ_ROUTING_KEY: str = "plan.uploaded"
+    REDIS_URL: str = "redis://localhost:6379/0"
+    GOOGLE_CLIENT_ID: Optional[str] = None
+    GOOGLE_CLIENT_SECRET: Optional[str] = None
+    GOOGLE_REFRESH_TOKEN: Optional[str] = None
+    GOOGLE_TOKEN_URI: str = "https://oauth2.googleapis.com/token"
+    CORS_ORIGINS: str = "http://localhost:3000,http://localhost:8000"
 
 
-# Singleton instance
 settings = Settings()
