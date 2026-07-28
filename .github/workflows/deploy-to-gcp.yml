@@ -2,8 +2,7 @@ name: Deploy to GCP Cloud Storage
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -31,15 +30,11 @@ jobs:
 
       - name: Upload to GCP Cloud Storage
         run: |
-          # Crear bucket si no existe
           gcloud storage buckets create gs://${{ secrets.GCP_BUCKET_NAME }} --location=us-central1 2>/dev/null || true
-          
-          # Subir archivos
           gcloud storage cp -r src/ gs://${{ secrets.GCP_BUCKET_NAME }}/src/
           gcloud storage cp -r modules/ gs://${{ secrets.GCP_BUCKET_NAME }}/modules/
           gcloud storage cp -r cais_backend/ gs://${{ secrets.GCP_BUCKET_NAME }}/cais_backend/
           gcloud storage cp *.py *.txt *.sh gs://${{ secrets.GCP_BUCKET_NAME }}/
-          
           echo "✅ Deployment complete"
 
       - name: Verify deployment
