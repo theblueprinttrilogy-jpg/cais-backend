@@ -1,63 +1,89 @@
 #!/usr/bin/env python3
 """
-Sistema de Autenticación del Soberano - Área Segura de 17 Caracteres.
+Sovereign Authentication - TASK 6.2
+Secure 17-character password authentication for the Sovereign Vault.
+100% ENGLISH - All comments, messages, and logs in English.
 """
 
 import os
+import json
 import hashlib
 import hmac
 import time
-import json
-from pathlib import Path
-from typing import Optional, Tuple
-from datetime import datetime, timedelta
-from dataclasses import dataclass
+import secrets
 import bcrypt
+from pathlib import Path
+from datetime import datetime, timedelta
+from typing import Optional, Tuple, Dict, Any
+from dataclasses import dataclass, field
+import base64
 from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+
 
 @dataclass
 class AuthAttempt:
-    """Registro de intento de autenticación."""
+    """Record of an authentication attempt."""
     timestamp: str
     success: bool
     ip_address: str
     user_agent: str
+    details: str = ""
+
+
+@dataclass
+class SessionData:
+    """Session data for authenticated user."""
+    authenticated: bool
+    authenticated_at: Optional[str] = None
+    expires_at: Optional[str] = None
+    session_id: Optional[str] = None
+    ip_address: Optional[str] = None
+
 
 class SovereignAuthenticator:
     """
-    Sistema de autenticación para el Área Segura del Soberano.
-    Requiere contraseña de exactamente 17 caracteres.
+    Secure authentication system for the Sovereign Vault.
+    Requires exactly 17-character password.
+    Features:
+    - bcrypt hashing (12 rounds)
+    - 3 attempts max, then 15-minute lockout
+    - 1-hour session duration
+    - Fernet encryption for stored passwords
+    - Audit logging of all attempts
     """
     
-    # Configuración de seguridad
-    REQUIRED_LENGTH = 17
+    # Security constants
+    PASSWORD_LENGTH = 17
     MAX_ATTEMPTS = 3
-    LOCKOUT_DURATION = 900  # 15 minutos en segundos
-    SESSION_DURATION = 3600  # 1 hora
+    LOCKOUT_DURATION = 900  # 15 minutes in seconds
+    SESSION_DURATION = 3600  # 1 hour in seconds
     
     def __init__(self, config_dir: str = "~/PROMETHEUS/config/security"):
         """
-        Initialize the sovereign authenticator.
+        Initialize the Sovereign Authenticator.
         
         Args:
-            config_dir: Directory for security configuration.
+            config_dir: Directory for security configuration
         """
         self.config_dir = Path(config_dir).expanduser()
         self.config_dir.mkdir(parents=True, exist_ok=True)
         
-        # Archivos de configuración
+        # File paths
         self.auth_file = self.config_dir / 'sovereign_auth.json'
         self.log_file = self.config_dir / 'sovereign_access.log'
         self.session_file = self.config_dir / 'sovereign_session.json'
+        self.master_key_file = self.config_dir / 'master_password.key'
         
-        # Inicializar
+        # Initialize system
         self._initialize_auth_system()
         self._load_session()
     
     def _initialize_auth_system(self):
         """
         Initialize the authentication system.
-        Creates the master password if it doesn't exist.
+        Creates master password if it doesn't exist.
         """
         if not self.auth_file.exists():
             # Generate master password
@@ -77,7 +103,8 @@ class SovereignAuthenticator:
                 'created_at': datetime.now().isoformat(),
                 'attempts': 0,
                 'locked_until': None,
-                'last_access': None
+                'last_access': None,
+                'version': '1.0'
             }
             
             with open(self.auth_file, 'w') as f:
@@ -87,23 +114,23 @@ class SovereignAuthenticator:
             self._save_master_password(master_password)
             
             print(f"""
-╔══════════════════════════════════════════════════════════════════╗
-║                    🔐 SOVEREIGN VAULT                           ║
-╠══════════════════════════════════════════════════════════════════╣
-║                                                                ║
-║  ¡IMPORTANTE! Su contraseña maestra de 17 caracteres es:       ║
-║                                                                ║
-║  {master_password}                             ║
-║                                                                ║
-║  ⚠️  Guarde esta contraseña en un lugar seguro.                ║
-║  ⚠️  No la comparta con nadie.                                 ║
-║  ⚠️  No la guarde en el sistema sin cifrar.                    ║
-║                                                                ║
-║  La contraseña está almacenada en:                             ║
-║  {self.config_dir / 'master_password.key'}                     ║
-║                                                                ║
-╚══════════════════════════════════════════════════════════════════╝
-            """)
+╔═══════════════════════════════════════════════════════════════════╗
+║                    🔐 SOVEREIGN VAULT                             ║
+╠═══════════════════════════════════════════════════════════════════╣
+║                                                                   ║
+║  ⚠️  IMPORTANT! Your 17-character master password is:             ║
+║                                                                   ║
+║  📌  {master_password}  📌                                        ║
+║                                                                   ║
+║  ⚠️  Store this password in a secure location.                    ║
+║  ⚠️  Do NOT share it with anyone.                                ║
+║  ⚠️  Do NOT store it unencrypted on disk.                        ║
+║                                                                   ║
+║  Password stored securely at:                                     ║
+║  {self.master_key_file}                                          ║
+║                                                                   ║
+╚═══════════════════════════════════════════════════════════════════╝
+""")
     
     def _generate_master_password(self) -> str:
         """
@@ -129,9 +156,9 @@ class SovereignAuthenticator:
             random.choice(symbols)
         ]
         
-        # Fill remaining characters
+        # Fill remaining characters (17 total)
         all_chars = lowercase + uppercase + digits + symbols
-        for _ in range(17 - len(password)):
+        for _ in range(self.PASSWORD_LENGTH - len(password)):
             password.append(random.choice(all_chars))
         
         # Shuffle
@@ -144,7 +171,7 @@ class SovereignAuthenticator:
         Save the master password in an encrypted format.
         
         Args:
-            password: The master password.
+            password: The master password to encrypt and save.
         """
         # Generate encryption key
         key = Fernet.generate_key()
@@ -153,51 +180,61 @@ class SovereignAuthenticator:
         # Encrypt password
         encrypted = cipher.encrypt(password.encode('utf-8'))
         
-        # Save encrypted password
-        with open(self.config_dir / 'master_password.key', 'w') as f:
+        # Save encrypted password with metadata
+        with open(self.master_key_file, 'w') as f:
             json.dump({
                 'key': key.decode('utf-8'),
                 'encrypted': encrypted.decode('utf-8'),
-                'created_at': datetime.now().isoformat()
+                'created_at': datetime.now().isoformat(),
+                'version': '1.0'
             }, f, indent=2)
         
         # Set restrictive permissions
-        os.chmod(self.config_dir / 'master_password.key', 0o600)
+        os.chmod(self.master_key_file, 0o600)
     
     def _load_session(self):
         """Load current session state."""
         if self.session_file.exists():
             with open(self.session_file, 'r') as f:
-                self.session = json.load(f)
+                data = json.load(f)
+                self.session = SessionData(
+                    authenticated=data.get('authenticated', False),
+                    authenticated_at=data.get('authenticated_at'),
+                    expires_at=data.get('expires_at'),
+                    session_id=data.get('session_id'),
+                    ip_address=data.get('ip_address')
+                )
         else:
-            self.session = {
-                'authenticated': False,
-                'authenticated_at': None,
-                'expires_at': None,
-                'ip_address': None
-            }
+            self.session = SessionData(authenticated=False)
             self._save_session()
     
     def _save_session(self):
         """Save current session state."""
         with open(self.session_file, 'w') as f:
-            json.dump(self.session, f, indent=2)
+            json.dump({
+                'authenticated': self.session.authenticated,
+                'authenticated_at': self.session.authenticated_at,
+                'expires_at': self.session.expires_at,
+                'session_id': self.session.session_id,
+                'ip_address': self.session.ip_address
+            }, f, indent=2)
     
-    def authenticate(self, password: str, ip_address: str = "127.0.0.1") -> Tuple[bool, str]:
+    def authenticate(self, password: str, ip_address: str = "127.0.0.1", user_agent: str = "unknown") -> Tuple[bool, str]:
         """
         Authenticate the sovereign with the master password.
         
         Args:
-            password: The password to verify.
+            password: The password to verify (must be exactly 17 characters).
             ip_address: IP address of the requester.
+            user_agent: User agent of the requester.
             
         Returns:
             Tuple of (success, message).
         """
         # Validate password length
-        if len(password) != self.REQUIRED_LENGTH:
-            self._log_attempt(False, ip_address, "Invalid length")
-            return False, f"Password must be exactly {self.REQUIRED_LENGTH} characters"
+        if len(password) != self.PASSWORD_LENGTH:
+            self._log_attempt(False, ip_address, user_agent, f"Invalid length: {len(password)}")
+            return False, f"Password must be exactly {self.PASSWORD_LENGTH} characters"
         
         # Check if locked out
         with open(self.auth_file, 'r') as f:
@@ -206,7 +243,7 @@ class SovereignAuthenticator:
         if auth_config.get('locked_until'):
             lock_time = datetime.fromisoformat(auth_config['locked_until'])
             if datetime.now() < lock_time:
-                remaining = (lock_time - datetime.now()).seconds
+                remaining = int((lock_time - datetime.now()).total_seconds())
                 return False, f"Account locked. Try again in {remaining} seconds"
         
         # Verify password
@@ -224,15 +261,17 @@ class SovereignAuthenticator:
                     json.dump(auth_config, f, indent=2)
                 
                 # Create session
-                self.session['authenticated'] = True
-                self.session['authenticated_at'] = datetime.now().isoformat()
-                self.session['expires_at'] = (
+                session_id = secrets.token_hex(32)
+                self.session.authenticated = True
+                self.session.authenticated_at = datetime.now().isoformat()
+                self.session.expires_at = (
                     datetime.now() + timedelta(seconds=self.SESSION_DURATION)
                 ).isoformat()
-                self.session['ip_address'] = ip_address
+                self.session.session_id = session_id
+                self.session.ip_address = ip_address
                 self._save_session()
                 
-                self._log_attempt(True, ip_address, "Success")
+                self._log_attempt(True, ip_address, user_agent, "Success")
                 return True, "Authentication successful"
             else:
                 # Failed attempt
@@ -242,7 +281,7 @@ class SovereignAuthenticator:
                     # Lock the account
                     lock_time = datetime.now() + timedelta(seconds=self.LOCKOUT_DURATION)
                     auth_config['locked_until'] = lock_time.isoformat()
-                    message = f"Too many attempts. Account locked for {self.LOCKOUT_DURATION/60} minutes"
+                    message = f"Too many attempts. Account locked for {self.LOCKOUT_DURATION//60} minutes"
                 else:
                     remaining = self.MAX_ATTEMPTS - auth_config['attempts']
                     message = f"Invalid password. {remaining} attempts remaining"
@@ -250,11 +289,11 @@ class SovereignAuthenticator:
                 with open(self.auth_file, 'w') as f:
                     json.dump(auth_config, f, indent=2)
                 
-                self._log_attempt(False, ip_address, f"Invalid password (attempt {auth_config['attempts']})")
+                self._log_attempt(False, ip_address, user_agent, f"Invalid password (attempt {auth_config['attempts']})")
                 return False, message
-                
+            
         except Exception as e:
-            self._log_attempt(False, ip_address, f"Error: {str(e)}")
+            self._log_attempt(False, ip_address, user_agent, f"Error: {str(e)}")
             return False, f"Authentication error: {str(e)}"
     
     def is_authenticated(self) -> bool:
@@ -264,12 +303,12 @@ class SovereignAuthenticator:
         Returns:
             True if authenticated and session not expired.
         """
-        if not self.session['authenticated']:
+        if not self.session.authenticated:
             return False
         
         # Check expiration
-        if self.session.get('expires_at'):
-            expires = datetime.fromisoformat(self.session['expires_at'])
+        if self.session.expires_at:
+            expires = datetime.fromisoformat(self.session.expires_at)
             if datetime.now() > expires:
                 self.logout()
                 return False
@@ -278,40 +317,52 @@ class SovereignAuthenticator:
     
     def logout(self):
         """Log out the current session."""
-        self.session['authenticated'] = False
-        self.session['authenticated_at'] = None
-        self.session['expires_at'] = None
+        self.session.authenticated = False
+        self.session.authenticated_at = None
+        self.session.expires_at = None
+        self.session.session_id = None
         self._save_session()
+        self._log_attempt(True, "127.0.0.1", "system", "Logout")
     
-    def get_session_info(self) -> dict:
+    def get_session_info(self) -> Dict:
         """
         Get current session information.
         
         Returns:
             Dictionary with session information.
         """
-        return {
-            'authenticated': self.session['authenticated'],
-            'authenticated_at': self.session.get('authenticated_at'),
-            'expires_at': self.session.get('expires_at'),
-            'time_remaining': None
+        info = {
+            'authenticated': self.session.authenticated,
+            'authenticated_at': self.session.authenticated_at,
+            'expires_at': self.session.expires_at,
+            'session_id': self.session.session_id[:16] + '...' if self.session.session_id else None
         }
+        
+        if self.session.authenticated and self.session.expires_at:
+            expires = datetime.fromisoformat(self.session.expires_at)
+            remaining = int((expires - datetime.now()).total_seconds())
+            info['seconds_remaining'] = remaining
+            info['minutes_remaining'] = remaining // 60
+        
+        return info
     
-    def _log_attempt(self, success: bool, ip_address: str, details: str):
+    def _log_attempt(self, success: bool, ip_address: str, user_agent: str, details: str):
         """
-        Log an authentication attempt.
+        Log an authentication attempt to the audit log.
         
         Args:
             success: Whether the attempt was successful.
             ip_address: IP address of the requester.
-            details: Additional details.
+            user_agent: User agent of the requester.
+            details: Additional details about the attempt.
         """
         log_entry = {
             'timestamp': datetime.now().isoformat(),
             'success': success,
             'ip_address': ip_address,
+            'user_agent': user_agent,
             'details': details,
-            'user_agent': os.environ.get('HTTP_USER_AGENT', 'unknown')
+            'session_id': self.session.session_id
         }
         
         with open(self.log_file, 'a') as f:
@@ -322,15 +373,15 @@ class SovereignAuthenticator:
         Reset the master password.
         
         Args:
-            old_password: Current password.
+            old_password: Current password (must be valid).
             new_password: New password (must be 17 characters).
             
         Returns:
             Tuple of (success, message).
         """
         # Validate new password length
-        if len(new_password) != self.REQUIRED_LENGTH:
-            return False, f"New password must be exactly {self.REQUIRED_LENGTH} characters"
+        if len(new_password) != self.PASSWORD_LENGTH:
+            return False, f"New password must be exactly {self.PASSWORD_LENGTH} characters"
         
         # Verify old password
         success, message = self.authenticate(old_password)
@@ -361,11 +412,11 @@ class SovereignAuthenticator:
         self._save_master_password(new_password)
         
         # Log the change
-        self._log_attempt(True, "127.0.0.1", "Password changed")
+        self._log_attempt(True, "127.0.0.1", "system", "Password changed")
         
         return True, "Password changed successfully"
     
-    def get_status(self) -> dict:
+    def get_status(self) -> Dict:
         """
         Get the status of the authentication system.
         
@@ -378,12 +429,68 @@ class SovereignAuthenticator:
         return {
             'password_hash': auth_config['password_hash'][:20] + '...',
             'attempts': auth_config.get('attempts', 0),
+            'max_attempts': self.MAX_ATTEMPTS,
             'locked_until': auth_config.get('locked_until'),
             'last_access': auth_config.get('last_access'),
-            'max_attempts': self.MAX_ATTEMPTS,
             'lockout_duration_seconds': self.LOCKOUT_DURATION,
-            'session_authenticated': self.is_authenticated()
+            'session_duration_seconds': self.SESSION_DURATION,
+            'session_authenticated': self.is_authenticated(),
+            'password_encrypted': self.master_key_file.exists()
         }
+    
+    def get_recent_logs(self, limit: int = 20) -> List[Dict]:
+        """
+        Get recent authentication logs.
+        
+        Args:
+            limit: Maximum number of log entries to return.
+            
+        Returns:
+            List of log entries.
+        """
+        if not self.log_file.exists():
+            return []
+        
+        logs = []
+        with open(self.log_file, 'r') as f:
+            for line in f:
+                try:
+                    logs.append(json.loads(line.strip()))
+                except:
+                    continue
+        
+        return logs[-limit:]
 
-# Instancia global del autenticador
+
+# Global instance
 sovereign_auth = SovereignAuthenticator()
+
+
+async def main():
+    """Test the Sovereign Authentication system."""
+    print("\n" + "="*70)
+    print(" SOVEREIGN AUTHENTICATION - TEST")
+    print("="*70)
+    
+    auth = SovereignAuthenticator()
+    
+    # Show status
+    status = auth.get_status()
+    print(f"\n📊 System Status:")
+    print(f"   Password hash: {status['password_hash']}")
+    print(f"   Attempts: {status['attempts']}/{status['max_attempts']}")
+    print(f"   Locked: {status['locked_until'] is not None}")
+    print(f"   Session: {status['session_authenticated']}")
+    print(f"   Password encrypted: {status['password_encrypted']}")
+    
+    # Show session info
+    session_info = auth.get_session_info()
+    print(f"\n🔐 Session Info:")
+    print(f"   Authenticated: {session_info['authenticated']}")
+    if session_info.get('minutes_remaining'):
+        print(f"   Time remaining: {session_info['minutes_remaining']} minutes")
+
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())

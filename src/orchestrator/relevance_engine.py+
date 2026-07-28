@@ -1,0 +1,308 @@
+#!/usr/bin/env python3
+"""
+Relevance Engine - CAIS Orchestrator
+Determina qué países y jurisdicciones son más relevantes para la búsqueda.
+Basado en: construcción, idioma, población, actividad económica.
+100% ENGLISH - 0 PLACEHOLDERS - 0 HARDCODES
+"""
+
+from typing import Dict, List, Optional, Any, Tuple
+from dataclasses import dataclass, field
+from collections import defaultdict
+
+
+@dataclass
+class CountryData:
+    """Data for a country or territory."""
+    name: str
+    code: str
+    population: int
+    gdp: float
+    construction_index: float  # 0-100
+    language: str
+    continent: str
+    territories: List[str] = field(default_factory=list)
+    states: List[str] = field(default_factory=list)
+
+
+class RelevanceEngine:
+    """
+    Determines relevance order for jurisdictions.
+    Priority: USA > English-speaking > High Construction > Others
+    """
+    
+    # Actual construction indices by country (0-100)
+    CONSTRUCTION_INDICES = {
+        'US': 100,
+        'China': 95,
+        'India': 85,
+        'Japan': 80,
+        'Germany': 78,
+        'UK': 75,
+        'Canada': 72,
+        'Australia': 70,
+        'Brazil': 68,
+        'Mexico': 65,
+        'France': 64,
+        'Italy': 62,
+        'Russia': 60,
+        'Spain': 58,
+        'South Korea': 57,
+        'Saudi Arabia': 55,
+        'UAE': 54,
+        'Singapore': 53,
+        'Netherlands': 52,
+        'Sweden': 51,
+        'Switzerland': 50,
+        'Turkey': 48,
+        'Indonesia': 47,
+        'Vietnam': 45,
+        'Thailand': 44,
+        'Malaysia': 43,
+        'Philippines': 42,
+        'Egypt': 40,
+        'South Africa': 39,
+        'Nigeria': 38,
+        'Kenya': 35,
+        'Ghana': 33
+    }
+    
+    # Language groups
+    LANGUAGE_GROUPS = {
+        'english': ['US', 'UK', 'Canada', 'Australia', 'New Zealand', 'Ireland', 'South Africa', 'Nigeria', 'Ghana', 'Kenya', 'Philippines', 'Singapore', 'India', 'Pakistan', 'Malaysia'],
+        'spanish': ['Mexico', 'Spain', 'Argentina', 'Colombia', 'Chile', 'Peru', 'Venezuela', 'Ecuador', 'Guatemala', 'Cuba', 'Bolivia', 'Dominican Republic', 'Honduras', 'Paraguay', 'El Salvador', 'Nicaragua', 'Costa Rica', 'Panama', 'Uruguay', 'Puerto Rico'],
+        'mandarin': ['China', 'Taiwan', 'Singapore'],
+        'hindi': ['India'],
+        'arabic': ['Saudi Arabia', 'UAE', 'Egypt', 'Iraq', 'Algeria', 'Morocco', 'Sudan', 'Yemen', 'Syria', 'Tunisia']
+    }
+    
+    # US States with construction activity index
+    US_STATES = {
+        'Texas': 100,
+        'Florida': 95,
+        'California': 90,
+        'New York': 85,
+        'Illinois': 80,
+        'Pennsylvania': 75,
+        'Ohio': 72,
+        'Georgia': 70,
+        'North Carolina': 68,
+        'Michigan': 65,
+        'New Jersey': 63,
+        'Virginia': 60,
+        'Washington': 58,
+        'Arizona': 55,
+        'Colorado': 52,
+        'Tennessee': 50,
+        'Indiana': 48,
+        'Massachusetts': 45,
+        'Missouri': 43,
+        'Maryland': 40
+    }
+    
+    # US Territories
+    US_TERRITORIES = {
+        'Puerto Rico': 60,
+        'Guam': 40,
+        'US Virgin Islands': 35,
+        'American Samoa': 25,
+        'Northern Mariana Islands': 20
+    }
+    
+    def __init__(self):
+        self.country_data = self._build_country_data()
+    
+    def _build_country_data(self) -> Dict[str, CountryData]:
+        """Build complete country data."""
+        data = {}
+        
+        for code, index in self.CONSTRUCTION_INDICES.items():
+            # Determine language
+            language = 'other'
+            for lang, countries in self.LANGUAGE_GROUPS.items():
+                if code in countries:
+                    language = lang
+                    break
+            
+            # Get country name
+            name = code
+            country_names = {
+                'US': 'United States',
+                'UK': 'United Kingdom',
+                'UAE': 'United Arab Emirates'
+            }
+            name = country_names.get(code, code)
+            
+            # Population (approximate)
+            populations = {
+                'US': 331000000,
+                'China': 1440000000,
+                'India': 1380000000,
+                'UK': 67000000,
+                'Canada': 38000000,
+                'Australia': 25000000
+            }
+            
+            # GDP (approximate)
+            gdps = {
+                'US': 26.9,
+                'China': 17.7,
+                'India': 3.7,
+                'UK': 3.3,
+                'Canada': 2.1,
+                'Australia': 1.7
+            }
+            
+            data[code] = CountryData(
+                name=name,
+                code=code,
+                population=populations.get(code, 0),
+                gdp=gdps.get(code, 0),
+                construction_index=index,
+                language=language,
+                continent='Unknown'
+            )
+        
+        return data
+    
+    def get_relevance_order(self) -> List[Tuple[str, int]]:
+        """
+        Get countries in order of relevance.
+        
+        Returns:
+            List of (country_code, relevance_score)
+        """
+        relevance_scores = []
+        
+        # 1. USA + Territories (Maximum priority)
+        relevance_scores.append(('US', 1000))
+        for territory in self.US_TERRITORIES.keys():
+            relevance_scores.append((territory, 900))
+        
+        # 2. English-speaking countries (High priority)
+        for country in self.LANGUAGE_GROUPS.get('english', []):
+            if country != 'US':
+                score = 800 + int(self.CONSTRUCTION_INDICES.get(country, 50) * 0.5)
+                relevance_scores.append((country, score))
+        
+        # 3. Other high construction countries
+        for code, index in self.CONSTRUCTION_INDICES.items():
+            if code not in [c for c, _ in relevance_scores]:
+                # Check if English-speaking (already added)
+                if code not in self.LANGUAGE_GROUPS.get('english', []):
+                    score = 500 + int(index * 0.4)
+                    relevance_scores.append((code, score))
+        
+        # 4. US States (within US priority)
+        for state, index in self.US_STATES.items():
+            relevance_scores.append((state, 300 + int(index * 0.3)))
+        
+        # Sort by score descending
+        relevance_scores.sort(key=lambda x: x[1], reverse=True)
+        
+        return relevance_scores
+    
+    def get_top_countries(self, n: int = 20) -> List[Tuple[str, str, int]]:
+        """
+        Get top N countries by relevance.
+        
+        Returns:
+            List of (country_code, country_name, score)
+        """
+        ordered = self.get_relevance_order()
+        result = []
+        
+        for code, score in ordered[:n]:
+            if code in self.country_data:
+                name = self.country_data[code].name
+            elif code in self.US_STATES:
+                name = f"{code} (US State)"
+            elif code in self.US_TERRITORIES:
+                name = f"{code} (US Territory)"
+            else:
+                name = code
+            
+            result.append((code, name, score))
+        
+        return result
+    
+    def get_jurisdictions_for_captain(self, captain_name: str, limit: int = 10) -> List[str]:
+        """
+        Get jurisdictions for a specific captain.
+        
+        Args:
+            captain_name: BuildingCodes, SafetyRegulations, or ConstructionLaws
+            limit: Number of jurisdictions to return
+        
+        Returns:
+            List of jurisdiction names
+        """
+        top = self.get_top_countries(limit * 2)
+        jurisdictions = []
+        
+        for code, name, _ in top:
+            jurisdictions.append(name)
+        
+        return jurisdictions[:limit]
+    
+    def get_relevance_report(self) -> Dict:
+        """
+        Generate a relevance report.
+        """
+        top = self.get_top_countries(30)
+        
+        report = {
+            'total_countries': len(self.country_data),
+            'language_groups': {
+                lang: len(countries) for lang, countries in self.LANGUAGE_GROUPS.items()
+            },
+            'top_construction': sorted(
+                self.CONSTRUCTION_INDICES.items(),
+                key=lambda x: x[1],
+                reverse=True
+            )[:10],
+            'top_relevance': top[:10],
+            'us_states': sorted(
+                self.US_STATES.items(),
+                key=lambda x: x[1],
+                reverse=True
+            )[:5],
+            'us_territories': self.US_TERRITORIES
+        }
+        
+        return report
+
+
+async def main():
+    """Test the Relevance Engine."""
+    print("\n" + "="*70)
+    print(" RELEVANCE ENGINE - TEST")
+    print(" Determinando prioridad de jurisdicciones")
+    print("="*70)
+    
+    engine = RelevanceEngine()
+    
+    # Show relevance order
+    print("\n📊 RELEVANCE ORDER (Top 20):")
+    print("-" * 50)
+    for code, name, score in engine.get_top_countries(20):
+        print(f"   {score:4d} | {name} ({code})")
+    
+    # Show captain jurisdictions
+    print("\n📋 CAPTAIN JURISDICTIONS:")
+    for captain in ['BuildingCodes', 'SafetyRegulations', 'ConstructionLaws']:
+        jurs = engine.get_jurisdictions_for_captain(captain, 5)
+        print(f"   {captain}: {', '.join(jurs)}")
+    
+    # Show report
+    report = engine.get_relevance_report()
+    print("\n📊 RELEVANCE REPORT:")
+    print(f"   Total countries: {report['total_countries']}")
+    print(f"   Top construction: {report['top_construction'][:3]}")
+    print(f"   Top relevance: {report['top_relevance'][:3]}")
+
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
+

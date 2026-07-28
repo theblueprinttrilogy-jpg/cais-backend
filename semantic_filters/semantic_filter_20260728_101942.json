@@ -1,0 +1,68 @@
+{
+  "timestamp": "2026-07-28T10:19:42.969780",
+  "jurisdiction": "Florida",
+  "total_terms": 14,
+  "total_phrases": 30,
+  "terms": [
+    "buildings",
+    "and",
+    "structures",
+    "wind",
+    "designed",
+    "specified",
+    "loads",
+    "the",
+    "shall",
+    "this",
+    "section",
+    "minimum",
+    "fbc",
+    "withstand"
+  ],
+  "phrases": [
+    "to withstand the",
+    "minimum wind loads",
+    "this section",
+    "shall be designed",
+    "loads specified",
+    "loads specified in",
+    "designed to withstand",
+    "be designed to",
+    "structures shall",
+    "buildings and structures",
+    "and structures",
+    "the minimum wind",
+    "structures shall be",
+    "fbc 1609",
+    "in this",
+    "minimum wind",
+    "in this section",
+    "the minimum",
+    "wind loads",
+    "withstand the minimum",
+    "and structures shall",
+    "buildings and",
+    "be designed",
+    "specified in this",
+    "shall be",
+    "designed to",
+    "to withstand",
+    "wind loads specified",
+    "specified in",
+    "withstand the"
+  ],
+  "keywords": {
+    "requirements": [
+      "shall",
+      "minimum"
+    ],
+    "category": [
+      "structural"
+    ],
+    "severity": [
+      "critical"
+    ]
+  },
+  "hash": "bf8db5deeb95934b7fe71e0f5009783ced7be93ba238bfd1b0b9286af6493889",
+  "embedding_dimension": 384
+}

@@ -1,0 +1,2988 @@
+{
+  "jurisdictions": [
+    {
+      "name": "Aruba",
+      "code": "AW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Afghanistan",
+      "code": "AF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Angola",
+      "code": "AO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Anguilla",
+      "code": "AI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "\u00c5land Islands",
+      "code": "AX",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Albania",
+      "code": "AL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Andorra",
+      "code": "AD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "United Arab Emirates",
+      "code": "AE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Arabic"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Argentina",
+      "code": "AR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Armenia",
+      "code": "AM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "American Samoa",
+      "code": "AS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Antarctica",
+      "code": "AQ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "French Southern Territories",
+      "code": "TF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "code": "AG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Australia",
+      "code": "AU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "English"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Austria",
+      "code": "AT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Azerbaijan",
+      "code": "AZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Burundi",
+      "code": "BI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Belgium",
+      "code": "BE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Benin",
+      "code": "BJ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bonaire, Sint Eustatius and Saba",
+      "code": "BQ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Burkina Faso",
+      "code": "BF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bangladesh",
+      "code": "BD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bulgaria",
+      "code": "BG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bahrain",
+      "code": "BH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bahamas",
+      "code": "BS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "code": "BA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Barth\u00e9lemy",
+      "code": "BL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Belarus",
+      "code": "BY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Belize",
+      "code": "BZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bermuda",
+      "code": "BM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bolivia, Plurinational State of",
+      "code": "BO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Brazil",
+      "code": "BR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Portuguese"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Barbados",
+      "code": "BB",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Brunei Darussalam",
+      "code": "BN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bhutan",
+      "code": "BT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Bouvet Island",
+      "code": "BV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Botswana",
+      "code": "BW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Central African Republic",
+      "code": "CF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Canada",
+      "code": "CA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "English"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cocos (Keeling) Islands",
+      "code": "CC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Switzerland",
+      "code": "CH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Chile",
+      "code": "CL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "China",
+      "code": "CN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Mandarin"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "C\u00f4te d'Ivoire",
+      "code": "CI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cameroon",
+      "code": "CM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Congo, The Democratic Republic of the",
+      "code": "CD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Congo",
+      "code": "CG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cook Islands",
+      "code": "CK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Colombia",
+      "code": "CO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Comoros",
+      "code": "KM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cabo Verde",
+      "code": "CV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Costa Rica",
+      "code": "CR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cuba",
+      "code": "CU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cura\u00e7ao",
+      "code": "CW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Christmas Island",
+      "code": "CX",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cayman Islands",
+      "code": "KY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cyprus",
+      "code": "CY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Czechia",
+      "code": "CZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Germany",
+      "code": "DE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "German"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Djibouti",
+      "code": "DJ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Dominica",
+      "code": "DM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Denmark",
+      "code": "DK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Dominican Republic",
+      "code": "DO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Algeria",
+      "code": "DZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Ecuador",
+      "code": "EC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Egypt",
+      "code": "EG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Arabic"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Eritrea",
+      "code": "ER",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Western Sahara",
+      "code": "EH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Spain",
+      "code": "ES",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Spanish"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Estonia",
+      "code": "EE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Ethiopia",
+      "code": "ET",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Finland",
+      "code": "FI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Fiji",
+      "code": "FJ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Falkland Islands (Malvinas)",
+      "code": "FK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "France",
+      "code": "FR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "French"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Faroe Islands",
+      "code": "FO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Micronesia, Federated States of",
+      "code": "FM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Gabon",
+      "code": "GA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "United Kingdom",
+      "code": "GB",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "English"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Georgia",
+      "code": "GE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guernsey",
+      "code": "GG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Ghana",
+      "code": "GH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Gibraltar",
+      "code": "GI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guinea",
+      "code": "GN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guadeloupe",
+      "code": "GP",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Gambia",
+      "code": "GM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guinea-Bissau",
+      "code": "GW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Equatorial Guinea",
+      "code": "GQ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Greece",
+      "code": "GR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Grenada",
+      "code": "GD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Greenland",
+      "code": "GL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guatemala",
+      "code": "GT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "French Guiana",
+      "code": "GF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guam",
+      "code": "GU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Guyana",
+      "code": "GY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Hong Kong",
+      "code": "HK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Heard Island and McDonald Islands",
+      "code": "HM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Honduras",
+      "code": "HN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Croatia",
+      "code": "HR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Haiti",
+      "code": "HT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Hungary",
+      "code": "HU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Indonesia",
+      "code": "ID",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Isle of Man",
+      "code": "IM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "India",
+      "code": "IN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Hindi",
+        "English"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "British Indian Ocean Territory",
+      "code": "IO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Ireland",
+      "code": "IE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Iran, Islamic Republic of",
+      "code": "IR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Iraq",
+      "code": "IQ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Iceland",
+      "code": "IS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Israel",
+      "code": "IL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Italy",
+      "code": "IT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Italian"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Jamaica",
+      "code": "JM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Jersey",
+      "code": "JE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Jordan",
+      "code": "JO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Japan",
+      "code": "JP",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Japanese"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Kazakhstan",
+      "code": "KZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Kenya",
+      "code": "KE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Kyrgyzstan",
+      "code": "KG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Cambodia",
+      "code": "KH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Kiribati",
+      "code": "KI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "code": "KN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Korea, Republic of",
+      "code": "KR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Korean"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Kuwait",
+      "code": "KW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Lao People's Democratic Republic",
+      "code": "LA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Lebanon",
+      "code": "LB",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Liberia",
+      "code": "LR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Libya",
+      "code": "LY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Lucia",
+      "code": "LC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Liechtenstein",
+      "code": "LI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sri Lanka",
+      "code": "LK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Lesotho",
+      "code": "LS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Lithuania",
+      "code": "LT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Luxembourg",
+      "code": "LU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Latvia",
+      "code": "LV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Macao",
+      "code": "MO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Martin (French part)",
+      "code": "MF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Morocco",
+      "code": "MA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Monaco",
+      "code": "MC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Moldova, Republic of",
+      "code": "MD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Madagascar",
+      "code": "MG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Maldives",
+      "code": "MV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mexico",
+      "code": "MX",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Spanish"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Marshall Islands",
+      "code": "MH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "North Macedonia",
+      "code": "MK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mali",
+      "code": "ML",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Malta",
+      "code": "MT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Myanmar",
+      "code": "MM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Montenegro",
+      "code": "ME",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mongolia",
+      "code": "MN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Northern Mariana Islands",
+      "code": "MP",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mozambique",
+      "code": "MZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mauritania",
+      "code": "MR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Montserrat",
+      "code": "MS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Martinique",
+      "code": "MQ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mauritius",
+      "code": "MU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Malawi",
+      "code": "MW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Malaysia",
+      "code": "MY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Mayotte",
+      "code": "YT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Namibia",
+      "code": "NA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "New Caledonia",
+      "code": "NC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Niger",
+      "code": "NE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Norfolk Island",
+      "code": "NF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Nigeria",
+      "code": "NG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Nicaragua",
+      "code": "NI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Niue",
+      "code": "NU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Netherlands",
+      "code": "NL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Norway",
+      "code": "NO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Nepal",
+      "code": "NP",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Nauru",
+      "code": "NR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "New Zealand",
+      "code": "NZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Oman",
+      "code": "OM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Pakistan",
+      "code": "PK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Panama",
+      "code": "PA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Pitcairn",
+      "code": "PN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Peru",
+      "code": "PE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Philippines",
+      "code": "PH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Palau",
+      "code": "PW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Papua New Guinea",
+      "code": "PG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Poland",
+      "code": "PL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Puerto Rico",
+      "code": "PR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Korea, Democratic People's Republic of",
+      "code": "KP",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Portugal",
+      "code": "PT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Paraguay",
+      "code": "PY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Palestine, State of",
+      "code": "PS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "French Polynesia",
+      "code": "PF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Qatar",
+      "code": "QA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "R\u00e9union",
+      "code": "RE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Romania",
+      "code": "RO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Russian Federation",
+      "code": "RU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Russian"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Rwanda",
+      "code": "RW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saudi Arabia",
+      "code": "SA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "Arabic"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sudan",
+      "code": "SD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Senegal",
+      "code": "SN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Singapore",
+      "code": "SG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "South Georgia and the South Sandwich Islands",
+      "code": "GS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Helena, Ascension and Tristan da Cunha",
+      "code": "SH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Svalbard and Jan Mayen",
+      "code": "SJ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Solomon Islands",
+      "code": "SB",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sierra Leone",
+      "code": "SL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "El Salvador",
+      "code": "SV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "San Marino",
+      "code": "SM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Somalia",
+      "code": "SO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Pierre and Miquelon",
+      "code": "PM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Serbia",
+      "code": "RS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "South Sudan",
+      "code": "SS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "code": "ST",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Suriname",
+      "code": "SR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Slovakia",
+      "code": "SK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Slovenia",
+      "code": "SI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sweden",
+      "code": "SE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Eswatini",
+      "code": "SZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Sint Maarten (Dutch part)",
+      "code": "SX",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Seychelles",
+      "code": "SC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Syrian Arab Republic",
+      "code": "SY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Turks and Caicos Islands",
+      "code": "TC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Chad",
+      "code": "TD",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Togo",
+      "code": "TG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Thailand",
+      "code": "TH",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tajikistan",
+      "code": "TJ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tokelau",
+      "code": "TK",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Turkmenistan",
+      "code": "TM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Timor-Leste",
+      "code": "TL",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tonga",
+      "code": "TO",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "code": "TT",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tunisia",
+      "code": "TN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "T\u00fcrkiye",
+      "code": "TR",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tuvalu",
+      "code": "TV",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Taiwan, Province of China",
+      "code": "TW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Tanzania, United Republic of",
+      "code": "TZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Uganda",
+      "code": "UG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Ukraine",
+      "code": "UA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "United States Minor Outlying Islands",
+      "code": "UM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Uruguay",
+      "code": "UY",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "United States",
+      "code": "US",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [
+        "English"
+      ],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Uzbekistan",
+      "code": "UZ",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Holy See (Vatican City State)",
+      "code": "VA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Saint Vincent and the Grenadines",
+      "code": "VC",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Venezuela, Bolivarian Republic of",
+      "code": "VE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Virgin Islands, British",
+      "code": "VG",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Virgin Islands, U.S.",
+      "code": "VI",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Viet Nam",
+      "code": "VN",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Vanuatu",
+      "code": "VU",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Wallis and Futuna",
+      "code": "WF",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Samoa",
+      "code": "WS",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Yemen",
+      "code": "YE",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "South Africa",
+      "code": "ZA",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Zambia",
+      "code": "ZM",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Zimbabwe",
+      "code": "ZW",
+      "type": "country",
+      "population": 0,
+      "region": "Unknown",
+      "languages": [],
+      "construction_index": 50,
+      "source": "pycountry"
+    },
+    {
+      "name": "Alabama",
+      "code": "AL",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Alaska",
+      "code": "AK",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Arizona",
+      "code": "AZ",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Arkansas",
+      "code": "AR",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "California",
+      "code": "CA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Colorado",
+      "code": "CO",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Connecticut",
+      "code": "CT",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Delaware",
+      "code": "DE",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Florida",
+      "code": "FL",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Georgia",
+      "code": "GA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Hawaii",
+      "code": "HI",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Idaho",
+      "code": "ID",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Illinois",
+      "code": "IL",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Indiana",
+      "code": "IN",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Iowa",
+      "code": "IA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Kansas",
+      "code": "KS",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Kentucky",
+      "code": "KY",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Louisiana",
+      "code": "LA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Maine",
+      "code": "ME",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Maryland",
+      "code": "MD",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Massachusetts",
+      "code": "MA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Michigan",
+      "code": "MI",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Minnesota",
+      "code": "MN",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Mississippi",
+      "code": "MS",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Missouri",
+      "code": "MO",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Montana",
+      "code": "MT",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Nebraska",
+      "code": "NE",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Nevada",
+      "code": "NV",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "New Hampshire",
+      "code": "NH",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "New Jersey",
+      "code": "NJ",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "New Mexico",
+      "code": "NM",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "New York",
+      "code": "NY",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "North Carolina",
+      "code": "NC",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "North Dakota",
+      "code": "ND",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Ohio",
+      "code": "OH",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Oklahoma",
+      "code": "OK",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Oregon",
+      "code": "OR",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Pennsylvania",
+      "code": "PA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Rhode Island",
+      "code": "RI",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "South Carolina",
+      "code": "SC",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "South Dakota",
+      "code": "SD",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Tennessee",
+      "code": "TN",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Texas",
+      "code": "TX",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Utah",
+      "code": "UT",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Vermont",
+      "code": "VT",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Virginia",
+      "code": "VA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Washington",
+      "code": "WA",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "West Virginia",
+      "code": "WV",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Wisconsin",
+      "code": "WI",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "Wyoming",
+      "code": "WY",
+      "type": "state",
+      "parent": "United States",
+      "construction_index": 70,
+      "source": "us library"
+    },
+    {
+      "name": "American Samoa",
+      "code": "AS",
+      "type": "territory",
+      "parent": "United States",
+      "construction_index": 50,
+      "source": "us library"
+    },
+    {
+      "name": "Guam",
+      "code": "GU",
+      "type": "territory",
+      "parent": "United States",
+      "construction_index": 50,
+      "source": "us library"
+    },
+    {
+      "name": "Northern Mariana Islands",
+      "code": "MP",
+      "type": "territory",
+      "parent": "United States",
+      "construction_index": 50,
+      "source": "us library"
+    },
+    {
+      "name": "Puerto Rico",
+      "code": "PR",
+      "type": "territory",
+      "parent": "United States",
+      "construction_index": 50,
+      "source": "us library"
+    },
+    {
+      "name": "Virgin Islands",
+      "code": "VI",
+      "type": "territory",
+      "parent": "United States",
+      "construction_index": 50,
+      "source": "us library"
+    }
+  ],
+  "last_updated": "2026-07-28T11:11:15.914308",
+  "stats": {
+    "total": 304,
+    "countries": 249,
+    "states": 50,
+    "territories": 5,
+    "construction_data": {
+      "ZH": 59.3029523786538,
+      "ZI": 75.9980883996324,
+      "1A": 100,
+      "S3": 63.0000947632528,
+      "B8": 62.4326979855488,
+      "V2": 65.3163907255196,
+      "Z4": 100,
+      "4E": 79.037647954906
+    }
+  }
+}

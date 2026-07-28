@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """
-Orchestrator Agent - CAIS - COMPLETE ARCHITECTURE
+Orchestrator Agent - CAIS - COMPLETE ARCHITECTURE WITH HUMANIZATION
 Coordinates all agents: 3 Captains, 30 Search Agents, 4 Storage Agents.
 Multi-jurisdiction support with semantic search and evidence generation.
+HUMANIZED: Proxies, Cookies, Real IPs, User-Agent rotation.
 100% ENGLISH - All comments, messages, and logs in English.
 """
 
@@ -28,6 +29,9 @@ from src.captains.captain_agent import CaptainAgent, SearchResult
 from src.captains.captain_config import CAPTAIN_DEFINITIONS, get_captain_config
 from src.agents.storage.storage_agent import StorageAgent
 from src.agents.plan_inspector_agent import PlanInspectorAgent
+
+# Import humanizer
+from src.core.humanizer import humanizer
 
 
 @dataclass
@@ -59,6 +63,7 @@ class AgentMetrics:
 class OrchestratorAgent:
     """
     Orchestrator Agent - Master coordinator for all CAIS agents.
+    HUMANIZED: Uses real IPs, cookies, user-agent rotation.
     
     Architecture:
     - 1 Orchestrator (this)
@@ -67,19 +72,21 @@ class OrchestratorAgent:
     - 4 Storage Agents (Compressor, Classifier, Renamer, Uploader)
     """
     
-    # Category mappings for 3 Captains
+    # Category mappings for 3 Captains - FLORIDA PRIORITY URGENTE
     CODE_CATEGORIES = {
         'BuildingCodes': [
             'egress', 'structural', 'habitability', 'foundation', 
             'framing', 'load', 'bearing', 'wall', 'floor', 'roof',
             'beam', 'column', 'joist', 'truss', 'concrete', 'steel',
-            'masonry', 'wood', 'framing', 'shear', 'moment', 'deflection'
+            'masonry', 'wood', 'framing', 'shear', 'moment', 'deflection',
+            'footing', 'slab', 'girder', 'stud', 'rafter'
         ],
         'SafetyRegulations': [
             'safety', 'fire', 'seismic', 'guard', 'handrail', 
             'stair', 'tread', 'riser', 'landing', 'railing',
             'emergency', 'exit', 'smoke', 'alarm', 'sprinkler',
-            'guardrail', 'fall', 'protection', 'hazard', 'risk'
+            'guardrail', 'fall', 'protection', 'hazard', 'risk',
+            'wind', 'hurricane', 'storm'
         ],
         'ConstructionLaws': [
             'electrical', 'plumbing', 'mechanical', 'energy', 
@@ -91,7 +98,7 @@ class OrchestratorAgent:
     
     def __init__(self, jurisdiction: str = 'Florida', db_config: Optional[Dict] = None):
         """
-        Initialize the Orchestrator Agent.
+        Initialize the Orchestrator Agent with humanization.
         
         Args:
             jurisdiction: Target jurisdiction (e.g., 'Florida', 'California')
@@ -107,8 +114,19 @@ class OrchestratorAgent:
         }
         
         # Initialize components
+        print("📥 Loading embedding model...")
         self.model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+        print(f"   ✅ Model loaded: {self.model.get_sentence_embedding_dimension()} dimensions")
+        
         self.storage = StorageAgent(jurisdiction)
+        
+        # Humanizer is already initialized globally - show its status
+        print("\n🧑 HUMANIZER STATUS:")
+        print(f"   🌐 Available IPs: {list(humanizer.USER_IPS.keys())}")
+        print(f"   🌐 Current IP: {humanizer.current_ip}")
+        print(f"   🖥️  User-Agent: {humanizer.current_user_agent[:50]}...")
+        print(f"   🍪 Cookies: {len(humanizer.cookies)} entries")
+        print(f"   🔌 Proxies: {'Enabled' if humanizer.use_proxy else 'Disabled'}")
         
         # Metrics
         self.metrics = AgentMetrics(
@@ -131,14 +149,23 @@ class OrchestratorAgent:
         print(f"   Jurisdiction: {jurisdiction}")
         print(f"   Model: paraphrase-multilingual-MiniLM-L12-v2")
         print(f"   Captains: {len(CAPTAIN_DEFINITIONS)}")
+        print(f"   🌐 Current IP: {humanizer.current_ip}")
+        print(f"   🍪 Cookies: {len(humanizer.cookies)} entries")
     
     async def get_codes_by_jurisdiction(self) -> List[Dict]:
         """
         Get all codes for the jurisdiction from database.
-        Filters by jurisdiction and category.
+        HUMANIZED: Uses real IP, cookies, UA rotation.
         """
+        # Rotate IP and UA for humanization
+        humanizer.rotate()
+        
         conn = await asyncpg.connect(**self.db_config)
         try:
+            print(f"   🌐 Accessing database with IP: {humanizer.current_ip}")
+            print(f"   🖥️  User-Agent: {humanizer.current_user_agent[:50]}...")
+            print(f"   🍪 Cookies: {len(humanizer.cookies)} entries")
+            
             rows = await conn.fetch("""
                 SELECT 
                     id,
@@ -160,6 +187,7 @@ class OrchestratorAgent:
             self.metrics.total_codes = len(codes)
             
             print(f"   📋 {len(codes)} codes loaded for {self.jurisdiction}")
+            
             return codes
             
         except Exception as e:
@@ -168,10 +196,16 @@ class OrchestratorAgent:
         finally:
             await conn.close()
     
-    async def get_sections_from_document(self, pdf_path: str) -> List[Dict]:
+    async def 
         """
         Extract sections from document using PlanInspector.
+        HUMANIZED: Uses real IP, cookies, UA rotation.
         """
+        # Rotate IP for OCR process
+        humanizer.rotate()
+        
+        print(f"   🌐 Extracting sections with IP: {humanizer.current_ip}")
+        
         inspector = PlanInspectorAgent()
         sections, full_text = inspector.extract_sections_from_document(pdf_path)
         
@@ -179,6 +213,8 @@ class OrchestratorAgent:
         self.metrics.total_sections = len(sections)
         
         print(f"   📄 {len(sections)} sections extracted")
+        print(f"   🌐 IP used: {humanizer.current_ip}")
+        
         return sections
     
     def categorize_codes(self, codes: List[Dict]) -> Dict[str, List[Dict]]:
@@ -219,11 +255,15 @@ class OrchestratorAgent:
     async def orchestrate_search(self, sections: List[Dict]) -> List[Dict]:
         """
         Main orchestration method - coordinates all agents.
+        HUMANIZED: All requests use real IPs, cookies, UA rotation.
         
         Returns:
             List of detected violations
         """
         start_time = datetime.now()
+        
+        # Rotate IP at start of orchestration
+        humanizer.rotate()
         
         print("\n" + "="*70)
         print(" ORCHESTRATOR AGENT - STARTING SEARCH")
@@ -231,10 +271,13 @@ class OrchestratorAgent:
         print(f"   Jurisdiction: {self.jurisdiction}")
         print(f"   Sections: {len(sections)}")
         print(f"   Captains: {len(CAPTAIN_DEFINITIONS)}")
+        print(f"   🌐 IP: {humanizer.current_ip}")
+        print(f"   🖥️  UA: {humanizer.current_user_agent[:50]}...")
+        print(f"   🍪 Cookies: {len(humanizer.cookies)}")
         print(f"   Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("="*70)
         
-        # 1. Get codes
+        # 1. Get codes with humanization
         codes = await self.get_codes_by_jurisdiction()
         if not codes:
             print("   ❌ No codes found. Please add codes for this jurisdiction.")
@@ -269,11 +312,14 @@ class OrchestratorAgent:
             print("   ❌ No captains initialized - no codes available")
             return []
         
-        # 4. Execute Captains (parallel)
+        # 4. Execute Captains (parallel) with humanization
         print(f"\n🔄 EXECUTING {len(captains)} CAPTAINS IN PARALLEL...")
         
+        # Humanize: rotate IP before each captain
         captain_tasks = []
         for captain in captains:
+            humanizer.rotate()
+            print(f"   🌐 Captain {captain.name} using IP: {humanizer.current_ip}")
             captain_tasks.append(captain.search(sections))
         
         captain_results = await asyncio.gather(*captain_tasks)
@@ -299,7 +345,9 @@ class OrchestratorAgent:
                 'captain': getattr(result, 'captain', 'Unknown'),
                 'agent_id': result.agent_id,
                 'jurisdiction': self.jurisdiction,
-                'detected_at': datetime.now().isoformat()
+                'detected_at': datetime.now().isoformat(),
+                'ip_used': humanizer.current_ip,
+                'user_agent': humanizer.current_user_agent[:50] + '...'
             }
             violations.append(violation)
         
@@ -311,7 +359,7 @@ class OrchestratorAgent:
             storage_result = await self.storage.store_violations_batch(violations, 'AUDIT-001')
             self.metrics.agent_breakdown['StorageAgent'] = storage_result.get('stored', 0)
         
-        # 8. Record WORM entry
+        # 8. Record WORM entry with humanization data
         worm_id = await self._record_worm_entry(violations)
         
         # 9. Generate report
@@ -326,6 +374,8 @@ class OrchestratorAgent:
         print(f"   Captains executed: {len(captains)}")
         print(f"   Total violations: {len(violations)}")
         print(f"   Execution time: {self.metrics.execution_time:.2f}s")
+        print(f"   🌐 Final IP: {humanizer.current_ip}")
+        print(f"   🍪 Cookies: {len(humanizer.cookies)}")
         print("="*70)
         
         return violations
@@ -333,6 +383,7 @@ class OrchestratorAgent:
     async def _record_worm_entry(self, violations: List[Dict]) -> int:
         """
         Record orchestration results in WORM ledger.
+        HUMANIZED: Includes IP and cookies in the record.
         """
         conn = await asyncpg.connect(**self.db_config)
         try:
@@ -346,6 +397,9 @@ class OrchestratorAgent:
                         'jurisdiction', $1,
                         'total_violations', $2,
                         'captains', $3,
+                        'ip', $4,
+                        'user_agent', $5,
+                        'cookies', $6,
                         'timestamp', NOW()
                     ),
                     'orchestrator_agent',
@@ -355,7 +409,10 @@ class OrchestratorAgent:
             """, 
                 self.jurisdiction,
                 len(violations),
-                json.dumps(list(self.captain_results.keys()))
+                json.dumps(list(self.captain_results.keys())),
+                humanizer.current_ip,
+                humanizer.current_user_agent[:100],
+                json.dumps(humanizer.cookies)
             )
             
             return result[0] if result else 0
@@ -368,7 +425,7 @@ class OrchestratorAgent:
     
     def _generate_report(self, worm_id: int) -> ViolationReport:
         """
-        Generate comprehensive report.
+        Generate comprehensive report with humanization metadata.
         """
         report = ViolationReport(
             report_id=f"RPT-{datetime.now().strftime('%Y%m%d_%H%M%S')}",
@@ -392,7 +449,7 @@ class OrchestratorAgent:
                 'report_id': report.report_id,
                 'jurisdiction': report.jurisdiction,
                 'total_violations': report.total_violations,
-                'violations': report.violations[:50],  # Limit to 50
+                'violations': report.violations[:50],
                 'captain_results': {
                     name: [{
                         'code_id': r.code_id,
@@ -401,17 +458,27 @@ class OrchestratorAgent:
                     } for r in results[:10]]
                     for name, results in report.captain_results.items()
                 },
+                'humanization': {
+                    'ip': humanizer.current_ip,
+                    'user_agent': humanizer.current_user_agent,
+                    'cookies_count': len(humanizer.cookies),
+                    'available_ips': list(humanizer.USER_IPS.keys()),
+                    'timestamp': datetime.now().isoformat()
+                },
                 'worm_entry_id': report.worm_entry_id,
                 'generated_at': report.generated_at
             }, f, indent=2, default=str)
         
         print(f"\n📋 Report saved: {report_path}")
+        print(f"   🌐 IP: {humanizer.current_ip}")
+        print(f"   🍪 Cookies: {len(humanizer.cookies)}")
+        print(f"   📋 Available IPs: {list(humanizer.USER_IPS.keys())}")
         
         return report
     
     def get_summary(self) -> Dict:
         """
-        Get summary of orchestration results.
+        Get summary of orchestration results with humanization data.
         """
         return {
             'orchestrator_id': self.metrics.orchestrator_id,
@@ -422,5 +489,65 @@ class OrchestratorAgent:
                 name: len(results) for name, results in self.captain_results.items()
             },
             'execution_time': self.metrics.execution_time,
-            'status': 'completed' if self.metrics.violations_found > 0 else 'no_violations'
+            'status': 'completed' if self.metrics.violations_found > 0 else 'no_violations',
+            'humanization': {
+                'ip': humanizer.current_ip,
+                'cookies': len(humanizer.cookies),
+                'user_agent': humanizer.current_user_agent[:50] + '...' if humanizer.current_user_agent else None,
+                'available_ips': list(humanizer.USER_IPS.keys())
+            }
         }
+
+
+async def main():
+    """
+    Test the Orchestrator Agent with humanization.
+    """
+    import glob
+    
+    print("\n" + "="*70)
+    print(" ORCHESTRATOR AGENT - TEST RUN")
+    print(" 1 Orchestrator | 3 Captains | 30 Search Agents")
+    print(" HUMANIZED: Proxies, Cookies, Real IPs")
+    print("="*70)
+    
+    # Find PDF
+    pdf_files = glob.glob('/home/maxlo/PROMETHEUS/blueprints/*.pdf')
+    if not pdf_files:
+        pdf_files = glob.glob('/home/maxlo/PROMETHEUS/downloads/*/*.pdf')
+    if not pdf_files:
+        print("❌ No PDFs found")
+        return
+    
+    pdf_path = pdf_files[0]
+    print(f"\n📄 PDF: {Path(pdf_path).name}")
+    
+    # Initialize orchestrator
+    orchestrator = OrchestratorAgent(jurisdiction='Florida')
+    
+    # Get sections
+    sections = await orchestrator.get_sections_from_document(str(pdf_path))
+    
+    # Run orchestration
+    results = await orchestrator.orchestrate_search(sections)
+    
+    # Show summary
+    summary = orchestrator.get_summary()
+    print("\n" + "="*70)
+    print(" FINAL SUMMARY")
+    print("="*70)
+    print(f"   Total violations found: {summary['total_violations']}")
+    print(f"   Execution time: {summary['execution_time']:.2f}s")
+    print(f"   Status: {summary['status']}")
+    print(f"   🌐 IP: {summary['humanization']['ip']}")
+    print(f"   🍪 Cookies: {summary['humanization']['cookies']}")
+    print(f"   📋 Available IPs: {summary['humanization']['available_ips']}")
+    
+    if results:
+        print("\n📋 VIOLATIONS SUMMARY:")
+        for i, v in enumerate(results[:10], 1):
+            print(f"   {i}. {v.get('code_id', 'Unknown')} - {v.get('severity', 'unknown')} (sim: {v.get('similarity', 0):.3f})")
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

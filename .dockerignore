@@ -1,0 +1,48 @@
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+venv/
+venv_prometheus/
+env/
+.env
+*.log
+
+# Secrets
+secrets/
+credentials/
+*.pickle
+*.token
+service-account*.json
+
+# Data
+downloads/
+compressed/
+evidence/
+reports/
+output/
+logs/
+
+# Git
+.git/
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Tests
+tests/
+*.test.py
+
+# Temp
+tmp/
+temp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
