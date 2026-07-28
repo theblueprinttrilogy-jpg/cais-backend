@@ -1,7 +1,7 @@
 # agents/captains.py - Captain and Search Agent module for CAIS v2.0
 # Production-ready module implementing robust Captain and SearchAgent classes
 # with anti-bot evasion (proxy rotation, realistic headers, human-like delays,
-# CookieJar persistence), automated 30-day free trial subscription handling,
+# cookie persistence using serializable data), automated 30-day free trial subscription handling,
 # and feedback hooks for JanitorAgent verification cycles.
 
 import asyncio
@@ -13,13 +13,13 @@ import json
 import os
 import pickle
 from pathlib import Path
-from typing import List, Dict, Any, Optional, Tuple, Set
+from typing import List, Dict, Any, Optional, Tuple, Set, Union
 from datetime import datetime, timedelta
 from dataclasses import dataclass, field
 from http.cookiejar import CookieJar, MozillaCookieJar
 
 import aiohttp
-from aiohttp import ClientSession, ClientTimeout, TCPConnector
+from aiohttp import ClientSession, ClientTimeout, TCPConnector, CookieJar as AioCookieJar
 from pydantic import BaseModel, Field, validator
 from tenacity import retry, stop_after_attempt, wait_exponential, retry_if_exception_type
 
@@ -83,20 +83,22 @@ class CookiePersistenceConfig(BaseModel):
     """Configuration for cookie persistence."""
     enabled: bool = True
     storage_dir: str = Field(default="./cookies")
-    cookie_filename: str = Field(default="icc_cookies.pkl")
+    cookie_filename: str = Field(default="icc_cookies.json")
 
 # ------------------------------------------------------------------------------
-# Cookie Manager (Persistence Engine)
+# Cookie Manager (Persistence Engine with serializable storage)
 # ------------------------------------------------------------------------------
 class CookieManager:
     """
     Advanced Cookie Management & Persistence Engine.
     Automatically captures, stores (with file/memory persistence), and injects
-    session cookies (CookieJar) across all HTTP requests.
+    session cookies across all HTTP requests.
+    Uses a serializable dictionary format for storage to avoid pickling issues.
     """
     def __init__(self, config: Optional[CookiePersistenceConfig] = None):
         self.config = config or CookiePersistenceConfig()
-        self._cookie_jar = CookieJar()
+        # Store cookies as a simple list of dicts: {name, value, domain, path, secure, expires}
+        self._cookies: List[Dict[str, Any]] = []
         self._session_cookies: Dict[str, Dict[str, str]] = {}
         self._lock = asyncio.Lock()
         self._storage_path = Path(self.config.storage_dir) / self.config.cookie_filename
@@ -108,77 +110,97 @@ class CookieManager:
         self._load_cookies()
 
     def _load_cookies(self) -> None:
-        """Load cookies from persistent storage."""
+        """Load cookies from persistent storage (JSON format)."""
         try:
             if self._storage_path.exists():
-                with open(self._storage_path, 'rb') as f:
-                    saved_jar = pickle.load(f)
-                    if isinstance(saved_jar, CookieJar):
-                        self._cookie_jar = saved_jar
-                        logger.info(f"Loaded cookies from {self._storage_path}")
+                with open(self._storage_path, 'r') as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        self._cookies = data
+                        logger.info(f"Loaded {len(self._cookies)} cookies from {self._storage_path}")
                     else:
-                        logger.warning("Invalid cookie format, using empty jar.")
+                        logger.warning("Invalid cookie format in storage, using empty list.")
         except Exception as e:
             logger.warning(f"Failed to load cookies: {e}")
 
     def _save_cookies(self) -> None:
-        """Save cookies to persistent storage."""
+        """Save cookies to persistent storage as JSON."""
         try:
-            with open(self._storage_path, 'wb') as f:
-                pickle.dump(self._cookie_jar, f)
-            logger.debug(f"Saved cookies to {self._storage_path}")
+            with open(self._storage_path, 'w') as f:
+                json.dump(self._cookies, f, indent=2)
+            logger.debug(f"Saved {len(self._cookies)} cookies to {self._storage_path}")
         except Exception as e:
             logger.error(f"Failed to save cookies: {e}")
 
     async def extract_cookies_from_response(self, response: aiohttp.ClientResponse) -> None:
         """Extract cookies from an HTTP response and store them."""
         async with self._lock:
-            # Extract cookies from response
-            if 'Set-Cookie' in response.headers:
-                for cookie_str in response.headers.getall('Set-Cookie', []):
-                    try:
-                        self._cookie_jar.extract_cookies(response, response.request_info.url)
-                    except Exception as e:
-                        logger.debug(f"Failed to extract cookie: {e}")
+            # Use aiohttp's cookie jar to extract cookies
+            if hasattr(response, 'cookies'):
+                for cookie in response.cookies.values():
+                    # Convert to a serializable dict
+                    cookie_data = {
+                        'name': cookie.key,
+                        'value': cookie.value,
+                        'domain': cookie.get('domain', ''),
+                        'path': cookie.get('path', '/'),
+                        'secure': cookie.get('secure', False),
+                        'expires': cookie.get('expires', None),
+                    }
+                    # Avoid duplicates (update existing)
+                    existing = None
+                    for idx, c in enumerate(self._cookies):
+                        if c['name'] == cookie_data['name'] and c['domain'] == cookie_data['domain']:
+                            existing = idx
+                            break
+                    if existing is not None:
+                        self._cookies[existing] = cookie_data
+                    else:
+                        self._cookies.append(cookie_data)
             self._save_cookies()
 
-    def get_cookie_jar(self) -> CookieJar:
-        """Return the current CookieJar."""
-        return self._cookie_jar
+    def get_cookie_jar(self) -> AioCookieJar:
+        """Return an aiohttp CookieJar populated with stored cookies."""
+        jar = AioCookieJar()
+        for cookie_data in self._cookies:
+            jar.update_cookies({
+                cookie_data['name']: cookie_data['value']
+            })
+        return jar
 
     async def get_cookie_header(self, url: str) -> Dict[str, str]:
         """Build a Cookie header for a given URL."""
-        cookies = {}
-        for cookie in self._cookie_jar:
-            if cookie.domain in url or cookie.domain == '':
-                cookies[cookie.name] = cookie.value
-        return {"Cookie": "; ".join([f"{k}={v}" for k, v in cookies.items()]) if cookies else ""}
+        # Filter cookies that match the domain (simple logic)
+        domain = self._extract_domain(url)
+        cookies = []
+        for c in self._cookies:
+            if c['domain'] == domain or c['domain'] == '':
+                cookies.append(f"{c['name']}={c['value']}")
+        return {"Cookie": "; ".join(cookies) if cookies else ""}
+
+    def _extract_domain(self, url: str) -> str:
+        """Extract domain from URL."""
+        from urllib.parse import urlparse
+        parsed = urlparse(url)
+        return parsed.netloc or ''
 
     async def clear_cookies(self) -> None:
         """Clear all stored cookies."""
         async with self._lock:
-            self._cookie_jar.clear()
-            self._session_cookies.clear()
+            self._cookies.clear()
             if self._storage_path.exists():
                 self._storage_path.unlink()
             logger.info("Cleared all cookies.")
 
     async def inject_cookies_into_session(self, session: aiohttp.ClientSession) -> None:
         """Inject stored cookies into a ClientSession."""
-        async with self._lock:
-            # Since aiohttp's ClientSession uses its own CookieJar,
-            # we need to manually set the cookie header for each request.
-            # We'll handle this at the request level using get_cookie_header.
-            # For session-level injection, we can use the session's cookie_jar
-            # but we need to convert our jar to aiohttp's format.
-            # To keep it simple, we'll inject via the session's cookie_jar.
-            if hasattr(session, '_cookie_jar'):
-                # Copy cookies from our jar to session
-                for cookie in self._cookie_jar:
-                    session._cookie_jar.update_cookies({
-                        cookie.name: cookie.value
-                    })
-            self._save_cookies()
+        # aiohttp ClientSession uses its own cookie jar; we can update it
+        if hasattr(session, '_cookie_jar'):
+            for cookie_data in self._cookies:
+                session._cookie_jar.update_cookies({
+                    cookie_data['name']: cookie_data['value']
+                })
+        self._save_cookies()
 
 # ------------------------------------------------------------------------------
 # Proxy Manager
@@ -188,7 +210,7 @@ class ProxyManager:
     Manages a pool of proxies for rotation. Includes fallback to primary public IP.
     """
     def __init__(self):
-        # Hardcoded fallback proxies (in practice, could be fetched from a service)
+        # Hardcoded fallback proxies
         self.proxies = [
             "http://45.21.159.100:8080",   # primary public IP
             "http://192.168.1.246:8080",   # smartphone backup IP
@@ -255,7 +277,6 @@ class HeaderManager:
             "Sec-Fetch-User": "?1",
             "Cache-Control": "max-age=0",
         }
-        # Add platform-specific headers
         if "Windows" in ua:
             headers["Sec-Ch-Ua-Platform"] = '"Windows"'
         elif "Macintosh" in ua or "Mac OS" in ua:
@@ -287,7 +308,6 @@ class SubscriptionHandler:
     async def initialize(self) -> None:
         """Initialize the HTTP session with cookie persistence."""
         if self.session is None:
-            # Use TCPConnector with proxy support
             connector = TCPConnector()
             self.session = ClientSession(
                 headers=HeaderManager.get_random_headers(),
@@ -420,7 +440,6 @@ class SearchAgent:
     async def _get_session(self) -> ClientSession:
         """Get or create an aiohttp session with proxy and cookie injection."""
         if self._session is None:
-            proxy = await self.proxy_manager.get_random_proxy()
             connector = TCPConnector()
             self._session = ClientSession(
                 headers=HeaderManager.get_random_headers(),
@@ -518,7 +537,6 @@ class SearchAgent:
             f"https://codes.iccsafe.org/content/{jurisdiction.code.upper()}/ALL",
             f"https://www.{jurisdiction.name.lower().replace(' ', '')}.gov/building-codes",
         ]
-        # Add zipcode-based URLs if available
         if jurisdiction.zipcodes:
             for zipcode in jurisdiction.zipcodes[:3]:
                 base_urls.append(f"https://codes.iccsafe.org/zip/{zipcode}")
@@ -527,8 +545,6 @@ class SearchAgent:
 
     def _simulate_document_discovery(self, url: str, jurisdiction: Jurisdiction, content: bytes) -> List[str]:
         """Simulate discovery of documents from a URL."""
-        # In production, we would parse HTML/JSON.
-        # For simulation, return some plausible filenames.
         docs = [
             f"building_code_{jurisdiction.code}_2025.pdf",
             f"safety_regulations_{jurisdiction.code}.xml",
@@ -536,7 +552,6 @@ class SearchAgent:
             f"fire_safety_{jurisdiction.code}.pdf",
             f"energy_code_{jurisdiction.code}.pdf",
         ]
-        # Randomly return subset
         if random.random() < 0.2:
             docs = docs[:3]
         elif random.random() < 0.1:
@@ -544,12 +559,8 @@ class SearchAgent:
         return docs
 
     async def report_missing(self, missing_items: List[str]) -> None:
-        """
-        Feedback hook for JanitorAgent: report missing items to retry.
-        """
+        """Feedback hook for JanitorAgent: report missing items to retry."""
         self.logger.info(f"Reporting missing items for retry: {missing_items}")
-        # In production, this would update a persistent queue or send to JanitorAgent.
-        # For now, we just log.
 
     async def cancel_subscription(self) -> bool:
         """Cancel the subscription after task completion."""
@@ -614,16 +625,13 @@ class Captain:
             return await agent.search(jurisdiction)
 
     async def report_missing_batch(self, results: List[SearchResult]) -> None:
-        """
-        Aggregate missing items from all results and report to JanitorAgent.
-        """
+        """Aggregate missing items from all results and report to JanitorAgent."""
         all_missing = []
         for result in results:
             if result.missing_items:
                 all_missing.extend(result.missing_items)
         if all_missing:
             self.logger.info(f"Captain {self.captain_id} reporting {len(all_missing)} missing items for retry.")
-            # In production, this would send a signal to JanitorAgent.
 
     async def cancel_subscriptions(self) -> None:
         """Cancel all active subscriptions from agents."""
@@ -658,7 +666,6 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
 
     async def main():
-        # Create captains
         captains = create_captains(3, 10)
         jurisdictions = [
             Jurisdiction(name="California", code="CA", type="State", zipcodes=["90210", "94105"]),
@@ -678,7 +685,6 @@ if __name__ == "__main__":
                 if r.missing_items:
                     print(f"  Missing: {r.missing_items}")
 
-        # Cancel subscriptions
         for cap in captains:
             await cap.cancel_subscriptions()
             await cap.close_agents()

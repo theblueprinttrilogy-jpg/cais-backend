@@ -1,0 +1,18 @@
+{
+  "system_name": "CAIS - Construction AI System",
+  "version": "1.0.0",
+  "generated_from": "/home/maxlo/PROMETHEUS/compressed/cais_compressed_20260727_133750.zip",
+  "generated_date": "2026-07-27T13:37:50.458545",
+  "file_types": {
+    ".pdf": 2
+  },
+  "categories": [
+    {
+      "extension": ".pdf",
+      "count": 2,
+      "category": "documents"
+    }
+  ],
+  "total_files": 2,
+  "modules": []
+}

@@ -1,0 +1,14 @@
+{
+  "construction": {
+    "building": {"en": "building", "zh": "建筑物"},
+    "wall": {"en": "wall", "zh": "墙"},
+    "beam": {"en": "beam", "zh": "梁"},
+    "column": {"en": "column", "zh": "柱"},
+    "foundation": {"en": "foundation", "zh": "地基"}
+  },
+  "legal": {
+    "disclaimer": {"en": "disclaimer", "zh": "免责声明"},
+    "liability": {"en": "liability", "zh": "责任"},
+    "compliance": {"en": "compliance", "zh": "合规"}
+  }
+}

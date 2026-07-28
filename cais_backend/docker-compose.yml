@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg15
+    environment:
+      POSTGRES_USER: cais_user
+      POSTGRES_PASSWORD: cais_password_dev
+      POSTGRES_DB: cais
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  pgbouncer:
+    image: edoburu/pgbouncer
+    environment:
+      DATABASE_URL: postgresql://cais_user:cais_password_dev@postgres:5432/cais
+      POOL_MODE: transaction
+    ports:
+      - "6432:6432"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

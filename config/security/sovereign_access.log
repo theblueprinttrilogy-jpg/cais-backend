@@ -1,3 +1,0 @@
-{"timestamp": "2026-06-30T16:26:30.132005", "success": false, "ip_address": "127.0.0.1", "details": "Invalid length", "user_agent": "unknown"}
-{"timestamp": "2026-06-30T16:30:21.813551", "success": false, "ip_address": "127.0.0.1", "details": "Invalid length", "user_agent": "unknown"}
-{"timestamp": "2026-06-30T16:31:29.771805", "success": true, "ip_address": "127.0.0.1", "details": "Success", "user_agent": "unknown"}

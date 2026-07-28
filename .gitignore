@@ -1,14 +1,42 @@
-venv_prometheus/
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+venv/
+venv_prometheus/
+env/
 .env
-.venv/
-dist/
-build/
-.DS_Store
-downloads/
+
+# Secrets
+secrets/
+*.pickle
+*.token
+credentials/
+service-account*.json
+
+# Logs
+logs/
+*.log
+
+# Reports
+reports/*.json
+
+# Evidence
+evidence/
 compressed/
+downloads/
+
+# Output
+output/
 *.pdf
-*.zip
-*.jsonl
-config/security/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
