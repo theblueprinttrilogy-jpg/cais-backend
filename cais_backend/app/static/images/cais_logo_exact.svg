@@ -1,0 +1,145 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 200" width="500" height="200">
+  <defs>
+    <!-- Gradiente azul para CAIS -->
+    <linearGradient id="caisGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a3a7a;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#2a5aaa;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a3a7a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradiente naranja para CODE COMPLIANCE -->
+    <linearGradient id="orangeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#cc6b00;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#e88500;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cc6b00;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Gradiente naranja fuego para el interior de la C -->
+    <radialGradient id="fireGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#ff6600;stop-opacity:1" />
+      <stop offset="60%" style="stop-color:#ff4400;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#cc2200;stop-opacity:1" />
+    </radialGradient>
+  </defs>
+
+  <!-- ============================================================
+       LETRA "C" BOLD NEGRA CON INTERIOR NARANJA FUEGO
+       ============================================================ -->
+  <!-- C exterior (negra, bold) -->
+  <path d="M 30 20 
+           C 10 20, 0 40, 0 80 
+           L 0 120 
+           C 0 160, 10 180, 30 180 
+           L 80 180 
+           L 80 155 
+           L 40 155 
+           C 28 155, 22 145, 22 120 
+           L 22 80 
+           C 22 55, 28 45, 40 45 
+           L 80 45 
+           L 80 20 
+           Z" 
+        fill="#1a1a1a" stroke="none"/>
+  
+  <!-- Interior naranja fuego de la C -->
+  <path d="M 32 30 
+           C 18 30, 10 45, 10 80 
+           L 10 120 
+           C 10 155, 18 170, 32 170 
+           L 70 170 
+           L 70 150 
+           L 38 150 
+           C 28 150, 22 142, 22 120 
+           L 22 80 
+           C 22 58, 28 50, 38 50 
+           L 70 50 
+           L 70 30 
+           Z" 
+        fill="url(#fireGrad)"/>
+
+  <!-- ============================================================
+       CLIPBOARD MARRÓN
+       ============================================================ -->
+  <rect x="90" y="25" width="70" height="130" rx="6" ry="6" 
+        fill="#6b4226" stroke="#4a2f1a" stroke-width="2"/>
+  
+  <!-- Detalle del clip del clipboard -->
+  <rect x="115" y="18" width="20" height="12" rx="3" ry="3" 
+        fill="#8b5a3a" stroke="#4a2f1a" stroke-width="1.5"/>
+  <rect x="120" y="30" width="10" height="4" rx="1" 
+        fill="#8b5a3a"/>
+
+  <!-- ============================================================
+       PAPEL DE NOTAS BLANCO
+       ============================================================ -->
+  <rect x="100" y="45" width="50" height="95" rx="2" ry="2" 
+        fill="#f5f5f0" stroke="#d0d0c8" stroke-width="1"/>
+  
+  <!-- Líneas del papel -->
+  <line x1="108" y1="60" x2="142" y2="60" stroke="#c8c8c0" stroke-width="1"/>
+  <line x1="108" y1="70" x2="142" y2="70" stroke="#c8c8c0" stroke-width="1"/>
+  <line x1="108" y1="80" x2="142" y2="80" stroke="#c8c8c0" stroke-width="1"/>
+  <line x1="108" y1="90" x2="142" y2="90" stroke="#c8c8c0" stroke-width="1"/>
+  <line x1="108" y1="100" x2="142" y2="100" stroke="#c8c8c0" stroke-width="1"/>
+  <line x1="108" y1="110" x2="142" y2="110" stroke="#c8c8c0" stroke-width="1"/>
+
+  <!-- ============================================================
+       CHECKMARK VERDE FRENTE AL CLIPBOARD Y PAPEL
+       ============================================================ -->
+  <path d="M 145 80 
+           L 155 90 
+           L 175 65" 
+        stroke="#2e7d32" stroke-width="8" stroke-linecap="round" 
+        stroke-linejoin="round" fill="none"/>
+  
+  <!-- Círculo alrededor del checkmark -->
+  <circle cx="160" cy="78" r="22" 
+          fill="none" stroke="#2e7d32" stroke-width="3" opacity="0.3"/>
+
+  <!-- ============================================================
+       TEODOLITO MONTADO EN TRÍPODE
+       ============================================================ -->
+  <!-- Trípode -->
+  <line x1="220" y1="160" x2="190" y2="100" stroke="#4a4a4a" stroke-width="4"/>
+  <line x1="220" y1="160" x2="220" y2="100" stroke="#4a4a4a" stroke-width="4"/>
+  <line x1="220" y1="160" x2="250" y2="100" stroke="#4a4a4a" stroke-width="4"/>
+  
+  <!-- Base del teodolito -->
+  <rect x="200" y="90" width="40" height="12" rx="2" ry="2" 
+        fill="#5a5a5a" stroke="#3a3a3a" stroke-width="1"/>
+  
+  <!-- Cuerpo del teodolito -->
+  <rect x="205" y="60" width="30" height="30" rx="3" ry="3" 
+        fill="#6a6a6a" stroke="#4a4a4a" stroke-width="1.5"/>
+  
+  <!-- Lente (círculo) -->
+  <circle cx="220" cy="68" r="10" 
+          fill="#2a3a6a" stroke="#8a9aba" stroke-width="2"/>
+  <circle cx="220" cy="68" r="6" 
+          fill="#4a6aaa" stroke="#8a9aba" stroke-width="1"/>
+  <circle cx="218" cy="66" r="2" 
+          fill="#aaccee" opacity="0.6"/>
+
+  <!-- ============================================================
+       TEXTO "CAIS" (AZUL GRADIENT, GRANDE)
+       ============================================================ -->
+  <text x="260" y="80" 
+        font-family="'Inter', 'Arial Black', sans-serif" 
+        font-size="48" font-weight="900" 
+        fill="url(#caisGrad)" 
+        letter-spacing="6">
+    CAIS
+  </text>
+
+  <!-- ============================================================
+       TEXTO "CODE COMPLIANCE" (NARANJA/MARRÓN)
+       ============================================================ -->
+  <text x="260" y="105" 
+        font-family="'Inter', 'Arial', sans-serif" 
+        font-size="14" font-weight="700" 
+        fill="url(#orangeGrad)" 
+        letter-spacing="5">
+    CODE COMPLIANCE
+  </text>
+
+</svg>

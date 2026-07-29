@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CAIS · Code Compliance</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0e1a;
+            color: #e8e8e8;
+            min-height: 100vh;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 48px;
+            background: #111827;
+            border-bottom: 1px solid #1f2937;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            height: 90px;
+        }
+
+        .main-content {
+            padding-top: 110px;
+        }
+
+        section {
+            scroll-margin-top: 120px;
+            padding: 40px 20px;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 100px;
+            width: auto;
+            max-height: 115px;
+            display: block;
+            background: transparent;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav a {
+            color: #9ca3af;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+        .nav a:hover {
+            color: #fff;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none !important;
+        }
+        .btn-outline:hover {
+            background: #f59e0b;
+            color: #0a0e1a;
+        }
+
+        .btn-primary {
+            background: #f59e0b;
+            border: none;
+            color: #0a0e1a;
+            padding: 10px 28px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none !important;
+        }
+        .btn-primary:hover {
+            background: #d97706;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 60px 24px 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 52px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 16px;
+        }
+        .hero h1 span {
+            color: #f59e0b;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #9ca3af;
+            max-width: 640px;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        .hero .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+        }
+        .feature-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 28px 24px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .feature-card:hover {
+            border-color: #f59e0b;
+        }
+        .feature-card .icon {
+            font-size: 36px;
+            margin-bottom: 12px;
+            color: #f59e0b;
+        }
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .feature-card p {
+            font-size: 14px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .how-it-works {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+        }
+        .how-it-works h2 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .how-it-works h2 span {
+            color: #f59e0b;
+        }
+        .how-it-works > p {
+            text-align: center;
+            color: #9ca3af;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .step {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .step .num {
+            display: inline-block;
+            background: #f59e0b;
+            color: #0a0e1a;
+            font-weight: 800;
+            font-size: 14px;
+            width: 32px;
+            height: 32px;
+            line-height: 32px;
+            border-radius: 50%;
+            margin-bottom: 12px;
+        }
+        .step h4 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .step p {
+            font-size: 13px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+
+        .integrations {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+        }
+        .integrations h2 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .integrations h2 span {
+            color: #f59e0b;
+        }
+        .integrations .sub {
+            text-align: center;
+            color: #9ca3af;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .integrations-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+        .integration-item {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 10px;
+            padding: 16px 12px;
+            text-align: center;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .integration-item:hover {
+            border-color: #f59e0b;
+            transform: translateY(-2px);
+        }
+        .integration-item svg {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .integration-item .name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #e8e8e8;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .api-section {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+        }
+        .api-section h2 {
+            text-align: center;
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+        .api-section h2 span {
+            color: #f59e0b;
+        }
+        .api-section .sub {
+            text-align: center;
+            color: #9ca3af;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .api-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        .api-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+        .api-card:hover {
+            border-color: #f59e0b;
+        }
+        .api-card .icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+        .api-card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+        }
+        .api-card p {
+            font-size: 13px;
+            color: #9ca3af;
+            line-height: 1.5;
+        }
+        .api-card .tag {
+            display: inline-block;
+            margin-top: 12px;
+            background: #1a1f2e;
+            color: #f59e0b;
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            border: 1px solid #1f2937;
+        }
+        .api-card.highlight {
+            border-color: #f59e0b;
+        }
+        .api-card.highlight .tag {
+            background: #f59e0b;
+            color: #0a0e1a;
+            border-color: #f59e0b;
+        }
+
+        .api-callout {
+            margin-top: 40px;
+            background: #1a1f2e;
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+        }
+        .api-callout p {
+            font-size: 15px;
+            color: #d1d5db;
+        }
+        .api-callout a {
+            color: #f59e0b;
+            text-decoration: none;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .api-callout a:hover {
+            text-decoration: underline;
+        }
+
+        .pricing {
+            max-width: 900px;
+            margin: 0 auto 60px;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .pricing h2 {
+            font-size: 34px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+        .pricing h2 span {
+            color: #f59e0b;
+        }
+        .pricing .sub {
+            color: #9ca3af;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .plan {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 16px;
+            padding: 32px 24px;
+            transition: border-color 0.2s;
+        }
+        .plan:hover {
+            border-color: #f59e0b;
+        }
+        .plan.popular {
+            border-color: #f59e0b;
+            background: #1a1f2e;
+        }
+        .plan .name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+        .plan .price {
+            font-size: 38px;
+            font-weight: 900;
+            margin: 12px 0 4px;
+        }
+        .plan .price span {
+            font-size: 16px;
+            font-weight: 400;
+            color: #9ca3af;
+        }
+        .plan .price .fee {
+            font-size: 14px;
+            color: #f59e0b;
+            font-weight: 600;
+            display: block;
+            margin-top: 4px;
+        }
+        .plan .desc {
+            color: #9ca3af;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .plan ul {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            margin-bottom: 24px;
+        }
+        .plan ul li {
+            padding: 6px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .plan ul li i {
+            color: #f59e0b;
+            width: 18px;
+        }
+        .plan .btn-plan {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .plan .btn-plan.free {
+            background: transparent;
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+        }
+        .plan .btn-plan.free:hover {
+            background: #f59e0b;
+            color: #0a0e1a;
+        }
+        .plan .btn-plan.premium {
+            background: #f59e0b;
+            color: #0a0e1a;
+        }
+        .plan .btn-plan.premium:hover {
+            background: #d97706;
+        }
+
+        .badge-popular {
+            display: inline-block;
+            background: #f59e0b;
+            color: #0a0e1a;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .badge-free {
+            display: inline-block;
+            background: #10b981;
+            color: #0a0e1a;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 32px 24px;
+            border-top: 1px solid #1f2937;
+            color: #6b7280;
+            font-size: 13px;
+        }
+        .footer a {
+            color: #9ca3af;
+            text-decoration: none;
+            margin: 0 12px;
+        }
+        .footer a:hover {
+            color: #fff;
+        }
+
+        @media (max-width: 1024px) {
+            .features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .integrations-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            .api-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 16px;
+                padding: 16px 24px;
+                height: auto;
+                min-height: 80px;
+            }
+            .main-content {
+                padding-top: 160px;
+            }
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .features {
+                grid-template-columns: 1fr;
+            }
+            .steps {
+                grid-template-columns: 1fr;
+            }
+            .integrations-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .api-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            .pricing-grid .plan.popular {
+                order: -1;
+            }
+        }
+        @media (max-width: 480px) {
+            .integrations-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="header">
+    <a href="/" class="logo-link">
+        <img src="/static/images/CAIS_LOGO_clean.png" 
+             alt="CAIS CODE COMPLIANCE" 
+             class="logo-img">
+    </a>
+    <nav class="nav">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#integrations">Integrations</a>
+        <a href="#api">API</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#" class="btn-outline" onclick="event.preventDefault(); alert('Login coming soon.');">Log In</a>
+        <a href="#pricing" class="btn-primary">Start Free Trial</a>
+    </nav>
+</header>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<div class="main-content">
+
+    <!-- ============================================================
+         HERO
+         ============================================================ -->
+    <section id="hero" class="hero">
+        <h1>AI-Powered<br/><span>Code Compliance</span> for Construction</h1>
+        <p>
+            CAIS is an AI-powered forensic compliance engine that continuously analyzes construction documents — including plans, RFIs, change orders, and submittals — against 10,000+ jurisdictional codes, safety regulations, and construction laws. It detects violations in real time, generates multilingual forensic evidence dossiers, and provides proactive drawing checks to prevent permit failures before they happen.
+        </p>
+        <div class="cta-group">
+            <a href="#pricing" class="btn-primary" style="font-size:16px; padding:14px 40px;">
+                <i class="fas fa-rocket"></i> Start 30-Day Free Trial
+            </a>
+            <a href="#" class="btn-outline" style="font-size:16px; padding:14px 40px;" onclick="event.preventDefault(); alert('Demo video coming soon.');">
+                <i class="fas fa-play"></i> Watch Demo
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FEATURES
+         ============================================================ -->
+    <section id="features" class="features">
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-file-pdf"></i></div>
+            <h3>Upload &amp; Analyze</h3>
+            <p>Instantly upload and process construction documents — including plans, RFIs, change orders, and submittals. Our OCR + AI engine extracts and interprets every detail with forensic precision.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-gavel"></i></div>
+            <h3>Match</h3>
+            <p>CodeMatcher performs semantic search across 10,000+ jurisdictional codes, safety regulations, and international construction laws to identify exactly which code is being violated.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon"><i class="fas fa-clipboard-check"></i></div>
+            <h3>Forensic Reports</h3>
+            <p>Generate multilingual, evidence-backed Forensic Facts Dossiers with screenshots and precise code references — admissible in any legal or regulatory context.</p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         HOW IT WORKS
+         ============================================================ -->
+    <section id="how-it-works" class="how-it-works">
+        <h2>How <span>CAIS</span> Works</h2>
+        <p>From document upload to actionable report — in 4 simple steps.</p>
+        <div class="steps">
+            <div class="step">
+                <div class="num">1</div>
+                <h4>Upload</h4>
+                <p>Drag and drop your construction documents — plans, RFIs, change orders, submittals, or specifications — into the INTEST ZONE.</p>
+            </div>
+            <div class="step">
+                <div class="num">2</div>
+                <h4>Inspect</h4>
+                <p>PlanInspector scans every page with computer vision, detecting visual and structural violations such as egress width, fire safety, accessibility, and structural integrity.</p>
+            </div>
+            <div class="step">
+                <div class="num">3</div>
+                <h4>Match</h4>
+                <p>CodeMatcher runs semantic search against 10,000+ jurisdictions, including IBC, NFPA, Florida Building Code, California Title 24, and international regulations, to pinpoint the exact code being violated.</p>
+            </div>
+            <div class="step">
+                <div class="num">4</div>
+                <h4>Forensic Facts Dosier</h4>
+                <p>Receive a complete forensic dossier with annotated screenshots, cited code references, and a clear path to compliance — ready for permit authorities, legal teams, and project stakeholders.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MARKETPLACE INTEGRATIONS
+         ============================================================ -->
+    <section id="integrations" class="integrations">
+        <h2>Native <span>Marketplace</span> Integrations</h2>
+        <p class="sub">
+            CAIS plugs directly into the platforms you already use. No context switching. No manual uploads.
+            Run forensic audits from within your native environment across 21+ marketplaces.
+        </p>
+
+        <div class="integrations-grid">
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0072C4"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">P</text>
+                </svg>
+                <div class="name">Procore</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0696D7"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">A</text>
+                </svg>
+                <div class="name">Autodesk Forma</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#C74634"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">O</text>
+                </svg>
+                <div class="name">Oracle Aconex</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#005F8C"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">B</text>
+                </svg>
+                <div class="name">Bentley iTwin</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00A3E0"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">P</text>
+                </svg>
+                <div class="name">PlanGrid</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00B4D8"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">F</text>
+                </svg>
+                <div class="name">Fieldwire</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#F05A28"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">B</text>
+                </svg>
+                <div class="name">Buildertrend</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00529B"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">N</text>
+                </svg>
+                <div class="name">Newforma</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0072C6"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">S</text>
+                </svg>
+                <div class="name">SharePoint</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0061FF"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">D</text>
+                </svg>
+                <div class="name">Dropbox</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#4285F4"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">G</text>
+                </svg>
+                <div class="name">Google Workspace</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#E31837"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">S</text>
+                </svg>
+                <div class="name">ServiceTitan</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00A651"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">S</text>
+                </svg>
+                <div class="name">Simpro</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#2C6B8A"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">ESRI</text>
+                </svg>
+                <div class="name">Esri ArcGIS</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00843D"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">CW</text>
+                </svg>
+                <div class="name">Cityworks</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#0696D7"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">R</text>
+                </svg>
+                <div class="name">Revit</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#C74634"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">AC</text>
+                </svg>
+                <div class="name">AutoCAD</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#00529B"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">BB</text>
+                </svg>
+                <div class="name">Bluebeam Revu</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#004B87"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="white" text-anchor="middle">A</text>
+                </svg>
+                <div class="name">Accela</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#A2AAAD"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle"></text>
+                </svg>
+                <div class="name">App Store</div>
+            </div>
+
+            <div class="integration-item">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect width="40" height="40" rx="8" fill="#3DDC84"/>
+                    <text x="20" y="26" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white" text-anchor="middle">▶</text>
+                </svg>
+                <div class="name">Google Play</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         API SECTION
+         ============================================================ -->
+    <section id="api" class="api-section">
+        <h2>CAIS <span>REST API</span></h2>
+        <p class="sub">
+            Full programmatic access to the CAIS forensic compliance engine.
+        </p>
+
+        <div class="api-grid">
+            <div class="api-card highlight">
+                <div class="icon">🔌</div>
+                <h3>REST API</h3>
+                <p>Upload documents, trigger audits, retrieve Forensic Facts Dossiers, and integrate with your own systems.</p>
+                <span class="tag">REST · JSON · HTTPS</span>
+            </div>
+            <div class="api-card">
+                <div class="icon">📦</div>
+                <h3>SDK</h3>
+                <p>Official SDKs for Python, JavaScript, and .NET to accelerate your integration.</p>
+                <span class="tag">Python · JS · .NET</span>
+            </div>
+            <div class="api-card">
+                <div class="icon">🔔</div>
+                <h3>Webhooks</h3>
+                <p>Real-time notifications for audit completion, violation detection, and report generation.</p>
+                <span class="tag">Webhooks · Events</span>
+            </div>
+        </div>
+
+        <div class="api-callout">
+            <p>
+                <i class="fas fa-code" style="color:#f59e0b; margin-right:10px;"></i>
+                <strong>Developers:</strong> Use our REST API to embed forensic compliance directly into your own applications, CI/CD pipelines, or custom dashboards.
+                <a href="#">Explore API Docs →</a>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         PRICING
+         ============================================================ -->
+    <section id="pricing" class="pricing">
+        <h2>Simple, <span>Transparent</span> Pricing</h2>
+        <p class="sub">Pay per project. No hidden fees. 30-day free trial for everyone.</p>
+        <div class="pricing-grid">
+
+            <div class="plan">
+                <div class="badge-free">30 Days Free</div>
+                <div class="name">Free Trial</div>
+                <div class="price">$0 <span>for 30 days</span></div>
+                <div class="desc">Fully functional trial. One project included.</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> 1 project audit</li>
+                    <li><i class="fas fa-check"></i> Up to 100 pages</li>
+                    <li><i class="fas fa-check"></i> 10K+ jurisdictions</li>
+                    <li><i class="fas fa-check"></i> Full Forensic Facts Dosier</li>
+                    <li><i class="fas fa-check"></i> IP + email tracking</li>
+                    <li><i class="fas fa-check"></i> Stripe payment ready</li>
+                </ul>
+                <button class="btn-plan free" onclick="window.location.href='/try-free'">Start Free Trial</button>
+            </div>
+
+            <div class="plan">
+                <div class="name">Pro Monthly</div>
+                <div class="price">$299 <span>/ month</span></div>
+                <div class="desc">For active firms with multiple projects.</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Unlimited project audits</li>
+                    <li><i class="fas fa-check"></i> Unlimited pages</li>
+                    <li><i class="fas fa-check"></i> All jurisdictions (10K+)</li>
+                    <li><i class="fas fa-check"></i> Full Forensic Facts Dossiers</li>
+                    <li><i class="fas fa-check"></i> Bulk uploads + API access</li>
+                    <li><i class="fas fa-check"></i> Priority support</li>
+                </ul>
+                <button class="btn-plan premium" onclick="window.location.href='/subscribe/monthly'">Subscribe Monthly</button>
+            </div>
+
+            <div class="plan popular">
+                <div class="badge-popular">Best Value</div>
+                <div class="name">Pro Annual</div>
+                <div class="price">$2,999 <span>/ year</span></div>
+                <div class="desc">Best value — 2 months free.</div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Everything in Pro Monthly</li>
+                    <li><i class="fas fa-check"></i> 2 months free</li>
+                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    <li><i class="fas fa-check"></i> Custom integrations</li>
+                    <li><i class="fas fa-check"></i> Priority support</li>
+                    <li><i class="fas fa-check"></i> Early access to new features</li>
+                </ul>
+                <button class="btn-plan premium" onclick="window.location.href='/subscribe/annual'">Subscribe Annual</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER
+         ============================================================ -->
+    <footer class="footer">
+        <p>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact</a>
+            <a href="#">Documentation</a>
+        </p>
+        <p style="margin-top:12px;">
+            &copy; 2026 CAIS Code Compliance — Built with <span style="color:#f59e0b;">♥</span> for construction professionals.
+        </p>
+    </footer>
+
+</div>
+</body>
+</html>

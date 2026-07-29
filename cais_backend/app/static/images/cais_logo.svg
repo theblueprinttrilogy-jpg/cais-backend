@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120" width="400" height="120">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#1a237e;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#283593;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff6f00;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff8f00;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Shield / Building Icon -->
+  <rect x="10" y="10" width="60" height="80" rx="5" fill="url(#grad)" stroke="#1a237e" stroke-width="2"/>
+  <rect x="20" y="30" width="40" height="12" rx="2" fill="white" opacity="0.9"/>
+  <rect x="20" y="48" width="40" height="12" rx="2" fill="white" opacity="0.7"/>
+  <rect x="20" y="66" width="40" height="12" rx="2" fill="white" opacity="0.5"/>
+  <rect x="25" y="15" width="10" height="15" rx="2" fill="#ff6f00"/>
+  <rect x="45" y="15" width="10" height="15" rx="2" fill="#ff6f00"/>
+  
+  <!-- CAIS Text -->
+  <text x="90" y="55" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="900" fill="url(#grad)" letter-spacing="3">
+    CAIS
+  </text>
+  
+  <!-- CODE COMPLIANCE Text -->
+  <text x="90" y="80" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600" fill="url(#grad2)" letter-spacing="4">
+    CODE COMPLIANCE
+  </text>
+  
+  <!-- Decorative line -->
+  <line x1="90" y1="65" x2="380" y2="65" stroke="#e0e0e0" stroke-width="1"/>
+</svg>

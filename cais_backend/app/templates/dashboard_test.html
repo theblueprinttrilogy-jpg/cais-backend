@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAIS Dashboard Test</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #0a0e1a;
+            color: #e8e8e8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #ffffff;
+        }
+        .subtitle {
+            color: #6b7280;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 20px 24px;
+            transition: border-color 0.2s;
+        }
+        .card:hover {
+            border-color: #f59e0b;
+        }
+        .label {
+            color: #6b7280;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 4px;
+        }
+        .value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+        .value .currency {
+            font-size: 18px;
+            color: #6b7280;
+            font-weight: 600;
+        }
+        .status-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .status-card .label {
+            margin-bottom: 0;
+            font-size: 12px;
+        }
+        .status {
+            color: #10b981;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .status.error {
+            color: #ef4444;
+        }
+        .status.loading {
+            color: #f59e0b;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        .raw-card {
+            background: #0a0e1a;
+            border: 1px solid #1f2937;
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+        .raw-card .label {
+            margin-bottom: 8px;
+        }
+        pre {
+            color: #9ca3af;
+            font-size: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            overflow: auto;
+            max-height: 300px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #0d1117;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #1a1f2e;
+            margin: 0;
+        }
+        .change {
+            font-size: 12px;
+            margin-top: 4px;
+            font-weight: 500;
+        }
+        .change.up { color: #10b981; }
+        .change.down { color: #ef4444; }
+        .change.neutral { color: #6b7280; }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            body {
+                padding: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 CAIS Dashboard - Test</h1>
+    <p class="subtitle">Si ves esto, el servidor está funcionando correctamente.</p>
+    
+    <div id="kpiGrid" class="grid">
+        <div class="card">
+            <div class="label">VALUE AT RISK</div>
+            <div class="value"><span class="currency">$</span><span id="valueAtRisk">Loading...</span></div>
+            <div class="change neutral" id="changeAtRisk">Waiting for data...</div>
+        </div>
+        <div class="card">
+            <div class="label">ACTIVE LIENS</div>
+            <div class="value"><span id="activeLiens">Loading...</span></div>
+            <div class="change neutral" id="changeLiens">Waiting for data...</div>
+        </div>
+        <div class="card">
+            <div class="label">COMPLIANCE %</div>
+            <div class="value"><span id="compliancePercent">Loading...</span>%</div>
+            <div class="change neutral" id="changeCompliance">Waiting for data...</div>
+        </div>
+        <div class="card">
+            <div class="label">RISK SCORE</div>
+            <div class="value"><span id="riskScore">Loading...</span></div>
+            <div class="change neutral" id="changeRisk">Waiting for data...</div>
+        </div>
+    </div>
+    
+    <div class="status-card">
+        <span class="label">API Status</span>
+        <span id="apiStatus" class="status loading">⏳ Connecting...</span>
+    </div>
+    
+    <div class="status-card">
+        <span class="label">Last Updated</span>
+        <span id="lastUpdated" style="color: #6b7280; font-size: 13px;">Never</span>
+    </div>
+    
+    <div class="raw-card">
+        <div class="label">Raw API Response</div>
+        <pre id="rawResponse">Loading...</pre>
+    </div>
+
+    <script>
+        async function loadData() {
+            const apiStatus = document.getElementById('apiStatus');
+            const rawResponse = document.getElementById('rawResponse');
+            
+            try {
+                apiStatus.textContent = '⏳ Loading...';
+                apiStatus.className = 'status loading';
+                
+                const response = await fetch('/api/dashboard/stats');
+                const data = await response.json();
+                
+                rawResponse.textContent = JSON.stringify(data, null, 2);
+                
+                if (data.status === 'success') {
+                    const d = data.data;
+                    
+                    // Update values
+                    document.getElementById('valueAtRisk').textContent = d.value_at_risk.toLocaleString();
+                    document.getElementById('activeLiens').textContent = d.active_liens;
+                    document.getElementById('compliancePercent').textContent = d.compliance_percent;
+                    document.getElementById('riskScore').textContent = d.risk_score;
+                    
+                    // Update change messages
+                    const hasData = d.processed_at !== null && (d.value_at_risk > 0 || d.active_liens > 0 || d.risk_score > 0);
+                    
+                    const changeAtRisk = document.getElementById('changeAtRisk');
+                    if (!hasData || d.value_at_risk === 0) {
+                        changeAtRisk.textContent = '📄 No document scanned yet';
+                        changeAtRisk.className = 'change neutral';
+                    } else {
+                        changeAtRisk.textContent = d.value_at_risk > 0 ? '⚠️ Active risk detected' : '✅ No active risk';
+                        changeAtRisk.className = 'change ' + (d.value_at_risk > 0 ? 'down' : 'up');
+                    }
+                    
+                    const changeLiens = document.getElementById('changeLiens');
+                    if (!hasData || d.active_liens === 0) {
+                        changeLiens.textContent = '📄 No document scanned yet';
+                        changeLiens.className = 'change neutral';
+                    } else {
+                        changeLiens.textContent = d.active_liens > 0 ? `🔴 ${d.active_liens} open` : '✅ No liens';
+                        changeLiens.className = 'change ' + (d.active_liens > 0 ? 'down' : 'up');
+                    }
+                    
+                    const changeCompliance = document.getElementById('changeCompliance');
+                    if (!hasData || d.compliance_percent === 100) {
+                        changeCompliance.textContent = '📄 No document scanned yet';
+                        changeCompliance.className = 'change neutral';
+                    } else {
+                        changeCompliance.textContent = d.compliance_percent > 80 ? '✅ Good standing' : '⚠️ Needs improvement';
+                        changeCompliance.className = 'change ' + (d.compliance_percent > 80 ? 'up' : 'down');
+                    }
+                    
+                    const changeRisk = document.getElementById('changeRisk');
+                    if (!hasData || d.risk_score === 0) {
+                        changeRisk.textContent = '📄 No document scanned yet';
+                        changeRisk.className = 'change neutral';
+                    } else {
+                        changeRisk.textContent = d.risk_score < 20 ? '✅ Low risk' : '⚠️ Monitor';
+                        changeRisk.className = 'change ' + (d.risk_score < 20 ? 'up' : 'down');
+                    }
+                    
+                    apiStatus.textContent = '✅ Data loaded successfully';
+                    apiStatus.className = 'status';
+                    
+                    document.getElementById('lastUpdated').textContent = new Date().toLocaleTimeString();
+                } else {
+                    apiStatus.textContent = '❌ Error: ' + data.message;
+                    apiStatus.className = 'status error';
+                }
+            } catch (error) {
+                apiStatus.textContent = '❌ Connection error: ' + error.message;
+                apiStatus.className = 'status error';
+                rawResponse.textContent = 'Error: ' + error.message;
+            }
+        }
+        
+        // Load immediately and then every 10 seconds
+        loadData();
+        setInterval(loadData, 10000);
+    </script>
+</body>
+</html>
