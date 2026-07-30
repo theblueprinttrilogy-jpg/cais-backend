@@ -22,7 +22,7 @@ from pathlib import Path
 sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend')
 sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend/app')
 
-from agents.semantic_analytics_agent import SemanticAnalyticsAgent
+from app.agents.semantic_analytics_agent import SemanticAnalyticsAgent
 
 logger = logging.getLogger("UPLOAD_API")
 router = APIRouter(prefix="/api/upload", tags=["Upload"])
