@@ -1,97 +1,245 @@
-#!/usr/bin/env python3
 """
-ReportGenerator - Forensic dossier PDF with cropped evidence.
+ReportGenerator Agent - Forensic Facts Dossier Creation
+
+This agent generates the Forensic Facts Dossier with:
+- 4-column evidence table (screenshots only)
+- No CAIS opinions or reports
+- Legal disclaimer
+- Professional PDF format
+
+Based on CAIS CODE COMPLIANCE WORKFLOW - Section 6.1
 """
 
 import logging
-from pathlib import Path
+import os
+import uuid
+from typing import List, Dict, Any
 from datetime import datetime
-from typing import List, Dict, Optional
+from pathlib import Path
 from reportlab.lib.pagesizes import letter
-from reportlab.lib.units import inch
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image, PageBreak, Table, TableStyle
-from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer, Image
 from reportlab.lib import colors
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_CENTER, TA_LEFT
+from reportlab.lib.units import inch
+
+from app.agents.base_agent import BaseAgent
 
 logger = logging.getLogger(__name__)
-logging.basicConfig(level=logging.INFO)
 
-class ReportGenerator:
-    def __init__(self, output_dir: Optional[Path] = None):
-        self.output_dir = output_dir or Path("/app/output/dossiers")
-        self.output_dir.mkdir(parents=True, exist_ok=True)
-
-    def generate_dossier(self, session_id: str, violations: List[Dict], metadata: Optional[Dict] = None) -> Path:
-        pdf_path = self.output_dir / f"dossier_{session_id}.pdf"
-        doc = SimpleDocTemplate(str(pdf_path), pagesize=letter,
-                                rightMargin=36, leftMargin=36, topMargin=36, bottomMargin=36)
-        styles = getSampleStyleSheet()
+class ReportGenerator(BaseAgent):
+    """
+    ReportGenerator Agent - Forensic Facts Dossier
+    
+    Responsibilities:
+    1. Create 4-column evidence table
+    2. Insert screenshots with red rectangles
+    3. Insert code screenshots with yellow highlighting
+    4. Add legal disclaimer
+    5. Generate professional PDF
+    6. No CAIS commentary or opinions
+    """
+    
+    def __init__(self):
+        super().__init__("ReportGenerator", "pdf_generator")
+        self.dossier_dir = Path("/app/storage/forensic_dossiers")
+        self.dossier_dir.mkdir(parents=True, exist_ok=True)
+    
+    def generate_dossier(self, violations: List[Dict[str, Any]], document_language: str) -> str:
+        """
+        Generate a Forensic Facts Dossier PDF.
+        
+        Args:
+            violations: List of violations with evidence
+            document_language: Language for the dossier
+        
+        Returns:
+            str: Path to the generated PDF
+        """
+        logger.info(f"Generating Forensic Facts Dossier in {document_language}")
+        
+        # Create dossier filename
+        dossier_id = uuid.uuid4().hex[:8]
+        dossier_path = self.dossier_dir / f"forensic_dossier_{dossier_id}.pdf"
+        
+        # Create PDF document
+        doc = SimpleDocTemplate(
+            str(dossier_path),
+            pagesize=letter,
+            rightMargin=72,
+            leftMargin=72,
+            topMargin=72,
+            bottomMargin=72
+        )
+        
         story = []
-
-        # Title
-        story.append(Paragraph("CAIS Forensic Dossier", styles['Title']))
-        story.append(Spacer(1, 0.25*inch))
-        story.append(Paragraph(f"Session ID: {session_id}", styles['Normal']))
-        if metadata:
-            if metadata.get('jurisdiction'):
-                story.append(Paragraph(f"Jurisdiction: {metadata['jurisdiction']}", styles['Normal']))
-        story.append(Spacer(1, 0.5*inch))
-
-        # Summary
-        story.append(Paragraph("Executive Summary", styles['Heading2']))
-        story.append(Spacer(1, 0.1*inch))
-        story.append(Paragraph(f"Total violations: {len(violations)}", styles['Normal']))
-        story.append(Spacer(1, 0.25*inch))
-
-        if not violations:
-            story.append(Paragraph("No violations detected.", styles['Normal']))
-        else:
-            for i, v in enumerate(violations, 1):
-                story.append(PageBreak())
-                story.append(Paragraph(f"Violation #{i}: {v.get('type','').replace('_',' ').title()}", styles['Heading2']))
-                story.append(Spacer(1, 0.1*inch))
-
-                img_path = v.get('screenshot_path', '')
-                if img_path and Path(img_path).exists():
-                    img = Image(img_path, width=3.5*inch, height=3.5*inch)
-                else:
-                    img = Paragraph("No image available", styles['Normal'])
-
-                code_text = Paragraph(f"""
-                    <b>Code:</b> {v.get('code_reference', '')}<br/>
-                    <b>Description:</b> {v.get('code_description', '')}<br/>
-                    <b>Detected:</b> {v.get('detected_value', 0)} {v.get('unit', 'in')}<br/>
-                    <b>Required:</b> {v.get('required_value', 0)} {v.get('unit', 'in')}<br/>
-                    <b>Context:</b> {v.get('context_text', '')[:200]}...
-                """, styles['Normal'])
-
-                table_data = [[img, code_text]]
-                table = Table(table_data, colWidths=[3.5*inch, 3.0*inch])
-                table.setStyle(TableStyle([
-                    ('VALIGN', (0,0), (-1,-1), 'TOP'),
-                    ('ALIGN', (0,0), (0,0), 'CENTER'),
-                    ('ALIGN', (1,0), (1,0), 'LEFT'),
-                    ('TOPPADDING', (0,0), (-1,-1), 6),
-                    ('BOTTOMPADDING', (0,0), (-1,-1), 6),
-                    ('GRID', (0,0), (-1,-1), 0.5, colors.lightgrey),
-                ]))
-                story.append(table)
-                story.append(Spacer(1, 0.15*inch))
-                ref = f"Page: {v.get('page_number', '')} | Type: {v.get('type', '')} | Confidence: {v.get('confidence', 'N/A')}"
-                story.append(Paragraph(ref, styles['Normal']))
-                story.append(Spacer(1, 0.25*inch))
-
-        # Disclaimer
-        story.append(PageBreak())
-        story.append(Paragraph("Disclaimer", styles['Heading2']))
-        story.append(Paragraph(
-            "This dossier presents visual evidence of potential code violations. "
-            "CAIS does not provide legal advice. All findings should be verified by a qualified professional.",
-            styles['Normal']
-        ))
-        story.append(Spacer(1, 0.1*inch))
-        story.append(Paragraph(f"Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", styles['Normal']))
-
+        
+        # Add title
+        styles = getSampleStyleSheet()
+        title_style = ParagraphStyle(
+            'CustomTitle',
+            parent=styles['Heading1'],
+            fontSize=24,
+            textColor=colors.darkblue,
+            alignment=TA_CENTER,
+            spaceAfter=30
+        )
+        
+        title = Paragraph("FORENSIC FACTS DOSSIER", title_style)
+        story.append(title)
+        
+        # Add subtitle
+        subtitle_style = ParagraphStyle(
+            'CustomSubtitle',
+            parent=styles['Normal'],
+            fontSize=14,
+            textColor=colors.grey,
+            alignment=TA_CENTER,
+            spaceAfter=30
+        )
+        
+        subtitle = Paragraph(
+            f"Generated by CAIS Code Compliance | Version 10.0 | {datetime.now().strftime('%Y-%m-%d %H:%M')}",
+            subtitle_style
+        )
+        story.append(subtitle)
+        story.append(Spacer(1, 20))
+        
+        # Add violation evidence tables
+        for i, violation in enumerate(violations):
+            # Add violation header
+            header_style = ParagraphStyle(
+                f'ViolationHeader_{i}',
+                parent=styles['Heading2'],
+                fontSize=16,
+                textColor=colors.darkred,
+                spaceBefore=20,
+                spaceAfter=10
+            )
+            
+            header = Paragraph(
+                f"Violation #{i+1}: {violation.get('type', 'Unknown').upper()}",
+                header_style
+            )
+            story.append(header)
+            
+            # Create 4-column evidence table
+            evidence_table = self._create_evidence_table(violation)
+            story.append(evidence_table)
+            
+            story.append(Spacer(1, 20))
+        
+        # Add legal disclaimer
+        story.append(Spacer(1, 30))
+        disclaimer = self._create_legal_disclaimer(document_language)
+        story.append(disclaimer)
+        
+        # Build PDF
         doc.build(story)
-        logger.info(f"Dossier generated: {pdf_path}")
-        return pdf_path
+        
+        logger.info(f"Dossier generated: {dossier_path}")
+        return str(dossier_path)
+    
+    def _create_evidence_table(self, violation: Dict[str, Any]) -> Table:
+        """
+        Create a 4-column evidence table.
+        
+        Columns:
+        1: Screenshot of violation with red rectangle
+        2-4: Screenshots of codes with yellow highlighting
+        """
+        # Get evidence paths
+        evidence_path = violation.get('evidence_path', '')
+        code_evidence_paths = violation.get('code_evidence_paths', [])
+        
+        # Ensure we have at least 4 columns
+        while len(code_evidence_paths) < 3:
+            code_evidence_paths.append('')
+        
+        # Create table data
+        data = []
+        
+        # Add column headers
+        headers = [
+            "VIOLATION EVIDENCE",
+            "CODE REFERENCE 1",
+            "CODE REFERENCE 2",
+            "CODE REFERENCE 3"
+        ]
+        data.append(headers)
+        
+        # Add images
+        row = []
+        
+        # Column 1: Violation screenshot
+        if evidence_path and os.path.exists(evidence_path):
+            img = Image(evidence_path, width=2.5*inch, height=2*inch)
+            row.append(img)
+        else:
+            row.append(Paragraph("No evidence available", getSampleStyleSheet()['Normal']))
+        
+        # Columns 2-4: Code screenshots
+        for i in range(3):
+            if i < len(code_evidence_paths) and code_evidence_paths[i] and os.path.exists(code_evidence_paths[i]):
+                img = Image(code_evidence_paths[i], width=2.5*inch, height=2*inch)
+                row.append(img)
+            else:
+                row.append(Paragraph("No code reference available", getSampleStyleSheet()['Normal']))
+        
+        data.append(row)
+        
+        # Create table
+        table = Table(data, colWidths=[2.5*inch, 2.5*inch, 2.5*inch, 2.5*inch])
+        
+        # Style the table
+        style = TableStyle([
+            ('BACKGROUND', (0, 0), (-1, 0), colors.darkblue),
+            ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+            ('ALIGN', (0, 0), (-1, -1), 'CENTER'),
+            ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+            ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+            ('FONTSIZE', (0, 0), (-1, 0), 10),
+            ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+            ('BACKGROUND', (0, 1), (-1, -1), colors.whitesmoke),
+            ('GRID', (0, 0), (-1, -1), 1, colors.black),
+            ('BOX', (0, 0), (-1, -1), 2, colors.darkblue),
+        ])
+        
+        table.setStyle(style)
+        return table
+    
+    def _create_legal_disclaimer(self, language: str) -> Paragraph:
+        """
+        Create legal disclaimer for the dossier.
+        """
+        styles = getSampleStyleSheet()
+        
+        disclaimer_style = ParagraphStyle(
+            'Disclaimer',
+            parent=styles['Normal'],
+            fontSize=10,
+            textColor=colors.grey,
+            alignment=TA_LEFT,
+            spaceBefore=10,
+            spaceAfter=10
+        )
+        
+        disclaimer_text = """
+        <b>LEGAL DISCLAIMER</b><br/><br/>
+        CAIS has 93% of accuracy. CAIS uses an OCR at 200 DPI to scan the documents.
+        Some details can be missed based on the document uploaded quality.<br/><br/>
+        This Forensic Facts Dossier is generated by CAIS (Construction AI System)
+        for informational purposes only.<br/><br/>
+        <b>CAIS DOES NOT PROVIDE ANY OPINIONS NOR REPORTS.</b><br/><br/>
+        CAIS does not provide legal advice, and this report should not be construed as such.
+        All construction decisions should be made in consultation with licensed professionals
+        and appropriate regulatory authorities.<br/><br/>
+        The visual evidence and code references provided are for reference only and may not
+        constitute a complete or accurate representation of all applicable codes, regulations,
+        or laws. Users are solely responsible for ensuring compliance with all relevant
+        building codes, safety regulations, and legal requirements.<br/><br/>
+        CAIS is not liable for any damages, losses, or liabilities arising from the use of
+        this report or any actions taken based on its contents.
+        """
+        
+        return Paragraph(disclaimer_text, disclaimer_style)

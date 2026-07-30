@@ -1,20 +1,74 @@
-SQLAlchemy==2.0.36
-aio-pika==9.5.3
-alembic==1.13.1
-asyncpg==0.29.0
-fake-useragent==1.5.1
+# Core
 fastapi==0.115.6
-google-cloud-storage==2.18.2
-langdetect==1.0.9
-pydantic-settings==2.7.0
-pydantic==2.10.4
-python-multipart==0.0.20
-sentence-transformers==3.3.1
-typing-extensions==4.12.2
 uvicorn[standard]==0.34.0
-websockets==14.1
+gunicorn==23.0.0
+python-multipart==0.0.20
+
+# Database
+sqlalchemy==2.0.36
 psycopg2-binary==2.9.10
-fake-useragent==1.5.1
-langdetect==1.0.9
+pgvector==0.3.6
+alembic==1.14.1
+
+# Authentication
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-dotenv==1.0.1
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# Async and background tasks
+celery==5.4.0
+redis==5.2.1
+aio-pika==9.4.2
+
+# AI and ML
 sentence-transformers==3.3.1
-psycopg2-binary==2.9.10
+torch==2.5.1
+transformers==4.47.1
+ollama==0.4.2
+
+# OCR and Image Processing
+pdf2image==1.17.0
+pytesseract==0.3.13
+Pillow==11.0.0
+opencv-python==4.10.0.84
+
+# PDF Generation
+reportlab==4.2.5
+
+# Google Cloud
+google-cloud-secret-manager==2.22.0
+google-cloud-storage==2.19.0
+google-auth==2.35.0
+google-auth-oauthlib==1.2.1
+google-api-python-client==2.157.0
+
+# HTTP and Networking
+requests==2.32.3
+httpx==0.28.1
+aiohttp==3.11.11
+fake-useragent==1.5.1
+
+# Utilities
+python-dateutil==2.9.0
+pyyaml==6.0.2
+jinja2==3.1.4
+tenacity==9.0.0
+langdetect==1.0.9
+
+# Logging and Monitoring
+loguru==0.7.3
+prometheus-client==0.21.1
+
+# Development and Testing
+pytest==8.3.4
+pytest-cov==6.0.0
+black==24.10.0
+flake8==7.1.1
+mypy==1.13.0
+pylint==3.3.4
+pre-commit==4.0.1
+
+# Docker
+docker==7.1.0

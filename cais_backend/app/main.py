@@ -1,161 +1,131 @@
-#!/usr/bin/env python3
 """
-CAIS Code Compliance - Main Application
-100% ENGLISH - All code, comments, messages, and logs in English.
+CAIS Code Compliance - Main Application Entry Point
+
+CAIS CODE COMPLIANCE is a forensic evidence generation tool for construction code violations.
+It receives documents from 21 platforms, analyzes them visually and semantically,
+detects code violations using AI, generates forensic evidence, and delivers a
+Forensic Facts Dossier without CAIS commentary.
+
+Version: 10.0
 """
 
-import sys
-import os
-import shutil
-from datetime import datetime
-from typing import List
+import logging
+import time
+from contextlib import asynccontextmanager
 
-# Add the app directory to Python path
-sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend/app')
-sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend')
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.responses import JSONResponse
 
-from fastapi import FastAPI, Request, File, UploadFile
-from fastapi.staticfiles import StaticFiles
-from fastapi.templating import Jinja2Templates
-from fastapi.responses import HTMLResponse, JSONResponse
-from app.api.endpoints.dashboard import router as dashboard_router
-from app.api.endpoints.upload import router as upload_router
+from app.api.v1.router import api_router
+from config import settings
+from app.core.exceptions import AppException
+from app.middleware.logging import LoggingMiddleware
 
-# ============================================================
-# APP INITIALIZATION
-# ============================================================
+# Configure logging
+logging.basicConfig(
+    level=settings.LOG_LEVEL,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    handlers=[
+        logging.FileHandler("/app/logs/app.log"),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Handle startup and shutdown events."""
+    logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}...")
+    logger.info(f"Environment: {settings.ENVIRONMENT}")
+
+    # Initialize database connection pool
+    # Initialize Redis cache connection
+    # Initialize RabbitMQ connection
+    # Initialize Ollama connection
+
+    yield
+
+    logger.info(f"Shutting down {settings.APP_NAME}...")
+
+
 app = FastAPI(
-    title="CAIS Code Compliance",
-    version="10.0",
-    description="AI-Powered Code Compliance Engine for Construction"
+    title=settings.APP_NAME,
+    description="Forensic evidence generation for construction code violations",
+    version=settings.APP_VERSION,
+    lifespan=lifespan,
+    docs_url="/docs",
+    redoc_url="/redoc",
+    openapi_url="/openapi.json"
 )
 
-# Include API routes
-app.include_router(dashboard_router)
-app.include_router(upload_router)
-
-# Servir archivos estáticos
-app.mount(
-    "/static",
-    StaticFiles(directory="/home/maxlo/PROMETHEUS/cais_backend/app/static"),
-    name="static"
+# Add middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
-# Templates
-templates = Jinja2Templates(
-    directory="/home/maxlo/PROMETHEUS/cais_backend/app/templates"
+app.add_middleware(
+    TrustedHostMiddleware,
+    allowed_hosts=settings.ALLOWED_HOSTS,
 )
 
-# ============================================================
-# ROUTES
-# ============================================================
+app.add_middleware(LoggingMiddleware)
 
-@app.get("/", response_class=HTMLResponse)
-async def landing_page(request: Request):
-    """
-    Landing Page - Main entry point for CAIS CODE COMPLIANCE.
-    Shows the marketing landing page with features, pricing, and integrations.
-    """
-    return templates.TemplateResponse("landing.html", {"request": request})
-
-
-@app.get("/dashboard", response_class=HTMLResponse)
-async def dashboard_page(request: Request):
-    """
-    Real Execution Dashboard - Main dashboard for authenticated users.
-    Displays real-time KPI data from the Semantic Analytics Agent.
-    """
-    return templates.TemplateResponse("dashboard.html", {"request": request})
-
-
-@app.get("/dashboard-test", response_class=HTMLResponse)
-async def dashboard_test(request: Request):
-    """
-    Dashboard Test Page - Simplified version for debugging.
-    Tests API connectivity and data loading.
-    """
-    return templates.TemplateResponse("dashboard_test.html", {"request": request})
-
-
-@app.get("/try-free", response_class=HTMLResponse)
-async def try_free(request: Request):
-    """
-    One-time free trial page.
-    Redirects to dashboard for first-time users.
-    """
-    return templates.TemplateResponse("dashboard.html", {"request": request})
-
-
-@app.get("/subscribe/monthly", response_class=HTMLResponse)
-async def subscribe_monthly(request: Request):
-    """
-    Monthly subscription page.
-    Redirects to dashboard after successful subscription.
-    """
-    return templates.TemplateResponse("dashboard.html", {"request": request})
-
-
-@app.get("/subscribe/annual", response_class=HTMLResponse)
-async def subscribe_annual(request: Request):
-    """
-    Annual subscription page.
-    Redirects to dashboard after successful subscription.
-    """
-    return templates.TemplateResponse("dashboard.html", {"request": request})
-
-
-@app.get("/subscribe/forensic", response_class=HTMLResponse)
-async def subscribe_forensic(request: Request):
-    """
-    Forensic audit subscription page.
-    Redirects to dashboard after successful subscription.
-    """
-    return templates.TemplateResponse("dashboard.html", {"request": request})
+# Include routers
+app.include_router(api_router, prefix="/api/v1")
 
 
 @app.get("/health")
 async def health_check():
-    """
-    Health check endpoint for monitoring.
-    Returns system status and version.
-    """
+    """Health check endpoint for monitoring."""
     return {
         "status": "healthy",
-        "version": "10.0",
-        "timestamp": datetime.now().isoformat()
+        "version": settings.APP_VERSION,
+        "timestamp": time.time(),
+        "service": settings.APP_NAME
     }
 
 
-# ============================================================
-# ERROR HANDLERS
-# ============================================================
+@app.get("/")
+async def root():
+    """Root endpoint with service information."""
+    return {
+        "service": settings.APP_NAME,
+        "version": settings.APP_VERSION,
+        "status": "operational",
+        "documentation": "/docs",
+        "health": "/health"
+    }
 
-@app.exception_handler(404)
-async def not_found_handler(request: Request, exc):
-    """Handle 404 errors gracefully."""
-    return HTMLResponse(
-        content="""
-        <html>
-            <head><title>404 - Page Not Found</title></head>
-            <body style="background:#0a0e1a; color:#e8e8e8; font-family:Inter,sans-serif; display:flex; align-items:center; justify-content:center; height:100vh; flex-direction:column;">
-                <h1 style="font-size:80px; margin:0;">404</h1>
-                <p style="font-size:20px; color:#9ca3af;">Page not found</p>
-                <a href="/" style="color:#f59e0b; text-decoration:none; margin-top:20px;">← Back to Home</a>
-            </body>
-        </html>
-        """,
-        status_code=404
+
+@app.exception_handler(AppException)
+async def app_exception_handler(request: Request, exc: AppException):
+    """Handle application-specific exceptions."""
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "error": exc.message,
+            "code": exc.code,
+            "timestamp": time.time()
+        }
     )
 
 
-# ============================================================
-# EXECUTION
-# ============================================================
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(
-        app,
-        host="0.0.0.0",
-        port=8000,
-        log_level="info"
+@app.exception_handler(Exception)
+async def generic_exception_handler(request: Request, exc: Exception):
+    """Handle generic exceptions."""
+    logger.error(f"Unhandled exception: {exc}")
+    return JSONResponse(
+        status_code=500,
+        content={
+            "error": "Internal server error",
+            "timestamp": time.time()
+        }
     )

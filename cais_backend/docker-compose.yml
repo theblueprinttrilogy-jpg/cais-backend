@@ -1,8 +1,10 @@
 version: '3.8'
 
 services:
+  # PostgreSQL with pgvector
   postgres:
-    image: pgvector/pgvector:pg15
+    image: pgvector/pgvector:pg16
+    container_name: cais_postgres
     environment:
       POSTGRES_USER: cais_user
       POSTGRES_PASSWORD: cais_password_dev
@@ -11,21 +13,105 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cais_user -d cais"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - cais_network
 
+  # Redis cache
   redis:
     image: redis:7-alpine
+    container_name: cais_redis
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - cais_network
 
+  # RabbitMQ message queue
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: cais_rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - cais_network
+
+  # PgBouncer connection pooler
   pgbouncer:
-    image: edoburu/pgbouncer
+    image: edoburu/pgbouncer:latest
+    container_name: cais_pgbouncer
     environment:
       DATABASE_URL: postgresql://cais_user:cais_password_dev@postgres:5432/cais
-      POOL_MODE: transaction
+      POOL_MODE: session
+      DEFAULT_POOL_SIZE: 20
     ports:
       - "6432:6432"
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
+    networks:
+      - cais_network
+
+  # Ollama language models
+  ollama:
+    image: ollama/ollama:latest
+    container_name: cais_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      OLLAMA_HOST: 0.0.0.0
+    networks:
+      - cais_network
+    command: serve
+
+  # CAIS Backend application
+  app:
+    build: .
+    container_name: cais_app
+    environment:
+      DATABASE_URL: postgresql://cais_user:cais_password_dev@pgbouncer:6432/cais
+      REDIS_URL: redis://redis:6379
+      RABBITMQ_URL: amqp://guest:guest@rabbitmq:5672
+      OLLAMA_URL: http://ollama:11434
+      SECRET_KEY: ${SECRET_KEY:-dev_secret_key_change_in_production}
+      ENVIRONMENT: development
+    ports:
+      - "8080:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      pgbouncer:
+        condition: service_started
+      redis:
+        condition: service_started
+      rabbitmq:
+        condition: service_started
+      ollama:
+        condition: service_started
+    volumes:
+      - ./app:/app/app
+      - ./storage:/app/storage
+      - ./logs:/app/logs
+    networks:
+      - cais_network
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+
+networks:
+  cais_network:
+    driver: bridge
 
 volumes:
   postgres_data:
+  redis_data:
+  ollama_data:
