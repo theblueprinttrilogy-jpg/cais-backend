@@ -13,7 +13,7 @@ import logging
 import re
 from typing import Dict, Any, List, Optional
 from datetime import datetime
-from fastapi import APIRouter, HTTPException, status, Request
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 
 # Add parent path for imports
 sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend')

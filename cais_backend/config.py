@@ -72,11 +72,21 @@ class Settings(BaseSettings):
     # Google Cloud
     GOOGLE_APPLICATION_CREDENTIALS: str = ""
     GCP_PROJECT_ID: str = ""
+    GCP_PROJECT: str = ""  # Legacy field
+    GCP_CREDENTIALS_JSON: str = ""  # Legacy field
+    GCS_BUCKET_PLANS: str = ""  # Legacy field
+    ROOT_FOLDER_ID: str = ""  # Legacy field
+    POSTGRES_DSN: str = ""  # Legacy field
+    RABBITMQ_URI: str = ""  # Legacy field
+    GOOGLE_CLIENT_ID: str = ""  # Legacy field
+    GOOGLE_CLIENT_SECRET: str = ""  # Legacy field
+    GOOGLE_REFRESH_TOKEN: str = ""  # Legacy field
 
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = True
+        extra = "allow"  # Allow extra fields from environment variables
 
 
 settings = Settings()

@@ -10,9 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.exceptions import NotFoundException
-from app.models.document import Document
-from app.models.violation import Violation
-from app.models.user import User
+from app.db.models import Document, Violation, User
 from app.schemas.analysis import AnalysisStatus, AnalysisResult, ViolationResponse
 from app.api.deps import get_current_active_user
 from app.agents.plan_inspector import PlanInspector

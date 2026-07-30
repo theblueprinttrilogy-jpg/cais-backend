@@ -10,14 +10,12 @@ Based on CAIS CODE COMPLIANCE WORKFLOW - Section 1.1
 import json
 import logging
 from typing import Optional
-from fastapi import APIRouter, Request, HTTPException, status
+from fastapi import APIRouter, Depends, Request, HTTPException, status
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.exceptions import NotFoundException
-from app.models.document import Document
-from app.models.project import Project
-from app.models.user import User
+from app.db.models import Document, Project, User
 
 router = APIRouter()
 logger = logging.getLogger(__name__)

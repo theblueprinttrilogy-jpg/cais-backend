@@ -10,8 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.exceptions import NotFoundException
-from app.models.project import Project
-from app.models.user import User
+from app.db.models import Project, User
 from app.schemas.project import ProjectCreate, ProjectUpdate, ProjectResponse
 from app.api.deps import get_current_active_user
 

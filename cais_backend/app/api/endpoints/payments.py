@@ -11,8 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.exceptions import PaymentRequiredException
-from app.models.user import User
-from app.models.payment import Payment
+from app.db.models import User, Payment
 from app.schemas.payment import PaymentCreate, PaymentResponse, PaymentWebhook
 from app.api.deps import get_current_active_user
 from app.payment.subscription_manager import SubscriptionManager

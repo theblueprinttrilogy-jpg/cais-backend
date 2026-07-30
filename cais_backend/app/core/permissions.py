@@ -8,7 +8,7 @@ from typing import List, Optional
 from functools import wraps
 from fastapi import HTTPException, status
 
-from app.models.user import User
+from app.db.models import User
 
 
 class Permission:

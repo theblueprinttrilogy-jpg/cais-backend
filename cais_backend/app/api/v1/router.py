@@ -6,11 +6,11 @@ This module aggregates all v1 API routes.
 
 from fastapi import APIRouter
 
-# Import endpoints
+# Import endpoints that exist
 from app.api.endpoints import (
     auth, users, projects, upload, analysis, reports,
     payments, subscriptions, webhooks, kill_switch,
-    dashboard, notifications, metrics, admin, tasks
+    dashboard
 )
 
 api_router = APIRouter()
@@ -47,18 +47,6 @@ api_router.include_router(kill_switch.router, prefix="/kill", tags=["kill"])
 
 # Dashboard
 api_router.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
-
-# Notifications
-api_router.include_router(notifications.router, prefix="/notifications", tags=["notifications"])
-
-# Metrics
-api_router.include_router(metrics.router, prefix="/metrics", tags=["metrics"])
-
-# Admin
-api_router.include_router(admin.router, prefix="/admin", tags=["admin"])
-
-# Tasks
-api_router.include_router(tasks.router, prefix="/tasks", tags=["tasks"])
 
 
 @api_router.get("/ping")

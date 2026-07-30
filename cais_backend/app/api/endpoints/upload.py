@@ -14,7 +14,7 @@ import logging
 import re
 from typing import List, Dict, Any, Optional
 from datetime import datetime
-from fastapi import APIRouter, File, UploadFile, Form, HTTPException, status
+from fastapi import APIRouter, Depends, File, UploadFile, Form, HTTPException, status
 from fastapi.responses import JSONResponse
 from pathlib import Path
 

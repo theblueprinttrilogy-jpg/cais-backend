@@ -46,7 +46,7 @@ google-api-python-client==2.157.0
 
 # HTTP and Networking
 requests==2.32.3
-httpx==0.28.1
+httpx>=0.27.0,<0.28.0
 aiohttp==3.11.11
 fake-useragent==1.5.1
 

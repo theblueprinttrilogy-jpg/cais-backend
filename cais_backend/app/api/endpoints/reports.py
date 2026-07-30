@@ -10,9 +10,7 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.exceptions import NotFoundException
-from app.models.document import Document
-from app.models.report import Report
-from app.models.user import User
+from app.db.models import Document, Report, User
 from app.api.deps import get_current_active_user
 
 router = APIRouter()
