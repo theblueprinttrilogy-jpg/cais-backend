@@ -1,0 +1,16 @@
+
+# C.A.T.S. - Sistema de pruebas (NO SUBIR A GITHUB)
+**/code_matcher.py
+**/plan_inspector.py
+**/report_generator.py
+**/orchestrator/
+**/shared/
+app/agents/analyzer/
+app/orchestrator/
+app/shared/
+agents/code_matcher.py
+agents/plan_inspector.py
+agents/report_generator.py
+cats/
+CATS_*
+*.cats

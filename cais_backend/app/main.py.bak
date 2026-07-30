@@ -18,8 +18,8 @@ from fastapi import FastAPI, Request, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse, JSONResponse
-from app.api.endpoints.dashboard import router as dashboard_router
-from app.api.endpoints.upload import router as upload_router
+from api.endpoints.dashboard import router as dashboard_router
+from api.endpoints.upload import router as upload_router
 
 # ============================================================
 # APP INITIALIZATION

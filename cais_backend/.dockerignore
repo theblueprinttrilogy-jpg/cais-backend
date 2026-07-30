@@ -1,0 +1,103 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+venv_prometheus/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+logs/
+*.log
+logs+/
+*.log.gz
+
+# Data files - CRÍTICO
+data/
+*.gz
+*.tar.gz
+*.zip
+*.db
+*.sqlite3
+
+# Storage - CRÍTICO (archivos de 3.2GB)
+storage/
+drive_mock/
+
+# Secrets
+*.json
+!requirements.txt
+!alembic.ini
+secrets/
+*.key
+*.pem
+*.crt
+*.p12
+*.pfx
+credentials/
+
+# Hidden files
+.env
+.git/
+.gitignore
+.github/
+.gitattributes
+
+# Large files
+*.pdf
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+*.avi
+*.mov
+*.mp3
+*.wav
+*.tiff
+*.bmp
+*.psd
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Output directories
+output/
+outputs/
+processed/
+downloads/
+compressed/
+uploads/
+reports/
+evidence/
+generated_code/
+
+# Test files
+tests/
+test_*.py
+*_test.py
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+docker-compose*.yaml
+
+# Misc
+*.bak
+*.orig
+*.patch
+*.diff
+*.out
+*.err
