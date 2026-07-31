@@ -1,0 +1,111 @@
+{% extends "app/skins/templates/header.html" %}
+
+{% block content %}
+<div class="upload-container">
+    <h1>Upload Document</h1>
+    
+    <div class="upload-area" id="uploadArea">
+        <div class="upload-icon">📁</div>
+        <h3>Drag & Drop your document here</h3>
+        <p>or click to browse</p>
+        <p class="upload-hint">Supports: PDF, DOCX, TXT, PNG, JPG (Max: 50MB)</p>
+        
+        <form id="uploadForm" action="/api/upload/file" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="fileInput" accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" hidden>
+            <button type="button" class="btn-browse" onclick="document.getElementById('fileInput').click()">
+                Browse Files
+            </button>
+            <button type="submit" class="btn-upload" id="uploadBtn" disabled>
+                Upload
+            </button>
+        </form>
+        
+        <div class="upload-progress" id="uploadProgress" style="display:none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:0%"></div>
+            </div>
+            <span class="progress-text" id="progressText">0%</span>
+        </div>
+    </div>
+    
+    <div class="upload-info">
+        <h3>Supported File Types</h3>
+        <ul>
+            <li><strong>PDF</strong> - Architectural plans, RFIs, Change Orders</li>
+            <li><strong>DOCX</strong> - Specifications, Reports</li>
+            <li><strong>TXT</strong> - Plain text documents</li>
+            <li><strong>PNG/JPG</strong> - Images, Scanned documents</li>
+        </ul>
+        
+        <div class="upload-tips">
+            <h4>Tips for best results:</h4>
+            <ul>
+                <li>Use high-quality scans (200 DPI or higher)</li>
+                <li>Ensure text is readable and not blurred</li>
+                <li>Include clear building codes and regulations</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Drag and Drop functionality
+    const uploadArea = document.getElementById('uploadArea');
+    const fileInput = document.getElementById('fileInput');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const uploadProgress = document.getElementById('uploadProgress');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    
+    uploadArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        uploadArea.classList.add('dragover');
+    });
+    
+    uploadArea.addEventListener('dragleave', () => {
+        uploadArea.classList.remove('dragover');
+    });
+    
+    uploadArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        uploadArea.classList.remove('dragover');
+        if (e.dataTransfer.files.length > 0) {
+            fileInput.files = e.dataTransfer.files;
+            uploadBtn.disabled = false;
+        }
+    });
+    
+    fileInput.addEventListener('change', () => {
+        uploadBtn.disabled = false;
+    });
+    
+    document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        uploadBtn.disabled = true;
+        uploadProgress.style.display = 'block';
+        
+        try {
+            const response = await fetch('/api/upload/file', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            
+            if (result.status === 'success') {
+                progressFill.style.width = '100%';
+                progressText.textContent = '100% - Processing...';
+                window.location.href = `/analysis/${result.data.job_id}`;
+            } else {
+                alert('Upload failed: ' + result.message);
+                uploadProgress.style.display = 'none';
+                uploadBtn.disabled = false;
+            }
+        } catch (error) {
+            alert('Upload error: ' + error.message);
+            uploadProgress.style.display = 'none';
+            uploadBtn.disabled = false;
+        }
+    });
+</script>
+{% endblock %}

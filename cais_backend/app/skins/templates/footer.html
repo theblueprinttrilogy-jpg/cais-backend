@@ -1,0 +1,39 @@
+    </main>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">CAIS</span>
+                <span class="footer-sub">Code Compliance</span>
+            </div>
+            
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/docs">Documentation</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+            
+            <div class="footer-info">
+                <span>Version {{ version }}</span>
+                <span>&copy; {{ year }} CAIS Code Compliance</span>
+                <span>All rights reserved</span>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scripts -->
+    <script src="/static/js/main.js"></script>
+    
+    <!-- Marketplace Skin Scripts -->
+    {% block extra_scripts %}{% endblock %}
+    
+    <!-- Analytics -->
+    {% if analytics_enabled %}
+        <script>
+            // Analytics code here
+        </script>
+    {% endif %}
+</body>
+</html>

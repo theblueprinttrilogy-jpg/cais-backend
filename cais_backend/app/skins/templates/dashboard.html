@@ -1,0 +1,84 @@
+{% extends "app/skins/templates/header.html" %}
+{% block extra_head %}
+    <link rel="stylesheet" href="/static/css/dashboard.css">
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h1>Dashboard</h1>
+    
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">📊</div>
+            <div class="stat-info">
+                <span class="stat-value">{{ total_projects }}</span>
+                <span class="stat-label">Total Projects</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">📄</div>
+            <div class="stat-info">
+                <span class="stat-value">{{ total_documents }}</span>
+                <span class="stat-label">Total Documents</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">⚠️</div>
+            <div class="stat-info">
+                <span class="stat-value">{{ total_violations }}</span>
+                <span class="stat-label">Total Violations</span>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon">📈</div>
+            <div class="stat-info">
+                <span class="stat-value">{{ compliance_rate }}%</span>
+                <span class="stat-label">Compliance Rate</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Activity -->
+    <div class="activity-section">
+        <h2>Recent Activity</h2>
+        <div class="activity-list">
+            {% for activity in recent_activities %}
+                <div class="activity-item">
+                    <span class="activity-time">{{ activity.timestamp }}</span>
+                    <span class="activity-type {{ activity.type }}">{{ activity.type }}</span>
+                    <span class="activity-message">{{ activity.message }}</span>
+                </div>
+            {% else %}
+                <div class="activity-empty">No recent activity</div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Violation Breakdown -->
+    <div class="violation-section">
+        <h2>Violation Breakdown</h2>
+        <div class="violation-chart">
+            <div class="chart-bar critical" style="width: {{ critical_percent }}%">
+                Critical: {{ critical_count }}
+            </div>
+            <div class="chart-bar high" style="width: {{ high_percent }}%">
+                High: {{ high_count }}
+            </div>
+            <div class="chart-bar medium" style="width: {{ medium_percent }}%">
+                Medium: {{ medium_count }}
+            </div>
+            <div class="chart-bar low" style="width: {{ low_percent }}%">
+                Low: {{ low_count }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+    <script src="/static/js/dashboard.js"></script>
+{% endblock %}

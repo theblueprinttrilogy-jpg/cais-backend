@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="{{ language }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - CAIS Code Compliance</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/static/css/style.css">
+    
+    <!-- Marketplace Skin -->
+    <style>
+        {{ skin_styles | safe }}
+    </style>
+    
+    <!-- Additional Head Content -->
+    {% block extra_head %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-brand">
+            <a href="/">
+                <span class="brand-logo">CAIS</span>
+                <span class="brand-sub">Code Compliance</span>
+            </a>
+        </div>
+        
+        <div class="navbar-menu">
+            <ul>
+                <li><a href="/dashboard" class="{% if active_page == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+                <li><a href="/upload" class="{% if active_page == 'upload' %}active{% endif %}">Upload</a></li>
+                <li><a href="/reports" class="{% if active_page == 'reports' %}active{% endif %}">Reports</a></li>
+                <li><a href="/settings" class="{% if active_page == 'settings' %}active{% endif %}">Settings</a></li>
+            </ul>
+        </div>
+        
+        <div class="navbar-user">
+            {% if user %}
+                <span class="user-name">{{ user.full_name or user.username }}</span>
+                <a href="/logout" class="btn-logout">Logout</a>
+            {% else %}
+                <a href="/login" class="btn-login">Login</a>
+                <a href="/register" class="btn-register">Register</a>
+            {% endif %}
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <main class="main-content">
