@@ -15,7 +15,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 COOKIES_FILE = "/tmp/selenium_cookies.json"
-DRIVE_CREDENTIALS = "/app/config/security/gdrive-credentials.json"
+DRIVE_CREDENTIALS = os.environ.get("DRIVE_CREDENTIALS", "/home/maxlo/PROMETHEUS/config/security/gdrive-credentials.json")
 DRIVE_FOLDER_ID = os.environ.get("DRIVE_FOLDER_ID", "16ywo8njoZ4l7GYKBF1z9CPYQukrmqGVr")
 ICC_BASE = "https://codes.iccsafe.org"
 PROXY_URL = os.environ.get("PROXY_URL", "")

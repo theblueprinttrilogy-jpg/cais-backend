@@ -77,6 +77,54 @@ class JurisdictionOrchestrator(BaseAgent):
         super().__init__("JurisdictionOrchestrator", "jurisdiction")
         self.db_session = db_session
 
+    def analyze(self, document) -> Dict[str, Any]:
+        """
+        Implementation of the abstract analyze method from BaseAgent.
+
+        Args:
+            document: Document object containing address information
+
+        Returns:
+            dict: Jurisdiction information
+        """
+        # Extract address from document
+        address = None
+        if hasattr(document, 'address'):
+            address = document.address
+        elif hasattr(document, 'file_path'):
+            # Try to extract from file path or content
+            address = self._extract_address_from_document(document)
+
+        if not address:
+            logger.warning("No address found in document for jurisdiction detection")
+            return {
+                'jurisdiction': 'Unknown',
+                'state': 'Unknown',
+                'code_set': 'IBC',
+                'confidence': 0.0,
+                'detected_from': 'None'
+            }
+
+        return self.identify_jurisdiction(address)
+
+    def _extract_address_from_document(self, document) -> Optional[str]:
+        """
+        Extract address from document content if available.
+        """
+        if hasattr(document, 'extracted_text') and document.extracted_text:
+            text = document.extracted_text
+            # Simple address pattern matching
+            patterns = [
+                r'(?:address|location|site|project)\s*:?\s*([^\n]{5,100})',
+                r'(\d{1,5}\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:street|st|avenue|ave|road|rd|drive|dr|boulevard|blvd|lane|ln|court|ct|way|circle|cir|place|pl|terrace|ter)\.?\s*[A-Z]{2}\s*\d{5})',
+                r'(\d{1,5}\s+[A-Za-z]+\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s*,\s*[A-Z]{2}\s*\d{5})',
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, text, re.IGNORECASE)
+                if match:
+                    return match.group(1).strip()
+        return None
+
     def identify_jurisdiction(self, address: str) -> Dict[str, Any]:
         """
         Identify jurisdiction from a physical address.

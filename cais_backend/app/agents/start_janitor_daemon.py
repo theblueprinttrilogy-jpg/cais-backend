@@ -12,8 +12,10 @@ import json
 from datetime import datetime
 from typing import List, Optional
 
-# Add parent directory to path to import JanitorAgent
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Add project root to path
+project_root = '/home/maxlo/PROMETHEUS/cais_backend'
+sys.path.insert(0, project_root)
+sys.path.insert(0, os.path.join(project_root, 'app'))
 
 from app.agents.janitor_agent import JanitorAgent
 

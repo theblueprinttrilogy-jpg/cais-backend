@@ -17,8 +17,12 @@ and newer aiohttp versions.
 # -----------------------------------------------------------------------------
 # PATCH: aiohttp.helpers.urldefrag for Python 3.12 compatibility
 # -----------------------------------------------------------------------------
-import sys
 import importlib
+import os
+import sys
+import asyncio
+import logging
+import signal
 import warnings
 
 try:
@@ -40,16 +44,11 @@ except ImportError:
     pass
 # -----------------------------------------------------------------------------
 
-import asyncio
-import logging
-import signal
-import sys
-from typing import Optional, Any
-
 from app.agents.janitor_agent import JanitorAgent
 from app.agents.global_jurisdiction_agent import GlobalJurisdictionAgent
 from app.agents.search_agents_pool import SearchAgentPool
-from app.services.drive_sync_service import DriveSyncService  # mock local storage
+from app.services.drive_sync_service import DriveSyncService
+from app.services.google_drive_service import GoogleDriveService
 from app.services.zip_code_service import ZipCodeService
 from app.core.config import settings
 
@@ -71,17 +70,18 @@ class MasterOrchestrator:
         janitor_agent (JanitorAgent): The janitor agent instance.
         global_agent (GlobalJurisdictionAgent): The jurisdiction agent.
         search_pool (SearchAgentPool): The search worker pool.
-        drive_service (DriveSyncService): The Drive sync service (mock/local).
+        drive_service (GoogleDriveService): The real Google Drive service.
         redis_client (Optional[aioredis.Redis]): Redis client for queue communication.
         tasks (List[asyncio.Task]): List of running task coroutines.
         shutdown_event (asyncio.Event): Event to signal shutdown.
     """
 
     def __init__(self):
+        self.folder_id = os.environ.get("DRIVE_FOLDER_ID", "16ywo8njoZ4l7GYKBF1z9CPYQukrmqGVr")
         self.janitor_agent: Optional[JanitorAgent] = None
         self.global_agent: Optional[GlobalJurisdictionAgent] = None
         self.search_pool: Optional[SearchAgentPool] = None
-        self.drive_service: Optional[DriveSyncService] = None
+        self.drive_service: Optional[GoogleDriveService] = None
         self.redis_client: Optional[Any] = None
         self.tasks: list[asyncio.Task] = []
         self.shutdown_event = asyncio.Event()
@@ -104,21 +104,21 @@ class MasterOrchestrator:
 
     async def _init_services(self) -> None:
         """Initialise all services and agents."""
-        # Drive service (mock local storage)
-        self.drive_service = DriveSyncService()
-        logger.info("DriveSyncService (mock) initialised at %s", self.drive_service.base_path)
+        # Real Google Drive service using service account
+        credentials_file = "/home/maxlo/PROMETHEUS/config/security/gdrive-credentials.json"
+        self.drive_service = GoogleDriveService(
+            credentials_file=credentials_file,
+            folder_id=self.folder_id
+        )
+        logger.info("GoogleDriveService (real) initialised with folder ID: %s", self.drive_service.folder_id)
 
         # ZipCodeService (depends on Drive service)
         zip_service = ZipCodeService(self.drive_service)
         logger.info("ZipCodeService initialised.")
 
-        # Janitor agent (continuous mode)
-        self.janitor_agent = JanitorAgent(
-            continuous=True,
-            sweep_interval=getattr(settings, "JANITOR_SWEEP_INTERVAL", 3600),
-            dry_run=getattr(settings, "JANITOR_DRY_RUN", False),
-        )
-        logger.info("JanitorAgent initialised.")
+        # Janitor agent (disabled to avoid OAuth interactive prompt)
+        self.janitor_agent = None
+        logger.info("JanitorAgent disabled.")
 
         # GlobalJurisdictionAgent (depends on Drive, Zip, and Redis)
         self.global_agent = GlobalJurisdictionAgent(
@@ -141,8 +141,9 @@ class MasterOrchestrator:
             logger.warning("Redis not available; SearchAgentPool will not start.")
 
     async def _run_janitor(self) -> None:
-        """Run the janitor agent (blocking)."""
-        await self.janitor_agent.start()
+        """Run the janitor agent (blocking) – disabled."""
+        logger.info("JanitorAgent is disabled, sleeping indefinitely.")
+        await asyncio.sleep(3600)  # Simulate idle loop
 
     async def _run_global_agent(self) -> None:
         """Run the global jurisdiction agent in a loop."""
@@ -178,7 +179,7 @@ class MasterOrchestrator:
 
     async def _run_drive_sync(self) -> None:
         """
-        Periodically sync with Drive (mock) to check for new documents.
+        Periodically sync with Drive (real) to check for new documents.
         """
         interval = getattr(settings, "DRIVE_SYNC_INTERVAL", 1800)  # 30 minutes
         while not self.shutdown_event.is_set():

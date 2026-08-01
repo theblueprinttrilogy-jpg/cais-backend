@@ -1,374 +1,294 @@
 """
-Upload and Processing Endpoint for CAIS Dashboard
-Handles file upload, OCR, and workflow processing.
-100% ENGLISH - All code, comments, messages, and logs in English.
+Upload and Processing Endpoint - CAIS Code Compliance
+
+This module handles PDF upload, triggers the multi-agent analysis pipeline,
+and tracks job status. It uses:
+- PlanInspector: Visual scanning at 200 DPI
+- JurisdictionOrchestrator: Address detection and jurisdiction mapping
+- CodeMatcher: Semantic search in pgvector with yellow highlighting
+- ReportGenerator: Forensic Facts Dossier generation
+- WormLedger: Immutable evidence recording
+
+Based on CAIS CODE COMPLIANCE WORKFLOW - Chapter 3 and 4
 """
 
 import os
-import sys
 import uuid
 import shutil
-import tempfile
-import json
 import logging
-import re
-from typing import List, Dict, Any, Optional
+import asyncio
+from typing import Dict, Any, Optional
 from datetime import datetime
-from fastapi import APIRouter, Depends, File, UploadFile, Form, HTTPException, status
-from fastapi.responses import JSONResponse
 from pathlib import Path
 
-# Add parent path for imports
-sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend')
-sys.path.insert(0, '/home/maxlo/PROMETHEUS/cais_backend/app')
+from fastapi import APIRouter, File, UploadFile, HTTPException, status
+from fastapi.responses import JSONResponse
 
-from app.agents.semantic_analytics_agent import SemanticAnalyticsAgent
+from app.agents.plan_inspector import PlanInspector
+from app.agents.jurisdiction_orchestrator import JurisdictionOrchestrator
+from app.agents.code_matcher import CodeMatcher
+from app.agents.report_generator import ReportGenerator
+from app.agents.worm_ledger import WormLedger
+from app.core.database import SessionLocal
+from app.db.models import Document, Project, Violation, Report, WORMLedgerEntry, User
 
-logger = logging.getLogger("UPLOAD_API")
-router = APIRouter(prefix="/api/upload", tags=["Upload"])
-
-# Initialize semantic agent
-semantic_agent = SemanticAnalyticsAgent()
+logger = logging.getLogger(__name__)
+router = APIRouter(prefix="/upload", tags=["upload"])
 
 # Upload directory
 UPLOAD_DIR = Path("/tmp/cais_uploads")
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
-# Processing status tracking
-processing_jobs = {}
-
-# Supported file types
-SUPPORTED_EXTENSIONS = {
-    '.pdf': 'application/pdf',
-    '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    '.txt': 'text/plain',
-    '.png': 'image/png',
-    '.jpg': 'image/jpeg',
-    '.jpeg': 'image/jpeg'
-}
+# Processing jobs tracking
+processing_jobs: Dict[str, Dict[str, Any]] = {}
 
 
 # ============================================================
-# SIMPLE ADDRESS EXTRACTION
+# HELPER: Get or create default user
 # ============================================================
 
-def extract_address_from_text(text: str) -> Optional[str]:
-    """Extract address from text using regex patterns."""
-    if not text or len(text.strip()) < 10:
-        return None
-    
-    address_patterns = [
-        r'(?:address|location|site|project)\s*:?\s*([^\n]{5,100})',
-        r'(\d{1,5}\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\s+(?:street|st|avenue|ave|road|rd|drive|dr|boulevard|blvd|lane|ln|court|ct|way|circle|cir|place|pl|terrace|ter)\.?\s*[A-Z]{2}\s*\d{5})',
-        r'(\d{1,5}\s+[A-Za-z]+\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s*,\s*[A-Z]{2}\s*\d{5})',
-        r'(?:at|located at|from)\s+([^\n]{10,100})',
-        r'(\d{1,5}\s+[A-Za-z]+\s+[A-Za-z]+(?:\s+[A-Za-z]+)*\s+[A-Z]{2}\s*\d{5})',
-    ]
-    
-    lines = text.split('\n')
-    for line in lines:
-        line = line.strip()
-        if len(line) < 10:
-            continue
-        for pattern in address_patterns:
-            match = re.search(pattern, line, re.IGNORECASE)
-            if match:
-                address = match.group(1).strip()
-                address = re.sub(r'\s+', ' ', address)
-                if len(address) > 5 and any(char.isdigit() for char in address):
-                    return address
-    return None
-
-
-# ============================================================
-# TEXT EXTRACTION WITH OCR SUPPORT
-# ============================================================
-
-def extract_text_from_file(file_path: Path, filename: str) -> str:
+def get_or_create_default_user(db) -> User:
     """
-    Extract text from file using appropriate method based on file type.
-    Supports PDF with OCR fallback for scanned documents.
+    Get or create a default system user for unauthenticated uploads.
     """
-    file_ext = os.path.splitext(filename)[1].lower()
-    text = ""
-    
+    default_user_id = "00000000-0000-0000-0000-000000000000"
+    user = db.query(User).filter(User.id == default_user_id).first()
+    if not user:
+        user = User(
+            id=default_user_id,
+            email="system@cais.local",
+            username="system",
+            hashed_password="",  # No password needed for system
+            full_name="System User",
+            is_active=True,
+            is_superuser=True,
+            is_verified=True,
+            subscription_plan="free",
+            preferred_language="en",
+            preferred_timezone="UTC"
+        )
+        db.add(user)
+        db.commit()
+        db.refresh(user)
+        logger.info(f"Created default system user with ID: {user.id}")
+    return user
+
+
+# ============================================================
+# HELPER: Get or create project from project_id (string)
+# ============================================================
+
+def get_or_create_project(db, user: User, project_id: str) -> Project:
+    """
+    Get existing project if project_id is a valid UUID, otherwise create a new one.
+    """
+    project = None
+    # Try to parse as UUID
     try:
-        if file_ext == '.txt':
-            with open(file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                text = f.read()
-                
-        elif file_ext == '.pdf':
-            # Try PyMuPDF first
-            try:
-                import fitz
-                doc = fitz.open(file_path)
-                for page in doc:
-                    page_text = page.get_text()
-                    if page_text:
-                        text += page_text + "\n"
-                doc.close()
-                logger.info(f"PyMuPDF: extracted {len(text)} characters from {filename}")
-                
-                # If no text, try OCR
-                if len(text.strip()) < 100:
-                    logger.info(f"PDF has no extractable text - trying OCR for {filename}")
-                    try:
-                        from pdf2image import convert_from_path
-                        import pytesseract
-                        images = convert_from_path(file_path, dpi=200)
-                        ocr_text = ""
-                        for i, img in enumerate(images):
-                            page_text = pytesseract.image_to_string(img, lang='eng')
-                            if page_text:
-                                ocr_text += page_text + "\n"
-                                logger.info(f"  Page {i+1}: {len(page_text)} chars")
-                        if len(ocr_text.strip()) > 50:
-                            text = ocr_text
-                            logger.info(f"OCR extracted {len(text)} characters from {filename}")
-                        else:
-                            logger.warning(f"OCR extracted very little text from {filename}")
-                    except ImportError as e:
-                        logger.warning(f"OCR libraries not available: {e}")
-            except ImportError:
-                # Fallback to pdfplumber
-                try:
-                    import pdfplumber
-                    with pdfplumber.open(file_path) as pdf:
-                        for page in pdf.pages:
-                            page_text = page.extract_text()
-                            if page_text:
-                                text += page_text + "\n"
-                    logger.info(f"pdfplumber: extracted {len(text)} characters from {filename}")
-                except ImportError:
-                    logger.warning("PDF extraction libraries not available")
-                    
-        elif file_ext in ['.docx']:
-            try:
-                import docx
-                doc = docx.Document(file_path)
-                for para in doc.paragraphs:
-                    text += para.text + "\n"
-                logger.info(f"DOCX: extracted {len(text)} characters from {filename}")
-            except ImportError:
-                logger.warning("python-docx not available")
-                
-        elif file_ext in ['.png', '.jpg', '.jpeg']:
-            try:
-                import pytesseract
-                from PIL import Image
-                image = Image.open(file_path)
-                text = pytesseract.image_to_string(image)
-                logger.info(f"Image OCR: extracted {len(text)} characters from {filename}")
-            except ImportError:
-                logger.warning("OCR libraries not available")
-                
-    except Exception as e:
-        logger.error(f"Error extracting text from {filename}: {e}")
-    
-    return text
+        project_uuid = uuid.UUID(project_id)
+        project = db.query(Project).filter(Project.id == project_uuid).first()
+    except ValueError:
+        # Not a valid UUID, treat as project name
+        pass
 
-
-# ============================================================
-# SIMPLE JURISDICTION VERIFICATION
-# ============================================================
-
-def verify_address_simple(address: str) -> Dict[str, Any]:
-    """Simple jurisdiction verification."""
-    if not address or len(address.strip()) < 5:
-        return {
-            "jurisdiction": "Unknown",
-            "has_codes": False,
-            "coverage_percentage": 0,
-            "code_count": 0,
-            "regulation_count": 0,
-            "law_count": 0
-        }
-    
-    address_lower = address.lower()
-    jurisdiction = "Unknown"
-    coverage_percentage = 0
-    
-    # Check for California
-    if 'california' in address_lower or ' ca ' in address_lower or address_lower.endswith(' ca'):
-        jurisdiction = 'US-CA'
-        coverage_percentage = 95
-    # Check for Florida
-    elif 'florida' in address_lower or ' fl ' in address_lower or address_lower.endswith(' fl'):
-        jurisdiction = 'US-FL'
-        coverage_percentage = 90
-    # Check for New York
-    elif 'new york' in address_lower or ' ny ' in address_lower or address_lower.endswith(' ny'):
-        jurisdiction = 'US-NY'
-        coverage_percentage = 85
-    # Check for Texas
-    elif 'texas' in address_lower or ' tx ' in address_lower or address_lower.endswith(' tx'):
-        jurisdiction = 'US-TX'
-        coverage_percentage = 80
-    # Check for other US states
+    if not project:
+        # Create new project with generated UUID and use project_id as name
+        new_uuid = uuid.uuid4()
+        project = Project(
+            id=new_uuid,
+            user_id=user.id,
+            name=project_id,
+            status="active"
+        )
+        db.add(project)
+        db.commit()
+        db.refresh(project)
+        logger.info(f"Created new project with ID: {project.id}, name: {project_id}")
     else:
-        us_states = ['alabama', 'alaska', 'arizona', 'arkansas', 'colorado', 'connecticut', 
-                     'delaware', 'georgia', 'hawaii', 'idaho', 'illinois', 'indiana', 'iowa', 
-                     'kansas', 'kentucky', 'louisiana', 'maine', 'maryland', 'massachusetts', 
-                     'michigan', 'minnesota', 'mississippi', 'missouri', 'montana', 'nebraska', 
-                     'nevada', 'new hampshire', 'new jersey', 'new mexico', 'north carolina', 
-                     'north dakota', 'ohio', 'oklahoma', 'oregon', 'pennsylvania', 'rhode island', 
-                     'south carolina', 'south dakota', 'tennessee', 'utah', 'vermont', 'virginia', 
-                     'washington', 'west virginia', 'wisconsin', 'wyoming']
-        for state in us_states:
-            if state in address_lower:
-                jurisdiction = f'US-{state[:2].upper()}'
-                coverage_percentage = 70
-                break
-    
-    if jurisdiction == "Unknown":
-        jurisdiction = "US-CA"
-        coverage_percentage = 70
-    
-    return {
-        "jurisdiction": jurisdiction,
-        "has_codes": True,
-        "has_regulations": True,
-        "has_laws": True,
-        "coverage_percentage": coverage_percentage,
-        "code_count": 120 if coverage_percentage > 50 else 0,
-        "regulation_count": 80 if coverage_percentage > 50 else 0,
-        "law_count": 50 if coverage_percentage > 50 else 0
-    }
+        logger.info(f"Found existing project with ID: {project.id}")
+
+    return project
 
 
 # ============================================================
-# PROCESSING FUNCTIONS
+# BACKGROUND PROCESSING
 # ============================================================
 
-async def process_file_async(job_id: str, file_path: Path, filename: str):
-    """Process file asynchronously: OCR, address extraction, jurisdiction, analysis, KPI."""
-    
+async def process_document_async(job_id: str, file_path: Path, filename: str, project_uuid: str):
+    """
+    Process document using the full CAIS multi-agent pipeline.
+    """
+    db = SessionLocal()
     try:
+        # Update job status
         processing_jobs[job_id]["status"] = "processing"
-        
-        # Step 1: Extract text (OCR)
-        processing_jobs[job_id]["steps"]["ocr"]["status"] = "processing"
-        text_content = extract_text_from_file(file_path, filename)
-        
-        if not text_content or len(text_content.strip()) < 50:
-            processing_jobs[job_id]["steps"]["ocr"]["status"] = "failed"
-            processing_jobs[job_id]["steps"]["ocr"]["error"] = "Could not extract text from document"
-            processing_jobs[job_id]["status"] = "failed"
-            return
-        
-        processing_jobs[job_id]["steps"]["ocr"]["status"] = "done"
-        processing_jobs[job_id]["steps"]["ocr"]["timestamp"] = datetime.now().isoformat()
-        processing_jobs[job_id]["results"]["text_content"] = text_content[:10000]
-        
-        # Step 2: Extract address from OCR text
-        processing_jobs[job_id]["steps"]["address_extraction"]["status"] = "processing"
-        address = extract_address_from_text(text_content)
-        
+        processing_jobs[job_id]["steps"]["upload"]["status"] = "done"
+
+        # Step 1: PlanInspector - Convert PDF to images at 200 DPI and scan
+        logger.info(f"[{job_id}] Phase 1: PlanInspector - Visual scanning")
+        processing_jobs[job_id]["steps"]["plan_inspector"]["status"] = "processing"
+
+        plan_inspector = PlanInspector()
+        document = db.query(Document).filter(Document.task_id == job_id).first()
+        if not document:
+            raise ValueError(f"Document not found for task_id: {job_id}")
+
+        scan_result = plan_inspector.analyze(document)
+        processing_jobs[job_id]["steps"]["plan_inspector"]["status"] = "done"
+        processing_jobs[job_id]["steps"]["plan_inspector"]["timestamp"] = datetime.now().isoformat()
+
+        # Extract address from scan result
+        address = scan_result.get('address')
+        jurisdiction_code = scan_result.get('jurisdiction')
+
+        # Step 2: JurisdictionOrchestrator - Identify jurisdiction
+        logger.info(f"[{job_id}] Phase 2: JurisdictionOrchestrator")
+        processing_jobs[job_id]["steps"]["jurisdiction"]["status"] = "processing"
+
+        juris_orchestrator = JurisdictionOrchestrator(db)
         if address:
-            processing_jobs[job_id]["steps"]["address_extraction"]["status"] = "done"
-            processing_jobs[job_id]["steps"]["address_extraction"]["timestamp"] = datetime.now().isoformat()
-            processing_jobs[job_id]["results"]["address"] = address
-            logger.info(f"Address extracted: {address}")
-            
-            # Update project address in global state
-            try:
-                import api.endpoints.dashboard as dashboard_module
-                dashboard_module.current_project_address = address
-                dashboard_module.current_jurisdiction = verify_address_simple(address).get('jurisdiction', 'Unknown')
-                logger.info(f"Project address updated to: {address}")
-                logger.info(f"Jurisdiction updated to: {dashboard_module.current_jurisdiction}")
-            except Exception as e:
-                logger.warning(f"Could not update project address: {e}")
+            jurisdiction_info = juris_orchestrator.identify_jurisdiction(address)
+            jurisdiction_code = jurisdiction_info.get('jurisdiction', 'Unknown')
+            # Update project with jurisdiction
+            project = db.query(Project).filter(Project.id == project_uuid).first()
+            if project:
+                project.jurisdiction = jurisdiction_code
+                project.address = address
+                db.commit()
         else:
-            processing_jobs[job_id]["steps"]["address_extraction"]["status"] = "not_found"
-            processing_jobs[job_id]["steps"]["address_extraction"]["timestamp"] = datetime.now().isoformat()
-            processing_jobs[job_id]["results"]["address"] = None
-        
-        # Step 3: Verify jurisdiction
-        if address:
-            processing_jobs[job_id]["steps"]["jurisdiction"]["status"] = "processing"
-            jurisdiction_result = verify_address_simple(address)
-            processing_jobs[job_id]["steps"]["jurisdiction"]["status"] = "done"
-            processing_jobs[job_id]["steps"]["jurisdiction"]["timestamp"] = datetime.now().isoformat()
-            processing_jobs[job_id]["results"]["jurisdiction"] = jurisdiction_result
-            
-            # Also update jurisdiction in global state
-            try:
-                import api.endpoints.dashboard as dashboard_module
-                dashboard_module.current_jurisdiction = jurisdiction_result.get('jurisdiction', 'Unknown')
-            except Exception as e:
-                logger.warning(f"Could not update jurisdiction: {e}")
-        else:
-            processing_jobs[job_id]["steps"]["jurisdiction"]["status"] = "skipped"
-            processing_jobs[job_id]["steps"]["jurisdiction"]["timestamp"] = datetime.now().isoformat()
-        
-        # Step 4: Semantic analysis
-        processing_jobs[job_id]["steps"]["analysis"]["status"] = "processing"
-        analysis_result = semantic_agent.analyze_violations(text_content)
-        processing_jobs[job_id]["steps"]["analysis"]["status"] = "done"
-        processing_jobs[job_id]["steps"]["analysis"]["timestamp"] = datetime.now().isoformat()
-        processing_jobs[job_id]["results"]["analysis"] = {
-            "total_violations": analysis_result.get("total_violations", 0),
-            "severity_breakdown": analysis_result.get("severity_breakdown", {}),
-            "language": analysis_result.get("detected_languages", [{}])[0] if analysis_result.get("detected_languages") else None
-        }
-        
-        # Step 5: Calculate KPI values and update global state
-        processing_jobs[job_id]["steps"]["kpi_calculation"]["status"] = "processing"
-        kpi_values = semantic_agent.get_kpi_values(text_content)
-        processing_jobs[job_id]["steps"]["kpi_calculation"]["status"] = "done"
-        processing_jobs[job_id]["steps"]["kpi_calculation"]["timestamp"] = datetime.now().isoformat()
-        processing_jobs[job_id]["results"]["kpi"] = {
-            "value_at_risk": kpi_values.get("value_at_risk", 0),
-            "active_liens": kpi_values.get("active_liens", 0),
-            "compliance_percent": kpi_values.get("compliance_percent", 100.0),
-            "risk_score": kpi_values.get("risk_score", 0)
-        }
-        
-        # Update global state (imported from dashboard.py)
-        try:
-            import api.endpoints.dashboard as dashboard_module
-            
-            dashboard_module.document_processed = True
-            dashboard_module.last_processed_document = filename
-            dashboard_module.current_kpi_values = {
-                "value_at_risk": kpi_values.get("value_at_risk", 0),
-                "active_liens": kpi_values.get("active_liens", 0),
-                "compliance_percent": kpi_values.get("compliance_percent", 100.0),
-                "risk_score": kpi_values.get("risk_score", 0),
-                "total_violations": kpi_values.get("total_violations", 0),
-                "severity_breakdown": analysis_result.get("severity_breakdown", {}),
-                "language": analysis_result.get("detected_languages", [{}])[0] if analysis_result.get("detected_languages") else {"code": "en", "name": "English"},
-                "user_language": analysis_result.get("user_language", "en"),
-                "processed_at": datetime.now().isoformat(),
-                "document_name": filename
-            }
-            logger.info(f"Dashboard KPI values updated for: {filename}")
-        except ImportError as e:
-            logger.warning(f"Could not update global dashboard state: {e}")
-        except Exception as e:
-            logger.warning(f"Error updating global state: {e}")
-        
-        # Mark as completed
+            jurisdiction_info = {'jurisdiction': 'Unknown', 'state': 'Unknown', 'code_set': 'IBC', 'confidence': 0.0}
+
+        processing_jobs[job_id]["steps"]["jurisdiction"]["status"] = "done"
+        processing_jobs[job_id]["steps"]["jurisdiction"]["timestamp"] = datetime.now().isoformat()
+        processing_jobs[job_id]["results"]["address"] = address
+        processing_jobs[job_id]["results"]["jurisdiction"] = jurisdiction_info
+
+        # Step 3: CodeMatcher - Search for violations in pgvector
+        logger.info(f"[{job_id}] Phase 3: CodeMatcher - Semantic search")
+        processing_jobs[job_id]["steps"]["code_matcher"]["status"] = "processing"
+
+        code_matcher = CodeMatcher(db)
+        matched_violations = []
+        for violation_data in scan_result.get('violations', []):
+            # Create Violation record in DB
+            violation = Violation(
+                document_id=document.id,
+                violation_type=violation_data.get('type', 'unknown'),
+                severity=violation_data.get('severity', 'warning'),
+                description=violation_data.get('description', ''),
+                code_reference=violation_data.get('code_reference', ''),
+                coordinates=violation_data.get('coordinates'),
+                evidence_path=violation_data.get('evidence_path'),
+                page_num=violation_data.get('page_num'),
+                status='detected'
+            )
+            db.add(violation)
+            db.commit()
+            db.refresh(violation)
+
+            # Match against codes
+            matches = code_matcher.analyze(violation, jurisdiction_code)
+            for match in matches:
+                matched_violations.append({
+                    'violation_id': str(violation.id),
+                    'code_type': match.get('code_type'),
+                    'section': match.get('section'),
+                    'title': match.get('title'),
+                    'description': match.get('description'),
+                    'similarity': match.get('similarity', 0),
+                    'highlighted': match.get('highlighted', ''),
+                    'jurisdiction': jurisdiction_code
+                })
+
+        processing_jobs[job_id]["steps"]["code_matcher"]["status"] = "done"
+        processing_jobs[job_id]["steps"]["code_matcher"]["timestamp"] = datetime.now().isoformat()
+        processing_jobs[job_id]["results"]["violations"] = matched_violations
+
+        # Step 4: ReportGenerator - Create Forensic Facts Dossier
+        logger.info(f"[{job_id}] Phase 4: ReportGenerator - Creating dossier")
+        processing_jobs[job_id]["steps"]["report_generator"]["status"] = "processing"
+
+        report_generator = ReportGenerator()
+        # Prepare violations with evidence for the report
+        violations_for_report = []
+        for v in db.query(Violation).filter(Violation.document_id == document.id).all():
+            violations_for_report.append({
+                'id': str(v.id),
+                'type': v.violation_type,
+                'severity': v.severity,
+                'description': v.description,
+                'code_reference': v.code_reference,
+                'evidence_path': v.evidence_path,
+                'page_num': v.page_num,
+                'code_evidence_paths': []  # Will be populated if we have code screenshots
+            })
+
+        dossier_path = report_generator.generate_dossier(
+            violations_for_report,
+            document.language or 'en'
+        )
+
+        # Create Report record in DB
+        report = Report(
+            document_id=document.id,
+            file_path=dossier_path,
+            language=document.language or 'en',
+            download_count=0
+        )
+        db.add(report)
+        db.commit()
+
+        processing_jobs[job_id]["steps"]["report_generator"]["status"] = "done"
+        processing_jobs[job_id]["steps"]["report_generator"]["timestamp"] = datetime.now().isoformat()
+        processing_jobs[job_id]["results"]["report_path"] = dossier_path
+
+        # Step 5: WormLedger - Immutable record
+        logger.info(f"[{job_id}] Phase 5: WormLedger - Immutable recording")
+        processing_jobs[job_id]["steps"]["worm_ledger"]["status"] = "processing"
+
+        worm_ledger = WormLedger(db)
+        for v in db.query(Violation).filter(Violation.document_id == document.id).all():
+            worm_ledger.record_violation(
+                document_id=str(document.id),
+                violation_id=str(v.id),
+                violation_data={
+                    'type': v.violation_type,
+                    'severity': v.severity,
+                    'description': v.description,
+                    'code_reference': v.code_reference,
+                    'evidence_path': v.evidence_path,
+                    'page_num': v.page_num
+                },
+                jurisdiction=jurisdiction_code
+            )
+
+        processing_jobs[job_id]["steps"]["worm_ledger"]["status"] = "done"
+        processing_jobs[job_id]["steps"]["worm_ledger"]["timestamp"] = datetime.now().isoformat()
+
+        # Mark document as completed
+        document.status = "completed"
+        db.commit()
+
+        # Mark job as completed
         processing_jobs[job_id]["status"] = "completed"
         processing_jobs[job_id]["completed_at"] = datetime.now().isoformat()
-        
-        # Add to history log
-        try:
-            import api.endpoints.dashboard as dashboard_module
-            dashboard_module.add_to_history('INFO', f"Document processed: {filename}")
-            dashboard_module.add_to_history('SUCCESS', f"KPIs updated: Value at Risk: ${kpi_values.get('value_at_risk', 0):,.2f}, Compliance: {kpi_values.get('compliance_percent', 100)}%")
-            if address:
-                dashboard_module.add_to_history('SUCCESS', f"Address detected: {address}")
-        except ImportError:
-            pass
-        
-        logger.info(f"Processing completed for job {job_id}")
-        
+
+        logger.info(f"[{job_id}] Processing completed successfully")
+
     except Exception as e:
-        logger.error(f"Processing error for job {job_id}: {e}")
+        logger.error(f"[{job_id}] Processing error: {e}")
         processing_jobs[job_id]["status"] = "failed"
         processing_jobs[job_id]["error"] = str(e)
+        # Update document status
+        try:
+            doc = db.query(Document).filter(Document.task_id == job_id).first()
+            if doc:
+                doc.status = "failed"
+                db.commit()
+        except:
+            pass
+    finally:
+        db.close()
 
 
 # ============================================================
@@ -376,75 +296,125 @@ async def process_file_async(job_id: str, file_path: Path, filename: str):
 # ============================================================
 
 @router.post("/file")
-async def upload_file(file: UploadFile = File(...)) -> Dict[str, Any]:
+async def upload_file(
+    file: UploadFile = File(...),
+    project_id: str = "default"
+) -> Dict[str, Any]:
     """
-    Upload a file and start the OCR and processing workflow.
+    Upload a PDF file and start the CAIS multi-agent analysis pipeline.
+
+    Only PDF files are accepted.
     """
+    # Validate file extension
+    if not file.filename.lower().endswith('.pdf'):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only PDF files are accepted"
+        )
+
+    # Validate file size (max 50MB)
+    file_size = 0
+    temp_file = UPLOAD_DIR / f"temp_{uuid.uuid4().hex[:8]}.pdf"
+    with open(temp_file, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+        file_size = temp_file.stat().st_size
+
+    if file_size > 50 * 1024 * 1024:
+        temp_file.unlink()
+        raise HTTPException(
+            status_code=status.HTTP_413_REQUEST_ENTITY_TOO_LARGE,
+            detail="File size exceeds 50MB limit"
+        )
+
+    # Generate job ID
+    job_id = str(uuid.uuid4())[:8]
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    safe_filename = f"{timestamp}_{job_id}_{file.filename}"
+    final_path = UPLOAD_DIR / safe_filename
+    temp_file.rename(final_path)
+
+    logger.info(f"File uploaded: {safe_filename} (Job ID: {job_id})")
+
+    # Initialize job status
+    processing_jobs[job_id] = {
+        "id": job_id,
+        "filename": file.filename,
+        "filepath": str(final_path),
+        "status": "uploaded",
+        "project_id": project_id,  # store original for reference
+        "steps": {
+            "upload": {"status": "done", "timestamp": datetime.now().isoformat()},
+            "plan_inspector": {"status": "pending", "timestamp": None},
+            "jurisdiction": {"status": "pending", "timestamp": None},
+            "code_matcher": {"status": "pending", "timestamp": None},
+            "report_generator": {"status": "pending", "timestamp": None},
+            "worm_ledger": {"status": "pending", "timestamp": None}
+        },
+        "results": {},
+        "created_at": datetime.now().isoformat()
+    }
+
+    # Create Document record in DB
+    db = SessionLocal()
     try:
-        # Validate file extension
-        file_ext = os.path.splitext(file.filename)[1].lower()
-        if file_ext not in SUPPORTED_EXTENSIONS:
-            return {
-                "status": "error",
-                "message": f"Unsupported file type: {file_ext}. Supported: {', '.join(SUPPORTED_EXTENSIONS.keys())}"
-            }
-        
-        # Generate unique job ID
-        job_id = str(uuid.uuid4())[:8]
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Save file
-        safe_filename = f"{timestamp}_{job_id}_{file.filename}"
-        file_path = UPLOAD_DIR / safe_filename
-        
-        with open(file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
-        
-        logger.info(f"File uploaded: {safe_filename} (Job ID: {job_id})")
-        
-        # Initialize job status
-        processing_jobs[job_id] = {
-            "id": job_id,
-            "filename": file.filename,
-            "filepath": str(file_path),
-            "status": "uploaded",
-            "steps": {
-                "upload": {"status": "done", "timestamp": datetime.now().isoformat()},
-                "ocr": {"status": "pending", "timestamp": None},
-                "address_extraction": {"status": "pending", "timestamp": None},
-                "jurisdiction": {"status": "pending", "timestamp": None},
-                "analysis": {"status": "pending", "timestamp": None},
-                "kpi_calculation": {"status": "pending", "timestamp": None}
-            },
-            "results": {},
-            "created_at": datetime.now().isoformat()
-        }
-        
-        # Start processing in background
-        import asyncio
-        asyncio.create_task(process_file_async(job_id, file_path, file.filename))
-        
-        return {
-            "status": "success",
-            "message": "File uploaded successfully. Processing started.",
-            "data": {
-                "job_id": job_id,
-                "filename": file.filename,
-                "status": "processing"
-            }
-        }
-        
+        # Get or create default user
+        user = get_or_create_default_user(db)
+
+        # Get or create project
+        project = get_or_create_project(db, user, project_id)
+
+        # Store project UUID for background task
+        project_uuid = str(project.id)
+
+        document = Document(
+            task_id=job_id,
+            project_id=project.id,
+            filename=file.filename,
+            file_path=str(final_path),
+            file_size=file_size,
+            file_type="application/pdf",
+            language="en",
+            status="uploaded"
+        )
+        db.add(document)
+        db.commit()
+        db.refresh(document)
+
     except Exception as e:
-        logger.error(f"Upload error: {e}")
-        return {"status": "error", "message": str(e), "data": None}
+        logger.error(f"Error creating document record: {e}")
+        db.rollback()
+        processing_jobs[job_id]["status"] = "failed"
+        processing_jobs[job_id]["error"] = f"Database error: {str(e)}"
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Database error: {str(e)}"
+        )
+    finally:
+        db.close()
+
+    # Start background processing with project_uuid
+    asyncio.create_task(process_document_async(job_id, final_path, file.filename, project_uuid))
+
+    return {
+        "status": "success",
+        "message": "File uploaded successfully. Processing started.",
+        "data": {
+            "job_id": job_id,
+            "filename": file.filename,
+            "status": "processing"
+        }
+    }
 
 
 @router.get("/status/{job_id}")
 async def get_processing_status(job_id: str) -> Dict[str, Any]:
     """Get the processing status of a job."""
     if job_id not in processing_jobs:
-        return {"status": "error", "message": f"Job {job_id} not found", "data": None}
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Job {job_id} not found"
+        )
+
     job = processing_jobs[job_id]
     return {
         "status": "success",
@@ -479,8 +449,11 @@ async def list_jobs() -> Dict[str, Any]:
 async def delete_job(job_id: str) -> Dict[str, Any]:
     """Delete a processing job and its associated files."""
     if job_id not in processing_jobs:
-        return {"status": "error", "message": f"Job {job_id} not found"}
-    
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"Job {job_id} not found"
+        )
+
     job = processing_jobs[job_id]
     filepath = job.get("filepath")
     if filepath and os.path.exists(filepath):
@@ -488,6 +461,6 @@ async def delete_job(job_id: str) -> Dict[str, Any]:
             os.remove(filepath)
         except:
             pass
-    
+
     del processing_jobs[job_id]
     return {"status": "success", "message": f"Job {job_id} deleted"}
