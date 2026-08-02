@@ -65,6 +65,64 @@ def get_or_create_default_user(db: Session) -> User:
     return user
 
 
+def get_or_create_project(
+    db: Session,
+    user: User,
+    project_identifier: Optional[str]
+) -> Optional[Project]:
+    """
+    Retrieve an existing project by ID or name, or create a new one.
+
+    If project_identifier is a valid UUID, try to find the project by ID.
+    If not found or if it's a string name, look up by name (case-sensitive).
+    If no project exists, create a new one with the given name.
+
+    Args:
+        db: Database session.
+        user: The user who owns the project.
+        project_identifier: Either a UUID string or a project name.
+
+    Returns:
+        The Project instance, or None if no identifier was provided.
+    """
+    if not project_identifier:
+        return None
+
+    # Attempt to parse as UUID (existing project ID)
+    try:
+        project_uuid = uuid.UUID(project_identifier)
+        project = db.query(Project).filter(Project.id == project_uuid).first()
+        if project:
+            logger.info("Found existing project by UUID: %s", project_uuid)
+            return project
+        # If a UUID was provided but no project found, treat as a new project
+        # with that UUID? Instead, we'll create a new project with that UUID as ID.
+        # But to keep it consistent, we will create a new project with that UUID.
+        # However, it's more common to treat as a new project with that name if not found.
+        # Let's fall through to name-based lookup.
+    except ValueError:
+        pass  # Not a UUID, treat as name
+
+    # Look up by name
+    project = db.query(Project).filter(Project.name == project_identifier).first()
+    if project:
+        logger.info("Found existing project by name: %s", project_identifier)
+        return project
+
+    # Create a new project with the provided name (generate new UUID)
+    new_project = Project(
+        id=uuid.uuid4(),
+        name=project_identifier,
+        user_id=user.id,
+        created_at=datetime.utcnow(),
+    )
+    db.add(new_project)
+    db.commit()
+    db.refresh(new_project)
+    logger.info("Created new project: %s (ID: %s)", project_identifier, new_project.id)
+    return new_project
+
+
 @router.post("/file", response_model=UploadResponse)
 async def upload_document(
     background_tasks: BackgroundTasks,
@@ -78,7 +136,7 @@ async def upload_document(
 
     - **file**: The document to analyze (PDF, image, etc.)
     - **jurisdiction**: Legal jurisdiction for code references (e.g., "NYC", "CA")
-    - **project_id**: Optional project ID to associate the document
+    - **project_id**: Optional project identifier (UUID or project name)
     """
     # Use default user (no authentication required)
     user = get_or_create_default_user(db)
@@ -86,6 +144,9 @@ async def upload_document(
     # Validate file size
     if file.size > settings.MAX_UPLOAD_SIZE:
         raise HTTPException(status_code=413, detail="File too large")
+
+    # Resolve or create project
+    project = get_or_create_project(db, user, project_id)
 
     # Generate unique identifiers
     document_id = uuid.uuid4()
@@ -113,7 +174,7 @@ async def upload_document(
         filename=file.filename,
         file_path=temp_path,
         jurisdiction=jurisdiction,
-        project_id=uuid.UUID(project_id) if project_id else None,
+        project_id=project.id if project else None,
         user_id=user.id,
         status="queued",
         uploaded_at=datetime.utcnow(),
@@ -137,7 +198,7 @@ async def upload_document(
         job_id=job_id,
         file_path=temp_path,
         jurisdiction=jurisdiction,
-        project_id=project_id,
+        project_id=project_id,  # pass original identifier (if needed)
     )
 
     return UploadResponse(
@@ -156,7 +217,7 @@ async def get_job_status(
     """
     Retrieve the status of an analysis job.
 
-    - **job_id**: UUID of the analysis job
+    - **job_id**: UUID of the analysis job (matches document ID)
     """
     try:
         job_uuid = uuid.UUID(job_id)
