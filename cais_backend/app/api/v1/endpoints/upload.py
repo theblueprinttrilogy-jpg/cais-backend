@@ -95,11 +95,6 @@ def get_or_create_project(
         if project:
             logger.info("Found existing project by UUID: %s", project_uuid)
             return project
-        # If a UUID was provided but no project found, treat as a new project
-        # with that UUID? Instead, we'll create a new project with that UUID as ID.
-        # But to keep it consistent, we will create a new project with that UUID.
-        # However, it's more common to treat as a new project with that name if not found.
-        # Let's fall through to name-based lookup.
     except ValueError:
         pass  # Not a UUID, treat as name
 
@@ -169,11 +164,12 @@ async def upload_document(
         raise HTTPException(status_code=500, detail="Failed to save file")
 
     # Create document record
+    # Note: jurisdiction is NOT a column on Document, so we don't set it here.
+    # It will be passed to the background task for use in the pipeline.
     document = Document(
         id=document_id,
         filename=file.filename,
         file_path=temp_path,
-        jurisdiction=jurisdiction,
         project_id=project.id if project else None,
         user_id=user.id,
         status="queued",
@@ -197,8 +193,8 @@ async def upload_document(
         document_id=document_id,
         job_id=job_id,
         file_path=temp_path,
-        jurisdiction=jurisdiction,
-        project_id=project_id,  # pass original identifier (if needed)
+        jurisdiction=jurisdiction,  # Pass jurisdiction to background task
+        project_id=project_id,      # pass original identifier (if needed)
     )
 
     return UploadResponse(
@@ -329,7 +325,7 @@ async def process_document_async(
 
         # Step 1: PlanInspector - analyze document structure and content
         inspector = PlanInspector()
-        doc_content = await inspector.analyze_file(file_path)  # returns structured content
+        doc_content = await inspector.analyze_file(file_path)
 
         # Step 2: JurisdictionOrchestrator - fetch relevant code books
         orchestrator = JurisdictionOrchestrator()
@@ -337,7 +333,7 @@ async def process_document_async(
 
         # Step 3: CodeMatcher - identify violations
         matcher = CodeMatcher()
-        violations = await matcher.match(doc_content, codes)  # returns list of violations
+        violations = await matcher.match(doc_content, codes)
 
         # Step 4: ReportGenerator - compile forensic facts dossier
         generator = ReportGenerator()
@@ -367,7 +363,6 @@ async def process_document_async(
         if document:
             document.status = "completed"
             document.updated_at = datetime.utcnow()
-            # Optionally store report reference if needed
             db.commit()
 
         logger.info("Background processing completed for job %s", job_id)
