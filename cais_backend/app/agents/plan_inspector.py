@@ -7,6 +7,7 @@ without converting to intermediate images. This preserves quality and accuracy.
 Based on CAIS CODE COMPLIANCE WORKFLOW - Section 4.1
 """
 
+import asyncio
 import logging
 import os
 import uuid
@@ -81,6 +82,8 @@ class PlanInspector(BaseAgent):
         """
         Main analysis method for PlanInspector (using a Document model instance).
 
+        This is a synchronous method that keeps the original signature intact.
+
         Args:
             document: Document object containing the PDF path
 
@@ -90,12 +93,16 @@ class PlanInspector(BaseAgent):
         logger.info(f"PlanInspector analyzing document: {document.id}")
         return self._perform_analysis(document.file_path, document_id=document.id)
 
-    def analyze_file(self, file_path: str) -> Dict[str, Any]:
+    async def analyze_file(self, file_path: str) -> Dict[str, Any]:
         """
-        Analyze a PDF directly from a file path.
+        Analyze a PDF directly from a file path asynchronously.
 
         This method performs the same OCR and analysis pipeline as `analyze()`,
-        but accepts a file path string instead of a Document object.
+        but accepts a file path string instead of a Document object and is
+        designed to be awaited in async contexts (e.g., FastAPI background tasks).
+
+        The heavy OCR work is offloaded to a thread pool to avoid blocking
+        the event loop.
 
         Args:
             file_path: Path to the PDF file to analyze
@@ -103,12 +110,15 @@ class PlanInspector(BaseAgent):
         Returns:
             dict: Analysis results with violations and evidence
         """
-        logger.info(f"PlanInspector analyzing file: {file_path}")
-        return self._perform_analysis(file_path)
+        logger.info(f"PlanInspector analyzing file asynchronously: {file_path}")
+        # Offload the synchronous analysis to a thread to keep the event loop responsive
+        return await asyncio.to_thread(self._perform_analysis, file_path)
 
     def _perform_analysis(self, file_path: str, document_id: Optional[uuid.UUID] = None) -> Dict[str, Any]:
         """
         Internal method that performs the actual analysis pipeline on a given PDF file.
+
+        This method contains the core logic shared by both `analyze` and `analyze_file`.
 
         Args:
             file_path: Path to the PDF file
