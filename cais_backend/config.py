@@ -1,92 +1,89 @@
 """
-CAIS Code Compliance - Configuration Settings
+CAIS Code Compliance - Application Configuration
 
-This module contains all configuration settings for the application.
-Uses Pydantic Settings for environment variable management.
+This module defines the configuration settings for the application,
+loading values from environment variables with sensible defaults.
+All settings are validated using Pydantic.
+
+Version: 10.0
 """
 
-import os
 from typing import List, Optional
+from pydantic import field_validator
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
-    """Application settings loaded from environment variables."""
+    """
+    Application configuration settings.
 
-    # Application
+    All fields can be overridden by environment variables.
+    For example, APP_NAME can be set via the APP_NAME env var.
+    """
+
+    # Application metadata
     APP_NAME: str = "CAIS Code Compliance"
     APP_VERSION: str = "10.0"
-    ENVIRONMENT: str = "development"
-    DEBUG: bool = True
+    ENVIRONMENT: str = "development"  # development, staging, production
     LOG_LEVEL: str = "INFO"
 
     # Database
-    DATABASE_URL: str = "postgresql://cais_user:cais_password_dev@localhost:5432/cais"
-    DATABASE_POOL_SIZE: int = 10
-    DATABASE_MAX_OVERFLOW: int = 20
-
-    # Redis
-    REDIS_URL: str = "redis://localhost:6379"
-    REDIS_DB: int = 0
-
-    # RabbitMQ
-    RABBITMQ_URL: str = "amqp://guest:guest@localhost:5672"
-
-    # Ollama
-    OLLAMA_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "deepseek-coder"
+    DATABASE_URL: str = "postgresql://user:pass@localhost:5432/cais"
+    REDIS_URL: str = "redis://localhost:6379/0"
 
     # Security
-    SECRET_KEY: str = "dev_secret_key_change_in_production"
-    JWT_ALGORITHM: str = "HS256"
-    JWT_EXPIRATION_MINUTES: int = 30
-    JWT_REFRESH_EXPIRATION_DAYS: int = 7
+    SECRET_KEY: str = "your-secret-key-here-change-in-production"
+    ALLOWED_ORIGINS: List[str] = ["*"]
+    ALLOWED_HOSTS: List[str] = ["*"]
 
-    # CORS
-    ALLOWED_ORIGINS: List[str] = [
-        "http://localhost:3000",
-        "http://localhost:8080",
-        "https://cais-backend-793010740316.us-central1.run.app"
-    ]
-    ALLOWED_HOSTS: List[str] = ["localhost", "127.0.0.1"]
+    # Google Cloud Platform
+    GCP_PROJECT_ID: Optional[str] = None
+    GCP_STORAGE_BUCKET: Optional[str] = None
+    GCP_CREDENTIALS_PATH: Optional[str] = None
 
-    # Storage
-    STORAGE_PATH: str = "/app/storage"
-    MAX_UPLOAD_SIZE: int = 52428800  # 50MB
+    # AI / Ollama
+    OLLAMA_URL: str = "http://localhost:11434"
+    OLLAMA_MODEL: str = "llama3"
 
-    # OCR
-    OCR_DPI: int = 200
-    OCR_LANGUAGE: str = "eng+spa"
+    # Hugging Face
+    HF_HOME: str = "/app/model_cache"
+    SENTENCE_TRANSFORMER_MODEL: str = "all-MiniLM-L6-v2"
 
-    # Payment
-    STRIPE_API_KEY: str = ""
-    STRIPE_WEBHOOK_SECRET: str = ""
-    TRIAL_DAYS: int = 30
+    # RabbitMQ (optional)
+    RABBITMQ_URL: Optional[str] = None
 
-    # Email
-    SMTP_HOST: str = ""
-    SMTP_PORT: int = 587
-    SMTP_USER: str = ""
-    SMTP_PASSWORD: str = ""
+    # Other
+    MAX_UPLOAD_SIZE: int = 104857600  # 100 MB in bytes
+    TEMP_DIR: str = "/tmp"
 
-    # Google Cloud
-    GOOGLE_APPLICATION_CREDENTIALS: str = ""
-    GCP_PROJECT_ID: str = ""
-    GCP_PROJECT: str = ""  # Legacy field
-    GCP_CREDENTIALS_JSON: str = ""  # Legacy field
-    GCS_BUCKET_PLANS: str = ""  # Legacy field
-    ROOT_FOLDER_ID: str = ""  # Legacy field
-    POSTGRES_DSN: str = ""  # Legacy field
-    RABBITMQ_URI: str = ""  # Legacy field
-    GOOGLE_CLIENT_ID: str = ""  # Legacy field
-    GOOGLE_CLIENT_SECRET: str = ""  # Legacy field
-    GOOGLE_REFRESH_TOKEN: str = ""  # Legacy field
+    @field_validator("ALLOWED_ORIGINS", "ALLOWED_HOSTS", mode="before")
+    @classmethod
+    def parse_list_field(cls, value):
+        """
+        Parse environment variables that may be strings (comma-separated or "*")
+        into proper List[str] values.
+
+        If the value is already a list, return it unchanged.
+        If the value is a string, split by commas and strip whitespace.
+        If the string is "*", keep it as ["*"] (wildcard).
+        """
+        if isinstance(value, list):
+            return value
+        if isinstance(value, str):
+            # If it's a single asterisk, keep it as a list containing "*"
+            if value == "*":
+                return ["*"]
+            # Otherwise split by commas, strip, and filter out empty strings
+            return [item.strip() for item in value.split(",") if item.strip()]
+        # If it's None or other type, return empty list as fallback
+        return []
 
     class Config:
+        """Pydantic BaseSettings configuration."""
         env_file = ".env"
         env_file_encoding = "utf-8"
         case_sensitive = True
-        extra = "allow"  # Allow extra fields from environment variables
 
 
+# Create a global settings object to be imported elsewhere
 settings = Settings()
