@@ -163,15 +163,15 @@ async def upload_document(
         logger.error("Failed to save uploaded file: %s", e)
         raise HTTPException(status_code=500, detail="Failed to save file")
 
-    # Create document record
-    # Only valid columns: id, filename, file_path, project_id, status, uploaded_at
+    # Create document record using only valid columns of the Document model.
+    # Valid attributes: id, filename, file_path, project_id, status.
+    # Timestamps like created_at/updated_at are automatically handled by the database.
     document = Document(
         id=document_id,
         filename=file.filename,
         file_path=temp_path,
         project_id=project.id if project else None,
         status="queued",
-        uploaded_at=datetime.utcnow(),
     )
     db.add(document)
     db.commit()
@@ -225,12 +225,14 @@ async def get_job_status(
         document = db.query(Document).filter(Document.id == job_uuid).first()
         if not document:
             raise HTTPException(status_code=404, detail="Job not found")
+        # Use document.updated_at if it exists, else fallback to current time
+        updated_at = getattr(document, "updated_at", datetime.utcnow())
         return JobStatusResponse(
             job_id=job_id,
             status=document.status,
             result=None,
             error_message=None,
-            updated_at=document.updated_at or document.uploaded_at,
+            updated_at=updated_at,
         )
 
     return JobStatusResponse(
@@ -247,15 +249,12 @@ async def list_jobs(
     db: Session = Depends(get_db),
 ):
     """
-    List all analysis jobs for the default user (since no authentication).
+    List all analysis jobs (since no user association on Document).
     """
-    user = get_or_create_default_user(db)
-    # Since Document does not have user_id, we need to filter by project user or fallback.
-    # In this implementation we'll return all documents (no user filtering) or we could join through Project.
-    # For simplicity, we'll return all documents.
+    # Since Document does not have a user_id column, we return all documents.
     documents = (
         db.query(Document)
-        .order_by(Document.uploaded_at.desc())
+        .order_by(Document.created_at.desc() if hasattr(Document, "created_at") else Document.id.desc())
         .all()
     )
 
@@ -275,13 +274,14 @@ async def list_jobs(
                 )
             )
         else:
+            updated_at = getattr(doc, "updated_at", datetime.utcnow())
             result.append(
                 JobStatusResponse(
                     job_id=job_id,
                     status=doc.status,
                     result=None,
                     error_message=None,
-                    updated_at=doc.updated_at or doc.uploaded_at,
+                    updated_at=updated_at,
                 )
             )
     return result
@@ -321,6 +321,9 @@ async def process_document_async(
         document = db.query(Document).filter(Document.id == document_id).first()
         if document:
             document.status = "processing"
+            # If the model has an updated_at column, set it
+            if hasattr(document, "updated_at"):
+                document.updated_at = datetime.utcnow()
             db.commit()
 
         # Step 1: PlanInspector - analyze document structure and content
@@ -362,7 +365,8 @@ async def process_document_async(
         # Update document status and store results
         if document:
             document.status = "completed"
-            document.updated_at = datetime.utcnow()
+            if hasattr(document, "updated_at"):
+                document.updated_at = datetime.utcnow()
             db.commit()
 
         logger.info("Background processing completed for job %s", job_id)
@@ -380,7 +384,8 @@ async def process_document_async(
         document = db.query(Document).filter(Document.id == document_id).first()
         if document:
             document.status = "failed"
-            document.updated_at = datetime.utcnow()
+            if hasattr(document, "updated_at"):
+                document.updated_at = datetime.utcnow()
             db.commit()
     finally:
         db.close()
