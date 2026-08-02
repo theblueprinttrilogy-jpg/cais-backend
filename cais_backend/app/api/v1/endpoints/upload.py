@@ -7,21 +7,21 @@ and background processing for code compliance analysis.
 
 import uuid
 import logging
-from typing import Optional
+from typing import Optional, Dict, Any
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, BackgroundTasks
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
-from app.db.models import User, Document, AnalysisJob, WormLedger
+from app.db.models import User, Document, Project, Violation, Report, WORMLedgerEntry
 from app.core.security import get_current_user
 from app.services.pipeline import (
     PlanInspector,
     JurisdictionOrchestrator,
     CodeMatcher,
     ReportGenerator,
-    WormLedger as WormLedgerService,
+    WormLedger,
 )
 from app.schemas.upload import UploadResponse, JobStatusResponse
 from config import settings
@@ -29,6 +29,10 @@ from config import settings
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/upload", tags=["upload"])
+
+# In-memory store for tracking background job status and results
+# Structure: {job_id: {"status": str, "result": dict, "error": str, "updated_at": datetime}}
+processing_jobs: Dict[str, Dict[str, Any]] = {}
 
 
 def get_or_create_default_user(db: Session) -> User:
@@ -38,7 +42,6 @@ def get_or_create_default_user(db: Session) -> User:
     Returns:
         User: The default user instance.
     """
-    # Use a fixed UUID for the default user
     default_user_id = uuid.UUID("00000000-0000-0000-0000-000000000000")
     user = db.query(User).filter(User.id == default_user_id).first()
     if not user:
@@ -62,7 +65,7 @@ async def upload_document(
     file: UploadFile = File(...),
     jurisdiction: str = Form(...),
     project_id: Optional[str] = Form(None),
-    user: User = Depends(get_current_user),
+    user: Optional[User] = Depends(get_current_user),
     db: Session = Depends(get_db),
 ):
     """
@@ -72,7 +75,7 @@ async def upload_document(
     - **jurisdiction**: Legal jurisdiction for code references (e.g., "NYC", "CA")
     - **project_id**: Optional project ID to associate the document
     """
-    # If no user is authenticated, use default user
+    # Use default user if no authenticated user
     if not user:
         user = get_or_create_default_user(db)
 
@@ -80,18 +83,20 @@ async def upload_document(
     if file.size > settings.MAX_UPLOAD_SIZE:
         raise HTTPException(status_code=413, detail="File too large")
 
-    # Save file to temporary storage
+    # Generate unique identifiers
+    document_id = uuid.uuid4()
+    job_id = uuid.uuid4()
+
+    # Save file to temporary storage (simulated)
     file_path = f"{settings.STORAGE_PATH}/{uuid.uuid4()}_{file.filename}"
-    # In production, use cloud storage; here we simulate
-    # For now, we just store metadata; actual file saving is delegated to pipeline
 
     # Create document record
     document = Document(
-        id=uuid.uuid4(),
+        id=document_id,
         filename=file.filename,
         file_path=file_path,
         jurisdiction=jurisdiction,
-        project_id=project_id,
+        project_id=uuid.UUID(project_id) if project_id else None,
         user_id=user.id,
         status="pending",
         uploaded_at=datetime.utcnow(),
@@ -100,29 +105,28 @@ async def upload_document(
     db.commit()
     db.refresh(document)
 
-    # Create analysis job
-    job = AnalysisJob(
-        id=uuid.uuid4(),
-        document_id=document.id,
-        status="queued",
-        created_at=datetime.utcnow(),
-    )
-    db.add(job)
-    db.commit()
+    # Initialize in-memory job tracking
+    processing_jobs[str(job_id)] = {
+        "status": "queued",
+        "result": None,
+        "error": None,
+        "updated_at": datetime.utcnow(),
+    }
 
     # Schedule background processing
     background_tasks.add_task(
         process_document_async,
-        document_id=document.id,
-        job_id=job.id,
+        document_id=document_id,
+        job_id=job_id,
         file=file,
         jurisdiction=jurisdiction,
         project_id=project_id,
+        db_session=db,  # Pass session to reuse (but careful: background task uses its own session)
     )
 
     return UploadResponse(
-        job_id=str(job.id),
-        document_id=str(document.id),
+        job_id=str(job_id),
+        document_id=str(document_id),
         status="queued",
         message="Document uploaded and queued for analysis.",
     )
@@ -132,7 +136,7 @@ async def upload_document(
 async def get_job_status(
     job_id: str,
     db: Session = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: Optional[User] = Depends(get_current_user),
 ):
     """
     Retrieve the status of an analysis job.
@@ -144,54 +148,76 @@ async def get_job_status(
     except ValueError:
         raise HTTPException(status_code=400, detail="Invalid job ID format")
 
-    job = db.query(AnalysisJob).filter(AnalysisJob.id == job_uuid).first()
-    if not job:
-        raise HTTPException(status_code=404, detail="Job not found")
+    # First check in-memory store
+    job_data = processing_jobs.get(job_id)
+    if not job_data:
+        # Fallback: query the document status from database
+        document = db.query(Document).filter(Document.id == job_uuid).first()
+        if not document:
+            raise HTTPException(status_code=404, detail="Job not found")
+        # Build a response from the document status
+        return JobStatusResponse(
+            job_id=job_id,
+            status=document.status,
+            result=None,
+            error_message=None,
+            updated_at=document.updated_at,
+        )
 
-    # Ensure user has access (if authenticated)
-    if user and job.document.user_id != user.id:
-        # Admin or shared access could be extended
-        raise HTTPException(status_code=403, detail="Not authorized to view this job")
-
+    # Return from in-memory store
     return JobStatusResponse(
-        job_id=str(job.id),
-        status=job.status,
-        result=job.result,
-        error_message=job.error_message,
-        updated_at=job.updated_at,
+        job_id=job_id,
+        status=job_data["status"],
+        result=job_data["result"],
+        error_message=job_data.get("error"),
+        updated_at=job_data["updated_at"],
     )
 
 
 @router.get("/jobs", response_model=list[JobStatusResponse])
 async def list_jobs(
     db: Session = Depends(get_db),
-    user: User = Depends(get_current_user),
+    user: Optional[User] = Depends(get_current_user),
 ):
     """
     List all analysis jobs for the current user.
     """
     if not user:
-        # For anonymous, return recent default user jobs
         user = get_or_create_default_user(db)
 
-    jobs = (
-        db.query(AnalysisJob)
-        .join(Document)
+    documents = (
+        db.query(Document)
         .filter(Document.user_id == user.id)
-        .order_by(AnalysisJob.created_at.desc())
+        .order_by(Document.uploaded_at.desc())
         .all()
     )
 
-    return [
-        JobStatusResponse(
-            job_id=str(job.id),
-            status=job.status,
-            result=job.result,
-            error_message=job.error_message,
-            updated_at=job.updated_at,
-        )
-        for job in jobs
-    ]
+    # For each document, get job status from in-memory or from document itself
+    result = []
+    for doc in documents:
+        job_id = str(doc.id)  # using document id as job id for simplicity
+        job_data = processing_jobs.get(job_id)
+        if job_data:
+            result.append(
+                JobStatusResponse(
+                    job_id=job_id,
+                    status=job_data["status"],
+                    result=job_data["result"],
+                    error_message=job_data.get("error"),
+                    updated_at=job_data["updated_at"],
+                )
+            )
+        else:
+            result.append(
+                JobStatusResponse(
+                    job_id=job_id,
+                    status=doc.status,
+                    result=None,
+                    error_message=None,
+                    updated_at=doc.updated_at,
+                )
+            )
+    return result
 
 
 async def process_document_async(
@@ -199,7 +225,8 @@ async def process_document_async(
     job_id: uuid.UUID,
     file: UploadFile,
     jurisdiction: str,
-    project_id: Optional[str] = None,
+    project_id: Optional[str],
+    db_session: Session,
 ):
     """
     Background task that runs the multi-agent pipeline on the uploaded document.
@@ -211,14 +238,23 @@ async def process_document_async(
     4. ReportGenerator - produces the forensic evidence dossier
     5. WormLedger - logs immutable audit trail
     """
-    db = next(get_db())  # Manual session for background task
+    # Use a new session for this background task (the passed session might be from request)
+    db = next(get_db())
     try:
         logger.info("Starting background processing for job %s", job_id)
 
-        # Update job status to processing
-        job = db.query(AnalysisJob).filter(AnalysisJob.id == job_id).first()
-        if job:
-            job.status = "processing"
+        # Update in-memory status
+        processing_jobs[str(job_id)] = {
+            "status": "processing",
+            "result": None,
+            "error": None,
+            "updated_at": datetime.utcnow(),
+        }
+
+        # Update document status in DB
+        document = db.query(Document).filter(Document.id == document_id).first()
+        if document:
+            document.status = "processing"
             db.commit()
 
         # Step 1: PlanInspector - analyze document structure and content
@@ -242,30 +278,43 @@ async def process_document_async(
         )
 
         # Step 5: WormLedger - append immutable audit record
-        ledger = WormLedgerService()
+        ledger = WormLedger()
         await ledger.record_analysis(
             document_id=document_id,
             job_id=job_id,
             report=report,
         )
 
-        # Update job with success
-        if job:
-            job.status = "completed"
-            job.result = report
-            job.updated_at = datetime.utcnow()
+        # Update in-memory with success
+        processing_jobs[str(job_id)] = {
+            "status": "completed",
+            "result": report,
+            "error": None,
+            "updated_at": datetime.utcnow(),
+        }
+
+        # Update document status and store results (optionally link report)
+        if document:
+            document.status = "completed"
+            document.updated_at = datetime.utcnow()
             db.commit()
 
         logger.info("Background processing completed for job %s", job_id)
 
     except Exception as e:
         logger.exception("Background processing failed for job %s", job_id)
-        # Update job with error
-        job = db.query(AnalysisJob).filter(AnalysisJob.id == job_id).first()
-        if job:
-            job.status = "failed"
-            job.error_message = str(e)
-            job.updated_at = datetime.utcnow()
+        # Update in-memory with error
+        processing_jobs[str(job_id)] = {
+            "status": "failed",
+            "result": None,
+            "error": str(e),
+            "updated_at": datetime.utcnow(),
+        }
+        # Update document status in DB
+        document = db.query(Document).filter(Document.id == document_id).first()
+        if document:
+            document.status = "failed"
+            document.updated_at = datetime.utcnow()
             db.commit()
     finally:
         db.close()
