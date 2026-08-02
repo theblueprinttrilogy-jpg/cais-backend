@@ -23,6 +23,8 @@ from app.api.v1.router import api_router
 from config import settings
 from app.core.exceptions import AppException
 from app.middleware.logging import LoggingMiddleware
+from app.db.models import Base
+from app.core.database import engine
 
 # Ensure the log directory exists before configuring logging
 os.makedirs("logs", exist_ok=True)
@@ -46,7 +48,16 @@ async def lifespan(app: FastAPI):
     logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}...")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
 
-    # Initialize database connection pool
+    # Create database tables if they don't exist
+    try:
+        logger.info("Creating database tables (if they don't exist)...")
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables verified/created successfully.")
+    except Exception as e:
+        logger.error(f"Failed to create database tables: {e}")
+        # Do not raise to allow the app to start, but log critical error
+        # In production, you might want to raise to prevent startup
+
     # Initialize Redis cache connection
     # Initialize RabbitMQ connection
     # Initialize Ollama connection
