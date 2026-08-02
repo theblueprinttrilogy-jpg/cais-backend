@@ -8,7 +8,7 @@ All settings are validated using Pydantic.
 Version: 10.0
 """
 
-from typing import List, Optional
+from typing import Any, Optional
 from pydantic import field_validator
 from pydantic_settings import BaseSettings
 
@@ -33,8 +33,10 @@ class Settings(BaseSettings):
 
     # Security
     SECRET_KEY: str = "your-secret-key-here-change-in-production"
-    ALLOWED_ORIGINS: List[str] = ["*"]
-    ALLOWED_HOSTS: List[str] = ["*"]
+    # Use Any to prevent pydantic-settings from attempting json.loads() on these
+    # fields before the validator runs. The validator will parse strings properly.
+    ALLOWED_ORIGINS: Any = ["*"]
+    ALLOWED_HOSTS: Any = ["*"]
 
     # Google Cloud Platform
     GCP_PROJECT_ID: Optional[str] = None
