@@ -3,6 +3,13 @@ CAIS Code Compliance - Upload Endpoint Module
 
 Handles document upload, multi-agent pipeline orchestration,
 and background processing for code compliance analysis.
+
+The multi-agent system consists of:
+- PlanInspector: Extracts structural and textual content from documents
+- JurisdictionOrchestrator: Determines applicable building codes
+- CodeMatcher: Identifies code violations
+- ReportGenerator: Produces forensic evidence dossiers
+- WormLedger: Logs immutable audit trail entries
 """
 
 import uuid
@@ -17,13 +24,11 @@ from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.db.models import User, Document, Project, Violation, Report, WORMLedgerEntry
-from app.services.pipeline import (
-    PlanInspector,
-    JurisdictionOrchestrator,
-    CodeMatcher,
-    ReportGenerator,
-    WormLedger,
-)
+from app.agents.plan_inspector import PlanInspector
+from app.agents.jurisdiction_orchestrator import JurisdictionOrchestrator
+from app.agents.code_matcher import CodeMatcher
+from app.agents.report_generator import ReportGenerator
+from app.agents.worm_ledger import WormLedger
 from app.schemas.upload import UploadResponse, JobStatusResponse
 from config import settings
 
@@ -162,7 +167,6 @@ async def get_job_status(
     job_data = processing_jobs.get(job_id)
     if not job_data:
         # Fallback: query the document status from database
-        # Since we use document.id as job_id for simplicity, we need to fetch the document by ID
         document = db.query(Document).filter(Document.id == job_uuid).first()
         if not document:
             raise HTTPException(status_code=404, detail="Job not found")
@@ -264,8 +268,7 @@ async def process_document_async(
 
         # Step 1: PlanInspector - analyze document structure and content
         inspector = PlanInspector()
-        # Pass the file path to the inspector (it can read the file)
-        doc_content = await inspector.analyze_file(file_path)
+        doc_content = await inspector.analyze_file(file_path)  # returns structured content
 
         # Step 2: JurisdictionOrchestrator - fetch relevant code books
         orchestrator = JurisdictionOrchestrator()
@@ -273,7 +276,7 @@ async def process_document_async(
 
         # Step 3: CodeMatcher - identify violations
         matcher = CodeMatcher()
-        violations = await matcher.match(doc_content, codes)
+        violations = await matcher.match(doc_content, codes)  # returns list of violations
 
         # Step 4: ReportGenerator - compile forensic facts dossier
         generator = ReportGenerator()
@@ -299,7 +302,7 @@ async def process_document_async(
             "updated_at": datetime.utcnow(),
         }
 
-        # Update document status and store results (optionally link report)
+        # Update document status and store results
         if document:
             document.status = "completed"
             document.updated_at = datetime.utcnow()
