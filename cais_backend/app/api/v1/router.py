@@ -19,7 +19,6 @@ from app.api.v1.endpoints import (
     webhooks,
     kill_switch,
     dashboard,
-    ping,
     upload,
 )
 
@@ -37,7 +36,6 @@ api_router.include_router(subscriptions.router, tags=["subscriptions"])
 api_router.include_router(webhooks.router, tags=["webhooks"])
 api_router.include_router(kill_switch.router, tags=["kill_switch"])
 api_router.include_router(dashboard.router, tags=["dashboard"])
-api_router.include_router(ping.router, tags=["ping"])
 
 # Upload router already defines its own prefix ("/upload") in its module,
 # so we include it without an additional prefix to avoid duplication.
