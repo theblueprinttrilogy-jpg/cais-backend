@@ -82,7 +82,8 @@ class PlanInspector(BaseAgent):
         """
         Main analysis method for PlanInspector (using a Document model instance).
 
-        This is a synchronous method that keeps the original signature intact.
+        This synchronous method keeps the original signature intact and internally
+        calls the asynchronous analyze_file in a blocking manner for compatibility.
 
         Args:
             document: Document object containing the PDF path
@@ -91,17 +92,18 @@ class PlanInspector(BaseAgent):
             dict: Analysis results with violations and evidence
         """
         logger.info(f"PlanInspector analyzing document: {document.id}")
-        return self._perform_analysis(document.file_path, document_id=document.id)
+        # Run the async method synchronously for compatibility
+        return asyncio.run(self.analyze_file(document.file_path))
 
     async def analyze_file(self, file_path: str) -> Dict[str, Any]:
         """
         Analyze a PDF directly from a file path asynchronously.
 
-        This method performs the same OCR and analysis pipeline as `analyze()`,
-        but accepts a file path string instead of a Document object and is
-        designed to be awaited in async contexts (e.g., FastAPI background tasks).
+        This method performs the complete OCR and analysis pipeline.
+        It loads page images once and reuses them for both OCR and evidence capture,
+        avoiding duplicate PDF conversion.
 
-        The heavy OCR work is offloaded to a thread pool to avoid blocking
+        The heavy processing is offloaded to a thread pool to avoid blocking
         the event loop.
 
         Args:
@@ -119,6 +121,7 @@ class PlanInspector(BaseAgent):
         Internal method that performs the actual analysis pipeline on a given PDF file.
 
         This method contains the core logic shared by both `analyze` and `analyze_file`.
+        It loads page images exactly once and reuses them for OCR and evidence capture.
 
         Args:
             file_path: Path to the PDF file
@@ -127,13 +130,24 @@ class PlanInspector(BaseAgent):
         Returns:
             dict: Analysis results with violations and evidence
         """
-        # Step 1: Convert PDF pages to in-memory images at 200 DPI
-        # (only for evidence capture, not for OCR)
+        # Step 1: Convert PDF pages to in-memory images at 200 DPI - done ONCE
         page_images = self._get_page_images(file_path)
-        logger.info(f"Loaded {len(page_images)} pages as images for evidence")
+        if not page_images:
+            logger.error("No page images could be loaded from the PDF.")
+            return {
+                'document_id': str(document_id) if document_id else None,
+                'pages': 0,
+                'address': None,
+                'jurisdiction': None,
+                'violations': [],
+                'text_length': 0,
+                'status': 'failed',
+                'error': 'Failed to load PDF pages'
+            }
+        logger.info(f"Loaded {len(page_images)} page images for processing")
 
-        # Step 2: Run OCR directly on PDF (using pdf2image internally, but no saved files)
-        ocr_results = self._run_ocr_on_pdf(file_path)
+        # Step 2: Run OCR on each of these images and extract text
+        ocr_results = self._run_ocr_on_images(page_images)
 
         # Step 3: Extract text and page-level data from OCR results
         full_text = "\n".join([r['text'] for r in ocr_results])
@@ -146,7 +160,7 @@ class PlanInspector(BaseAgent):
         address = self._extract_address_from_text(full_text)
         jurisdiction = self._extract_jurisdiction_from_text(full_text)
 
-        # Step 6: Capture evidence for each violation (using page images)
+        # Step 6: Capture evidence for each violation (using the same page_images)
         for violation in violations:
             page_num = violation.get('page_num', 0)
             if page_num < len(page_images) and violation.get('coordinates'):
@@ -175,50 +189,46 @@ class PlanInspector(BaseAgent):
             pdf_path: Path to the PDF file
 
         Returns:
-            List of PIL Images
+            List of PIL Images, empty list on failure
         """
         try:
             images = pdf2image.convert_from_path(pdf_path, dpi=self.dpi)
-            logger.info(f"Loaded {len(images)} page images for evidence")
+            logger.info(f"Successfully loaded {len(images)} page images")
             return images
         except Exception as e:
-            logger.error(f"Error loading PDF pages: {e}")
+            logger.error(f"Error loading PDF pages from {pdf_path}: {e}")
             return []
 
-    def _run_ocr_on_pdf(self, pdf_path: str) -> List[Dict[str, Any]]:
+    def _run_ocr_on_images(self, page_images: List[Image.Image]) -> List[Dict[str, Any]]:
         """
-        Run OCR directly on PDF at 200 DPI.
-
-        Uses pdf2image internally to render pages in memory,
-        but does NOT save any image files.
+        Run OCR on a list of PIL Images.
 
         Args:
-            pdf_path: Path to the PDF file
+            page_images: List of PIL Image objects
 
         Returns:
             List of dicts with page_num, text, and confidence
         """
         results = []
-        try:
-            # Convert to images in memory (no files)
-            images = pdf2image.convert_from_path(pdf_path, dpi=self.dpi)
-
-            for page_num, image in enumerate(images):
-                # Run OCR on the in-memory image
+        for page_num, image in enumerate(page_images):
+            try:
+                # Run Tesseract OCR on the image
                 page_text = pytesseract.image_to_string(image, lang='eng')
                 results.append({
                     'page_num': page_num,
                     'text': page_text,
                     'confidence': 1.0  # Placeholder for confidence
                 })
-                logger.info(f"  Page {page_num + 1}: {len(page_text)} chars via OCR")
-
-            logger.info(f"OCR completed on {len(images)} pages at {self.dpi} DPI")
-            return results
-
-        except Exception as e:
-            logger.error(f"Error running OCR on PDF: {e}")
-            return []
+                logger.debug(f"Page {page_num + 1}: {len(page_text)} chars via OCR")
+            except Exception as e:
+                logger.error(f"OCR failed for page {page_num + 1}: {e}")
+                results.append({
+                    'page_num': page_num,
+                    'text': '',
+                    'confidence': 0.0
+                })
+        logger.info(f"OCR completed on {len(results)} pages")
+        return results
 
     def _analyze_text(self, full_text: str, page_texts: List[str], ocr_results: List[Dict]) -> List[Dict[str, Any]]:
         """
@@ -235,6 +245,7 @@ class PlanInspector(BaseAgent):
         violations = []
 
         if not full_text or len(full_text.strip()) < 10:
+            logger.warning("Insufficient text extracted from document for analysis.")
             return violations
 
         for page_num, page_text in enumerate(page_texts):
@@ -242,19 +253,21 @@ class PlanInspector(BaseAgent):
             for pattern in self.NUMERIC_PATTERNS:
                 matches = re.finditer(pattern, page_text, re.IGNORECASE)
                 for match in matches:
-                    width = int(match.group(1))
-                    if width < 32:
-                        # Approximate coordinates from text position
-                        coords = self._get_text_location_from_text(page_text, match.group(0))
-                        violations.append({
-                            'type': 'door_width',
-                            'severity': 'critical' if width < 30 else 'warning',
-                            'description': f'Door width {width}" (below standard 32" minimum)',
-                            'page_num': page_num,
-                            'coordinates': coords,
-                            'code_reference': 'IBC 1005.3.1 - Means of Egress Door Width',
-                            'evidence': None
-                        })
+                    try:
+                        width = int(match.group(1))
+                        if width < 32:
+                            coords = self._get_text_location_from_text(page_text, match.group(0))
+                            violations.append({
+                                'type': 'door_width',
+                                'severity': 'critical' if width < 30 else 'warning',
+                                'description': f'Door width {width}" (below standard 32" minimum)',
+                                'page_num': page_num,
+                                'coordinates': coords,
+                                'code_reference': 'IBC 1005.3.1 - Means of Egress Door Width',
+                                'evidence': None
+                            })
+                    except ValueError:
+                        continue
 
             # Detect keywords
             for keyword in self.KEYWORDS:
@@ -270,6 +283,8 @@ class PlanInspector(BaseAgent):
                         'evidence': None
                     })
 
+        # Deduplicate violations if needed (optional)
+        logger.info(f"Found {len(violations)} potential violations.")
         return violations
 
     def _get_text_location_from_text(self, page_text: str, search_text: str) -> Dict[str, int]:
