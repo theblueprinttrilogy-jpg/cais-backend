@@ -1,55 +1,44 @@
 """
-API v1 Router - Main Router for Version 1
+CAIS Code Compliance - API v1 Router
 
-This module aggregates all v1 API routes.
+This module aggregates all endpoint routers for version 1 of the API.
+Each router is included with appropriate tags for documentation grouping.
 """
 
 from fastapi import APIRouter
 
-# Import endpoints that exist
-from app.api.endpoints import (
-    auth, users, projects, upload, analysis, reports,
-    payments, subscriptions, webhooks, kill_switch,
-    dashboard
+# Import all endpoint routers
+from app.api.v1.endpoints import (
+    auth,
+    users,
+    projects,
+    analysis,
+    reports,
+    payments,
+    subscriptions,
+    webhooks,
+    kill_switch,
+    dashboard,
+    ping,
+    upload,
 )
 
+# Create the main API router
 api_router = APIRouter()
 
-# Authentication
-api_router.include_router(auth.router, prefix="/auth", tags=["auth"])
+# Include all endpoint routers with descriptive tags
+api_router.include_router(auth.router, tags=["auth"])
+api_router.include_router(users.router, tags=["users"])
+api_router.include_router(projects.router, tags=["projects"])
+api_router.include_router(analysis.router, tags=["analysis"])
+api_router.include_router(reports.router, tags=["reports"])
+api_router.include_router(payments.router, tags=["payments"])
+api_router.include_router(subscriptions.router, tags=["subscriptions"])
+api_router.include_router(webhooks.router, tags=["webhooks"])
+api_router.include_router(kill_switch.router, tags=["kill_switch"])
+api_router.include_router(dashboard.router, tags=["dashboard"])
+api_router.include_router(ping.router, tags=["ping"])
 
-# Users
-api_router.include_router(users.router, prefix="/users", tags=["users"])
-
-# Projects
-api_router.include_router(projects.router, prefix="/projects", tags=["projects"])
-
-# Upload
-api_router.include_router(upload.router, prefix="/upload", tags=["upload"])
-
-# Analysis
-api_router.include_router(analysis.router, prefix="/analysis", tags=["analysis"])
-
-# Reports
-api_router.include_router(reports.router, prefix="/reports", tags=["reports"])
-
-# Payments
-api_router.include_router(payments.router, prefix="/payments", tags=["payments"])
-
-# Subscriptions
-api_router.include_router(subscriptions.router, prefix="/subscriptions", tags=["subscriptions"])
-
-# Webhooks
-api_router.include_router(webhooks.router, prefix="/webhooks", tags=["webhooks"])
-
-# Kill Switch
-api_router.include_router(kill_switch.router, prefix="/kill", tags=["kill"])
-
-# Dashboard
-api_router.include_router(dashboard.router, prefix="/dashboard", tags=["dashboard"])
-
-
-@api_router.get("/ping")
-async def ping():
-    """Health check for API v1."""
-    return {"status": "pong", "version": "v1", "timestamp": "2026-07-30"}
+# Upload router already defines its own prefix ("/upload") in its module,
+# so we include it without an additional prefix to avoid duplication.
+api_router.include_router(upload.router, tags=["upload"])
