@@ -9,6 +9,7 @@ Forensic Facts Dossier without CAIS commentary.
 Version: 10.0
 """
 
+import os
 import logging
 import time
 from contextlib import asynccontextmanager
@@ -22,6 +23,9 @@ from app.api.v1.router import api_router
 from config import settings
 from app.core.exceptions import AppException
 from app.middleware.logging import LoggingMiddleware
+
+# Ensure the log directory exists before configuring logging
+os.makedirs("logs", exist_ok=True)
 
 # Configure logging
 logging.basicConfig(

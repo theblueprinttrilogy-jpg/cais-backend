@@ -28,21 +28,22 @@ requests==2.32.3
 pdf2image==1.17.0
 pillow==11.0.0
 pytesseract==0.3.13
-opencv-python==4.10.0.84
+opencv-python-headless==4.9.0.80
 
-# NLP & Embeddings (versiones compatibles con transformers 4.44.2)
-sentence-transformers==3.4.1   # <-- ACTUALIZADO
+# NLP & Embeddings (with numpy <2.0 compatibility)
+sentence-transformers==3.4.1
 torch==2.4.0
 transformers==4.44.2
-# huggingface-hub se resuelve automáticamente (>=0.23.2)
+numpy<2.0.0    # CRITICAL: force NumPy 1.x for OpenCV compatibility
 
-# Configuration & Utilities
+# Utilities & Language detection
 pydantic==2.10.4
 pydantic-settings==2.6.0
 python-dotenv==1.0.0
 pyyaml==6.0.2
 reportlab==4.2.5
 fake-useragent==1.5.1
+langdetect==1.0.9
 
 # Testing
 pytest==8.3.4
