@@ -18,6 +18,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import JSONResponse
+from sqlalchemy import text
 
 from app.api.v1.router import api_router
 from config import settings
@@ -47,6 +48,18 @@ async def lifespan(app: FastAPI):
     """Handle startup and shutdown events."""
     logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}...")
     logger.info(f"Environment: {settings.ENVIRONMENT}")
+
+    # Enable required PostgreSQL extensions
+    try:
+        with engine.connect() as conn:
+            logger.info("Enabling PostgreSQL extensions: vector, pgcrypto...")
+            conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
+            conn.execute(text("CREATE EXTENSION IF NOT EXISTS pgcrypto;"))
+            conn.commit()
+            logger.info("PostgreSQL extensions enabled successfully.")
+    except Exception as e:
+        logger.error(f"Failed to enable PostgreSQL extensions: {e}")
+        # Continue startup even if extensions fail (they may already exist or not be needed)
 
     # Create database tables if they don't exist
     try:
