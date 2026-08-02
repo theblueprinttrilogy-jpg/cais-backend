@@ -1,0 +1,240 @@
+/* ============================================================
+   CAIS Code Compliance - Dashboard Styles
+   ============================================================ */
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: var(--surface, #F8FAFC);
+    border: 1px solid var(--border, #E2E8F0);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background, #FFFFFF);
+    border-radius: 12px;
+    border: 1px solid var(--border, #E2E8F0);
+}
+
+.stat-info {
+    flex: 1;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary, #1A1A2E);
+    line-height: 1.2;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-secondary, #475569);
+}
+
+/* Activity Section */
+.activity-section {
+    margin-bottom: 2rem;
+}
+
+.activity-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary, #1A1A2E);
+}
+
+.activity-list {
+    background: var(--surface, #F8FAFC);
+    border: 1px solid var(--border, #E2E8F0);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    border-bottom: 1px solid var(--border, #E2E8F0);
+}
+
+.activity-item:last-child {
+    border-bottom: none;
+}
+
+.activity-time {
+    font-size: 0.8rem;
+    color: var(--text-secondary, #475569);
+    white-space: nowrap;
+    min-width: 100px;
+}
+
+.activity-type {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.activity-type.info {
+    background: #DBEAFE;
+    color: #1D4ED8;
+}
+
+.activity-type.success {
+    background: #D1FAE5;
+    color: #065F46;
+}
+
+.activity-type.warning {
+    background: #FEF3C7;
+    color: #92400E;
+}
+
+.activity-type.error {
+    background: #FEE2E2;
+    color: #991B1B;
+}
+
+.activity-message {
+    flex: 1;
+    font-size: 0.9rem;
+    color: var(--text-primary, #1A1A2E);
+}
+
+.activity-empty {
+    padding: 2rem;
+    text-align: center;
+    color: var(--text-secondary, #475569);
+}
+
+/* Violation Section */
+.violation-section {
+    margin-bottom: 2rem;
+}
+
+.violation-section h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--text-primary, #1A1A2E);
+}
+
+.violation-chart {
+    background: var(--surface, #F8FAFC);
+    border: 1px solid var(--border, #E2E8F0);
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.chart-bar {
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    transition: width 0.6s ease;
+    min-width: 80px;
+    white-space: nowrap;
+}
+
+.chart-bar:last-child {
+    margin-bottom: 0;
+}
+
+.chart-bar.critical {
+    background: #EF4444;
+}
+
+.chart-bar.high {
+    background: #F59E0B;
+}
+
+.chart-bar.medium {
+    background: #3B82F6;
+}
+
+.chart-bar.low {
+    background: #22C55E;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-icon {
+        font-size: 1.8rem;
+        width: 48px;
+        height: 48px;
+    }
+
+    .stat-value {
+        font-size: 1.25rem;
+    }
+
+    .activity-item {
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .activity-time {
+        min-width: auto;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .stat-card {
+        padding: 0.75rem;
+    }
+
+    .stat-icon {
+        font-size: 1.5rem;
+        width: 40px;
+        height: 40px;
+    }
+
+    .stat-value {
+        font-size: 1rem;
+    }
+}
