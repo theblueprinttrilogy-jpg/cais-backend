@@ -1,159 +1,73 @@
 """
-CAIS Code Compliance - Main Application Entry Point
+app/main.py
 
-CAIS CODE COMPLIANCE is a forensic evidence generation tool for construction code violations.
-It receives documents from 21 platforms, analyzes them visually and semantically,
-detects code violations using AI, generates forensic evidence, and delivers a
-Forensic Facts Dossier without CAIS commentary.
-
-Version: 10.0
+Main FastAPI application for CAIS Code Compliance Backend.
+Initializes the API, includes routers, and configures middleware.
 """
 
-import os
 import logging
-import time
-from contextlib import asynccontextmanager
-
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.middleware.trustedhost import TrustedHostMiddleware
-from fastapi.responses import JSONResponse
-from sqlalchemy import text
 
-from app.api.v1.router import api_router
-from config import settings
-from app.core.exceptions import AppException
-from app.middleware.logging import LoggingMiddleware
-from app.db.models import Base
-from app.core.database import engine
-
-# Ensure the log directory exists before configuring logging
-os.makedirs("logs", exist_ok=True)
+# Import routers
+from app.api.auth import router as auth_router
+from app.api.endpoints import router as endpoints_router
 
 # Configure logging
 logging.basicConfig(
-    level=settings.LOG_LEVEL,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    handlers=[
-        logging.FileHandler("logs/app.log"),
-        logging.StreamHandler()
-    ]
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 )
-
 logger = logging.getLogger(__name__)
 
-
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """Handle startup and shutdown events."""
-    logger.info(f"Starting {settings.APP_NAME} v{settings.APP_VERSION}...")
-    logger.info(f"Environment: {settings.ENVIRONMENT}")
-
-    # Enable required PostgreSQL extensions
-    try:
-        with engine.connect() as conn:
-            logger.info("Enabling PostgreSQL extensions: vector, pgcrypto...")
-            conn.execute(text("CREATE EXTENSION IF NOT EXISTS vector;"))
-            conn.execute(text("CREATE EXTENSION IF NOT EXISTS pgcrypto;"))
-            conn.commit()
-            logger.info("PostgreSQL extensions enabled successfully.")
-    except Exception as e:
-        logger.error(f"Failed to enable PostgreSQL extensions: {e}")
-        # Continue startup even if extensions fail (they may already exist or not be needed)
-
-    # Create database tables if they don't exist
-    try:
-        logger.info("Creating database tables (if they don't exist)...")
-        Base.metadata.create_all(bind=engine)
-        logger.info("Database tables verified/created successfully.")
-    except Exception as e:
-        logger.error(f"Failed to create database tables: {e}")
-        # Do not raise to allow the app to start, but log critical error
-        # In production, you might want to raise to prevent startup
-
-    # Initialize Redis cache connection
-    # Initialize RabbitMQ connection
-    # Initialize Ollama connection
-
-    yield
-
-    logger.info(f"Shutting down {settings.APP_NAME}...")
-
-
+# Create FastAPI application
 app = FastAPI(
-    title=settings.APP_NAME,
-    description="Forensic evidence generation for construction code violations",
-    version=settings.APP_VERSION,
-    lifespan=lifespan,
-    docs_url="/docs",
-    redoc_url="/redoc",
-    openapi_url="/openapi.json"
+    title="CAIS Code Compliance API",
+    description="Backend API for code compliance ingestion, semantic search, and auditing.",
+    version="10.0"
 )
 
-# Add middleware
+# Configure CORS middleware
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.ALLOWED_ORIGINS,
+    allow_origins=["*"],          # Allow all origins (for development)
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],          # Allow all methods
+    allow_headers=["*"],          # Allow all headers
 )
-
-app.add_middleware(
-    TrustedHostMiddleware,
-    allowed_hosts=settings.ALLOWED_HOSTS,
-)
-
-app.add_middleware(LoggingMiddleware)
 
 # Include routers
-app.include_router(api_router, prefix="/api/v1")
+app.include_router(auth_router)           # Prefix is already /api/v1/auth
+app.include_router(endpoints_router)      # Prefix is already /api/v1
 
 
-@app.get("/health")
-async def health_check():
-    """Health check endpoint for monitoring."""
-    return {
-        "status": "healthy",
-        "version": settings.APP_VERSION,
-        "timestamp": time.time(),
-        "service": settings.APP_NAME
-    }
-
-
-@app.get("/")
+# Root endpoint
+@app.get("/", tags=["root"])
 async def root():
-    """Root endpoint with service information."""
+    """Welcome endpoint."""
     return {
-        "service": settings.APP_NAME,
-        "version": settings.APP_VERSION,
-        "status": "operational",
-        "documentation": "/docs",
-        "health": "/health"
+        "message": "Welcome to CAIS Code Compliance API",
+        "version": "10.0",
+        "docs": "/docs"
     }
 
 
-@app.exception_handler(AppException)
-async def app_exception_handler(request: Request, exc: AppException):
-    """Handle application-specific exceptions."""
-    return JSONResponse(
-        status_code=exc.status_code,
-        content={
-            "error": exc.message,
-            "code": exc.code,
-            "timestamp": time.time()
-        }
-    )
+# Health check endpoint (also available via endpoints_router, but keep as separate root-level)
+@app.get("/health", tags=["health"])
+async def health_check():
+    """Health check endpoint."""
+    return {"status": "healthy"}
 
 
-@app.exception_handler(Exception)
-async def generic_exception_handler(request: Request, exc: Exception):
-    """Handle generic exceptions."""
-    logger.error(f"Unhandled exception: {exc}")
-    return JSONResponse(
-        status_code=500,
-        content={
-            "error": "Internal server error",
-            "timestamp": time.time()
-        }
-    )
+# Optional: lifecycle events for startup/shutdown
+@app.on_event("startup")
+async def startup_event():
+    """Actions to perform on application startup."""
+    logger.info("CAIS Code Compliance API starting up...")
+    # Database initialization is handled at module import in orchestrator
+
+
+@app.on_event("shutdown")
+async def shutdown_event():
+    """Actions to perform on application shutdown."""
+    logger.info("CAIS Code Compliance API shutting down...")

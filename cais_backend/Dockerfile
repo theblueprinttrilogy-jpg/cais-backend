@@ -1,46 +1,39 @@
-# CAIS Code Compliance - Production Dockerfile
-# Uses Python 3.11 slim base image for minimal size and security
+# Dockerfile for CAIS Code Compliance Backend
+# Uses Python 3.11 slim image for a lightweight production environment
 
 FROM python:3.11-slim
 
-# Set environment variables for optimal Python and application behavior
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    PYTHONPATH=/app \
-    TZ=UTC \
-    HF_HOME=/app/model_cache
+# Set environment variables to avoid interactive prompts and ensure Python output is logged
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
 
-# Install all required system dependencies in a single layer
-# Includes compilers, PostgreSQL client, OCR tools, PDF utilities, and GUI libraries
-RUN apt-get update && apt-get install -y --no-install-recommends \
+# Install system dependencies required for building Python packages and PostgreSQL connectivity
+RUN apt-get update && apt-get install -y \
     gcc \
     libpq-dev \
-    tesseract-ocr \
-    poppler-utils \
-    libgl1 \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy requirements file first to leverage Docker caching
+# Copy the requirements file first to leverage Docker cache
 COPY requirements.txt .
 
-# Install Python dependencies from the requirements file
+# Install Python dependencies without caching to reduce image size
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Pre-download the sentence-transformers model at build time
-# This caches the model in /app/model_cache for faster startup
+# Pre-download and cache the sentence-transformers model to avoid runtime downloads
+# This ensures the model is available offline during application startup
 RUN python3 -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 
-# Copy the rest of the application source code
+# Copy the rest of the application source code into the container
 COPY . .
 
-# Expose the default Cloud Run / Uvicorn port
+# Expose the port the application will run on
 EXPOSE 8080
 
-# Start the FastAPI application using Uvicorn
+# Set the default command to run the FastAPI application with Uvicorn
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]

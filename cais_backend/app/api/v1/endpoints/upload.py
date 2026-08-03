@@ -53,9 +53,16 @@ def get_or_create_default_user(db: Session) -> User:
     if not user:
         user = User(
             id=default_user_id,
+            username="default",
             email="default@cais.com",
             full_name="Default User",
+            hashed_password="dummy_password_hash",
+            subscription_plan="free",
+            preferred_language="en",
+            preferred_timezone="UTC",
             is_active=True,
+            is_superuser=False,
+            is_verified=False,
             created_at=datetime.utcnow(),
         )
         db.add(user)
@@ -164,8 +171,6 @@ async def upload_document(
         raise HTTPException(status_code=500, detail="Failed to save file")
 
     # Create document record using only valid columns of the Document model.
-    # Valid attributes: id, filename, file_path, project_id, status.
-    # Timestamps like created_at/updated_at are automatically handled by the database.
     document = Document(
         id=document_id,
         filename=file.filename,
@@ -192,7 +197,7 @@ async def upload_document(
         job_id=job_id,
         file_path=temp_path,
         jurisdiction=jurisdiction,
-        project_id=project_id,      # pass original identifier (if needed)
+        project_id=project_id,
     )
 
     return UploadResponse(
@@ -225,7 +230,6 @@ async def get_job_status(
         document = db.query(Document).filter(Document.id == job_uuid).first()
         if not document:
             raise HTTPException(status_code=404, detail="Job not found")
-        # Use document.updated_at if it exists, else fallback to current time
         updated_at = getattr(document, "updated_at", datetime.utcnow())
         return JobStatusResponse(
             job_id=job_id,
@@ -260,7 +264,6 @@ async def list_jobs(
 
     result = []
     for doc in documents:
-        # Use document id as job id
         job_id = str(doc.id)
         job_data = processing_jobs.get(job_id)
         if job_data:
@@ -321,7 +324,6 @@ async def process_document_async(
         document = db.query(Document).filter(Document.id == document_id).first()
         if document:
             document.status = "processing"
-            # If the model has an updated_at column, set it
             if hasattr(document, "updated_at"):
                 document.updated_at = datetime.utcnow()
             db.commit()
