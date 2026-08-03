@@ -19,6 +19,8 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+    networks:
+      - cais-network
 
   redis:
     image: redis:alpine
@@ -31,6 +33,8 @@ services:
       timeout: 5s
       retries: 5
     restart: unless-stopped
+    networks:
+      - cais-network
 
   backend:
     build: .
@@ -38,14 +42,13 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DATABASE_URL: postgresql://cais:Cais1234@postgres:5432/cais_db
+      DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
       REDIS_URL: redis://redis:6379/0
       ENVIRONMENT: development
       HF_HUB_OFFLINE: 1
-      # Additional configuration variables
-      SECRET_KEY: dev-secret-key-change-in-production
-      LOG_LEVEL: INFO
-      API_PREFIX: /api/v1
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      API_PREFIX: ${API_PREFIX:-/api/v1}
     volumes:
       - .:/app
     depends_on:
@@ -54,22 +57,24 @@ services:
       redis:
         condition: service_healthy
     restart: unless-stopped
+    networks:
+      - cais-network
 
   worker:
     build: .
     container_name: cais-backend-worker
     environment:
-      DATABASE_URL: postgresql://cais:Cais1234@postgres:5432/cais_db
+      DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
       REDIS_URL: redis://redis:6379/0
       ENVIRONMENT: development
       HF_HUB_OFFLINE: 1
-      # Additional configuration variables for worker
-      INGESTION_SLEEP_INTERVAL: 300
-      INGESTION_TARGETS: "Florida Building Code,International Residential Code,fire safety,structural wind loads,electrical standards"
+      # Ingestion worker specific variables (can be overridden)
+      INGESTION_BATCH_SIZE: ${INGESTION_BATCH_SIZE:-50}
+      INGESTION_INTERVAL: ${INGESTION_INTERVAL:-60}
     volumes:
-      - ./app:/app/app
+      - .:/app
       - ./logs:/app/logs
-      - ./config.py:/app/config.py
+      - ./config:/app/config
     command: python3 -m app.workers.ingestion_worker
     depends_on:
       postgres:
@@ -77,6 +82,40 @@ services:
       redis:
         condition: service_healthy
     restart: unless-stopped
+    networks:
+      - cais-network
+
+  janitor:
+    build: .
+    container_name: cais-backend-janitor
+    environment:
+      DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
+      REDIS_URL: redis://redis:6379/0
+      ENVIRONMENT: development
+      JANITOR_INTERVAL: ${JANITOR_INTERVAL:-3600}
+      JANITOR_MAX_AGE_DAYS: ${JANITOR_MAX_AGE_DAYS:-45}
+      JANITOR_ROOT_FOLDER: ${JANITOR_ROOT_FOLDER:-JACINTO_CORREA_COMPUTER}
+      JANITOR_TEMP_DIR: /app/data/temp
+      JANITOR_DATA_DIR: /app/data
+      JANITOR_LOG_FILE: /app/logs/janitor.log
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    volumes:
+      - .:/app
+      - ./logs:/app/logs
+    command: python3 -m app.agents.start_janitor_daemon
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - cais-network
 
 volumes:
   postgres_data:
+    driver: local
+
+networks:
+  cais-network:
+    driver: bridge
