@@ -2,19 +2,26 @@
 app/api/endpoints.py
 
 FastAPI endpoints for CAIS Code Compliance backend.
-Provides semantic search and deterministic compliance audit capabilities.
+Provides semantic search, deterministic compliance audit, and file upload
+for construction documents.
 """
 
 import logging
+import os
+import shutil
+import uuid
+from datetime import datetime
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, UploadFile, File
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session
 from sentence_transformers import SentenceTransformer
 
 # Import database and model from orchestrator
+# Note: CodeReference is expected to be a SQLAlchemy model with embedding support.
 from app.agents.orchestrator import CodeReference, SessionLocal
+from app.models.agent import AgentTask
 
 logger = logging.getLogger(__name__)
 
@@ -82,6 +89,13 @@ class AuditResponse(BaseModel):
     status: str  # "compliant" or "non-compliant"
 
 
+class UploadResponse(BaseModel):
+    """Response model for file upload endpoint."""
+    task_id: str
+    status: str
+    message: Optional[str] = None
+
+
 # -------------------- Dependency --------------------
 
 def get_db() -> Session:
@@ -91,6 +105,19 @@ def get_db() -> Session:
         yield db
     finally:
         db.close()
+
+
+# -------------------- Helper Functions --------------------
+
+def validate_pdf(filename: str) -> bool:
+    """Check if the uploaded file has a .pdf extension."""
+    return filename.lower().endswith(".pdf")
+
+
+def save_upload_file(upload_file: UploadFile, destination: str) -> None:
+    """Save an uploaded file to a given destination path."""
+    with open(destination, "wb") as buffer:
+        shutil.copyfileobj(upload_file.file, buffer)
 
 
 # -------------------- Endpoints --------------------
@@ -208,8 +235,80 @@ async def compliance_audit(
     )
 
 
+@router.post("/upload", response_model=UploadResponse, status_code=status.HTTP_202_ACCEPTED)
+async def upload_document(
+    file: UploadFile = File(..., description="Construction document PDF"),
+    db: Session = Depends(get_db)
+) -> UploadResponse:
+    """
+    Upload a construction document PDF for processing.
+
+    The file is validated to be a PDF, saved to a temporary location,
+    and a task is created for background OCR/PlanInspector processing.
+    Returns a task_id that can be used to poll the task status.
+    """
+    logger.info(f"Received upload: filename={file.filename}")
+
+    # Validate file extension
+    if not validate_pdf(file.filename):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Only PDF files are allowed."
+        )
+
+    # Generate a unique task ID and a temporary file path
+    task_id = str(uuid.uuid4())
+    temp_dir = "/tmp/cais_uploads"
+    os.makedirs(temp_dir, exist_ok=True)
+    temp_file_path = os.path.join(temp_dir, f"{task_id}.pdf")
+
+    try:
+        # Save the uploaded file to a temporary location
+        save_upload_file(file, temp_file_path)
+        logger.info(f"File saved to {temp_file_path}")
+
+        # Create a task record in the database for background processing
+        # The agent_name "ingestion" is assumed to be registered in the orchestrator.
+        # The input_data stores the file path and original filename.
+        task = AgentTask(
+            id=task_id,
+            agent_name="ingestion",  # This must match the agent name used by the worker
+            status="pending",
+            priority=5,
+            input_data={
+                "file_path": temp_file_path,
+                "original_filename": file.filename,
+                "uploaded_at": datetime.utcnow().isoformat()
+            },
+            created_at=datetime.utcnow(),
+            updated_at=datetime.utcnow()
+        )
+        db.add(task)
+        db.commit()
+        db.refresh(task)
+
+        logger.info(f"Task {task_id} created for file {file.filename}")
+
+        return UploadResponse(
+            task_id=task_id,
+            status="processing",
+            message="File accepted. Processing will begin shortly."
+        )
+
+    except Exception as e:
+        logger.error(f"Upload failed: {e}", exc_info=True)
+        # Clean up partially saved file if any
+        if os.path.exists(temp_file_path):
+            os.remove(temp_file_path)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Failed to process upload."
+        )
+
+
 # Optional: health check endpoint
 @router.get("/health")
 async def health_check():
     """Simple health check endpoint."""
     return {"status": "healthy"}
+
