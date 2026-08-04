@@ -1,238 +1,206 @@
-import os
+import io
 import logging
-from typing import Optional, List, Dict, Any
+import os
+from typing import List, Optional, Dict, Any, Tuple
 
-from google.oauth2 import service_account
+from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaFileUpload
+from googleapiclient.http import MediaFileUpload, MediaIoBaseDownload
 
 logger = logging.getLogger(__name__)
 
 
 class GoogleDriveUploader:
     """
-    Headless Google Drive uploader using service account authentication.
-    Designed for automated containerized environments on GCP.
+    Service for interacting with Google Drive API.
+    Provides methods for folder/file operations and downloads.
     """
 
-    SCOPES = ["https://www.googleapis.com/auth/drive.file"]
-
-    def __init__(
-        self,
-        credentials_path: Optional[str] = None,
-        default_parent_folder_id: Optional[str] = None,
-    ) -> None:
+    def __init__(self, credentials_path: Optional[str] = None) -> None:
         """
-        Initialize the GoogleDriveUploader.
+        Initialize the Google Drive service.
 
-        Args:
-            credentials_path: Path to the service account JSON credentials file.
-                              If None, defaults to the GCP_CREDENTIALS_JSON environment
-                              variable or "app/credentials/service-account.json".
-            default_parent_folder_id: Default parent folder ID for uploads.
+        :param credentials_path: Path to the service account credentials JSON file.
+                                 If None, uses GOOGLE_APPLICATION_CREDENTIALS env var.
         """
-        self.default_parent_folder_id = default_parent_folder_id
-        self.credentials_path = self._resolve_credentials_path(credentials_path)
-        self._validate_credentials_file()
-        self.service = None
-        self._authenticate()
-
-    def _resolve_credentials_path(self, provided_path: Optional[str]) -> str:
-        """Resolve the credentials file path from arguments or environment."""
-        if provided_path is not None:
-            return provided_path
-        env_path = os.environ.get("GCP_CREDENTIALS_JSON")
-        if env_path is not None:
-            return env_path
-        return "app/credentials/service-account.json"
-
-    def _validate_credentials_file(self) -> None:
-        """Check that the credentials file exists; raise FileNotFoundError if not."""
-        if not os.path.isfile(self.credentials_path):
-            raise FileNotFoundError(
-                f"Service account credentials file not found: {self.credentials_path}"
+        credentials_path = credentials_path or os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+        if not credentials_path:
+            raise ValueError(
+                "No credentials path provided and GOOGLE_APPLICATION_CREDENTIALS not set."
             )
 
-    def _authenticate(self) -> None:
-        """
-        Authenticate using the service account credentials and build the Drive service.
-        Raises GoogleAuthError on authentication failure.
-        """
-        try:
-            creds = service_account.Credentials.from_service_account_file(
-                self.credentials_path, scopes=self.SCOPES
-            )
-            self.service = build("drive", "v3", credentials=creds)
-            logger.info("Successfully authenticated with Google Drive service account.")
-        except Exception as e:
-            logger.error("Authentication failed: %s", e, exc_info=True)
-            raise GoogleAuthError(f"Failed to authenticate: {e}") from e
+        self.credentials = Credentials.from_service_account_file(
+            credentials_path,
+            scopes=["https://www.googleapis.com/auth/drive"],
+        )
+        self.service = build("drive", "v3", credentials=self.credentials)
 
-    def create_folder(self, folder_name: str, parent_folder_id: Optional[str] = None) -> Dict[str, Any]:
+    def create_folder(self, folder_name: str, parent_folder_id: Optional[str] = None) -> str:
         """
-        Create a folder in Google Drive.
+        Create a new folder in Google Drive.
 
-        Args:
-            folder_name: Name of the folder to create.
-            parent_folder_id: Optional parent folder ID. If not provided, uses default.
-
-        Returns:
-            The created folder's metadata (including 'id').
-
-        Raises:
-            HttpError: If the API call fails.
+        :param folder_name: Name of the folder to create.
+        :param parent_folder_id: ID of the parent folder (optional).
+        :return: ID of the created folder.
         """
-        parent = parent_folder_id or self.default_parent_folder_id
-        folder_metadata = {
+        file_metadata = {
             "name": folder_name,
             "mimeType": "application/vnd.google-apps.folder",
         }
-        if parent:
-            folder_metadata["parents"] = [parent]
+        if parent_folder_id:
+            file_metadata["parents"] = [parent_folder_id]
 
         try:
-            folder = (
-                self.service.files()
-                .create(body=folder_metadata, fields="id, name, mimeType, parents")
-                .execute()
-            )
-            logger.info('Created folder "%s" with ID: %s', folder_name, folder.get("id"))
-            return folder
+            folder = self.service.files().create(
+                body=file_metadata,
+                fields="id",
+            ).execute()
+            folder_id = folder.get("id")
+            logger.info(f"Created folder '{folder_name}' with ID: {folder_id}")
+            return folder_id
         except HttpError as e:
-            logger.error("Failed to create folder '%s': %s", folder_name, e, exc_info=True)
+            logger.error(f"Failed to create folder '{folder_name}': {e}")
             raise
 
     def upload_file(
         self,
         file_path: str,
-        mime_type: Optional[str] = None,
-        parent_folder_id: Optional[str] = None,
         file_name: Optional[str] = None,
-    ) -> Dict[str, Any]:
+        parent_folder_id: Optional[str] = None,
+        mime_type: Optional[str] = None,
+    ) -> str:
         """
         Upload a local file to Google Drive.
 
-        Args:
-            file_path: Local path to the file to upload.
-            mime_type: MIME type of the file. If None, it will be guessed.
-            parent_folder_id: Optional parent folder ID. Uses default if not provided.
-            file_name: Optional name for the file in Drive. If None, uses the local filename.
-
-        Returns:
-            The uploaded file's metadata (including 'id').
-
-        Raises:
-            FileNotFoundError: If the local file does not exist.
-            HttpError: If the API call fails.
+        :param file_path: Path to the local file.
+        :param file_name: Name to give the file in Drive (defaults to basename).
+        :param parent_folder_id: ID of the parent folder (optional).
+        :param mime_type: MIME type of the file (optional, auto-detected).
+        :return: ID of the uploaded file.
         """
-        if not os.path.isfile(file_path):
+        if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
 
-        parent = parent_folder_id or self.default_parent_folder_id
-        name = file_name or os.path.basename(file_path)
-
-        file_metadata = {"name": name}
-        if parent:
-            file_metadata["parents"] = [parent]
+        file_name = file_name or os.path.basename(file_path)
+        file_metadata = {"name": file_name}
+        if parent_folder_id:
+            file_metadata["parents"] = [parent_folder_id]
 
         media = MediaFileUpload(file_path, mimetype=mime_type, resumable=True)
 
         try:
-            uploaded = (
-                self.service.files()
-                .create(body=file_metadata, media_body=media, fields="id, name, mimeType, parents")
-                .execute()
-            )
-            logger.info('Uploaded "%s" (ID: %s) to Drive.', name, uploaded.get("id"))
-            return uploaded
+            file = self.service.files().create(
+                body=file_metadata,
+                media_body=media,
+                fields="id",
+            ).execute()
+            file_id = file.get("id")
+            logger.info(f"Uploaded file '{file_name}' with ID: {file_id}")
+            return file_id
         except HttpError as e:
-            logger.error("Failed to upload file '%s': %s", file_path, e, exc_info=True)
+            logger.error(f"Failed to upload file '{file_name}': {e}")
             raise
 
     def list_files(
         self,
-        page_size: int = 100,
-        page_token: Optional[str] = None,
         query: Optional[str] = None,
-        fields: str = "files(id, name, mimeType, parents, createdTime, size), nextPageToken",
+        page_size: int = 100,
+        fields: str = "files(id, name, mimeType, parents, createdTime, modifiedTime, size)",
     ) -> Dict[str, Any]:
         """
-        List files in Google Drive with pagination support.
+        List files in Google Drive matching the query.
 
-        Args:
-            page_size: Number of files per page (max 1000).
-            page_token: Token for the next page of results.
-            query: Optional query string (e.g., "mimeType='application/vnd.google-apps.folder'").
-            fields: Fields to include in the response.
-
-        Returns:
-            A dict containing 'files' (list of file metadata) and 'nextPageToken' if any.
+        :param query: Search query (e.g., "mimeType='application/pdf'").
+        :param page_size: Maximum number of files to return per page.
+        :param fields: Fields to include in the response.
+        :return: Dictionary containing 'files' key with list of file metadata.
         """
         try:
-            request = self.service.files().list(
-                q=query,
-                pageSize=page_size,
-                pageToken=page_token,
-                fields=fields,
-                orderBy="name asc",
+            results = (
+                self.service.files()
+                .list(
+                    q=query,
+                    pageSize=page_size,
+                    fields=f"nextPageToken, {fields}",
+                )
+                .execute()
             )
-            response = request.execute()
-            logger.debug(
-                "Listed %d files, nextPageToken: %s",
-                len(response.get("files", [])),
-                response.get("nextPageToken"),
-            )
-            return response
+            files = results.get("files", [])
+            logger.debug(f"Listed {len(files)} files matching query: {query}")
+            return results
         except HttpError as e:
-            logger.error("Failed to list files: %s", e, exc_info=True)
+            logger.error(f"Failed to list files: {e}")
             raise
 
     def delete_file(self, file_id: str) -> None:
         """
-        Permanently delete a file or folder from Google Drive.
+        Permanently delete a file from Google Drive.
 
-        Args:
-            file_id: The ID of the file/folder to delete.
-
-        Raises:
-            HttpError: If the API call fails.
+        :param file_id: ID of the file to delete.
         """
         try:
             self.service.files().delete(fileId=file_id).execute()
-            logger.info("Deleted file/folder with ID: %s", file_id)
+            logger.info(f"Deleted file with ID: {file_id}")
         except HttpError as e:
-            logger.error("Failed to delete file ID %s: %s", file_id, e, exc_info=True)
+            logger.error(f"Failed to delete file {file_id}: {e}")
             raise
 
-    def get_file_metadata(self, file_id: str, fields: str = "id, name, mimeType, parents, createdTime, size") -> Dict[str, Any]:
+    def get_file_metadata(self, file_id: str) -> Dict[str, Any]:
         """
-        Retrieve metadata for a specific file or folder.
+        Retrieve metadata for a specific file.
 
-        Args:
-            file_id: The ID of the file/folder.
-            fields: Fields to include in the response.
-
-        Returns:
-            The file metadata as a dictionary.
-
-        Raises:
-            HttpError: If the API call fails.
+        :param file_id: ID of the file.
+        :return: Dictionary containing file metadata.
         """
         try:
             metadata = (
                 self.service.files()
-                .get(fileId=file_id, fields=fields)
+                .get(fileId=file_id, fields="id, name, mimeType, parents, createdTime, modifiedTime, size")
                 .execute()
             )
-            logger.debug("Retrieved metadata for file ID %s", file_id)
+            logger.debug(f"Retrieved metadata for file {file_id}")
             return metadata
         except HttpError as e:
-            logger.error("Failed to get metadata for file ID %s: %s", file_id, e, exc_info=True)
+            logger.error(f"Failed to get metadata for file {file_id}: {e}")
             raise
 
+    def download_file(self, file_id: str) -> bytes:
+        """
+        Download the binary content of a file from Google Drive.
 
-class GoogleAuthError(Exception):
-    """Exception raised for Google Drive authentication errors."""
-    pass
+        This method uses MediaIoBaseDownload to stream the file content into a
+        BytesIO buffer, then returns the raw bytes.
+
+        :param file_id: ID of the file to download.
+        :return: Bytes content of the file.
+        :raises HttpError: If the download fails.
+        """
+        try:
+            request = self.service.files().get_media(fileId=file_id)
+            file_handle = io.BytesIO()
+            downloader = MediaIoBaseDownload(file_handle, request)
+
+            done = False
+            while not done:
+                status, done = downloader.next_chunk()
+                logger.debug(f"Download progress: {int(status.progress() * 100)}%")
+
+            file_handle.seek(0)
+            content = file_handle.read()
+            logger.info(f"Successfully downloaded file ID: {file_id} ({len(content)} bytes)")
+            return content
+
+        except HttpError as e:
+            logger.error(f"Failed to download file {file_id}: {e}")
+            raise
+        except Exception as e:
+            logger.error(f"Unexpected error during download of {file_id}: {e}")
+            raise
+
+    def close(self) -> None:
+        """
+        Clean up resources (currently a no-op, but provided for compatibility).
+        """
+        pass
 GoogleDriveService = GoogleDriveUploader

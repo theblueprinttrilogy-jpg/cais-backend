@@ -1,73 +1,116 @@
 """
-app/main.py
+CAIS Code Compliance API - Main Application Entry Point.
 
-Main FastAPI application for CAIS Code Compliance Backend.
-Initializes the API, includes routers, and configures middleware.
+This module initializes the FastAPI application, configures CORS,
+includes all routers, mounts static files, sets up Jinja2 templates,
+and defines the dashboard endpoints with precise context variables.
 """
 
 import logging
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from contextlib import asynccontextmanager
 
-# Import routers
+from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
 from app.api.auth import router as auth_router
 from app.api.endpoints import router as endpoints_router
+from app.routers.forensic_compliance import router as forensic_router
 
 # Configure logging
 logging.basicConfig(
     level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 
-# Create FastAPI application
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Lifespan context manager for startup and shutdown events.
+    """
+    # Startup
+    logger.info("CAIS Code Compliance API starting up...")
+    yield
+    # Shutdown
+    logger.info("CAIS Code Compliance API shutting down...")
+
+
+# Initialize FastAPI application
 app = FastAPI(
     title="CAIS Code Compliance API",
-    description="Backend API for code compliance ingestion, semantic search, and auditing.",
-    version="10.0"
+    description="Forensic compliance, semantic search, and deterministic audit for construction plans.",
+    version="10.0",
+    lifespan=lifespan,
 )
 
-# Configure CORS middleware
+# Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],          # Allow all origins (for development)
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],          # Allow all methods
-    allow_headers=["*"],          # Allow all headers
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 # Include routers
-app.include_router(auth_router)           # Prefix is already /api/v1/auth
-app.include_router(endpoints_router)      # Prefix is already /api/v1
+app.include_router(auth_router)
+app.include_router(endpoints_router)
+app.include_router(forensic_router)
+
+# Mount static files
+app.mount("/static", StaticFiles(directory="app/skins/static"), name="static")
+
+# Setup Jinja2 templates
+templates = Jinja2Templates(directory="app/skins/templates")
 
 
-# Root endpoint
-@app.get("/", tags=["root"])
-async def root():
-    """Welcome endpoint."""
-    return {
-        "message": "Welcome to CAIS Code Compliance API",
-        "version": "10.0",
-        "docs": "/docs"
+# Dashboard route
+@app.get("/dashboard", response_class=HTMLResponse)
+async def dashboard(request: Request) -> HTMLResponse:
+    """
+    Render the CAIS dashboard with the exact context variables expected by dashboard.html.
+    """
+    context = {
+        "request": request,
+        "total_projects": 42,
+        "total_documents": 156,
+        "total_violations": 23,
+        "compliance_rate": 87,
+        "recent_activities": [
+            {"timestamp": "2 min ago", "type": "upload", "message": "Plan R-2024-001 uploaded"},
+            {"timestamp": "15 min ago", "type": "audit", "message": "Forensic audit completed for building B"},
+            {"timestamp": "1 hour ago", "type": "alert", "message": "Fire exit clearance violation detected"},
+            {"timestamp": "3 hours ago", "type": "upload", "message": "Revised HVAC schematics uploaded"},
+        ],
+        "critical_count": 5,
+        "critical_percent": 22,
+        "high_count": 8,
+        "high_percent": 35,
+        "medium_count": 7,
+        "medium_percent": 30,
+        "low_count": 3,
+        "low_percent": 13,
     }
+    return templates.TemplateResponse("dashboard.html", context)
 
 
-# Health check endpoint (also available via endpoints_router, but keep as separate root-level)
-@app.get("/health", tags=["health"])
-async def health_check():
-    """Health check endpoint."""
+# Root endpoint redirects to dashboard
+@app.get("/", response_class=RedirectResponse)
+async def root() -> RedirectResponse:
+    """
+    Redirect root to dashboard.
+    """
+    return RedirectResponse(url="/dashboard", status_code=302)
+
+
+# Health check endpoint
+@app.get("/health")
+async def health_check() -> dict:
+    """
+    Health check endpoint for container orchestration and monitoring.
+    """
     return {"status": "healthy"}
-
-
-# Optional: lifecycle events for startup/shutdown
-@app.on_event("startup")
-async def startup_event():
-    """Actions to perform on application startup."""
-    logger.info("CAIS Code Compliance API starting up...")
-    # Database initialization is handled at module import in orchestrator
-
-
-@app.on_event("shutdown")
-async def shutdown_event():
-    """Actions to perform on application shutdown."""
-    logger.info("CAIS Code Compliance API shutting down...")

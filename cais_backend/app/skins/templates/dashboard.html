@@ -1,84 +1,674 @@
-{% extends "app/skins/templates/header.html" %}
-{% block extra_head %}
-    <link rel="stylesheet" href="/static/css/dashboard.css">
-{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAIS · Forensic Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        body {
+            background-color: #0f172a;
+        }
+        .bg-slate-950 {
+            background-color: #020617;
+        }
+        .bg-slate-900\/90 {
+            background-color: rgba(15, 23, 42, 0.9);
+        }
+        .border-slate-800 {
+            border-color: #1e293b;
+        }
+        .text-slate-100 {
+            color: #f1f5f9;
+        }
+        .text-slate-200 {
+            color: #e2e8f0;
+        }
+        .text-slate-300 {
+            color: #cbd5e1;
+        }
+        .text-slate-400 {
+            color: #94a3b8;
+        }
+        .text-slate-500 {
+            color: #64748b;
+        }
+        .upload-zone {
+            border: 2px dashed #334155;
+            transition: all 0.3s ease;
+            background-color: rgba(2, 6, 23, 0.6);
+        }
+        .upload-zone:hover {
+            border-color: #f59e0b;
+            background-color: rgba(30, 41, 59, 0.5);
+        }
+        .upload-zone.dragover {
+            border-color: #f59e0b;
+            background-color: rgba(30, 41, 59, 0.7);
+        }
+        .kpi-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #f1f5f9;
+        }
+        .kpi-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+        .disclaimer-box {
+            background-color: rgba(120, 53, 15, 0.2);
+            border-left: 4px solid #f59e0b;
+            color: #fde68a;
+            padding: 0.75rem 1rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+        }
+        .history-entry {
+            border-bottom: 1px solid #1e293b;
+            padding: 0.5rem 0;
+        }
+        .history-entry:last-child {
+            border-bottom: none;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 0.125rem 0.625rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .status-badge.success { background: #065f46; color: #34d399; }
+        .status-badge.info { background: #1e3a5f; color: #60a5fa; }
+        .status-badge.warning { background: #78350f; color: #fbbf24; }
+        .status-badge.error { background: #7f1d1d; color: #f87171; }
+        .code-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #1e293b;
+        }
+        .code-item:last-child {
+            border-bottom: none;
+        }
+        .severity-badge {
+            display: inline-block;
+            padding: 0.125rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .severity-badge.critical { background: #7f1d1d; color: #fca5a5; }
+        .severity-badge.high { background: #78350f; color: #fcd34d; }
+        .severity-badge.medium { background: #1e3a5f; color: #93c5fd; }
+        .severity-badge.low { background: #064e3b; color: #6ee7b7; }
+        .severity-badge.active { background: #374151; color: #9ca3af; }
+        input[type="text"], select {
+            background-color: #020617;
+            border-color: #334155;
+            color: #f1f5f9;
+        }
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+        input[type="text"]::placeholder {
+            color: #64748b;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #334155;
+        }
+        .logo-svg {
+            height: 70px;
+            width: auto;
+            max-height: 90px;
+            display: block;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100">
 
-{% block content %}
-<div class="dashboard-container">
-    <h1>Dashboard</h1>
-    
-    <!-- Stats Cards -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon">📊</div>
-            <div class="stat-info">
-                <span class="stat-value">{{ total_projects }}</span>
-                <span class="stat-label">Total Projects</span>
+    <div class="container mx-auto px-4 py-8 max-w-7xl">
+
+        <!-- Header with Logo Only -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center">
+                <svg class="logo-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="cGlow" cx="50%" cy="45%" r="60%">
+                            <stop offset="0%" stop-color="#f97316" stop-opacity="0.95"/>
+                            <stop offset="35%" stop-color="#ea580c" stop-opacity="0.85"/>
+                            <stop offset="65%" stop-color="#b45309" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#78350f" stop-opacity="0.2"/>
+                        </radialGradient>
+                        <linearGradient id="caisGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#7ba4d9"/>
+                            <stop offset="30%" stop-color="#5a8ac0"/>
+                            <stop offset="55%" stop-color="#3a6a9a"/>
+                            <stop offset="100%" stop-color="#1a4a7a"/>
+                        </linearGradient>
+                        <linearGradient id="highlightLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(255,255,255,0)" stop-opacity="0"/>
+                            <stop offset="50%" stop-color="rgba(255,255,255,0.6)" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="rgba(255,255,255,0)" stop-opacity="0"/>
+                        </linearGradient>
+                        <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#4ade80"/>
+                            <stop offset="40%" stop-color="#22c55e"/>
+                            <stop offset="80%" stop-color="#16a34a"/>
+                            <stop offset="100%" stop-color="#15803d"/>
+                        </linearGradient>
+                        <linearGradient id="checkHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#86efac" stop-opacity="0.8"/>
+                            <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                        </linearGradient>
+                        <filter id="checkShadow" x="-10%" y="-10%" width="130%" height="130%">
+                            <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+                        </filter>
+                        <filter id="cGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                        </filter>
+                    </defs>
+                    <path d="M 85 15 C 45 15, 20 40, 20 60 C 20 80, 45 105, 85 105 C 100 105, 110 100, 120 92"
+                          fill="none" stroke="#0a0a0a" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"
+                          filter="url(#cGlowFilter)"/>
+                    <path d="M 85 18 C 48 18, 23 42, 23 60 C 23 78, 48 102, 85 102 C 98 102, 108 97, 117 90"
+                          fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round"/>
+                    <circle cx="70" cy="60" r="38" fill="url(#cGlow)" opacity="0.85"/>
+                    <circle cx="70" cy="60" r="32" fill="none" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.3"/>
+                    <rect x="49" y="35" width="42" height="48" rx="4" fill="#3d2b1f" stroke="#2a1a0e" stroke-width="1.5"/>
+                    <rect x="53" y="39" width="34" height="36" rx="2" fill="#f5f0e8" stroke="#d4c9b8" stroke-width="0.8"/>
+                    <line x1="57" y1="46" x2="83" y2="46" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="57" y1="51" x2="78" y2="51" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="57" y1="56" x2="83" y2="56" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="57" y1="61" x2="74" y2="61" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <line x1="57" y1="66" x2="80" y2="66" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                    <rect x="63" y="31" width="14" height="7" rx="2" fill="#8a9bb5" stroke="#6a7b95" stroke-width="0.8"/>
+                    <rect x="65" y="30" width="10" height="3" rx="1" fill="#b0c4de" stroke="#8a9bb5" stroke-width="0.5"/>
+                    <line x1="63" y1="34" x2="77" y2="34" stroke="#5a6b85" stroke-width="0.8"/>
+                    <path d="M 55 62 L 67 74 L 88 52" fill="none" stroke="url(#checkGrad)" stroke-width="5"
+                          stroke-linecap="round" stroke-linejoin="round" filter="url(#checkShadow)"/>
+                    <path d="M 56 61 L 67 72 L 86 52" fill="none" stroke="url(#checkHighlight)" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+                    <line x1="58" y1="78" x2="44" y2="98" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="70" y1="80" x2="70" y2="100" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="82" y1="78" x2="96" y2="98" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+                    <rect x="40" y="97" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+                    <rect x="66" y="99" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+                    <rect x="92" y="97" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+                    <rect x="62" y="74" width="16" height="8" rx="1.5" fill="#3d4a5c" stroke="#2a3342" stroke-width="0.8"/>
+                    <rect x="58" y="78" width="24" height="3" rx="1" fill="#4a5a6a" stroke="#2a3a4a" stroke-width="0.5"/>
+                    <rect x="63" y="70" width="14" height="6" rx="2" fill="#5a6b7a" stroke="#4a5a6a" stroke-width="0.5"/>
+                    <circle cx="75" cy="73" r="2.5" fill="#7ba4d9" stroke="#5a8ac0" stroke-width="0.5" opacity="0.8"/>
+                    <circle cx="69" cy="77" r="1.5" fill="#6a7b8a" stroke="#5a6b7a" stroke-width="0.3"/>
+                    <text x="115" y="78" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="900"
+                          fill="url(#caisGrad)" letter-spacing="3" stroke="#1a2a3a" stroke-width="0.3">CAIS</text>
+                    <line x1="114" y1="72" x2="208" y2="72" stroke="url(#highlightLine)" stroke-width="1.5" opacity="0.5"/>
+                    <text x="115" y="75" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="900"
+                          fill="rgba(255,255,255,0.15)" letter-spacing="3">CAIS</text>
+                    <circle cx="70" cy="112" r="2" fill="#f59e0b" opacity="0.4"/>
+                </svg>
+            </div>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-slate-400" id="liveTime"></span>
+                <span class="inline-block w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
             </div>
         </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon">📄</div>
-            <div class="stat-info">
-                <span class="stat-value">{{ total_documents }}</span>
-                <span class="stat-label">Total Documents</span>
+
+        <!-- KPI Cards (Dynamic loading state starting with —) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" id="kpiGrid">
+            <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-5">
+                <div class="kpi-label"><i class="fas fa-dollar-sign mr-1 text-blue-400"></i>Value at Risk</div>
+                <div class="kpi-value" id="valueAtRisk">—</div>
+                <div class="text-xs text-slate-500 mt-1">Estimated repair cost</div>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-5">
+                <div class="kpi-label"><i class="fas fa-gavel mr-1 text-red-400"></i>Active Liens</div>
+                <div class="kpi-value" id="activeLiens">—</div>
+                <div class="text-xs text-slate-500 mt-1">Registered property liens</div>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-5">
+                <div class="kpi-label"><i class="fas fa-check-circle mr-1 text-emerald-400"></i>Compliance %</div>
+                <div class="kpi-value" id="compliancePercent">—</div>
+                <div class="text-xs text-slate-500 mt-1">Weighted compliance score</div>
+            </div>
+            <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-5">
+                <div class="kpi-label"><i class="fas fa-exclamation-triangle mr-1 text-amber-400"></i>Risk Score</div>
+                <div class="kpi-value" id="riskScore">—</div>
+                <div class="text-xs text-slate-500 mt-1">Life &amp; property risk (1-100)</div>
             </div>
         </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon">⚠️</div>
-            <div class="stat-info">
-                <span class="stat-value">{{ total_violations }}</span>
-                <span class="stat-label">Total Violations</span>
-            </div>
+
+        <!-- Disclaimer -->
+        <div class="disclaimer-box mb-6">
+            <i class="fas fa-info-circle mr-2 text-amber-400"></i>
+            <strong>Disclaimer:</strong> The metrics presented above are automated estimations provided for preliminary informational and estimation purposes only. They do not constitute a formal legal or engineering determination and shall not be used as official reference, legal evidence, or final compliance certification.
         </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon">📈</div>
-            <div class="stat-info">
-                <span class="stat-value">{{ compliance_rate }}%</span>
-                <span class="stat-label">Compliance Rate</span>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Recent Activity -->
-    <div class="activity-section">
-        <h2>Recent Activity</h2>
-        <div class="activity-list">
-            {% for activity in recent_activities %}
-                <div class="activity-item">
-                    <span class="activity-time">{{ activity.timestamp }}</span>
-                    <span class="activity-type {{ activity.type }}">{{ activity.type }}</span>
-                    <span class="activity-message">{{ activity.message }}</span>
+
+        <!-- Main Two-Column Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- Left Column: Upload + History -->
+            <div class="space-y-6">
+
+                <!-- Upload Zone -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-6">
+                    <h2 class="text-lg font-semibold text-slate-100 mb-3">
+                        <i class="fas fa-cloud-upload-alt mr-2 text-blue-400"></i>Upload Document
+                    </h2>
+                    <div id="uploadZone" class="upload-zone rounded-lg p-8 text-center cursor-pointer">
+                        <i class="fas fa-file-upload text-4xl text-slate-500 mb-3"></i>
+                        <p class="text-slate-300 font-medium">Drop your file here or click to browse</p>
+                        <p class="text-xs text-slate-500 mt-1">PDF, DOCX, TXT, PNG, JPG, DWG, DXF, XLS, XLSX</p>
+                        <input type="file" id="fileInput" class="hidden" accept=".pdf,.docx,.doc,.txt,.png,.jpg,.jpeg,.dwg,.dxf,.xls,.xlsx" />
+                    </div>
+                    <div id="uploadProgress" class="mt-3 hidden">
+                        <div class="flex justify-between text-sm">
+                            <span id="uploadFileName" class="text-slate-300 truncate max-w-xs"></span>
+                            <span id="uploadProgressText" class="text-slate-400">0%</span>
+                        </div>
+                        <div class="w-full bg-slate-800 rounded-full h-2 mt-1">
+                            <div id="uploadProgressBar" class="bg-blue-500 h-2 rounded-full transition-all duration-300" style="width:0%"></div>
+                        </div>
+                        <div id="uploadStatusMessage" class="text-sm text-slate-400 mt-1"></div>
+                    </div>
                 </div>
-            {% else %}
-                <div class="activity-empty">No recent activity</div>
-            {% endfor %}
-        </div>
-    </div>
-    
-    <!-- Violation Breakdown -->
-    <div class="violation-section">
-        <h2>Violation Breakdown</h2>
-        <div class="violation-chart">
-            <div class="chart-bar critical" style="width: {{ critical_percent }}%">
-                Critical: {{ critical_count }}
-            </div>
-            <div class="chart-bar high" style="width: {{ high_percent }}%">
-                High: {{ high_count }}
-            </div>
-            <div class="chart-bar medium" style="width: {{ medium_percent }}%">
-                Medium: {{ medium_count }}
-            </div>
-            <div class="chart-bar low" style="width: {{ low_percent }}%">
-                Low: {{ low_count }}
-            </div>
-        </div>
-    </div>
-</div>
-{% endblock %}
 
-{% block extra_scripts %}
-    <script src="/static/js/dashboard.js"></script>
-{% endblock %}
+                <!-- Output History -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-6">
+                    <h2 class="text-lg font-semibold text-slate-100 mb-3">
+                        <i class="fas fa-history mr-2 text-slate-400"></i>Output History
+                    </h2>
+                    <div id="historyContainer">
+                        <p class="text-slate-500 text-sm" id="historyPlaceholder">Connecting to forensic stream...</p>
+                        <div id="historyList" class="divide-y divide-slate-800"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Language Selector + Address Verification + Codes -->
+            <div class="space-y-6">
+
+                <!-- Semantic Agent Language Box -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-6">
+                    <h2 class="text-lg font-semibold text-slate-100 mb-3">
+                        <i class="fas fa-language mr-2 text-cyan-400"></i>Agent Language Selector
+                    </h2>
+                    <div class="flex items-center gap-2">
+                        <select id="agentLanguageSelect" class="flex-1 border border-slate-700 rounded-lg px-4 py-2 bg-slate-950 text-slate-100 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                            <option value="es">Español (Spanish)</option>
+                            <option value="en">English (US)</option>
+                            <option value="pt">Português (Portuguese)</option>
+                        </select>
+                        <button id="setLanguageBtn" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-4 py-2 rounded-lg transition text-sm">
+                            Apply
+                        </button>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-2">Selects the operating language for the semantic browser agent.</p>
+                </div>
+
+                <!-- Project Address Box -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-6">
+                    <h2 class="text-lg font-semibold text-slate-100 mb-3">
+                        <i class="fas fa-map-marker-alt mr-2 text-red-400"></i>Project Address &amp; Jurisdiction
+                    </h2>
+                    <div class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" id="addressInput" placeholder="Enter address to verify jurisdiction..." class="flex-1 border border-slate-700 rounded-lg px-4 py-2 bg-slate-950 text-slate-100 placeholder-slate-500 focus:ring-2 focus:ring-blue-500 focus:outline-none" />
+                        <button id="verifyBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">
+                            <i class="fas fa-search mr-1"></i> Verify
+                        </button>
+                    </div>
+                    <div id="addressResult" class="mt-3 text-sm">
+                        <p><span class="font-medium text-slate-300">Jurisdiction:</span> <span id="jurisdictionDisplay" class="text-slate-400">Awaiting verification</span></p>
+                        <div id="coverageDetails" class="mt-2 grid grid-cols-2 gap-1 text-slate-400 hidden">
+                            <span>Codes: <span id="codeCount">0</span></span>
+                            <span>Regulations: <span id="regulationCount">0</span></span>
+                            <span>Laws: <span id="lawCount">0</span></span>
+                            <span>Coverage: <span id="coveragePercent">0</span>%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Codes Table -->
+                <div class="bg-slate-900/90 border border-slate-800 rounded-lg shadow-xl p-6">
+                    <h2 class="text-lg font-semibold text-slate-100 mb-3">
+                        <i class="fas fa-code mr-2 text-purple-400"></i>Active Building &amp; Safety Codes
+                    </h2>
+                    <div id="codesContainer">
+                        <p class="text-slate-500 text-sm" id="codesPlaceholder">Synchronizing regulations database...</p>
+                        <div id="codesList" class="divide-y divide-slate-800"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-10 text-center text-xs text-slate-500 border-t border-slate-800 pt-4">
+            CAIS Code Compliance &bull; Forensic Facts, Zero Opinions &bull; v10.0
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            const kpiValueAtRisk = document.getElementById('valueAtRisk');
+            const kpiActiveLiens = document.getElementById('activeLiens');
+            const kpiCompliancePercent = document.getElementById('compliancePercent');
+            const kpiRiskScore = document.getElementById('riskScore');
+
+            const uploadZone = document.getElementById('uploadZone');
+            const fileInput = document.getElementById('fileInput');
+            const uploadProgress = document.getElementById('uploadProgress');
+            const uploadFileName = document.getElementById('uploadFileName');
+            const uploadProgressBar = document.getElementById('uploadProgressBar');
+            const uploadProgressText = document.getElementById('uploadProgressText');
+            const uploadStatusMessage = document.getElementById('uploadStatusMessage');
+
+            const historyList = document.getElementById('historyList');
+            const historyPlaceholder = document.getElementById('historyPlaceholder');
+
+            const addressInput = document.getElementById('addressInput');
+            const verifyBtn = document.getElementById('verifyBtn');
+            const jurisdictionDisplay = document.getElementById('jurisdictionDisplay');
+            const coverageDetails = document.getElementById('coverageDetails');
+            const codeCountSpan = document.getElementById('codeCount');
+            const regulationCountSpan = document.getElementById('regulationCount');
+            const lawCountSpan = document.getElementById('lawCount');
+            const coveragePercentSpan = document.getElementById('coveragePercent');
+
+            const agentLanguageSelect = document.getElementById('agentLanguageSelect');
+            const setLanguageBtn = document.getElementById('setLanguageBtn');
+
+            const codesList = document.getElementById('codesList');
+            const codesPlaceholder = document.getElementById('codesPlaceholder');
+            const liveTime = document.getElementById('liveTime');
+
+            function formatTime(d) {
+                return d.toLocaleTimeString('en-US', { hour12: false });
+            }
+
+            function updateClock() {
+                liveTime.textContent = formatTime(new Date());
+            }
+            updateClock();
+            setInterval(updateClock, 1000);
+
+            async function loadStats() {
+                try {
+                    const resp = await fetch('/api/dashboard/stats');
+                    const json = await resp.json();
+                    if (json.status === 'success') {
+                        const d = json.data;
+                        kpiValueAtRisk.textContent = '$' + Number(d.value_at_risk).toLocaleString();
+                        kpiActiveLiens.textContent = d.active_liens;
+                        kpiCompliancePercent.textContent = d.compliance_percent + '%';
+                        kpiRiskScore.textContent = d.risk_score;
+                    }
+                } catch (e) {
+                    console.error('Failed to load stats:', e);
+                }
+            }
+
+            async function loadHistory() {
+                try {
+                    const resp = await fetch('/api/dashboard/history');
+                    const json = await resp.json();
+                    if (json.status === 'success' && json.data.length > 0) {
+                        historyPlaceholder.style.display = 'none';
+                        historyList.innerHTML = '';
+                        json.data.forEach(function(entry) {
+                            const div = document.createElement('div');
+                            div.className = 'history-entry flex items-center gap-3';
+                            const statusClass = entry.status.toLowerCase();
+                            div.innerHTML = `
+                                <span class="text-slate-500 text-sm w-16 flex-shrink-0">${entry.time}</span>
+                                <span class="status-badge ${statusClass}">${entry.status}</span>
+                                <span class="text-slate-300 text-sm flex-1">${entry.message}</span>
+                            `;
+                            historyList.appendChild(div);
+                        });
+                    } else {
+                        historyPlaceholder.textContent = 'No forensic history records found.';
+                    }
+                } catch (e) {
+                    console.error('Failed to load history:', e);
+                    historyPlaceholder.textContent = 'Error connecting to history stream.';
+                }
+            }
+
+            async function loadCodes() {
+                try {
+                    const resp = await fetch('/api/dashboard/codes');
+                    const json = await resp.json();
+                    if (json.status === 'success' && json.data.length > 0) {
+                        codesPlaceholder.style.display = 'none';
+                        codesList.innerHTML = '';
+                        json.data.forEach(function(code) {
+                            const div = document.createElement('div');
+                            div.className = 'code-item flex items-center justify-between';
+                            const severityClass = code.severity ? code.severity.toLowerCase() : 'active';
+                            div.innerHTML = `
+                                <div>
+                                    <span class="font-mono text-sm font-medium text-slate-300">${code.code_id}</span>
+                                    <span class="text-sm text-slate-400 ml-2">${code.title}</span>
+                                </div>
+                                <span class="severity-badge ${severityClass}">${code.severity || 'active'}</span>
+                            `;
+                            codesList.appendChild(div);
+                        });
+                    } else {
+                        codesPlaceholder.textContent = 'No active building codes retrieved.';
+                    }
+                } catch (e) {
+                    console.error('Failed to load codes:', e);
+                    codesPlaceholder.textContent = 'Error loading regulations database.';
+                }
+            }
+
+            async function loadProjectInfo() {
+                try {
+                    const resp = await fetch('/api/dashboard/project');
+                    const json = await resp.json();
+                    if (json.status === 'success') {
+                        const d = json.data;
+                        if (d.address) addressInput.value = d.address;
+                        if (d.jurisdiction) jurisdictionDisplay.textContent = d.jurisdiction;
+                    }
+                } catch (e) {
+                    console.warn('Could not load project info:', e);
+                }
+            }
+
+            async function verifyAddress() {
+                const address = addressInput.value.trim();
+                if (!address) {
+                    jurisdictionDisplay.textContent = 'Please enter a valid address.';
+                    coverageDetails.classList.add('hidden');
+                    return;
+                }
+                jurisdictionDisplay.textContent = 'Verifying jurisdiction...';
+                coverageDetails.classList.add('hidden');
+
+                try {
+                    const resp = await fetch('/api/dashboard/verify-address', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ address: address })
+                    });
+                    const json = await resp.json();
+                    if (json.status === 'success') {
+                        const d = json.data;
+                        jurisdictionDisplay.textContent = d.jurisdiction || 'Unknown';
+                        if (d.has_codes) {
+                            coverageDetails.classList.remove('hidden');
+                            codeCountSpan.textContent = d.code_count;
+                            regulationCountSpan.textContent = d.regulation_count;
+                            lawCountSpan.textContent = d.law_count;
+                            coveragePercentSpan.textContent = d.coverage_percentage;
+                        } else {
+                            coverageDetails.classList.add('hidden');
+                        }
+                    } else {
+                        jurisdictionDisplay.textContent = 'Error: ' + (json.message || 'Verification failed');
+                    }
+                } catch (e) {
+                    console.error('Verify address error:', e);
+                    jurisdictionDisplay.textContent = 'Network communication error.';
+                }
+            }
+
+            if (setLanguageBtn) {
+                setLanguageBtn.addEventListener('click', function() {
+                    const selectedLang = agentLanguageSelect.value;
+                    console.log('Agent language set to:', selectedLang);
+                    setLanguageBtn.textContent = 'Saved!';
+                    setTimeout(() => { setLanguageBtn.textContent = 'Apply'; }, 1500);
+                });
+            }
+
+            function handleFiles(files) {
+                if (files.length === 0) return;
+                const file = files[0];
+
+                uploadProgress.classList.remove('hidden');
+                uploadFileName.textContent = file.name;
+                uploadProgressBar.style.width = '0%';
+                uploadProgressText.textContent = '0%';
+                uploadStatusMessage.textContent = 'Uploading artifact...';
+
+                const formData = new FormData();
+                formData.append('file', file);
+
+                fetch('/api/upload/file', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success' && data.job_id) {
+                        uploadProgressBar.style.width = '100%';
+                        uploadProgressText.textContent = '100%';
+                        uploadStatusMessage.textContent = 'Processing ingestion...';
+                        pollJobStatus(data.job_id);
+                    } else {
+                        uploadStatusMessage.textContent = 'Upload failed: ' + (data.message || 'Unknown error');
+                        uploadProgressBar.style.width = '0%';
+                    }
+                })
+                .catch(err => {
+                    uploadStatusMessage.textContent = 'Upload error: ' + err.message;
+                    uploadProgressBar.style.width = '0%';
+                });
+            }
+
+            function pollJobStatus(jobId) {
+                let pollCount = 0;
+                const maxPolls = 120;
+
+                const interval = setInterval(function() {
+                    pollCount++;
+                    fetch('/api/upload/status/' + jobId)
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                const job = data.data;
+                                const overall = job.overall_status || 'processing';
+                                const steps = job.steps || {};
+                                let completed = 0;
+                                let total = 0;
+                                for (let key in steps) {
+                                    total++;
+                                    if (steps[key].status === 'done' || steps[key].status === 'skipped') {
+                                        completed++;
+                                    }
+                                }
+                                let progress = total > 0 ? (completed / total) * 100 : 0;
+                                uploadProgressBar.style.width = Math.min(progress, 95) + '%';
+                                uploadProgressText.textContent = Math.round(progress) + '%';
+                                uploadStatusMessage.textContent = overall.charAt(0).toUpperCase() + overall.slice(1);
+
+                                if (overall === 'completed') {
+                                    clearInterval(interval);
+                                    uploadProgressBar.style.width = '100%';
+                                    uploadProgressText.textContent = '100%';
+                                    uploadStatusMessage.textContent = '✅ Ingestion complete!';
+                                    loadStats();
+                                    loadHistory();
+                                    loadCodes();
+                                } else if (overall === 'failed') {
+                                    clearInterval(interval);
+                                    uploadStatusMessage.textContent = '❌ Processing failed: ' + (job.error || 'Unknown error');
+                                } else if (pollCount >= maxPolls) {
+                                    clearInterval(interval);
+                                    uploadStatusMessage.textContent = '⏱️ Timeout - job still executing';
+                                }
+                            }
+                        })
+                        .catch(() => {});
+                }, 1000);
+            }
+
+            uploadZone.addEventListener('click', function() {
+                fileInput.click();
+            });
+
+            uploadZone.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+            });
+
+            uploadZone.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('dragover');
+                if (e.dataTransfer.files.length > 0) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+
+            fileInput.addEventListener('change', function() {
+                if (this.files.length > 0) {
+                    handleFiles(this.files);
+                }
+                this.value = '';
+            });
+
+            verifyBtn.addEventListener('click', verifyAddress);
+            addressInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') verifyAddress();
+            });
+
+            loadStats();
+            loadHistory();
+            loadCodes();
+            loadProjectInfo();
+
+            setInterval(function() {
+                loadStats();
+                loadHistory();
+            }, 30000);
+
+        })();
+    </script>
+
+</body>
+</html>

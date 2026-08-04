@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>CAIS v10.0 · Real Execution Dashboard</title>
+    <title>CAIS · Real Execution Dashboard</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
     <style>
@@ -41,35 +41,16 @@
         .logo-link {
             display: flex;
             align-items: center;
-            gap: 12px;
             text-decoration: none;
+            flex-shrink: 0;
         }
 
-        .logo-img {
-            height: 120px;
+        .logo-svg {
+            height: 200px;
             width: auto;
-            max-height: 140px;
+            max-height: 240px;
             display: block;
             background: transparent;
-        }
-
-        .version-divider {
-            border-left: 2px solid #1f2937;
-            padding-left: 16px;
-        }
-
-        .title {
-            font-size: 36px;
-            font-weight: 700;
-            color: #ffffff;
-            letter-spacing: 0.5px;
-        }
-
-        .subtitle {
-            font-size: 18px;
-            font-weight: 400;
-            color: #6b7280;
-            letter-spacing: 1px;
         }
 
         .header-right {
@@ -229,9 +210,6 @@
             color: #f59e0b;
         }
 
-        /* ============================================================
-           UPLOAD ZONE
-           ============================================================ */
         .upload-zone {
             border: 2px dashed #1f2937;
             border-radius: 10px;
@@ -326,46 +304,6 @@
 
         .upload-zone .upload-progress .file-info .file-name {
             color: #d1d5db;
-        }
-
-        .processing-status {
-            margin-top: 12px;
-            padding: 12px;
-            background: #0a0e1a;
-            border-radius: 6px;
-            border: 1px solid #1f2937;
-            display: none;
-        }
-
-        .processing-status .step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 4px 0;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .processing-status .step.active {
-            color: #f59e0b;
-        }
-
-        .processing-status .step.done {
-            color: #10b981;
-        }
-
-        .processing-status .step .step-icon {
-            width: 18px;
-            text-align: center;
-        }
-
-        .processing-status .step .step-icon .fa-spinner {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .history-table {
@@ -563,9 +501,6 @@
             text-transform: uppercase;
         }
 
-        /* ============================================================
-           LANGUAGE MODAL
-           ============================================================ */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -673,10 +608,6 @@
             .header-left {
                 flex-wrap: wrap;
             }
-            .version-divider {
-                border-left: none;
-                padding-left: 0;
-            }
             .address-input {
                 flex-direction: column;
             }
@@ -692,19 +623,179 @@
 <body>
 
 <!-- ============================================================
-     HEADER
+     HEADER WITH CAIS MASTER LOGO (SVG) - DOUBLED SIZE
      ============================================================ -->
 <header class="header">
     <div class="header-left">
         <a href="/" class="logo-link">
-            <img src="/static/images/CAIS_LOGO_clean.png" 
-                 alt="CAIS CODE COMPLIANCE" 
-                 class="logo-img">
+            <svg class="logo-svg" viewBox="0 0 260 120" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- Radial glow for the circular background -->
+                    <radialGradient id="cGlow" cx="50%" cy="45%" r="60%">
+                        <stop offset="0%" stop-color="#f97316" stop-opacity="0.95"/>
+                        <stop offset="35%" stop-color="#ea580c" stop-opacity="0.85"/>
+                        <stop offset="65%" stop-color="#b45309" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="#78350f" stop-opacity="0.2"/>
+                    </radialGradient>
+                    <!-- Steel-blue gradient for CAIS typography -->
+                    <linearGradient id="caisGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#7ba4d9"/>
+                        <stop offset="30%" stop-color="#5a8ac0"/>
+                        <stop offset="55%" stop-color="#3a6a9a"/>
+                        <stop offset="100%" stop-color="#1a4a7a"/>
+                    </linearGradient>
+                    <!-- Highlight reflection line for text -->
+                    <linearGradient id="highlightLine" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(255,255,255,0)" stop-opacity="0"/>
+                        <stop offset="50%" stop-color="rgba(255,255,255,0.6)" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="rgba(255,255,255,0)" stop-opacity="0"/>
+                    </linearGradient>
+                    <!-- Emerald green checkmark gradient -->
+                    <linearGradient id="checkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#4ade80"/>
+                        <stop offset="40%" stop-color="#22c55e"/>
+                        <stop offset="80%" stop-color="#16a34a"/>
+                        <stop offset="100%" stop-color="#15803d"/>
+                    </linearGradient>
+                    <!-- Checkmark highlight -->
+                    <linearGradient id="checkHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#86efac" stop-opacity="0.8"/>
+                        <stop offset="100%" stop-color="#22c55e" stop-opacity="0"/>
+                    </linearGradient>
+                    <!-- Drop shadow for checkmark -->
+                    <filter id="checkShadow" x="-10%" y="-10%" width="130%" height="130%">
+                        <feDropShadow dx="1" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.4"/>
+                    </filter>
+                    <!-- Glow filter for the outer C -->
+                    <filter id="cGlowFilter" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                </defs>
+
+                <!-- ================================================
+                     OUTER "C" FRAME - Heavy black letter C
+                     ================================================ -->
+                <!-- The "C" is drawn as a thick stroke with rounded caps -->
+                <path d="M 85 15
+                         C 45 15, 20 40, 20 60
+                         C 20 80, 45 105, 85 105
+                         C 100 105, 110 100, 120 92"
+                      fill="none"
+                      stroke="#0a0a0a"
+                      stroke-width="10"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      filter="url(#cGlowFilter)"/>
+
+                <!-- Outer accent stroke on the C for depth -->
+                <path d="M 85 18
+                         C 48 18, 23 42, 23 60
+                         C 23 78, 48 102, 85 102
+                         C 98 102, 108 97, 117 90"
+                      fill="none"
+                      stroke="#1a1a1a"
+                      stroke-width="2"
+                      stroke-linecap="round"/>
+
+                <!-- ================================================
+                     RADIAL GLOW BACKGROUND INSIDE THE C
+                     ================================================ -->
+                <!-- The orange glow circle inside the C frame -->
+                <circle cx="70" cy="60" r="38" fill="url(#cGlow)" opacity="0.85"/>
+
+                <!-- Subtle inner glow ring -->
+                <circle cx="70" cy="60" r="32" fill="none" stroke="#f97316" stroke-width="1.5" stroke-opacity="0.3"/>
+
+                <!-- ================================================
+                     CENTRAL AUDIT CLIPBOARD
+                     ================================================ -->
+                <!-- Clipboard outer frame (wood/leather border) -->
+                <rect x="49" y="35" width="42" height="48" rx="4" fill="#3d2b1f" stroke="#2a1a0e" stroke-width="1.5"/>
+
+                <!-- Clipboard inner paper -->
+                <rect x="53" y="39" width="34" height="36" rx="2" fill="#f5f0e8" stroke="#d4c9b8" stroke-width="0.8"/>
+
+                <!-- Horizontal text lines on the paper (forensic documentation) -->
+                <line x1="57" y1="46" x2="83" y2="46" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                <line x1="57" y1="51" x2="78" y2="51" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                <line x1="57" y1="56" x2="83" y2="56" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                <line x1="57" y1="61" x2="74" y2="61" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                <line x1="57" y1="66" x2="80" y2="66" stroke="#b8a99a" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+
+                <!-- Metallic binder clip at top center -->
+                <rect x="63" y="31" width="14" height="7" rx="2" fill="#8a9bb5" stroke="#6a7b95" stroke-width="0.8"/>
+                <rect x="65" y="30" width="10" height="3" rx="1" fill="#b0c4de" stroke="#8a9bb5" stroke-width="0.5"/>
+                <!-- Clip hinge line -->
+                <line x1="63" y1="34" x2="77" y2="34" stroke="#5a6b85" stroke-width="0.8"/>
+
+                <!-- ================================================
+                     GLOSSY EMERALD-GREEN CHECKMARK (diagonal)
+                     ================================================ -->
+                <!-- Thick main checkmark stroke -->
+                <path d="M 55 62 L 67 74 L 88 52"
+                      fill="none"
+                      stroke="url(#checkGrad)"
+                      stroke-width="5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      filter="url(#checkShadow)"/>
+
+                <!-- Highlight overlay on the checkmark (glossy effect) -->
+                <path d="M 56 61 L 67 72 L 86 52"
+                      fill="none"
+                      stroke="url(#checkHighlight)"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      opacity="0.5"/>
+
+                <!-- ================================================
+                     FOREGROUND SURVEYING THEODOLITE ON TRIPOD
+                     ================================================ -->
+                <!-- Tripod: left leg -->
+                <line x1="58" y1="78" x2="44" y2="98" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Tripod: center leg -->
+                <line x1="70" y1="80" x2="70" y2="100" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Tripod: right leg -->
+                <line x1="82" y1="78" x2="96" y2="98" stroke="#5a6b7a" stroke-width="2.5" stroke-linecap="round"/>
+
+                <!-- Tripod feet (dark structural shoes) -->
+                <rect x="40" y="97" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+                <rect x="66" y="99" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+                <rect x="92" y="97" width="8" height="4" rx="1" fill="#2a2a2a" stroke="#1a1a1a" stroke-width="0.5"/>
+
+                <!-- Theodolite body / total station -->
+                <rect x="62" y="74" width="16" height="8" rx="1.5" fill="#3d4a5c" stroke="#2a3342" stroke-width="0.8"/>
+                <!-- Theodolite base -->
+                <rect x="58" y="78" width="24" height="3" rx="1" fill="#4a5a6a" stroke="#2a3a4a" stroke-width="0.5"/>
+                <!-- Theodolite telescope / scope -->
+                <rect x="63" y="70" width="14" height="6" rx="2" fill="#5a6b7a" stroke="#4a5a6a" stroke-width="0.5"/>
+                <!-- Theodolite lens -->
+                <circle cx="75" cy="73" r="2.5" fill="#7ba4d9" stroke="#5a8ac0" stroke-width="0.5" opacity="0.8"/>
+                <!-- Theodolite adjustment knob -->
+                <circle cx="69" cy="77" r="1.5" fill="#6a7b8a" stroke="#5a6b7a" stroke-width="0.3"/>
+
+                <!-- ================================================
+                     "CAIS" TYPOGRAPHY - Two-tone steel-blue
+                     ================================================ -->
+                <!-- CAIS text with metallic gradient -->
+                <text x="115" y="78" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="900" fill="url(#caisGrad)" letter-spacing="3" stroke="#1a2a3a" stroke-width="0.3">CAIS</text>
+
+                <!-- Crisp horizontal light reflection line across the text -->
+                <line x1="114" y1="72" x2="208" y2="72" stroke="url(#highlightLine)" stroke-width="1.5" opacity="0.5"/>
+
+                <!-- Secondary subtle highlight on the top of letters -->
+                <text x="115" y="75" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="900" fill="rgba(255,255,255,0.15)" letter-spacing="3">CAIS</text>
+
+                <!-- ================================================
+                     SUBTLE BRANDING ACCENT - Small forensic seal
+                     ================================================ -->
+                <!-- Tiny seal dot below the C emblem -->
+                <circle cx="70" cy="112" r="2" fill="#f59e0b" opacity="0.4"/>
+
+            </svg>
         </a>
-        <div class="version-divider">
-            <div class="title">CAIS v10.0</div>
-            <div class="subtitle">Real Execution Dashboard</div>
-        </div>
     </div>
     <div class="header-right">
         <div class="language-selector">
@@ -728,12 +819,12 @@
             <span class="lang-status" id="langStatus">●</span>
         </div>
         <span class="user">
-            <i class="fas fa-user-circle"></i> 
+            <i class="fas fa-user-circle"></i>
             Sovereign
         </span>
         <span class="status-dot"></span>
         <span>
-            <i class="fas fa-sync-alt fa-spin"></i> 
+            <i class="fas fa-sync-alt fa-spin"></i>
             <span id="live-time"></span>
         </span>
     </div>
@@ -776,10 +867,10 @@
         <div class="upload-zone" id="uploadZone">
             <div class="icon"><i class="fas fa-file-upload"></i></div>
             <div class="title">READY FOR UPLOAD</div>
-            <div class="formats">PDF, DOCX, TXT, PNG, JPG</div>
+            <div class="formats">PDF, DOCX, TXT, PNG, JPG, DWG, DXF, XLS</div>
             <div class="drag-hint"><i class="fas fa-arrows-alt"></i> Drag &amp; drop</div>
             <button class="btn-browse" id="browseBtn"><i class="fas fa-folder-open"></i> Browse</button>
-            <input type="file" id="fileInput" multiple accept=".pdf,.docx,.txt,.png,.jpg,.jpeg" style="display:none;">
+            <input type="file" id="fileInput" multiple accept=".pdf,.docx,.doc,.txt,.png,.jpg,.jpeg,.dwg,.dxf,.xls,.xlsx" style="display:none;">
             <div class="upload-progress" id="uploadProgress">
                 <div class="file-info">
                     <span class="file-name" id="uploadFileInfo">Ready</span>
@@ -887,13 +978,13 @@
 </div>
 
 <!-- ============================================================
-     JAVASCRIPT
+     JAVASCRIPT ENGINE
      ============================================================ -->
 <script>
     // ============================================================
-    // TRANSLATIONS
+    // MULTI-LANGUAGE DICTIONARY
     // ============================================================
-    const translations = {
+    var translations = {
         'en': {
             'value_at_risk': 'VALUE AT RISK',
             'active_liens': 'ACTIVE LIENS',
@@ -998,6 +1089,356 @@
             'no_address': 'Veuillez entrer une adresse valide',
             'error': 'Erreur',
             'success': 'Succès'
+        },
+        'de': {
+            'value_at_risk': 'RISIKOWERT',
+            'active_liens': 'AKTIVE PFANDRECHTE',
+            'compliance': 'KONFORMITÄT %',
+            'risk_score': 'RISIKOBEWERTUNG',
+            'intest_zone': 'TESTZONE',
+            'ready_for_upload': 'BEREIT ZUM HOCHLADEN',
+            'drag_drop': 'Ziehen und ablegen',
+            'browse': 'Durchsuchen',
+            'output_history': 'AUSGABEVERLAUF',
+            'time': 'Uhrzeit',
+            'status': 'Status',
+            'error_log': 'Fehlerprotokoll',
+            'loading_history': 'Lade Verlauf...',
+            'project_address': 'PROJEKTADRESSE',
+            'verify': 'Verifizieren',
+            'jurisdiction': 'Zuständigkeit',
+            'codes': 'Codes',
+            'regulations': 'Vorschriften',
+            'laws': 'Gesetze',
+            'coverage': 'Abdeckung',
+            'codes_list': 'CODES',
+            'loading_codes': 'Lade Codes...',
+            'select_language': 'Sprache auswählen',
+            'language_desc': 'Wählen Sie Ihre bevorzugte Sprache für das Dashboard. Das System wird ein semantisches Wörterbuch für diese Sprache herunterladen.',
+            'apply': 'Übernehmen',
+            'skip': 'Überspringen',
+            'loading': 'Laden...',
+            'verifying': 'Verifiziere...',
+            'verified': 'Verifiziert',
+            'not_verified': 'Nicht verifiziert',
+            'no_address': 'Bitte geben Sie eine gültige Adresse ein',
+            'error': 'Fehler',
+            'success': 'Erfolg'
+        },
+        'it': {
+            'value_at_risk': 'VALORE A RISCHIO',
+            'active_liens': 'IPOTECHE ATTIVE',
+            'compliance': 'CONFORMITÀ %',
+            'risk_score': 'PUNTEGGIO DI RISCHIO',
+            'intest_zone': 'ZONA DI TEST',
+            'ready_for_upload': 'PRONTO PER IL CARICAMENTO',
+            'drag_drop': 'Trascina e rilascia',
+            'browse': 'Sfoglia',
+            'output_history': 'CRONOLOGIA DELLE USCITE',
+            'time': 'Orario',
+            'status': 'Stato',
+            'error_log': 'Registro errori',
+            'loading_history': 'Caricamento cronologia...',
+            'project_address': 'INDIRIZZO DEL PROGETTO',
+            'verify': 'Verifica',
+            'jurisdiction': 'Giurisdizione',
+            'codes': 'Codici',
+            'regulations': 'Regolamenti',
+            'laws': 'Leggi',
+            'coverage': 'Copertura',
+            'codes_list': 'CODICI',
+            'loading_codes': 'Caricamento codici...',
+            'select_language': 'Seleziona lingua',
+            'language_desc': 'Scegli la tua lingua preferita per il dashboard. Il sistema scaricherà un dizionario semantico per questa lingua.',
+            'apply': 'Applica',
+            'skip': 'Salta',
+            'loading': 'Caricamento...',
+            'verifying': 'Verifica in corso...',
+            'verified': 'Verificato',
+            'not_verified': 'Non verificato',
+            'no_address': 'Inserisci un indirizzo valido',
+            'error': 'Errore',
+            'success': 'Successo'
+        },
+        'pt': {
+            'value_at_risk': 'VALOR EM RISCO',
+            'active_liens': 'ÔNUS ATIVOS',
+            'compliance': 'CONFORMIDADE %',
+            'risk_score': 'PONTUAÇÃO DE RISCO',
+            'intest_zone': 'ZONA DE TESTE',
+            'ready_for_upload': 'PRONTO PARA ENVIO',
+            'drag_drop': 'Arrastar e soltar',
+            'browse': 'Procurar',
+            'output_history': 'HISTÓRICO DE SAÍDA',
+            'time': 'Hora',
+            'status': 'Status',
+            'error_log': 'Registro de erros',
+            'loading_history': 'Carregando histórico...',
+            'project_address': 'ENDEREÇO DO PROJETO',
+            'verify': 'Verificar',
+            'jurisdiction': 'Jurisdição',
+            'codes': 'Códigos',
+            'regulations': 'Regulamentações',
+            'laws': 'Leis',
+            'coverage': 'Cobertura',
+            'codes_list': 'CÓDIGOS',
+            'loading_codes': 'Carregando códigos...',
+            'select_language': 'Selecionar idioma',
+            'language_desc': 'Escolha seu idioma preferido para o painel. O sistema baixará um dicionário semântico para este idioma.',
+            'apply': 'Aplicar',
+            'skip': 'Pular',
+            'loading': 'Carregando...',
+            'verifying': 'Verificando...',
+            'verified': 'Verificado',
+            'not_verified': 'Não verificado',
+            'no_address': 'Insira um endereço válido',
+            'error': 'Erro',
+            'success': 'Sucesso'
+        },
+        'nl': {
+            'value_at_risk': 'RISICOWAARDE',
+            'active_liens': 'ACTIEVE RECHTEN VAN ZAKELIJKE ZEKERHEID',
+            'compliance': 'NALEVING %',
+            'risk_score': 'RISICOSCORE',
+            'intest_zone': 'TESTZONE',
+            'ready_for_upload': 'KLAAR VOOR UPLOAD',
+            'drag_drop': 'Slepen en neerzetten',
+            'browse': 'Bladeren',
+            'output_history': 'UITVOERGESCHIEDENIS',
+            'time': 'Tijd',
+            'status': 'Status',
+            'error_log': 'Foutenlogboek',
+            'loading_history': 'Geschiedenis laden...',
+            'project_address': 'PROJECTADRES',
+            'verify': 'Verifiëren',
+            'jurisdiction': 'Rechtsgebied',
+            'codes': 'Codes',
+            'regulations': 'Regelgeving',
+            'laws': 'Wetten',
+            'coverage': 'Dekking',
+            'codes_list': 'CODES',
+            'loading_codes': 'Codes laden...',
+            'select_language': 'Taal selecteren',
+            'language_desc': 'Kies uw voorkeurstaal voor het dashboard. Het systeem zal een semantisch woordenboek voor deze taal downloaden.',
+            'apply': 'Toepassen',
+            'skip': 'Overslaan',
+            'loading': 'Laden...',
+            'verifying': 'Verifiëren...',
+            'verified': 'Geverifieerd',
+            'not_verified': 'Niet geverifieerd',
+            'no_address': 'Voer een geldig adres in',
+            'error': 'Fout',
+            'success': 'Succes'
+        },
+        'ru': {
+            'value_at_risk': 'СТОИМОСТЬ ПОД РИСКОМ',
+            'active_liens': 'АКТИВНЫЕ ОБРЕМЕНЕНИЯ',
+            'compliance': 'СООТВЕТСТВИЕ %',
+            'risk_score': 'ОЦЕНКА РИСКА',
+            'intest_zone': 'ТЕСТОВАЯ ЗОНА',
+            'ready_for_upload': 'ГОТОВ К ЗАГРУЗКЕ',
+            'drag_drop': 'Перетащите и отпустите',
+            'browse': 'Обзор',
+            'output_history': 'ИСТОРИЯ ВЫВОДА',
+            'time': 'Время',
+            'status': 'Статус',
+            'error_log': 'Журнал ошибок',
+            'loading_history': 'Загрузка истории...',
+            'project_address': 'АДРЕС ПРОЕКТА',
+            'verify': 'Проверить',
+            'jurisdiction': 'Юрисдикция',
+            'codes': 'Коды',
+            'regulations': 'Нормативы',
+            'laws': 'Законы',
+            'coverage': 'Покрытие',
+            'codes_list': 'КОДЫ',
+            'loading_codes': 'Загрузка кодов...',
+            'select_language': 'Выбрать язык',
+            'language_desc': 'Выберите предпочитаемый язык для панели управления. Система загрузит семантический словарь для этого языка.',
+            'apply': 'Применить',
+            'skip': 'Пропустить',
+            'loading': 'Загрузка...',
+            'verifying': 'Проверка...',
+            'verified': 'Проверено',
+            'not_verified': 'Не проверено',
+            'no_address': 'Введите действительный адрес',
+            'error': 'Ошибка',
+            'success': 'Успех'
+        },
+        'zh': {
+            'value_at_risk': '风险价值',
+            'active_liens': '有效留置权',
+            'compliance': '合规性 %',
+            'risk_score': '风险评分',
+            'intest_zone': '测试区域',
+            'ready_for_upload': '准备上传',
+            'drag_drop': '拖放',
+            'browse': '浏览',
+            'output_history': '输出历史',
+            'time': '时间',
+            'status': '状态',
+            'error_log': '错误日志',
+            'loading_history': '加载历史...',
+            'project_address': '项目地址',
+            'verify': '验证',
+            'jurisdiction': '司法管辖区',
+            'codes': '法规',
+            'regulations': '条例',
+            'laws': '法律',
+            'coverage': '覆盖率',
+            'codes_list': '法规列表',
+            'loading_codes': '加载法规...',
+            'select_language': '选择语言',
+            'language_desc': '为仪表板选择您的首选语言。系统将下载该语言的语义词典。',
+            'apply': '应用',
+            'skip': '跳过',
+            'loading': '加载中...',
+            'verifying': '验证中...',
+            'verified': '已验证',
+            'not_verified': '未验证',
+            'no_address': '请输入有效地址',
+            'error': '错误',
+            'success': '成功'
+        },
+        'ja': {
+            'value_at_risk': 'リスク価値',
+            'active_liens': 'アクティブな先取特権',
+            'compliance': 'コンプライアンス %',
+            'risk_score': 'リスクスコア',
+            'intest_zone': 'テストゾーン',
+            'ready_for_upload': 'アップロード準備完了',
+            'drag_drop': 'ドラッグ＆ドロップ',
+            'browse': '参照',
+            'output_history': '出力履歴',
+            'time': '時間',
+            'status': 'ステータス',
+            'error_log': 'エラーログ',
+            'loading_history': '履歴読み込み中...',
+            'project_address': 'プロジェクト住所',
+            'verify': '検証',
+            'jurisdiction': '管轄権',
+            'codes': 'コード',
+            'regulations': '規制',
+            'laws': '法律',
+            'coverage': 'カバレッジ',
+            'codes_list': 'コード一覧',
+            'loading_codes': 'コード読み込み中...',
+            'select_language': '言語を選択',
+            'language_desc': 'ダッシュボードの優先言語を選択してください。システムはこの言語のセマンティック辞書をダウンロードします。',
+            'apply': '適用',
+            'skip': 'スキップ',
+            'loading': '読み込み中...',
+            'verifying': '検証中...',
+            'verified': '検証済み',
+            'not_verified': '未検証',
+            'no_address': '有効な住所を入力してください',
+            'error': 'エラー',
+            'success': '成功'
+        },
+        'ko': {
+            'value_at_risk': '위험 가치',
+            'active_liens': '활성 유치권',
+            'compliance': '준수율 %',
+            'risk_score': '위험 점수',
+            'intest_zone': '테스트 영역',
+            'ready_for_upload': '업로드 준비 완료',
+            'drag_drop': '드래그 앤 드롭',
+            'browse': '찾아보기',
+            'output_history': '출력 기록',
+            'time': '시간',
+            'status': '상태',
+            'error_log': '오류 로그',
+            'loading_history': '기록 불러오는 중...',
+            'project_address': '프로젝트 주소',
+            'verify': '확인',
+            'jurisdiction': '관할권',
+            'codes': '법규',
+            'regulations': '규정',
+            'laws': '법률',
+            'coverage': '적용 범위',
+            'codes_list': '법규 목록',
+            'loading_codes': '법규 불러오는 중...',
+            'select_language': '언어 선택',
+            'language_desc': '대시보드의 기본 언어를 선택하십시오. 시스템이 이 언어에 대한 의미 사전을 다운로드합니다.',
+            'apply': '적용',
+            'skip': '건너뛰기',
+            'loading': '불러오는 중...',
+            'verifying': '확인 중...',
+            'verified': '확인됨',
+            'not_verified': '확인되지 않음',
+            'no_address': '유효한 주소를 입력하세요',
+            'error': '오류',
+            'success': '성공'
+        },
+        'ar': {
+            'value_at_risk': 'القيمة المعرضة للخطر',
+            'active_liens': 'الامتيازات النشطة',
+            'compliance': 'نسبة الامتثال %',
+            'risk_score': 'درجة المخاطر',
+            'intest_zone': 'منطقة الاختبار',
+            'ready_for_upload': 'جاهز للرفع',
+            'drag_drop': 'اسحب وأفلت',
+            'browse': 'تصفح',
+            'output_history': 'سجل المخرجات',
+            'time': 'الوقت',
+            'status': 'الحالة',
+            'error_log': 'سجل الأخطاء',
+            'loading_history': 'جاري تحميل السجل...',
+            'project_address': 'عنوان المشروع',
+            'verify': 'تحقق',
+            'jurisdiction': 'الاختصاص القضائي',
+            'codes': 'القوانين',
+            'regulations': 'اللوائح',
+            'laws': 'القوانين التشريعية',
+            'coverage': 'التغطية',
+            'codes_list': 'قائمة القوانين',
+            'loading_codes': 'جاري تحميل القوانين...',
+            'select_language': 'اختر اللغة',
+            'language_desc': 'اختر لغتك المفضلة للوحة التحكم. سيقوم النظام بتحميل قاموس دلالي لهذه اللغة.',
+            'apply': 'تطبيق',
+            'skip': 'تخطي',
+            'loading': 'جاري التحميل...',
+            'verifying': 'جاري التحقق...',
+            'verified': 'تم التحقق',
+            'not_verified': 'لم يتم التحقق',
+            'no_address': 'يرجى إدخال عنوان صالح',
+            'error': 'خطأ',
+            'success': 'نجاح'
+        },
+        'hi': {
+            'value_at_risk': 'जोखिम मूल्य',
+            'active_liens': 'सक्रिय ग्रहणाधिकार',
+            'compliance': 'अनुपालन %',
+            'risk_score': 'जोखिम स्कोर',
+            'intest_zone': 'परीक्षण क्षेत्र',
+            'ready_for_upload': 'अपलोड के लिए तैयार',
+            'drag_drop': 'खींचें और छोड़ें',
+            'browse': 'ब्राउज़ करें',
+            'output_history': 'आउटपुट इतिहास',
+            'time': 'समय',
+            'status': 'स्थिति',
+            'error_log': 'त्रुटि लॉग',
+            'loading_history': 'इतिहास लोड हो रहा है...',
+            'project_address': 'प्रोजेक्ट पता',
+            'verify': 'सत्यापित करें',
+            'jurisdiction': 'अधिकार क्षेत्र',
+            'codes': 'कोड',
+            'regulations': 'विनियम',
+            'laws': 'कानून',
+            'coverage': 'कवरेज',
+            'codes_list': 'कोड सूची',
+            'loading_codes': 'कोड लोड हो रहे हैं...',
+            'select_language': 'भाषा चुनें',
+            'language_desc': 'डैशबोर्ड के लिए अपनी पसंदीदा भाषा चुनें। सिस्टम इस भाषा के लिए एक शब्दकोश डाउनलोड करेगा।',
+            'apply': 'लागू करें',
+            'skip': 'छोड़ें',
+            'loading': 'लोड हो रहा है...',
+            'verifying': 'सत्यापित हो रहा है...',
+            'verified': 'सत्यापित',
+            'not_verified': 'सत्यापित नहीं',
+            'no_address': 'कृपया एक वैध पता दर्ज करें',
+            'error': 'त्रुटि',
+            'success': 'सफलता'
         }
     };
 
@@ -1011,36 +1452,71 @@
         return key.replace(/_/g, ' ').toUpperCase();
     }
 
-    let currentLanguage = 'en';
+    var currentLanguage = 'en';
 
     // ============================================================
-    // LIVE CLOCK
+    // LIVE REAL-TIME CLOCK UPDATER
     // ============================================================
     function updateClock() {
-        document.getElementById('live-time').textContent = new Date().toLocaleTimeString('en-US', { hour12: false });
+        var now = new Date();
+        var timeStr = now.toLocaleTimeString('en-US', { hour12: false });
+        document.getElementById('live-time').textContent = timeStr;
     }
     updateClock();
     setInterval(updateClock, 1000);
 
     // ============================================================
-    // LANGUAGE SELECTOR
+    // LANGUAGE SELECTOR AND MODAL LOGIC
     // ============================================================
     function applyLanguage(lang) {
         currentLanguage = lang;
         document.getElementById('languageSelect').value = lang;
-        document.querySelectorAll('.kpi-label, .panel-label, [data-key]').forEach(el => {
-            const key = el.dataset.key;
+        // Update static text elements with data-key attribute
+        document.querySelectorAll('[data-key]').forEach(function(el) {
+            var key = el.dataset.key;
             if (key) {
                 el.textContent = getTranslation(lang, key);
             }
         });
+        // Update KPI labels
+        var kpiLabels = document.querySelectorAll('.kpi-card .label');
+        var labelMap = ['value_at_risk', 'active_liens', 'compliance', 'risk_score'];
+        kpiLabels.forEach(function(label, index) {
+            if (index < labelMap.length) {
+                var key = labelMap[index];
+                var iconHTML = label.querySelector('i') ? label.querySelector('i').outerHTML : '';
+                label.innerHTML = iconHTML + ' ' + getTranslation(lang, key);
+            }
+        });
+        // Update panel titles
+        var panelTitles = document.querySelectorAll('.panel-title');
+        if (panelTitles.length >= 4) {
+            panelTitles[0].innerHTML = '<i class="fas fa-cloud-upload-alt"></i> ' + getTranslation(lang, 'intest_zone');
+            panelTitles[1].innerHTML = '<i class="fas fa-history"></i> ' + getTranslation(lang, 'output_history');
+            panelTitles[2].innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + getTranslation(lang, 'project_address');
+            panelTitles[3].innerHTML = '<i class="fas fa-code"></i> ' + getTranslation(lang, 'codes_list');
+        }
+        // Update verify button
+        document.getElementById('verifyAddressBtn').innerHTML = '<i class="fas fa-search"></i> ' + getTranslation(lang, 'verify');
+        // Update browse button
+        document.getElementById('browseBtn').innerHTML = '<i class="fas fa-folder-open"></i> ' + getTranslation(lang, 'browse');
+        // Update upload zone title
+        var uploadTitle = document.querySelector('.upload-zone .title');
+        if (uploadTitle) {
+            uploadTitle.textContent = getTranslation(lang, 'ready_for_upload');
+        }
+        // Update modal
+        document.querySelector('.modal-box h2').innerHTML = '<i class="fas fa-language"></i> ' + getTranslation(lang, 'select_language');
+        document.querySelector('.modal-box p').textContent = getTranslation(lang, 'language_desc');
+        document.getElementById('modalSubmitLang').innerHTML = '<i class="fas fa-check"></i> ' + getTranslation(lang, 'apply');
+        document.getElementById('modalSkipLang').textContent = getTranslation(lang, 'skip');
         try {
             localStorage.setItem('cais_language', lang);
         } catch(e) {}
     }
 
     document.getElementById('languageSelect').addEventListener('change', function() {
-        const lang = this.value;
+        var lang = this.value;
         if (lang === 'other') {
             document.getElementById('languageModal').style.display = 'flex';
             document.getElementById('modalLanguageSelect').value = 'custom';
@@ -1051,9 +1527,9 @@
     });
 
     document.getElementById('modalSubmitLang').addEventListener('click', function() {
-        const select = document.getElementById('modalLanguageSelect');
-        const customInput = document.getElementById('customLanguageInput');
-        let lang = select.value;
+        var select = document.getElementById('modalLanguageSelect');
+        var customInput = document.getElementById('customLanguageInput');
+        var lang = select.value;
         if (lang === 'custom') {
             lang = customInput.value.trim().toLowerCase();
             if (!lang || lang.length < 2) return;
@@ -1075,21 +1551,27 @@
     });
 
     // ============================================================
-    // UPLOAD - INTEST ZONE
+    // INTEST ZONE UPLOAD HANDLER
     // ============================================================
-    const zone = document.getElementById('uploadZone');
-    const fileInput = document.getElementById('fileInput');
-    const browseBtn = document.getElementById('browseBtn');
+    var zone = document.getElementById('uploadZone');
+    var fileInput = document.getElementById('fileInput');
+    var browseBtn = document.getElementById('browseBtn');
 
-    browseBtn.addEventListener('click', e => { e.stopPropagation(); fileInput.click(); });
-    zone.addEventListener('click', () => fileInput.click());
+    browseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        fileInput.click();
+    });
 
-    zone.addEventListener('dragover', e => {
+    zone.addEventListener('click', function() {
+        fileInput.click();
+    });
+
+    zone.addEventListener('dragover', function(e) {
         e.preventDefault();
         zone.classList.add('dragover');
     });
 
-    zone.addEventListener('dragleave', () => {
+    zone.addEventListener('dragleave', function() {
         zone.classList.remove('dragover');
     });
 
@@ -1108,116 +1590,135 @@
     });
 
     function handleFiles(files) {
-        const progressDiv = document.getElementById('uploadProgress');
-        const progressBar = document.getElementById('uploadProgressBar');
-        const progressText = document.getElementById('uploadProgressText');
-        const fileInfo = document.getElementById('uploadFileInfo');
+        var progressDiv = document.getElementById('uploadProgress');
+        var progressBar = document.getElementById('uploadProgressBar');
+        var progressText = document.getElementById('uploadProgressText');
+        var fileInfo = document.getElementById('uploadFileInfo');
 
         progressDiv.style.display = 'block';
         progressBar.style.width = '10%';
         progressText.textContent = 'Uploading...';
         fileInfo.textContent = files[0].name;
 
-        const formData = new FormData();
-        for (let file of files) {
-            formData.append('file', file);
+        var formData = new FormData();
+        for (var i = 0; i < files.length; i++) {
+            formData.append('file', files[i]);
         }
 
         fetch('/api/upload/file', {
             method: 'POST',
             body: formData
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'success') {
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            var isSuccess = data.status === 'success' || data.success === true || data.job_id || (data.data && data.data.job_id);
+            if (isSuccess) {
                 progressBar.style.width = '100%';
                 progressText.textContent = 'Processing...';
-                const jobId = data.data.job_id;
-                addHistoryEntry('SUCCESS', `Uploaded: ${files[0].name} (Job: ${jobId})`);
-                pollJobStatus(jobId);
+                var jobId = data.job_id || (data.data && data.data.job_id) || null;
+                if (jobId) {
+                    addHistoryEntry('SUCCESS', 'Uploaded: ' + files[0].name + ' (Job: ' + jobId + ')');
+                    pollJobStatus(jobId);
+                } else {
+                    progressBar.style.width = '100%';
+                    progressText.textContent = '✓ Upload complete';
+                    addHistoryEntry('SUCCESS', 'Uploaded: ' + files[0].name + ' (no job ID)');
+                }
             } else {
-                progressText.textContent = 'Error: ' + data.message;
+                var errorMsg = data.message || data.error || 'Upload failed';
+                progressText.textContent = 'Error: ' + errorMsg;
                 progressBar.style.width = '0%';
-                addHistoryEntry('ERROR', 'Upload failed: ' + data.message);
+                addHistoryEntry('ERROR', 'Upload failed: ' + errorMsg);
             }
         })
-        .catch(error => {
+        .catch(function(error) {
             progressText.textContent = 'Error: ' + error.message;
             progressBar.style.width = '0%';
             addHistoryEntry('ERROR', 'Upload error: ' + error.message);
         });
     }
 
+    // ============================================================
+    // ASYNCHRONOUS JOB STATUS POLLING LOOP
+    // ============================================================
     function pollJobStatus(jobId) {
-        const progressText = document.getElementById('uploadProgressText');
-        const progressBar = document.getElementById('uploadProgressBar');
-        const fileInfo = document.getElementById('uploadFileInfo');
+        var progressText = document.getElementById('uploadProgressText');
+        var progressBar = document.getElementById('uploadProgressBar');
+        var fileInfo = document.getElementById('uploadFileInfo');
 
-        let pollCount = 0;
-        const maxPolls = 120;
+        var pollCount = 0;
+        var maxPolls = 120;
 
-        const interval = setInterval(() => {
+        var interval = setInterval(function() {
             pollCount++;
-            fetch(`/api/upload/status/${jobId}`)
-            .then(response => response.json())
-            .then(data => {
+            fetch('/api/upload/status/' + jobId)
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
                 if (data.status === 'success') {
-                    const job = data.data;
-                    const steps = job.steps || {};
-                    let completed = 0, total = 0;
-                    for (const key in steps) {
-                        total++;
-                        if (steps[key].status === 'done' || steps[key].status === 'skipped') {
-                            completed++;
+                    var job = data.data;
+                    var steps = job.steps || {};
+                    var completed = 0, total = 0;
+                    for (var key in steps) {
+                        if (steps.hasOwnProperty(key)) {
+                            total++;
+                            if (steps[key].status === 'done' || steps[key].status === 'skipped') {
+                                completed++;
+                            }
                         }
                     }
-                    const progress = total > 0 ? (completed / total) * 100 : 0;
+                    var progress = total > 0 ? (completed / total) * 100 : 0;
                     progressBar.style.width = Math.min(progress, 95) + '%';
 
-                    const statusMessages = {
+                    var statusMessages = {
                         'uploaded': 'Uploaded, processing...',
                         'processing': 'Processing...',
-                        'completed': '✅ Complete!',
-                        'failed': '❌ Failed'
+                        'completed': '✓ Complete!',
+                        'failed': '✗ Failed'
                     };
                     progressText.textContent = statusMessages[job.overall_status] || job.overall_status;
 
-                    let details = [];
-                    for (const key in steps) {
-                        const icons = { 'done': '✅', 'processing': '⏳', 'pending': '⬜', 'failed': '❌', 'skipped': '⏭️' };
-                        details.push(`${icons[steps[key].status] || '⬜'} ${key.replace('_', ' ')}`);
+                    var details = [];
+                    for (var stepKey in steps) {
+                        if (steps.hasOwnProperty(stepKey)) {
+                            var icons = { 'done': '✓', 'processing': '⟳', 'pending': '□', 'failed': '✗', 'skipped': '⏭' };
+                            details.push((icons[steps[stepKey].status] || '□') + ' ' + stepKey.replace(/_/g, ' '));
+                        }
                     }
                     fileInfo.textContent = details.join(' · ');
 
                     if (job.overall_status === 'completed') {
                         clearInterval(interval);
                         progressBar.style.width = '100%';
-                        progressText.textContent = '✅ Processing complete!';
+                        progressText.textContent = '✓ Processing complete!';
                         if (job.results && job.results.kpi) {
                             updateKPIFromResults(job.results);
                         }
                         if (job.results && job.results.address) {
                             document.getElementById('projectAddress').value = job.results.address;
                         }
-                        addHistoryEntry('SUCCESS', `Processing complete for job ${jobId}`);
+                        addHistoryEntry('SUCCESS', 'Processing complete for job ' + jobId);
                     } else if (job.overall_status === 'failed') {
                         clearInterval(interval);
-                        progressText.textContent = '❌ Failed';
+                        progressText.textContent = '✗ Failed';
                         fileInfo.textContent = 'Error: ' + (job.error || 'Unknown');
-                        addHistoryEntry('ERROR', `Processing failed for ${jobId}`);
+                        addHistoryEntry('ERROR', 'Processing failed for ' + jobId);
                     } else if (pollCount >= maxPolls) {
                         clearInterval(interval);
-                        progressText.textContent = '⏱️ Timeout';
-                        addHistoryEntry('WARNING', `Processing timeout for ${jobId}`);
+                        progressText.textContent = '⏱ Timeout';
+                        addHistoryEntry('WARNING', 'Processing timeout for ' + jobId);
                     }
                 }
             })
-            .catch(() => {});
+            .catch(function() {});
         }, 1000);
     }
 
     function updateKPIFromResults(results) {
-        const kpi = results.kpi;
+        var kpi = results.kpi;
         if (kpi) {
             document.getElementById('valueAtRisk').textContent = kpi.value_at_risk.toLocaleString();
             document.getElementById('activeLiens').textContent = kpi.active_liens;
@@ -1225,7 +1726,7 @@
             document.getElementById('riskScore').textContent = kpi.risk_score;
         }
         if (results.jurisdiction) {
-            const j = results.jurisdiction;
+            var j = results.jurisdiction;
             document.getElementById('jurisdictionText').textContent = j.jurisdiction || 'Unknown';
             document.getElementById('codeCount').textContent = j.code_count || 0;
             document.getElementById('regulationCount').textContent = j.regulation_count || 0;
@@ -1237,92 +1738,96 @@
     }
 
     function addHistoryEntry(status, message) {
-        const tbody = document.getElementById('historyBody');
-        const time = new Date().toTimeString().slice(0, 8);
-        const cls = status === 'SUCCESS' ? 'success' : status === 'INFO' ? 'info' : 'warning';
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td>${time}</td><td><span class="status ${cls}">${status}</span></td><td>${message}</td>`;
+        var tbody = document.getElementById('historyBody');
+        var time = new Date().toTimeString().slice(0, 8);
+        var cls = status === 'SUCCESS' ? 'success' : status === 'INFO' ? 'info' : 'warning';
+        var tr = document.createElement('tr');
+        tr.innerHTML = '<td>' + time + '</td><td><span class="status ' + cls + '">' + status + '</span></td><td>' + message + '</td>';
         tbody.prepend(tr);
         while (tbody.children.length > 20) tbody.removeChild(tbody.lastChild);
     }
 
     // ============================================================
-    // LOAD DASHBOARD DATA
+    // KPI CARDS DATA LOADER
     // ============================================================
     function loadDashboardData() {
         fetch('/api/dashboard/stats')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    const d = data.data;
-                    document.getElementById('valueAtRisk').textContent = d.value_at_risk.toLocaleString();
-                    document.getElementById('activeLiens').textContent = d.active_liens;
-                    document.getElementById('compliancePercent').textContent = d.compliance_percent;
-                    document.getElementById('riskScore').textContent = d.risk_score;
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.status === 'success') {
+                var d = data.data;
+                document.getElementById('valueAtRisk').textContent = d.value_at_risk.toLocaleString();
+                document.getElementById('activeLiens').textContent = d.active_liens;
+                document.getElementById('compliancePercent').textContent = d.compliance_percent;
+                document.getElementById('riskScore').textContent = d.risk_score;
 
-                    document.getElementById('changeAtRisk').textContent = d.value_at_risk > 0 ? '⚠️ Active' : '✅ No active risk';
-                    document.getElementById('changeAtRisk').className = 'change ' + (d.value_at_risk > 0 ? 'down' : 'up');
-                    document.getElementById('changeLiens').textContent = d.active_liens > 0 ? `🔴 ${d.active_liens} open` : '✅ No liens';
-                    document.getElementById('changeLiens').className = 'change ' + (d.active_liens > 0 ? 'down' : 'up');
-                    document.getElementById('changeCompliance').textContent = d.compliance_percent > 80 ? '✅ Good standing' : '⚠️ Needs improvement';
-                    document.getElementById('changeCompliance').className = 'change ' + (d.compliance_percent > 80 ? 'up' : 'down');
-                    document.getElementById('changeRisk').textContent = d.risk_score < 20 ? '✅ Low risk' : '⚠️ Monitor';
-                    document.getElementById('changeRisk').className = 'change ' + (d.risk_score < 20 ? 'up' : 'down');
-                }
-            })
-            .catch(() => {});
+                document.getElementById('changeAtRisk').textContent = d.value_at_risk > 0 ? '⚠ Active' : '✓ No active risk';
+                document.getElementById('changeAtRisk').className = 'change ' + (d.value_at_risk > 0 ? 'down' : 'up');
+                document.getElementById('changeLiens').textContent = d.active_liens > 0 ? '🔴 ' + d.active_liens + ' open' : '✓ No liens';
+                document.getElementById('changeLiens').className = 'change ' + (d.active_liens > 0 ? 'down' : 'up');
+                document.getElementById('changeCompliance').textContent = d.compliance_percent > 80 ? '✓ Good standing' : '⚠ Needs improvement';
+                document.getElementById('changeCompliance').className = 'change ' + (d.compliance_percent > 80 ? 'up' : 'down');
+                document.getElementById('changeRisk').textContent = d.risk_score < 20 ? '✓ Low risk' : '⚠ Monitor';
+                document.getElementById('changeRisk').className = 'change ' + (d.risk_score < 20 ? 'up' : 'down');
+            }
+        })
+        .catch(function() {});
 
         fetch('/api/dashboard/history')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success' && data.data.length > 0) {
-                    const tbody = document.getElementById('historyBody');
-                    tbody.innerHTML = '';
-                    data.data.forEach(entry => {
-                        const cls = entry.status === 'SUCCESS' ? 'success' : entry.status === 'INFO' ? 'info' : 'warning';
-                        const tr = document.createElement('tr');
-                        tr.innerHTML = `<td>${entry.time}</td><td><span class="status ${cls}">${entry.status}</span></td><td>${entry.message}</td>`;
-                        tbody.appendChild(tr);
-                    });
-                }
-            })
-            .catch(() => {});
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.status === 'success' && data.data.length > 0) {
+                var tbody = document.getElementById('historyBody');
+                tbody.innerHTML = '';
+                data.data.forEach(function(entry) {
+                    var cls = entry.status === 'SUCCESS' ? 'success' : entry.status === 'INFO' ? 'info' : 'warning';
+                    var tr = document.createElement('tr');
+                    tr.innerHTML = '<td>' + entry.time + '</td><td><span class="status ' + cls + '">' + entry.status + '</span></td><td>' + entry.message + '</td>';
+                    tbody.appendChild(tr);
+                });
+            }
+        })
+        .catch(function() {});
 
         fetch('/api/dashboard/project')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success') {
-                    document.getElementById('projectAddress').value = data.data.address || '';
-                    document.getElementById('jurisdictionText').textContent = data.data.jurisdiction || 'Unknown';
-                }
-            })
-            .catch(() => {});
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.status === 'success') {
+                document.getElementById('projectAddress').value = data.data.address || '';
+                document.getElementById('jurisdictionText').textContent = data.data.jurisdiction || 'Unknown';
+            }
+        })
+        .catch(function() {});
 
         fetch('/api/dashboard/codes')
-            .then(response => response.json())
-            .then(data => {
-                if (data.status === 'success' && data.data.length > 0) {
-                    const list = document.getElementById('codesList');
-                    list.innerHTML = '';
-                    data.data.forEach(code => {
-                        const li = document.createElement('li');
-                        li.innerHTML = `
-                            <span class="code-id">${code.code_id || code.id || 'N/A'}</span>
-                            <span class="code-desc">${code.title || code.name || 'No description'}</span>
-                            <span class="badge">${code.severity || 'active'}</span>
-                        `;
-                        list.appendChild(li);
-                    });
-                }
-            })
-            .catch(() => {});
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.status === 'success' && data.data.length > 0) {
+                var list = document.getElementById('codesList');
+                list.innerHTML = '';
+                data.data.forEach(function(code) {
+                    var li = document.createElement('li');
+                    li.innerHTML = '<span class="code-id">' + (code.code_id || code.id || 'N/A') + '</span><span class="code-desc">' + (code.title || code.name || 'No description') + '</span><span class="badge">' + (code.severity || 'active') + '</span>';
+                    list.appendChild(li);
+                });
+            }
+        })
+        .catch(function() {});
     }
 
     // ============================================================
-    // ADDRESS VERIFICATION
+    // PROJECT ADDRESS JURISDICTION VERIFICATION MODULE
     // ============================================================
     document.getElementById('verifyAddressBtn').addEventListener('click', function() {
-        const address = document.getElementById('projectAddress').value.trim();
+        var address = document.getElementById('projectAddress').value.trim();
         if (!address || address.length < 5) {
             document.getElementById('jurisdictionText').textContent = 'Please enter a valid address';
             document.getElementById('jurisdictionText').style.color = '#ef4444';
@@ -1338,10 +1843,12 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ address: address })
         })
-        .then(response => response.json())
-        .then(data => {
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
             if (data.status === 'success') {
-                const d = data.data;
+                var d = data.data;
                 document.getElementById('jurisdictionText').textContent = d.jurisdiction || 'Unknown';
                 document.getElementById('jurisdictionText').style.color = d.has_codes ? '#10b981' : '#ef4444';
                 document.getElementById('codeCount').textContent = d.code_count || 0;
@@ -1350,13 +1857,13 @@
                 document.getElementById('coveragePercent').textContent = d.coverage_percentage || 0;
                 document.getElementById('coverageBar').style.width = (d.coverage_percentage || 0) + '%';
                 document.getElementById('coverageInfo').style.display = 'block';
-                addHistoryEntry('INFO', `Jurisdiction verified: ${d.jurisdiction}`);
+                addHistoryEntry('INFO', 'Jurisdiction verified: ' + d.jurisdiction);
             } else {
                 document.getElementById('jurisdictionText').textContent = data.message || 'Error';
                 document.getElementById('jurisdictionText').style.color = '#ef4444';
             }
         })
-        .catch(() => {
+        .catch(function() {
             document.getElementById('jurisdictionText').textContent = 'Error verifying';
             document.getElementById('jurisdictionText').style.color = '#ef4444';
         });
@@ -1371,7 +1878,7 @@
     // ============================================================
     document.addEventListener('DOMContentLoaded', function() {
         try {
-            const savedLang = localStorage.getItem('cais_language');
+            var savedLang = localStorage.getItem('cais_language');
             if (savedLang && translations[savedLang]) {
                 applyLanguage(savedLang);
             }
@@ -1380,7 +1887,7 @@
         setInterval(loadDashboardData, 60000);
     });
 
-    console.log('✅ CAIS v10.0 Dashboard initialized');
+    console.log('CAIS Dashboard initialized');
 </script>
 
 </body>

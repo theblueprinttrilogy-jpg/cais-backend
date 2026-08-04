@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
   postgres:
     image: pgvector/pgvector:pg15
+
     container_name: cais-postgres
-    user: postgres
     environment:
       POSTGRES_USER: cais
       POSTGRES_PASSWORD: Cais1234
@@ -18,103 +16,96 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
     networks:
       - cais-network
+    restart: unless-stopped
 
   redis:
-    image: redis:alpine
+    image: redis:7-alpine
     container_name: cais-redis
     ports:
       - "6379:6379"
+    volumes:
+      - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
-    restart: unless-stopped
     networks:
       - cais-network
+    restart: unless-stopped
 
   backend:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: cais-backend
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
+    environment:
+      DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
+      REDIS_URL: redis://redis:6379/0
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/google-service-account.json
     ports:
       - "8080:8080"
-    environment:
-      DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
-      REDIS_URL: redis://redis:6379/0
-      ENVIRONMENT: development
-      HF_HUB_OFFLINE: 1
-      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production}
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      API_PREFIX: ${API_PREFIX:-/api/v1}
     volumes:
-      - .:/app
+      - ./app:/app/app
+      - ./credentials:/app/credentials:ro
+      - ./alembic:/app/alembic
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
-    restart: unless-stopped
     networks:
       - cais-network
+    restart: unless-stopped
 
   worker:
-    build: .
-    container_name: cais-backend-worker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cais-worker
+    command: python -m app.workers.ingestion_worker
     environment:
       DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
       REDIS_URL: redis://redis:6379/0
-      ENVIRONMENT: development
-      HF_HUB_OFFLINE: 1
-      # Ingestion worker specific variables (can be overridden)
-      INGESTION_BATCH_SIZE: ${INGESTION_BATCH_SIZE:-50}
-      INGESTION_INTERVAL: ${INGESTION_INTERVAL:-60}
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/google-service-account.json
     volumes:
-      - .:/app
-      - ./logs:/app/logs
-      - ./config:/app/config
-    command: python3 -m app.workers.ingestion_worker
+      - ./app:/app/app
+      - ./credentials:/app/credentials:ro
+      - /tmp/cais_uploads:/tmp/cais_uploads
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
-    restart: unless-stopped
     networks:
       - cais-network
+    restart: unless-stopped
 
   janitor:
-    build: .
-    container_name: cais-backend-janitor
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cais-janitor
+    command: python -m app.workers.janitor_daemon
     environment:
       DATABASE_URL: postgresql+asyncpg://cais:Cais1234@postgres:5432/cais_db
-      REDIS_URL: redis://redis:6379/0
-      ENVIRONMENT: development
-      JANITOR_INTERVAL: ${JANITOR_INTERVAL:-3600}
-      JANITOR_MAX_AGE_DAYS: ${JANITOR_MAX_AGE_DAYS:-45}
-      JANITOR_ROOT_FOLDER: ${JANITOR_ROOT_FOLDER:-JACINTO_CORREA_COMPUTER}
-      JANITOR_TEMP_DIR: /app/data/temp
-      JANITOR_DATA_DIR: /app/data
-      JANITOR_LOG_FILE: /app/logs/janitor.log
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      GOOGLE_APPLICATION_CREDENTIALS: /app/credentials/google-service-account.json
     volumes:
-      - .:/app
-      - ./logs:/app/logs
-    command: python3 -m app.agents.start_janitor_daemon
+      - ./app:/app/app
+      - ./credentials:/app/credentials:ro
     depends_on:
       postgres:
         condition: service_healthy
-      redis:
-        condition: service_healthy
-    restart: unless-stopped
     networks:
       - cais-network
+    restart: unless-stopped
 
 volumes:
   postgres_data:
-    driver: local
+  redis_data:
 
 networks:
   cais-network:
