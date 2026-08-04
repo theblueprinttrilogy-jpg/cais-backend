@@ -65,7 +65,7 @@ class Orchestrator:
         the orchestrator is ready to accept tasks without mixing sync/async.
         """
         logger.info("Initializing orchestrator")
-        # Example: check database connectivity by running a simple query
+        # Check database connectivity by running a simple query
         try:
             stmt = select(Agent).limit(1)
             await self.db_session.execute(stmt)
@@ -82,6 +82,31 @@ class Orchestrator:
                 await agent.initialize()
             logger.info(f"Agent '{name}' initialized")
 
+    async def _get_or_create_agent(self, agent_name: str) -> Agent:
+        """
+        Retrieve an Agent by name from the database, or create one if missing.
+
+        :param agent_name: Name of the agent.
+        :return: Agent instance.
+        """
+        stmt = select(Agent).where(Agent.name == agent_name)
+        result = await self.db_session.execute(stmt)
+        agent = result.scalar_one_or_none()
+
+        if agent is None:
+            logger.info(f"Agent '{agent_name}' not found in DB, creating...")
+            agent = Agent(
+                name=agent_name,
+                description=f"Auto-created agent for '{agent_name}'",
+                is_active=1,
+            )
+            self.db_session.add(agent)
+            await self.db_session.commit()
+            await self.db_session.refresh(agent)
+            logger.info(f"Agent '{agent_name}' created with ID {agent.id}")
+
+        return agent
+
     async def execute_task(
         self,
         task_id: str,
@@ -92,26 +117,34 @@ class Orchestrator:
         """
         Execute a task using the specified agent.
 
+        Before creating the task record, it ensures that an Agent record
+        exists in the database for the given agent_name (auto-creates if missing).
+
         :param task_id: Unique identifier for the task.
         :param agent_name: Name of the agent to use.
         :param input_data: Input parameters for the agent.
         :param priority: Task priority (higher = more urgent).
         :return: Result dictionary from the agent.
-        :raises ValueError: If agent not found or task already running.
+        :raises ValueError: If agent not found in registry or task already running.
         """
         if agent_name not in self.agent_registry:
             raise ValueError(f"Agent '{agent_name}' not registered")
 
-        agent = self.agent_registry[agent_name]
+        agent_instance = self.agent_registry[agent_name]
 
         # Check if task already exists and is running
         existing = await self._get_task(task_id)
         if existing and existing.status == "running":
             raise ValueError(f"Task {task_id} is already running")
 
-        # Create task record
+        # Ensure Agent record exists in the database and get its ID
+        agent_record = await self._get_or_create_agent(agent_name)
+        agent_id = agent_record.id
+
+        # Create task record with the resolved agent_id
         task_record = AgentTask(
             id=task_id,
+            agent_id=agent_id,
             agent_name=agent_name,
             status="pending",
             priority=priority,
@@ -125,12 +158,11 @@ class Orchestrator:
 
         # Start execution in a background task to avoid blocking
         execution_task = asyncio.create_task(
-            self._run_agent(agent, task_record, input_data)
+            self._run_agent(agent_instance, task_record, input_data)
         )
         self._running_tasks[task_id] = execution_task
 
-        # Optionally wait for completion if needed, but here we return immediately
-        # and the caller can poll status.
+        # Return immediately; caller can poll status
         return {"task_id": task_id, "status": "started"}
 
     async def _run_agent(
@@ -234,14 +266,15 @@ class Orchestrator:
                 return True
         return False
 
-    async def run_janitor_cleanup(self) -> int:
+    async def run_janitor_cleanup(self, aggressive: bool = False) -> Dict[str, Any]:
         """
-        Run the janitor cleanup using the JanitorService.
+        Run the janitor cleanup using the JanitorService, with disk-space awareness.
 
-        :return: Number of files purged.
+        :param aggressive: If True, force aggressive cleanup regardless of disk state.
+        :return: Metrics dictionary from the janitor.
         """
         janitor = JanitorService(self.db_session, self.drive_service)
-        return await janitor.run_cleanup()
+        return await janitor.run_cleanup(aggressive=aggressive)
 
     async def shutdown(self) -> None:
         """
@@ -258,4 +291,14 @@ class Orchestrator:
                 *self._running_tasks.values(), return_exceptions=True
             )
         self._running_tasks.clear()
+        # Shutdown each agent if they have a shutdown method
+        for name, agent in self.agent_registry.items():
+            if hasattr(agent, "shutdown") and asyncio.iscoroutinefunction(
+                agent.shutdown
+            ):
+                await agent.shutdown()
         logger.info("Orchestrator shut down")
+
+
+# Alias for compatibility with ingestion_worker and other consumers
+AutonomousOrchestrator = Orchestrator
